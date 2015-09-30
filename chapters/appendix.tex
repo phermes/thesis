@@ -1,0 +1,134 @@
+\chapter*{Appendix\markboth{Appendix}{Appendix}}
+
+%\chapter*{Appendix}
+\begin{appendix}
+
+%\renewcommand\thesection{\thesection.\alph{section}}
+\renewcommand{\thesection}{\thepart \Alph{section})}
+
+\section{Derivation of Ion Rigidities}
+
+
+
+
+\section{Accelerator Hamiltonian in a Curved Coordinate System}
+
+%
+  \begin{figure}[t]
+  \centering
+  \includegraphics[width=0.25\textwidth]{pictures/15041701.png}
+  \caption{}  
+  \label{pic:15041701}
+  %/home/phermes/Desktop/curved.png
+  \end{figure}
+%
+In dipole magnets, the trajectory of the reference particle is curved. The motion of the particles in a dipole magnet is then most elegantly described in a curved coordinate system. For the case of a purely horizontal and uniform bending magnet, the reference trajectory can be described by a bending radius $\rho$, as illustrated in Fig.~\ref{pic:15041701}. Based on the geometry, the coordinates in the straight ($x,y,s$) and in the curved coordinate system ($X,Y,S$) can be related to each other. With a third order generating function, the momentum coordinates in the curved coordinate system and the new magnetic potentials can be calculated. The derivation presented in the following is based on \cite{wolski2014beam}. From the geometry shown in Fig.~\ref{pic:15041701}, the new and old coordinates are connected by the simple relations:
+\begin{align}
+x &= (\rho + X) \, \cos \left( \frac{S}{\rho} \right) - \rho \, , \notag \\
+y &= Y , \\
+s &= (\rho + X) \, \sin \left( \frac{S}{\rho} \right)  \notag \, .
+\end{align}
+One can then construct a generating function of third order to calculate the particle momenta in the new coordinate system~\cite{}
+\begin{align}
+F_3 (X,p_x,Y,p_y,S,p_z) = - \left[ (\rho + X) \, \cos \left( \frac{S}{\rho} \right) - \rho \right] \, p_x - Y \, p_y  - \left[ (\rho + X) \, \sin \left( \frac{S}{\rho} \right) \right] \, p_z \, .
+\end{align}
+%
+The old and the new coordinates are then related by 
+\begin{align}
+x_i = - \PD{F_3}{p_i} \, \quad \quad P_i = - \PD{F_3}{X_i} \, .
+\end{align}
+The new momentum coordinates are given by
+\begin{align}
+P_X &= p_x \,  \cos \left( \frac{S}{\rho} \right) + p_z  \sin \left( \frac{S}{\rho} \right) \, , \notag \\
+P_Y &= p_y \, , \\
+P_Z &= p_z \, \left( 1 + \frac{X}{\rho} \right)  \cos \left( \frac{S}{\rho} \right) - p_x \, \left( 1 + \frac{X}{\rho} \right)  \sin \left( \frac{S}{\rho} \right) \, . \notag
+\end{align}
+%
+The vector potential is given by
+\begin{align}
+A_X &= A_x \, \cos \left( \frac{S}{\rho} \right) - A_z \, \sin \left( \frac{S}{\rho} \right) \, , \notag \\
+A_Y &= A_y \, , \\ 
+A_S &= A_z \, \cos \left( \frac{S}{\rho} \right) + A_x \, \sin \left( \frac{S}{\rho} \right) \, , \notag 
+\end{align}
+When the Hamiltonian is now transformed into the curved coordinate system in the accelerator frame, the transformation follows the same steps as shown in Chap.~\ref{chap:accelerator_hamiltonian}. 
+
+\section{Variables in SixTrack}
+
+
+
+\section{Implemented Heavy-Ion Tracking Maps}
+
+
+\subsection{Horizontal Kicker Magnet}
+\begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of an horizontal kicker.]
++cd kickv01h
++if .not.tilt
+!            yv(1,j)=yv(1,j)+(strack(i)*oidpsv(j))        ! SixTrack
+            yv(1,j)=yv(1,j)+(strack(i)*oidpsv(j))*mtc(j)  ! hiSix
++ei
++if tilt
+            yv(1,j)=yv(1,j)+(strackc(i)*oidpsv(j))*mtc(j) 
+            yv(2,j)=yv(2,j)+(stracks(i)*oidpsv(j))*mtc(j) 
++ei
+\end{lstlisting}
+
+\newpage
+\begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of an horizontal kicker.]
++cd kickvxxh
++if .not.tilt
+            yv(1,j)=yv(1,j)+((strack(i)*oidpsv(j))*crkve)*mtc(j) ! P. HERMES
+            yv(2,j)=yv(2,j)-((strack(i)*oidpsv(j))*cikve)*mtc(j) ! P. HERMES 
++ei
++if tilt
+            yv(1,j)=yv(1,j)+(oidpsv(j)*(strackc(i)*crkve+               &
+     &stracks(i)*cikve))*mtc(j)
+            yv(2,j)=yv(2,j)+(oidpsv(j)*(stracks(i)*crkve-               &!hr02
+     &strackc(i)*cikve))*mtc(j)                                          !hr02
++ei
+\end{lstlisting}
+
+\begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of a vertical dipole kick.]
++cd kickv01v
++if .not.tilt
+            yv(2,j)=yv(2,j)+(strack(i)*oidpsv(j))*mtc(j) ! P. HERMES for hiSix
++ei
++if tilt
+            yv(1,j)=yv(1,j)-(stracks(i)*oidpsv(j))*mtc(j) ! P. HERMES for hiSix
+            yv(2,j)=yv(2,j)+(strackc(i)*oidpsv(j))*mtc(j) ! P. HERMES for hiSix
++ei
+\end{lstlisting}
+
+\begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of a vertical dipole kick.]
++cd kickvxxv
+            !write(*,*), 'PH: kickvxxv'
++if .not.tilt
+!hr02       yv(1,j)=yv(1,j)+strack(i)*oidpsv(j)*cikve
+            yv(1,j)=yv(1,j)+((strack(i)*oidpsv(j))*cikve)*mtc(j) ! P. HERMES                  !hr02
+!hr02       yv(2,j)=yv(2,j)+strack(i)*oidpsv(j)*crkve
+            yv(2,j)=yv(2,j)+((strack(i)*oidpsv(j))*crkve)*mtc(j) ! P. HERMES                  !hr02
++ei
++if tilt
+            yv(1,j)=yv(1,j)+(oidpsv(j)*(strackc(i)*cikve-               &
+     &stracks(i)*crkve))*mtc(j)
+            yv(2,j)=yv(2,j)+(oidpsv(j)*(strackc(i)*crkve+               &
+     &stracks(i)*cikve))*mtc(j)
++ei
+\end{lstlisting}
+
+
+
+
+\section{Modifications on the SixTrack-FLUKA Coupling}
+
+\begin{lstlisting}[language=Fortran,caption=]
+!     PH hisix compute the number of nucleons sent to FLUKA
+      nnuc0 = 0
+      do j=1,napx
+         nnuc0 = nnuc0 + naa(j)
+      end do
+\end{lstlisting}
+
+
+
+
+\end{appendix}

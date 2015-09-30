@@ -1,0 +1,268 @@
+\chapter{Heavy-Ion SixTrack}
+
+\begin{itemize}
+\item need for a new tracking code
+\item high accuracy of sixtrack
+\end{itemize}
+
+
+\section*{Introduction}
+Based on the results of the studies with STIER, SixTrack appears as the appropriate candidate to track heavy-ions for the simulation of collimation loss maps. Especially the high order chromatic modeling and the elaborated implementation of symplectic tracking maps make SixTrack to the tool of choice. 
+
+
+
+\section{Requirements on the Software}
+
+The development of the modified heavy-ion SixTrack (hiSix) is carried out with several aims. 
+
+The software shall provide native tracking of heavy-ions with the appropriate symplectic tracking maps adequately modeling the dependance of the tracking on $\delta $ and $\chi$ of the particle. It shall provide high numeric precision. 
+
+Even though collimation simulations are typically carried out for some hundrets of turns, other simulations of the particle behaviour in a high energy ring can require $10^6$ turns or even more.
+
+The interaction with the collimators shall be modelled accurately using elaborated physics models. All resulting ion fragments shall be sent back to the tracking algorithm in which they should be accurately tracked. 
+
+Synchrotron motion should be included to allow studies on the longitudinal motion of different ion species. 
+
+The demand on hiSix is thus above the typical requirements on a collimation simulation software, for which it would suffice to have enough numeric precision for a tracking over 500 turns and without the need to include RF cavities. The software is therefore going enable the possiblity for many different studies with heavy-ion beams.
+
+
+
+\section{Strategy}
+
+The two major modifications on the software can be subdivided into changes of the tracking routine, the communication with the FLUKA server and the fragmentation simulation inside FLUKA. 
+
+\subsection{}
+
+\paragraph{Definition of the Reference Species} \mbox{} \\
+The computation of the fundamental quantity $\chi$ requires the knowledge of both, charge and mass $q_0,m_0$ of the reference ion species and of the 
+
+\paragraph{Reading of the Initial distribution} \mbox{} \\ 
+
+\paragraph{Adjustment of phsycis computations} \mbox{} \\
+\begin{itemize}
+\item Tracking maps
+\item Energy definitions
+\item Particle speed
+\item Array sizes
+\end{itemize}
+
+
+\paragraph{Communication with the FLUKA Server}  \mbox{} \\
+
+\paragraph{Weighting of lost heavy-ions}  \mbox{} \\
+
+
+
+
+\section{Strategy and Implementation}
+\subsection*{Preface - Variables in SixTrack}
+For the understanding of the modifications in the SixTrack tracking maps, the most important variables for physical quantities must be defined. An overview is given in \tabref{tab:sixtrack_variables}.
+
+\begin{table}[h]
+\centering
+\caption{My caption}
+\label{tab:sixtrack_variables}
+\begin{tabular}{clccc}
+\toprule
+Variable             & Description           & Symbol & Unit & Definition\\ \midrule
+\texttt{e0}          & Energy of the reference particle              & $E_0$                & MeV  &                      \\
+\texttt{e0f}         & Momentum of the reference particle            & $P_0$                & MeV/$c^2$  &                      \\
+\texttt{pma}         & Proton rest mass            & $m_p$                & MeV/$c^2$  &                      \\
+\texttt{xv(1,j)}     & Horizontal coordinate                         & $x$                  & mm   & \eqref{eq:refframe}  \\
+\texttt{xv(2,j)}     & Vertical coordinate                           & $x$                  & mm   & \eqref{eq:refframe}  \\
+\texttt{yv(1,j)}     & Horizontal slope                              & $x'$                 & mrad \\
+\texttt{yv(2,j)}     & Vertical slope                                & $y'$                 & mrad \\
+\texttt{sigmv(j)}    & Path length difference                        & $\sigma$             & mm   & \eqref{eq:sigmadefinition}  \\
+\texttt{dpsv(j)}     & Relative momentum offset                      & $\delta$             & -    &      \\
+\texttt{oidpsv(j)}   & Relative momentum offset                      & $\frac{1}{1+\delta}$ & -    &     \\
+                &                       &      \\ \midrule
+\multicolumn{5}{c}{\textit{Newly introduced or modified variables in hiSix}}     \\ \midrule
+\texttt{zz0}           &  Charge multiplicity of the reference ion species    & $Z_0$     & - &       \\
+\texttt{aa0}           &  Nucleon number of the reference ion species         & $A_0$     & - &       \\
+\texttt{nucm0}         &  Rest mass of the reference ion species              & $m_0$     & GeV/$c^2$ &       \\
+\texttt{nzz(j)}        &  Charge multiplicity of the tracked ion              & $Z$       & - &       \\
+\texttt{naa(j)}        &  Nucleon number of the tracked ion                   & $A$       & - &       \\
+\texttt{nucm(j)}       &  Rest mass of the tracked ion                        & $m$       & GeV/$c^2$ & \\
+\texttt{mtc(j)}        &  Relative mass to charge ratio                       & $\chi$    & - & \eqref{eq:chidef}      \\
+\texttt{dpsv(j)}       &  Relative \textbf{momentum per mass} offset          & $\delta$  & -    & \eqref{eq:15010701}     \\
+\texttt{moidpsv(j)}    &  Momentum per mass offset times mass to charge ratio & $\frac{\chi}{1+\delta}$    & - &      \\
+
+                   &                       &     \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Some variables must be re-defined in hiSix to be compatible with the more generic multi-isotopic definitions introduced in \chapref{}. The first concerned quantity is the relative velocity offset $\delta$ which is implemented in the standard SixTrack as the relative momentum offset. Given that this equality is not true in a multi-isotopic tracking, the definition of $\delta$ is modified to obey \eqref{eq:15010701}:
+%
+
+\begin{lstlisting}[language=Fortran,caption={Re-definition of $\delta$ for the multi-isotopic case.}, label={lst:delta_redef}]
+!dpsv  (j) = (ejfv(j)-e0f)/e0f                          ! standard 
+dpsv  (j) = (ejfv(j)*(nucm0/nucm(j))-e0f)/e0f           ! hiSix   
+\end{lstlisting}
+
+Combined expressions such as $\frac{1}{1+\delta}$ are defined by means of $\delta$, such that additional changes to these quantities are unnecessary. Besides, if the relativistic energy-momentum relation is applied, the variable for the particle mass must be changed. Before, the rest mass of protons $m_p$ was taken into account for every calculation of the relativistic energy or momentum. In the heavy-ion implementation, the following definition updates have been carried out:
+
+\begin{lstlisting}
+! Energy
+!ejv   (j) = sqrt(ejfv(j)**2+pma**2)                     ! standard
+ejv   (j) = sqrt(ejfv(j)**2+nucm(j)**2)                  ! hiSix
+! Momentum for reference particle
+!e0f=sqrt(e0**2-pma**2)                                  ! standard
+e0f=sqrt(e0**2-nucm0**2)                                 ! hiSix
+\end{lstlisting}
+
+Note that the nuclear mass in the energy definition has changed from a parameter in the standard SixTrack implementation to an array in hiSix, since the rest mass is different for the various ions. 
+
+
+
+\subsection{Changes in fort.3}
+Heavy-ion SixTrack (\texttt{hiSix}) is activated by means of a dedicated BLOCK in the \texttt{fort.3} file indicating the properties of the reference ion species. An example input block to call hiSix is given in List.~\ref{list:f3hiblock}. The general structure of the input is using the HION command to call the heavy-ion version of SixTrack. Then, the parameters of the reference ion species are given in the following order: $A$, $Z$, $m_0$.
+
+\begin{lstlisting}[language=Fortran,caption={New heavy-ion block in the fort.3 file to access hiSix. In the given example, the chosen reference ion species is \lead. Lines starting with '/' are commented out.}, label={lst:test}]
+HION
+/1     1    0.93827231            /PROTONS
+/40   18    37.2155493            /ARGON IONS
+208   82    193.68769             /LEAD IONS
+NEXT
+
+\end{lstlisting}
+
+
+
+
+
+\begin{lstlisting}[language=Fortran,caption=Definition of the new heavy-ion block in the fort.3 in the sixtrack.s file]
+!     P. HERMES 01-07-2015
+!     HEAVY ION BLOCK
+ 2400 read(3,10020,end=1530,iostat=ierro) ch
+      if(ierro.gt.0) call prror(58)
+      if(ch(1:1).eq.'/') goto 2400
+      if(ch(:4).eq.next) goto 110
+      ch1(:nchars+3)=ch(:nchars)//' / '                                                                                                                                 
+      read(ch1,*) aa0, zz0, nucm0
+      nucm0 = nucm0  * 1.0D+03 !  [GeV/c^2] -> [MeV/c^2] ! P. HERMES
+      write(*,*) 'Heavy-ion reference species:', aa0, zz0, nucm0
+      goto 110
+
+\end{lstlisting}
+
+
+
+
+
+\subsection{Initialization of Particle Properties}
+
+
+
+
+
+
+
+
+\subsection{Closed Orbit and Optics Computation}
+
+The relativistic $\beta$ changes, also the Energy-Momentum relation must be modified such that SixTrack uses \lstinline|nucm(j)|.
+
+
+
+
+
+\section{Transfer Maps}
+
+
+
+
+\section{Benchmarking of the Tracking Algorithm}
+  \begin{figure}[b]
+  \centering
+  \includegraphics[width=0.7\textwidth]{pictures/15080501.pdf}
+  \caption{Simulated heavy-ion tracks for different on-momentum ($\delta=0$) isotopes starting with the same initial conditions in IP1.}  
+  \label{pic:15080501}
+  %/home/phermes/Dropbox/PhD/notebooks/graphics/123.pdf
+  \end{figure}
+For the benchmarking of the tracking, we compare the tracks simulated by means of the new Heavy-Ion Sixtrack (hiSix) with the nominal SixTrack code. In hiSix, the calculations are carried out with respect to the reference isotope \lead:
+\begin{align}
+A_0=208 \quad Z_0=82 \quad m_0=193.68769\,\text{GeV}/c^2 \, .
+\end{align}
+With the modifications mentioned in the previous chapters, hiSix is capable of providing native tracking of different isotopes. In \figref{pic:15080501}, the tracks of different on-momentum isotopes are shown, which have been computed by means of hiSix. All isotopes start in IP1 with $\delta=0$ and identical initial conditions $x=y=0$ and $x'=y'=0$. The different trajectories are caused by the isotopic dispersion because the isotopes have different values for $\chi$. 
+
+In the following, three different approaches of comparing the proton tracks in SixTrack with the ion tracks in hiSix are presented. Especially if the particle tracks are observed over many turns, small numeric imprecisions induced by improper implementation (wrong setting of brackets etc.) of the tracking maps may lead to significant changes of the particle tracks. 
+
+The tracking behaviour for three cases shall be studied:
+\begin{enumerate}
+\item Betatron tracking for on-momentum ions of the reference species ($\delta = 0$; $\chi=1$)
+\item Tracking of different isotopes with perfect momentum to study the modelling of the isotopic dispersion ($\delta =0$, $\chi \neq 1$)
+\item Tracking of off-momentum particles of the reference species to study the modelling of the chromatic dispersion ($\delta \neq 0$, $\chi =1$)  
+\end{enumerate}
+
+The collimators are removed from the simulation, such that the tracking result can not be adulterated by scattering in the collimators. Furthermore, the RF cavities are not included since the momentum kicks for ions and protons deliver different kicks in $\delta$.
+
+
+\subsection{Betatron Tracking without Dispersion ($\delta = 0$; $\chi=1$)}
+
+
+  \begin{figure}[b]
+  \centering
+  \includegraphics[width=0.6\textwidth]{pictures/15080503.pdf}
+  \caption{}  
+  \label{pic:15080502}
+  %/home/phermes/Dropbox/PhD/notebooks/graphics/123.pdf
+  \end{figure}
+
+
+
+
+
+In a first benchmark, the betatron tracking is compared between hiSix and SixTrack. For this purpose, two on-momentum particles ($\delta=0$) of the respective reference species (protons in SixTrack and \lead in hiSix) are tracked with identical initial conditions in IP1. For the chosen purpose an initial offset in $x$ of $10^{-4}\,$m was chosen, which is sufficiently small to have a continuous oscillation without touching the aperture. The trajectory of the resulting oscillation is shown in \figref{pic:15080502}. 
+
+The tracking was carried out over $10^6$ turns. The difference between the two tracking codes is illustrated in \figref{pic:15073001}, it is $\Delta x=0$ in every turn. The betatron tracking for on-momentum particles of the reference species is thus considered to be accurate.
+
+\begin{figure}[t]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width=1\textwidth]{pictures/15073021.pdf}
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\includegraphics[width=1\textwidth]{pictures/15073022.pdf}
+\end{minipage}
+  \caption{}  
+  \label{pic:15073001}
+  %/media/phermes/ph3tboffice/ph1tbwd/150729_hisix_tracking_comparison/tracking_benchmark_1.pdf
+\end{figure}
+
+
+
+
+
+\subsection{On-Momentum Tracking of Different Isotopes ($\delta =0$, $\chi \neq 1$)}
+
+The tracking is carried out for the six isotopes presented in \tabref{tab:15080501} without momentum offset $\delta=0$. In this approach, the pure modeling of the isotopic dispersion can be studied.
+
+
+
+
+
+\begin{table}[h]
+\centering
+\caption{Isotopes used for the benchmarking of the heavy-ion tracking. Values for $\chi$ and $\delta_\text{eff}$ are computed by means of Eqs.~\ref{} with respect to the reference isotope \lead. The masses correspond to the fully stripped ions and were extracted from FLUKA.}
+\label{tab:15080501}
+\begin{tabular}{cccccc}
+\toprule
+Element & $A$ & $Z$ & $m$ [GeV/$c^2$] & $\chi$   & $\delta_\text{eff}$ \\ \midrule
+H       & \phantom{12}1   & \phantom{1}1   & 0.93827         & 2.51744  & -0.6030              \\
+H       & \phantom{12}3   & \phantom{1}1   & 2.80892      & 0.84090  & \phantom{-}0.1892              \\
+He      & \phantom{12}4   & \phantom{1}2   & 3.72738         & 1.26740  & -0.2110              \\
+Au      & 206 & 79  & 191.833      & 0.97273  & \phantom{-}0.0280             \\
+Pb      & 207 & 82  & 192.755      & 1.00484  & -0.0048             \\
+Tl      & 208 & 81  & 193.693      & 0.98778 & \phantom{-}0.0124           \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Chromatic Tracking of the Reference Species ($\delta \neq0$, $\chi = 1$)}
+
+Finally, the beaviour of the chromatic tracking with $\delta \neq 0$ is benchmarked. For this simulation, the reference species is used in hiSix in order to eliminate effects of isotopic dispersion. The tracking was carried out over $10^6$ turns for particles with $\delta = 10^{-4}$.
+
+\section{The SixTrack-FLUKA Coupling with Heavy Ions} \label{chap:hisix_coupling}
+
+The coupling of SixTrack with FLUKA must be adapted to the specific requirements with heavy ions. Detection 

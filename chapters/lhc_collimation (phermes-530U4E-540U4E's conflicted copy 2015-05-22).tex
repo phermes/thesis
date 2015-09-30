@@ -1,0 +1,260 @@
+\chapter{Collimation at the LHC}\label{chap:3}
+%
+\section*{Introduction}
+%
+At design energy and beam intensity, the LHC stores proton beams with a combined energy of $2 \times $362$\,$MJ~\cite{CERN-2004-003-V1}, corresponding to the amount of energy required to melt 600$\,$kg of copper~\cite{}. The superconducting LHC magnets risk to quench if very small amounts of beam are deposited inside them. Such quenches are undesired because they interrupt the operation of the machine, reducing the time available to collect integrated luminosity for the experiments. Even worse, if larger amounts of beam are deposited inside of magnets or sensitive machine equipment, the stored beam energies are sufficient to induce serious damage to the machine.
+
+However, beam losses are inevitable because many processes scatter some of the beam particles to large transverse amplitudes or cause them to lose fractions of their momentum.  
+
+
+which constitute a beam halo with an increased probability to intercept the machine aperture. The LHC collimation system protects the machine by provoking controlled losses of such particles in dedicated robust devices, the collimators.
+
+
+
+%
+\section{The LHC Collimation System}
+
+% collimators must be the aperture bottlenecks
+%
+
+  \begin{figure}[t]
+  \centering
+  \includegraphics[width=1.0\textwidth]{pictures/14052202.png}
+  \caption{The LHC multi stage system for collimation.}  
+  \label{pic:14052202}
+  \end{figure}
+
+The backbone of the collimation system is the ensemble of primary and secondary collimators (TCP and TCS) in the cleaning insertions, providing momentum cleaning (IR3) and betatron cleaning (IR7) respectively. In addition, the triplet magnets which provide the final focusing for the experiments are equipped with local protection devices. The multi-stage approach is necessary to fulfill the contradictory demands for collimator materials with very high radiation robustness and high absorption cross sections, which can not be provided by a single material. 
+
+
+
+During the design phase of the machine, a progressive upgrade of the LHC collimation system was foreseen to increase the performance of the protection with increasing luminosity and energy~\citedr. 
+
+
+ 
+
+
+
+The functionality of the LHC betatron cleaning system is schematically illustrated in \figref{pic:14052202}. In the collimation regions IR3 and IR7, primary collimators (TCPs) are set to a collimator opening of $N_1$ (transverse distance from beam centre expressed in terms of $\sigma$) to intercept the trajectories of particles at large amplitudes. These particles interact with the collimator material, such that they are either scattered back into the beam or to a larger amplitude~\citedr. Depending on the angular kick, the latter can then intercept the secondary collimators (TCS) of opening $N_2$, which is slightly retracted with respect to the TCPs ($N_2>N_1$). This is provided, if the angular kick $\Delta x'$ fulfills the condition~\cite{jeanneret1998optics}
+
+\begin{align}
+\Delta x' > \sqrt{\frac{(N_1^2 - N_2^2) \, \epsilon_N }{ \gamma \, \beta_x } } \,,
+\end{align}
+where $\epsilon_N$ is the transverse normalized emittance, $\beta_x$ is the horizontal optical $\beta$-function at the primary collimator and $\gamma$ is the Lorentz factor.
+
+The interaction of the particles inside the collimator material is due to several different effects, which are shortly presented here and discussed in more detail in \chapref{xxx}.
+\paragraph{Energy loss through ionization:} This effect is well-described by the Bethe-Bloch formula which is proportional to the square of the particle charge $Z^2$. 
+
+\paragraph{Multiple Coulomb scattering:} The particle is scattered many times at the atoms composint the collimator material; the many small scattering angles sum up to a larger final angle at the end of the passage through the matter. The RMS angle due to multiple Coulomb scattering is described by the Moliere formula~\cite{Beringer:1900zz}
+\begin{align}
+\theta_0 = \frac{13.6\,\text{MeV}}{\beta \, c \, p} \, Z \, \sqrt{\frac{x}{X_0}} \, \left[ 1 + 0.038 \, \ln \left( \frac{x}{X_0} \right) \right] \, ,
+\end{align}
+where $\beta\,c = v$ and $p$ are particle speed and momentum, $x$ is the distance the particle traversed inside the material, $Z$ is the charge of the beam particle and $X_0$ is the ratiation length (see \chapref{xxx}).
+
+
+  % \begin{figure}[t]
+  % \centering
+  % \textbf{Momentum cleaning insersion IR3}
+  % \includegraphics[width=1.0\textwidth]{pictures/14121104.pdf}
+  % \textbf{Betatron cleaning insersion IR7}
+
+  % \includegraphics[width=1.0\textwidth]{pictures/14121105.pdf}
+  % \caption{Optical functions in the two LHC collimation insertions. The  }  
+  % \label{pic:14121101}
+  % \end{figure}
+
+
+% \newcommand{\resizepgf}[2][\textwidth]{
+% \resizebox{#1}{!}{\includepgf{#2}}
+% }
+
+%   \begin{figure}[htb]
+%   \centering
+%    \def\svgwidth{0.5\linewidth}
+%    \input{pictures/14121202.pgf}
+%   \caption{captiontext}
+%   \label{}
+% \end{figure}
+
+\begin{figure}
+\centering
+\resizebox{1.0\textwidth}{!}{\input{pictures/14121239.pgf}}
+\resizebox{1.0\textwidth}{!}{\input{pictures/14121503.pgf}}
+%\resizebox{1.0\textwidth}{!}{\input{pictures/14121222.pgf}}
+\caption{Optical functions in the two LHC collimation insertions.}
+\label{pic:14121222}
+\end{figure}
+
+
+
+\section{Measurement of Losses during LHC Operation}
+In order to evaluate the performance of the LHC collimation system and particularly to keep track losses in the cold LHC magnets for specific magnetic configurations, dedicated measurements are performed during LHC operation. In these measurements, special excitation strategies are applied to blow up the beam dimensions and systematically enhance the number of particles which hit the collimators and the magnets. Thus, these measurements simulate the integrated losses of the beam halo in LHC operation at higher intensity. The losses at the collimators and at the aperture are kept track of by the use of the 532(?) beam loss monitors (BLMs) which are installed in numerous places of the accelerator. 
+
+
+\begin{table}[htbp]
+\caption{LHC collimator settings during the two years with heavy ion runs.}
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\midrule
+ \multicolumn{2}{c}{Collimator} & \multicolumn{3}{c}{Half gap ($\sigma$)} \\
+Type & Region & 2011 & 2012 & Design \\ \midrule
+TCP & IR7 & 5.7 & 4.3 & 6.0 \\
+TCS & IR7 & 8.5 & 6.3 & 7.0 \\
+TCLA & IR7 & 17.7 & 8.3 & 10.0 \\
+TCP & IR3 & 12.0 & 12.0 & 15.0 \\
+TCS & IR3 & 15.6 & 15.6 & 18.0 \\
+TCLA & IR3 & 17.6 & 17.6 & 20.0 \\ \midrule
+ \multicolumn{2}{c}{Energy [TeV]} & 3.5 & 4.0 & 7.0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\label{tab:14070901}
+\end{table}
+
+
+\subsection{Measurement Strategy}
+[] AC Dipole for beam excitation
+[] Resonance crossing techniques
+
+\subsection{Beam Loss Monitors}
+
+\begin{figure}[b]
+  \centering
+   \def\svgwidth{1.0\linewidth}
+   \input{pictures/hybrid_pictures/14062001.pdf_tex}
+  \caption{Illustrated positioning of BLMs at a superconducting LHC magnet~\cite{dehning2002lhc}.}
+\label{pic:14061701}
+\end{figure}
+
+During operation of the LHC, a system to keep track of the particle losses throughout the whole ring is required. Therefore, aprroximately 3000 dedicated particle detectors are installed at specific locations of the LHC ring. Particularly the particle losses in the cold magnets are tracked, in order to prevent a raise of the losses obove the quench limit. Besides the human readable output which is available at the LHC control room, the BLM signals are processed by the LHC Beam Interlock System, which triggers the emergency extraction of the beams by the LHC Beam Dump System~\cite{guaglio2005reliability}.
+
+The BLMs used at the LHC are ionization gas detectors of cylindrical shape, which are installed outside the beam pipe. They measure the particle showers which are produced by a particle hitting the LHC beam pipe.
+Consequently, the BLMs do inherently not provide full azimutal or longitudinal coverage. Thus, the comparability of experimental measurements of the distribution of loss positions in the machine (lossmaps) with simulation data is limited, which must be kept in mind when analyzing such data\footnote{Also, the translation of BLM signals into magnet heating and therefore the quench limit in terms of BLM signal is not at all trivial. Dedicated monte carlo simulations are necessary, in order to estimate the heating at a specific magnet due to a specific configuration of initial particle hits, under respect of the individual magnet geometry.  }. However, the measurements give an idea of frequent loss positions and approximately the expectable loss intensity. Besides, the BLMs allow the study of certain physics phenomena with well predictable loss locations such as the bound free pair production (see \chapref{140619}). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Heavy Ion Collimation at the LHC}
+
+Compared to the collimation of protons, the collimation of heavy nuclei is related to some particularities, due to the fact that the nucleus is composed of many nucleons. 
+
+\begin{table}[htbp]
+\caption{Physics processed of protons and lead ions in the collimator material, with characteristic quantities~\cite{braun2004collimation}.}
+\begin{center}
+\begin{tabular}{ l c c }
+\toprule
+\midrule
+Physics Process & Proton & $^{208}$Pb \\ \midrule \midrule
+$\frac{dE}{E\,\mathrm{d}x}$ due to ionization & -0.0088\%/m & -0.73\%/m \\ \midrule
+Mult. Scattering (proj. r.m.s. angle) & 4.72$\,\mu$rad/$\sqrt{m}$ & 4.72$\,\mu$rad/$\sqrt{m}$ \\ \midrule
+Nucl. Interaction length ($\approx$ fragmentation length) & 38.1$\,$cm & 2.5$\,$cm \\ \midrule
+Electromagnetic dissociation length & - & 19$\,$cm \\ 
+\midrule
+\bottomrule
+\end{tabular}
+\end{center}
+\label{}
+\end{table}
+
+
+\subsection{Measurements in 2011}
+The reference for the analysis of the lossmaps created by the new simulation code are the measurements which have been performed during the 2011 heavy ion runs. In the following, the optical configuration and the collimator settings which have been applied during these measurements will be discussed.
+\subsubsection{Collimator and Optical Settings}
+The collimator settings which have been used in the 2011 heavy ion runs are summarized in \tabref{14050501}. The machine configuration was such that the $\beta^*$ values in IR1/IR2/IR5/IR8 were
+\begin{align}
+\beta^*(\text{IP1,IP2,IP5,IP8}) = (1\text{m},1\text{m},1\text{m},3\text{m}) \, .
+\end{align}
+
+
+\subsubsection{Measured Lossmaps}\label{140619}
+In the 2011 LHC runs, several measurements have been carried out, using different conditions. Besides different settings for the crossing and separation schemes, some measurements were done using a different RF frequency in the accelerating cavities, to the particle beams were off-momentum, which was of particular interest for the p-Pb run performed in early 2013. A not complete list showing the measured lossmaps in 2011 is given in \tabref{tab:14051601}. 
+
+In nominal operation with heavy ion collisions, losses at the dispersion suppressor of the IRs with colliding beams have been absorbed. These peaks arise from so-called bound free pair production (BFPP) which occurs at close encounters of the heavy nuclei such as appears at the collision points. During the encounter of the two particles, an electron-positron pair is produced by the exchanged photon. The electron is then captured to the electron shell of one of the two involved nuclei:
+\begin{align}
+^{208}\text{Pb}^{82+} + ^{208}\text{Pb}^{82+} \rightarrow ^{208}\text{Pb}^{82+} + ^{208}\text{Pb}^{81+} + e^+ \, .
+\end{align}
+Compared to the fully stripped nucleus, this ion possesses a different mass to charge ratio, which results to a loss of the isotope, once the dispersion function rises due to the chromatic elements at the end of the interaction region. 
+
+However, these increased losses are not visible in the lossmaps from the measurements even with collisions taking place in the IRs, since these losses are covered by the higher losses in other regions during the beam excitation.
+
+\begin{table}[htbp]
+\caption{Measured Lossmaps in 2011 (not complete list)}
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+Date & Beam/Direction & Time & $\Delta f_{\text{RF}}$ (Hz) \\ %\hline
+(year-month-day) &  & (hours-min-sec) &  \\ \toprule %\hline
+\multicolumn{4}{c}{Non-Colliding Beams, $\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
+2011-11-06 & B1/H & 23-37-24 & 0 \\ %\hline
+2011-11-06 & B1/V & 23-39-23 & 0 \\ %\hline
+2011-11-06 & B2/H & 23-40-32 & 0 \\ %\hline
+2011-11-06 & B2/V & 23-41-14 & 0 \\ %\hline
+2011-11-06 & both & 23-43-50 & $+500$ \\ %\hline
+2011-11-07 & both & 04/10/11 & $-500$ \\ \midrule
+\multicolumn{4}{c}{Colliding Beams, $\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
+2011-11-06 & B1/H & 19-48-01 & 0 \\ %\hline
+2011-11-06 & B2/H & 19-50-29 & 0 \\ 
+2011-11-06 & B1/V & 19-53-11 & 0 \\
+2011-11-06 & B2/V & 19-54-34 & 0 \\ \midrule
+\multicolumn{4}{c}{Non-Colliding Beams, ALICE Crossing angle $\theta = -80 \, \mu$rad}  \\ %\hline
+\multicolumn{4}{c}{$\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
+2011-10-30 & B1/V & 00-41-39 & 0 \\ %\hline
+2011-10-30 & B1/H & 00-43-55 & 0 \\
+2011-10-30 & B2/V & 00-48-04 & 0 \\ 
+2011-10-30 & B2/H & 00-49-33 & 0 \\ \midrule
+\multicolumn{4}{c}{Non-Colliding Beams, End of Ramp before Squeeze}  \\ %\hline
+%\multicolumn{4}{c}{}  \\ \hline
+\multicolumn{4}{c}{$\beta^*=$(11m,10m,11m,10m)}  \\ \midrule
+2011-11-05 & B1/V & 17-09-13 & 0  \\ %\hline
+2011-11-05 & B2/V & 17-14-04 & 0 \\ %\hline
+2011-11-05 & both & 17-20-07 & $-1000$ \\ %\hline
+2011-11-05 & B1/H & 19-18-26 & 0 \\ %\hline
+2011-11-05 & B2/H & 19-24-01 & 0 \\ %\hline
+2011-11-05 & both & 19-26-20 & $+1000$ \\ \bottomrule
+\end{tabular}
+\end{center}
+\label{tab:14051601}
+\end{table}
+
+
+
+
+
+
+
+
+  \begin{figure}[t]
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/14062619.pdf}
+  \caption{Comparison of the simulated with the measured heavy ion losses in the betatron cleaning region IR7.}  
+  \label{pic:14062610}
+  \end{figure}
+
+
+
+  \begin{figure}[t]
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/14062620.pdf}
+  \caption{Comparison of the simulated with the measured heavy ion losses in the whole LHC ring.}  
+  \label{pic:14062610}
+  \end{figure}
+
+
+\begin{figure}[htb]
+  \centering
+   \def\svgwidth{1.0\linewidth}
+   \input{pictures/hybrid_pictures/14062604.pdf_tex}
+  \caption{Realistic model to simulate fragmentation at collimators }
+  \label{pic:14062604}
+\end{figure}
+

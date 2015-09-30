@@ -1,0 +1,81 @@
+\chapter{Outlook}\label{chap:outlook}
+This chapter gives information about additional studies which have been carried out in relation to the development of the high $\beta^*$-optics for ALICE. This includes the compatibility of the optics with upgrade scenarios, additional studies on phase advance compensation, the transition from injection to collision optics, studies on the reachable resolution in $|t|$ and $\xi$, and the reachable emittances during operation of the LHC.
+\section{New ALICE Beam Pipe}\label{chap:new_alice_beam_pipe}
+\begin{figure}[b]
+\centering
+\includegraphics[width=1\textwidth]{pictures/drawing}
+    \caption{Prospective new ALICE beam pipe dimensions after Long Shutdown 2~\cite{riegler_talk}. \mbox{The diameter at IP2 of the present beam pipe} is $d=58\,$mm.}
+    \label{13012002}
+\end{figure}
+For the second upgrade interval of the LHC, it is foreseen to install a new beam pipe at ALICE, in order to allow the installation of detector layers closer to the collision point. This leads to a reduced available aperture at the collision point. The proposed dimensions of the beam pipe are shown in \figref{13012002}.  Even though previous studies~\cite{massimo_private} indicate that the new beam pipe is not compatible with the injection optics, the aperture at LHC design energy was studied for the $\beta^*=$18$\,$m optics and the $\beta^*=$30$\,$m optics. The calculated geometrical acceptance in terms of $n_1$ is shown in \figref{fig:n1_new_pipe}. Obviously, the available aperture  at LHC design energy is reduced when using the smaller pipe dimensions, but the limitation of $n_1=7$ is not reached. 
+\begin{figure}[t]
+\begin{minipage}[t]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{pictures/18mApertureOldPipeBeam1}
+\includegraphics[width=\textwidth]{pictures/30mApertureOldPipe}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.5\linewidth}
+\centering
+\includegraphics[width=\textwidth]{pictures/18mApertureNewPipeBeam1-MG}
+\includegraphics[width=\textwidth]{pictures/30mApertureNewPipe}
+\end{minipage}
+\caption{Top: Aperture at 7$\,$TeV with $\epsilon_N=3.75\,\mu$m$\,$rad for the $\beta^*=$18$\,$m optics in the inner triplet region for the present ALICE beam pipe (left) and for the new ALICE beam pipe (right). Bottom: The same quantities are shown for the 30$\,$m optics. Note the different scales between left and right. The shown $n_1$-functions are calculated for \mbox{Beam 1} but the optical functions and the available aperture are the same for \mbox{Beam 2} \mbox{(all crossing and spectrometer bumps switched on).} }
+\label{fig:n1_new_pipe}
+\end{figure}
+
+\newpage
+
+\section{Un-Squeeze}
+In analogy to the squeeze in the nominal LHC cycle, the transfer from the injection optics to the collision optics has to be performed in several steps, in order to have a continuous transition of the magnet strengths. In the high $\beta^*$-optics implementation, this transition is usually referred to as the un-squeeze. The average increase of the $\beta^*$-value between two intermediate steps to reach the existing high $\beta^*$-optics in IR1/IR5 is 10\%-15\%~\cite{helmut_private}%helmutburkhardt private
+. In between two matched optical configurations, the magnet strengths are linearly interpolated which implies some $\beta$-beating. 
+\newpage
+Such intermediate configurations will also have to be developed for IR2, if the presented optics should be implemented. Compared to the IR1/IR5 optics, the change of the phase advance between the initial optics and the high $\beta^*$-optics in IR2 is very large, while the difference of the \mbox{$\beta^*$-values is} lower. Therefore, transitions with several intermediate steps at a fixed \mbox{$\beta^*$-value} but with a changing phase advance cause could be applied. Since the triplet strength for all presented configurations is reduced, a time-saving simultaneous ramp and un-squeeze could be used. \mbox{For the $\beta^*=18\,$m optics}, the final triplet strength is 77.8\% of the nominal strength, which would be reached at 5.446$\,$TeV. All intermediate steps must respect the same boundary conditions of the LHC as the collision optics. 
+%
+%\vspace{-0.4cm}
+\section{Reconstruction}
+\begin{figure}[b]
+\centering
+\includegraphics[width=.9\textwidth]{pictures/res_t}
+\includegraphics[width=.9\textwidth]{pictures/res_xi}
+    \caption{Reconstructed signals for different detector resolutions with the $\beta^*=18\,$m optics. Top: Response signals for $|t|=0.5\,$GeV$^2$, $t=1.0\,$GeV$^2$, $t=1.5\,$GeV$^2$.  Bottom: Response signals for $\xi =0.03$, $\xi=0.06$, $\xi=0.09$. The considered detector resolutions are given by $\sigma_{x,y}$ for each figure. Graphics from~\cite{schicker_talk}.} 
+    \label{fig:resolution}
+\end{figure}
+An algorithm for the reconstruction of the $|t|$- and $\xi$-value was developed by R. Schicker~\cite{schicker_talk}. It is based on the minimization of $\chi^2$, using the particle positions at the two successive detector locations (see also~\cite{trzebinski2011lhc}), and the angle of incidence. By means of this algorithm, the reachable resolution in $\xi$ and $|t|$ can be evaluated as a function of the detector resolution. 
+
+
+The total reconstructed signal is given by the convolution of the physical distribution at the detector locations (for fixed parameters $\xi$ and $|t|$) with the detector response. 
+The resolution in $|t|$ and $\xi$ depends on the physical distance for different $|t|$- and $\xi$-values in the edgeless silicon detectors, and on the detector resolution. The detector response signal for three equally distributed $|t|$- and $\xi$-values is compared for different considered detector resolutions in \figref{fig:resolution}. With a detector resolution of $\sigma_{x,y}=30\,\mu$m, two signals with $\Delta t = 0.5\,$GeV$^2$ can be well-separated, while two signals with $\Delta \xi=0.03$ become blurred. 
+
+
+\section{Future Beam Emittances}\label{chap:different_emittance_scenarios}
+As mentioned in previous chapters, during the operation of the LHC, it turned out that the injectors could deliver beams with much better emittance than foreseen in the LHC Design Report. \mbox{In regular 50$\,$ns physics operation}, normalized emittances of $\epsilon_N=$2$\,\mu$m$\,$rad were reached~\cite{emittance_ref}. Furthermore, during special machine development runs with a bunch spacing of 25$\,$ns, emittances as low as $\epsilon_N=$1.4$\,\mu$m$\,$rad could be achieved~\cite{jowett_final_act}. Therefore, it is realistic to consider smaller emittances than the LHC Design Report value. Smaller emittances would be advantageous for many reasons:
+\begin{enumerate}
+\item Thanks to the smaller beam dimensions, a larger $\beta^*$-value is reachable with the same crossing angle and the same required separation. This can be used to adjust the IR phase advance while maintaining the acceptance constant, or to increase the acceptance by a larger $\beta^*$-value while keeping the IP-RP phase advance constant.
+\item The Roman Pot detectors can be brought closer to the beam centre, which improves the acceptance for low $|t|$-values.
+\item The smaller beam sizes lead to a better tunability of IR4, making larger tune compensations possible.
+\end{enumerate}
+%
+In conclusion, the feasibility calculations for the $\beta^*$-value and the phase advance compensation can be seen as lower, conservative limits. Pursuing studies on optics with larger $\beta^*$-values could be realized, once reliable input on realistic emittances during the future 25$\,$ns physics operation is available. However, with the $\beta^*=18\,$m optics and the $\beta^*=30\,$m optics, the very conservative and very optimistic extremes for possible high $\beta^*$-optics on ALICE were presented.
+%
+ %
+\newpage
+\section{Additional Studies on Phase Advance Compensation}\label{chap:considerations_on_ir2_phase_advance}
+%\paragraph{Cable Upgrade} \mbox{} \\
+As discussed in \chapref{chap:cabling}, the B1/B2 ratio constraint arises from the current cabling of the LHC quadrupole magnets. If this constraint was eliminated, then the betatron functions for one beam would not have to be $x/y$ anti-symmetric with respect to the IP. This would give (in principle) the possibility to compensate the phase advance within the IR. First matchings showed, that non-symmetric optics are feasible and larger IR phase advances can be reached. 
+%\paragraph{Larger $\beta^*$-Value} \mbox{} \\
+%Since the definition of the optical length contains both, the $\beta^*$-value and the IP-RP phase advance, the $L$-value could be kept constant, despite an increased IP-RP phase advance, if larger $\beta^*$-values would be accepted. However, first rematchings showed that the potential by this method is very The potential reduction between $\beta^*=18\,$m and $\beta^*=25\,$m was evaluated by first matchings, and is approximately 0.03-0.04 in both transverse directions.  
+\begin{figure}[b]
+\centering
+\includegraphics[width=0.7\textwidth]{pictures/acc_rematch}
+    \caption{Required phase advance compensations in the two transverse directions as a function of the $|t|_{50\%}$-threshold for different rematched optics with $\beta^*=18\,$m.} 
+    \label{fig:threshold_phase}
+\end{figure}
+%\paragraph{Larger IP-RP Phase Advance} \mbox{} \\
+
+Numerous rematches were done to evaluate the impact of different $\Delta \psi$-values on the acceptance. \figref{fig:threshold_phase} shows the required phase advance compensation $\Delta Q$ as a function of the corresponding $\mathcal{A}=$50\% acceptance threshold. The acceptance calculations are realized under standard conditions. 
+As shown, the required compensation in vertical direction can be significantly reduced if larger $|t|_{50\%}$-values would be acceptable. The required phase advance compensation with $|t|_{50\%}=0.70\,$GeV$^2$ would be $\Delta \psi_{\text{IR}} = 0.404/0.257$. Following \figref{tunability}, this phase advance could be compensated, using only the arc quadrupoles between IP1 and IP5. In combination with the conservative detector layout with only one horizontal detector, this threshold becomes
+\begin{align}
+|t|_{50\%}=0.78\,\text{GeV}^2\,.
+\end{align}
+Since it is known that the required phase advance compensation for such a configuration could be provided, this can be seen as an upper limit of the reachable acceptance threshold.

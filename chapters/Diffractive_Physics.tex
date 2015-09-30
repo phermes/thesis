@@ -1,0 +1,146 @@
+%% 13-03-13
+\chapter{Diffractive Physics}\label{chap:diffractive_physics}
+\section*{Introduction}
+\minipageswidthtb{diff_01m}{diff_02m}{Event topologies of different diffractive events with the pseudo-rapidity and \mbox{azimuthal} distribution of the interaction products~\cite{LHCAcceleratorExperiments}. }{diff_events}{0.5}{b}
+%
+At high energy collisions in hadron colliders, interactions can be observed, where large rapidity gaps $\Delta \eta$ occur in the final state. Such interactions are proccesses of the strong force and are usually referred to as diffractive events. The particle which is expected to be exchanged during such interactions is called the Pomeron~\cite{donnachie2002pomeron}%nachtmann%pomeron_physics
+. At LHC energies, about 40$\%-$50$\%$ of the cross section in hadron-hadron interactions is based on diffraction~\cite{Hermes:1505271,LHCAcceleratorExperiments}. Historically, the Pomeron was introduced to explain the rising cross section at p$\bar{\text{p}}$-collisions, which could otherwise not have been explained by the Regge-theory. This theory describes the hadron-hadron cross section by the exchange of related families of mesons and predicts a cross section which decreases with \mbox{$\approx s^{-0.45}$}, where $\sqrt{s}$ is the centre of mass energy~\cite{pomeron}. Whereas the experimental data from different experiments (e.g. the UA8 experiment) indicate the existence of the Pomeron, there is so far no strong experimental evidence for the existence of the C-odd counter-part of the Pomeron, the so-called Odderon~\cite{pomeron}. \mbox{The Pomeron is predicted to be charge- and colourless~\cite{donnachie2002pomeron}.}
+
+Some of the possible diffractive topologies are shown in \figref{diff_events}. Single Pomeron exchange processes can be subdivided into elastic scattering~\circled{\textit{1.}}, single diffractive dissociation~\circled{\textit{2.}} and double diffractive dissociation~\circled{\textit{3.}}. Double Pomeron exchange processes can lead to central diffraction~\circled{\textit{4.}} and central diffraction with the break up of a proton~\circled{\textit{5.}}. Higher order processes~\circled{\textit{6.}} involve more than two Pomerons.
+
+
+Processes with the exchange of more than one Pomeron can lead to the production of a central system with new particles, which results in a momentum loss $\frac{\Delta p}{p} > 0$ of the interacting particles. Studies of the angular distribution of scattered particles can give information about the cross sections due to Pomeron exchange, as a function of the four-momentum transfer $|t|$. There are still many open questions in relation to these diffractive processes, which motivate measurements of soft collisions at LHC energies~\cite{Hermes:1505271,LHCAcceleratorExperiments}. The main task in these measurements is the determination of $|t|$ and $\xi=\frac{\Delta p}{p}$, which are referred to as the diffractive parameters. 
+%\newpage
+\section{Diffractive Parameters}
+%
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=1\textwidth]{pictures/t_transfer_c}
+  \caption{Particle momenta before and after an interaction.} \label{13012001} 
+\end{figure}
+%
+The four-momentum transfer is the square of the four momentum difference before and after the interaction. In the case of elastic scattering, this is the same for both particles (for processes with multi-Pomeron exchange, the $t$-values are in general different for the two protons)~\cite{PDG}
+%
+\begin{align}
+t&= (p_1 - p_3)^2 = (p_2-p_4)^2 \, .
+\end{align}
+%
+In the approximation of very low $\xi$-values and very small scattering angles $\theta$, the absolute value of $t$ can be derived to be~\cite{PDG}
+\begin{align}
+|t| \approx  |p_1 \, p_3| \, \sin^2 \theta \approx p^2 \, \theta^2  \, .
+\end{align}
+%
+The angle $\theta$ can be expressed in terms of its horizontal and vertical component
+\begin{align}
+\theta^2 = \theta_x^2 + \theta_y^2 \,. \label{eq:theta} 
+\end{align}
+The scattering itself is azimuthally symmetric, so all the particles with a given $|t|$-value are located at the surface of a cone with an opening angle of $2 \, \theta$, schematically shown in \figref{13021101}. 
+
+The second diffractive parameter is the fractional momentum loss 
+\begin{align}
+\xi = \frac{p-p_p}{p} = \frac{\Delta p}{p}  \, ,
+\end{align}
+where $p_p$ is the real particle momentum, and $p$ is the design momentum. By definition, elastic processes have $\xi=0$, while inelastic interactions have $\xi > 0$.
+%
+%
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.5\textwidth]{pictures/cone-crop}
+  \caption{Azimuthal symmetry of the scattering at the IP. For a given $|t|$-value, a particle moves at the surface of a cone with opening angle $2 \, \theta \approx 2 \, \sqrt{\frac{|t|}{p^2}}$.} \label{13021101} 
+\end{figure}
+%
+\section[High $\beta^*$-Optics]{High $\boldsymbol{\beta^*}$-Optics}
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=0.6\textwidth]{pictures/totem_90m}
+  \caption{The TOTEM $\beta^*=90\,$m optics (Beam 1 in global LHC coordinates). The IP-RP phase advance to the second RP station is matched to $\Delta \psi_x / \Delta \psi_y = 0.5/0.25$.} \label{totem_90m} 
+\end{figure}
+An effective measurement of diffractive events at a particle accelerator requires specifically adjusted beam optics with large $\beta^*$-values. Up to now, dedicated optics with $\beta^*=90\,$m, $500\,$m, and $1000\,$\text{m} have been successfully implemented in IR1 and IR5, for the TOTEM and ATLAS-ALFA experiments (see \figref{totem_90m}). \mbox{In these} special configurations, no crossing angle is applied. 
+
+For such frontal collisions, the number of bunches in the machine is limited to 156. With this bunching scheme, the first potential bunch encounter after the IP is in a region where the two beams are fully separated and moving in different beam pipes. \mbox{Besides the large $\beta^*$-values}, these configurations require specific phase advances between the IP and the very forward detectors. During the design of such a configuration, several approaches allow the optimization of the measurement at low $|t|$-values. 
+%
+%
+\subsection{Measurement Optimization}\label{chap:local_dispersion}
+The detection of the scattered particles will be realized by means of Roman Pot (RP) detectors which are described in the next chapter. This detector type measures the transverse position of the scattered particles very close to the beam centre. Two RP stations, labeled with the indices 1 and 2 are considered at different distances from the IP. Regarding \eqref{eq:transfer_matrix} and taking into account the dispersion of the magnets between IP and RP, the total particle transfer from the IP to the two RP stations can be described by a $8 \times 5$ matrix
+%
+%
+\begin{equation} 
+\left( \begin{array}{c}
+x_1 \\ 
+\theta_{x1} \\ 
+y_1 \\ 
+\theta_{y1} \\ 
+x_2 \\
+\theta_{x2} \\ 
+y_2 \\ 
+\theta_{y2} 
+\end{array} \right)
+=
+\left( \begin{array}{ccccc}
+v_{x1} & L_{x1} & 0 & 0 & D_{x1}^\text{loc} \\ 
+v_{x1}' & L_{x1}' & 0 & 0 & D_{x1}^\text{loc'} \\ 
+0 & 0 & v_{y1} & L_{y1} & D_{y1}^\text{loc} \\ 
+0 & 0 & v_{y1}' & L_{y1}' & D_{y1}^\text{loc'} \\ 
+v_{x2} & L_{x2} & 0 & 0 & D_{x2}^\text{loc} \\ 
+v_{x2}' & L_{x2}' & 0 & 0 & D_{x2}^\text{loc'} \\ 
+0 & 0 & v_{y2} & L_{y2} & D_{y2}^\text{loc} \\ 
+0 & 0 & v_{y2}' & L_{y2}' & D_{y2}^\text{loc'} 
+\end{array}\right)
+\left( \begin{array}{c}
+x^* \\ 
+\theta_x^* \\ 
+y^* \\ 
+\theta_y^* \\
+\xi 
+\end{array}\right) \, ,
+\label{ts}
+\end{equation}
+%
+%
+where $x_i$/$y_i$ are the horizontal and vertical positions at the RP station $i$, and $\theta_{xi}$/$\theta_{yi}$ are the angles of incidence at the RP station $i$. The quantities which are labeled by a $^*$ are the parameters at the IP. The $D^\text{loc}$-functions are the local dispersion functions for the dispersion which occurs due to the magnets between the IP and the detector. This local dispersion is different from the periodic dispersion defined by \eqref{eq:periodic.dispersion}, because it does not take the magnet configuration in the rest of the ring into account. This is visualized by the following scenario: Consider a particle moving towards the IP with design momentum $p$. Due to an interaction with another particle, the particle loses a fraction $\Delta p$ of its momentum. After this, the particle moves towards the detector and is registered. Since the particle was not subject to any dispersive offset when it was at the IP, there is no reason to take into account the magnet configuration in other parts of the machine than between IP and detector.
+\newpage
+For a given RP station, the particle position is then given by
+\begin{align}
+x &= v_{x} \, x^* + L_{x} \, \theta_{x}^* + D_x^\text{loc} \, \xi \, , \\
+y &= v_{y} \, y^* + L_{y} \, \theta_{y}^* + D_y^\text{loc} \, \xi \, . 
+\end{align}
+
+The so-called optical length $L$ and the parameter $v$ are the essential parameters for the optimization of the measurement. Following \eqref{eq:transfer_matrix}, the elements $L$ and $v$ are defined for one transverse direction by the expressions
+\begin{align}
+v = \sqrt{\frac{\beta}{\beta^*}} \cos \left( 2 \, \pi \, \Delta \psi \right) \, , \quad \quad 
+L = \sqrt{ \beta \, \beta^* } \, \sin \left( 2 \, \pi \, \Delta \psi \right) \, .
+\end{align}
+Here, $\beta$ indicates the betatron function at the position of the RP, and $\Delta \psi$ is the betatron phase advance from the IP to the RP detector station. The measurements should be sensitive for very small $|t|$-values and there should be no dependence on the particle position at the IP. Since $v$ is the component which projects the position at the IP to the position at the RP, this quantity should be zero. Furthermore, the dependence on the scattering angle $\theta^*$ should be very large, so the optical length $L$ should be as large as possible. Both conditions are fulfilled if the \mbox{$\beta^*$-value} is as large as possible and if the IP-RP phase advance is matched to be $\Delta \psi = 0.25$. An optical configuration with this phase advance is parallel to point focusing. Besides the argument of maximizing $L$, the large $\beta^*$-value leads to a small beam divergence at the IP. For the measurement of small scattering angles, it is necessary to have as many particles in parallel to the beam line as possible, so the beam divergence should be minimized.
+%
+%
+%
+\subsection{Detection - Roman Pot Detectors}
+%\subsection{Roman pot layout}
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=0.6\textwidth]{pictures/RP_Design}
+  \caption{Profile of the edgeless silicon detectors in one module of a Roman Pot station. \mbox{Here, the detector} is at a distance of 10$\,\sigma$ from the beam centre. Only one horizontal detector is installed on the outer side of the beam pipe. Figure based on~\cite{LHCAcceleratorExperiments}.} 
+   \label{rpdesign}
+\end{figure}
+%
+The detection of the very forward particles requires not only a dedicated beam optics \mbox{configuration}, but also efficient and reliable detectors which can be brought as closely as possible to the beam centre.  In the regions of ATLAS and CMS, Roman Pot detectors are used for the measurement of the very forward particles. This detector type was first used at ISR at CERN in the early 1970s~\cite{rps}. Modern RP detectors use very thin silicon detectors, the so-called edgeless silicon detectors~\cite{LHCAcceleratorExperiments}, which can be individually steered around the beam centre (see \figref{rpdesign} for the profile of the detector). A set of seven edgeless silicon detectors at three sides (two in vertical direction, one in horizontal direction) is installed in one Roman Pot (see \figref{rpdesign} and \figref{rp_layout_2}). With the special conditions during the \mbox{high-$\beta^*$-operation} for TOTEM and ATLAS-ALFA, these detectors can be brought to a distance of 10$\,\sigma$ to the beam centre. During high luminosity operation, the detectors have been moved to a distance of 14$\,\sigma$~\cite{Deile_Private}. 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.9\textwidth]{pictures/rp_stations}
+  \caption{TOTEM Roman Pot station at 147$\,$m distance from IP5. The two detector units are installed at a distance of 4$\,$m from each other. Picture from~\cite{CERN-THESIS-2010-135}.} 
+   \label{rpstations}
+\end{figure}
+\newpage
+One RP detector station consists of two units which are placed at a longitudinal distance of 4$\,$m from each other (see \figref{rpstations}). In IR1, two detector stations are installed, one at a distance of $\pm 147\,$m, and one at a distance of $\pm$220$\,$m from the IP. The RP positions in IR5 are similar. 
+
+A second set horizontal detectors is not required for the ALFA and TOTEM detectors, because the horizontal phase advance is matched to $\Delta \psi_x = 0.5$. In this case, the horizontal particle distribution at the detector is not depending on the scattering angle. Since the particles can only lose longitudinal momentum during an interaction ($\xi >0$) and the local dispersion is a property of the machine settings, the particles are always deviated in the direction of the installed horizontal detector on the outer side of the two beam pipes (see \chapref{chap:acceptance_simulations}). 
+
+For the very forward measurements at ALICE, the RP positions have to be assumed, because the phase advance to the second detector station must be matched. This is discussed in \chapref{chap:detector_positions}.
+
+%Due to the quadrupole in between the two stations, the lever arm for the measurement of the angle of incidence is rather short (in this case, the lever arm is the distance between the two detector units in one station). However, since the phase advances of the optics \mbox{(at $\beta^*=90,500,1000\,$m)} are well matched to $\Delta \psi_y =0.25$ for the second station, the measurement of this angle is not of big importance. This situation is changed, if the phase advance is not matched to this value. In this case, the angle of incidence becomes an important quantity for the reconstruction.
+% 
+
+
+%The difference between the IR1 and IR5 optics is very small and can be drawn back to the slightly different quadrupole positions in the two IRs. The optics are implemented in both regions at the same time. More detailed information on the IR1/IR5 high $\beta^*$-optics can be found in~\cite{hbo-01},~\cite{hbo_04},~\cite{hbo_05}.
+%
+\minipageswidthtb{7rps.png}{rp_3d}{Left: Schematic view on the different layers of silicon edgeless detectors within one Roman Pot unit~\cite{CERN-THESIS-2010-135}. In reality, seven layers are used. Right: Roman Pot detector unit, used in IR1 and IR5 with the two vertical pots and the horizontal pot~\cite{LHCAcceleratorExperiments}.  }{rp_layout_2}{0.5}{h}

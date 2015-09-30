@@ -1,0 +1,358 @@
+%\documentclass [10pt,twoside,a4paper,titlepage,bigheadings,fleqn,openright]{report}
+\documentclass [12pt,twoside,a4paper,titlepage,fleqn,openright]{report}
+%\usepackage{ngerman}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{endnotes}
+\usepackage[ansinew]{inputenc}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+ \usepackage[numbers]{natbib}
+\usepackage{graphics}
+\usepackage{url}
+
+
+\usepackage{wrapfig}
+\usepackage{color}
+\usepackage{nicefrac} 
+%\definecolor{myColor}{rgb}{0.9,0.9,0.6}%
+\usepackage{inputenc}
+\usepackage{cancel}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{ifthen}
+
+
+
+\def\PD#1#2{\frac{\partial #1}{\partial #2}}
+\def\TD#1#2{\frac{d #1}{d #2}}
+\def\PnD#1#2#3{\frac{\partial^{#3} #1}{\partial #2^{#3}}}
+\def\TnD#1#2#3{\frac{d^{#3} #1}{d #2^{#3}}}
+
+
+%\titleformat*{\section}{\LARGE\bfseries}
+
+
+%\lea\def\lead{ $^{208}$Pb$82+$ }
+%\newcommand{\lead}{$^{208}$Pb$^{82+}$}
+
+%\DeclareCaptionFormat{myformat}{#1#2#3\hrulefill}
+%\DeclareCaptionFormat{myformat}{\centering{#1#2#3}\rule{0.5\textwidth}{0.01pt}}
+%\captionsetup[figure]{format=myformat}
+
+% Line Numbers:
+%
+\usepackage{lineno}
+%
+% enable the line numbers:
+%\linenumbers
+% disable the line numbers:
+% \nolinenumbers
+
+
+
+% fancyhdr for own definition of headings
+%
+\usepackage{fancyhdr}
+%\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\chaptermark}[1]{\markboth{\slshape \thechapter. \ #1}{}}
+%\fancyhead[LO,LE]{\leftmark}
+%\fancyhead[RO,RE]{\pagemark}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\fancypagestyle{plain}{%
+%\fancyhf{}%
+%\fancyhead[RO,RE]{\thepage}
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}}
+
+
+
+
+
+%%%%%%%%%%%%% Glossaries
+%\usepackage[nonumberlist]{glossaries}     % lets latex use the package glossaries
+%\makeglossaries             % allows latex to create the glossary files
+% Documentation:
+% usage: build and read in file with the glossary entries in the following scheme:
+%
+% \newglossaryentry{electrolyte}{name=electrolyte,description={solution able to conduct electric current}}
+%
+% read in the glossary file
+% \input{glossary.tex}
+% to place the glossary in the document, use \printglossary
+%Once you have defined a term, you can use it in the document. The glossaries package provides a number of commands that are described in the section "Links to Glossary Entries" in the main glossaries user manual. Here, I shall just cover the main commands:
+
+%\gls{<label>}
+
+%This prints the term associated with <label>. Using the example in the previous section, \gls{oesophagus} will display œsophagus. If the hyperref package has also been loaded, the term will also be hyperlinked to the relevant entry in the glossary.
+
+%\glspl{<label>}
+
+%This prints the plural of the term associated with <label>, so \glspl{oesophagus} will display œsophagi. Aga%in, the text will be a hyperlink to the relevant entry in the glossary, if hyperlinks are defined.
+
+%There are also versions that convert the first character to upper case if you need to start a sentence with %a term:
+
+%\Gls{<label>}
+
+%and
+
+%\Glspl{<label>}
+
+%For example:
+
+%\Glspl{electrolyte} usually exist as solutions of salts, 
+%bases or acids.
+%Note that these commands all have two optional arguments that aren't discussed here, but they are described %in the section "Links to Glossary Entries" in the main glossaries user manual.
+
+
+%Caveat: don't use these commands in moving arguments, such as those used by \chapter, \section and \caption.
+% You can, instead, use commands such as
+
+%\glsentrytext{<label>}
+
+
+\usepackage{hyperref}
+
+%\usepackage{MnSymbol}
+%tikz
+\usepackage{graphicx}
+\usepackage{graphics}
+
+
+
+%_______Packages for development
+
+% show keys in development mode
+%\usepackage{showkeys}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{multirow}  
+% extend elements over some rows. 
+% usage: \multirow{Zeilen}*{Text} 
+% then: let & in other rows existant. replace \hline by \cline{2-5}
+
+% This command computes and creates a vertical space
+% depending on the number of rows to compensate for.
+% It makes use of the counter verticalcompensationrows
+% and the length \verticalcompensationlength which equals
+% \aboverulesep plus \belowrulesep
+
+%\newlength{\verticalcompensationlength}
+%\setlength{\verticalcompensationlength}{\aboverulesep}
+%\addtolength{\verticalcompensationlength}{\belowrulesep}
+%\newcounter{verticalcompensationrows}
+%\newcommand{\verticalcompensation}[1]{%
+%\setcounter{verticalcompensationrows}{#1}%
+%\addtocounter{verticalcompensationrows}{-1}%
+%\vspace*{-\value{verticalcompensationrows}\verticalcompensationlength}%
+%}
+
+
+%\newcommand{\multirowbt}[3]{%
+%\multirow{#1}{#2}{\verticalcompensation{#1}#3}%
+%}
+
+\usepackage{footnote}  
+%\usepackage{makecell}  
+\usepackage{rotating}  
+% rotate elements of tables
+% usage: \rotcell{Text}
+% Description: Rotates automatically by 90 deg
+\usepackage{pdflscape}
+% puts selected pages in landscape mode
+% usage: \begin{landscape} ... \end{landscape}
+
+%\usepackage{caption}
+%\DeclareCaptionFormat{myformat}{#1#2#3\hrulefill}
+%\DeclareCaptionFormat{myformat}{#1#2#3\vspace{-6pt}\par\rule{0.15\linewidth}{0.1pt}}
+%\captionsetup[figure]{format=myformat}
+
+
+%\usepackage{slashbox}
+\textwidth16.0cm
+\oddsidemargin0.3cm
+\evensidemargin-0.3cm
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.4ex plus0.2ex minus0.2ex}
+
+\newcommand{\bst}{$\beta^*$}
+\newcommand{\lead}{$^{208}$Pb$^{82+}\,$}
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\arraystretch}{1.2}
+%\frenchspacing
+\sloppy \hfuzz 2pt \vfuzz 2pt
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+
+\usepackage{listings}%__________allow writing source code in the latex document
+
+\usepackage{color}
+
+% begin
+% this part is used to allow your readers to copy the code from a PDF viewer but without copying the line numbers.
+\usepackage{accsupp}
+\newcommand*{\noaccsupp}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
+% end
+
+
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray}\noaccsupp,
+    stringstyle=\color{red},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,       
+    frame=tb,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+
+%%%% Design of the report
+
+\addto\captionsenglish{%
+ \renewcommand\chaptername{}} %don't write chapter at beginning of chapters
+
+\usepackage{titlesec}
+
+%\titleformat{\chapter}[hang] 
+%{\normalfont\Huge\bfseries}{\chaptertitlename\ \thechapter.}{1em}{} 
+
+\titleformat{\chapter}[hang] 
+%{\normalfont\LARGE\bfseries}{\chaptertitlename\ \thechapter.}{1em}{} 
+{\normalfont\huge\bfseries}{\chaptertitlename \ \thechapter.}{1em}{} 
+
+
+%%%% Definition of own symbols
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+  \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
+\usetikzlibrary{3d,calc}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\erf}{erf}
+
+\tikzset{math3d/.style= {x={(1cm,0cm)}, y={(0.353cm,0.353cm)}, z={(0cm,1cm)}}}
+
+
+
+%%%% Table design
+
+\usepackage{booktabs}%__________ use toprule midrule and bottomrule
+
+\usepackage{xcolor}%____________ define plots of percentages and so on
+\newlength{\basis}\setlength{\basis}{1cm }
+\newlength{\balkenlaenge}
+\newcommand*{\Balken}[1]{\setlength{\balkenlaenge}{0.01\basis}\setlength{\balkenlaenge}
+ {#1\balkenlaenge} \textcolor{black!40}{\rule{\balkenlaenge}{1.5ex}} & #1\,\%}
+
+%\renewcommand\thempfootnote{\arabic{mpfootnote}}
+\renewcommand{\eqref}[1]{Eq.~\ref{#1}}
+\newcommand{\phase}{\phi}
+\newcommand{\bone}{\mbox{Beam 1 }}
+\newcommand{\btwo}{\mbox{Beam 2 }}
+\newcommand{\figref}[1]{\mbox{Fig. \ref{#1}}}
+\newcommand{\citedr}{\cite{CERN-2004-003-V1}}
+\newcommand{\chapref}[1]{\mbox{Chap. \ref{#1}}}
+\newcommand{\tabref}[1]{\mbox{Table \ref{#1}}}
+
+\newcommand{\minipages}[4]{
+\begin{figure}[t]
+\begin{minipage}[t]{0.475\textwidth}
+%\centering
+\includegraphics[width=\textwidth]{pictures/#1}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.475\textwidth}
+\centering
+\includegraphics[width=\textwidth]{pictures/#2}
+\end{minipage}
+\caption{ #3 }
+\label{#4}
+\end{figure}
+}
+
+\newcommand{\minipageswidth}[5]{
+\begin{figure}[t]
+\begin{minipage}[t]{#5\textwidth}
+%\centering
+\includegraphics[width=\textwidth]{pictures/#1}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{#5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{pictures/#2}
+\end{minipage}
+\caption{ #3 }
+\label{#4}
+\end{figure}
+}
+
+\newcommand{\minipageswidthtb}[6]{
+\begin{figure}[#6]
+\begin{minipage}[t]{#5\textwidth}
+%\centering
+\includegraphics[width=\textwidth]{pictures/#1}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{#5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{pictures/#2}
+\end{minipage}
+\caption{ #3 }
+\label{#4}
+\end{figure}
+}
+
+\newcommand{\fourpictures}[7]{
+\begin{figure}[#7]
+\begin{minipage}[t]{0.5\textwidth}
+%\centering
+\includegraphics[width=\textwidth]{pictures/#1}
+\includegraphics[width=\textwidth]{pictures/#3}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{pictures/#2}
+\includegraphics[width=\textwidth]{pictures/#4}
+\end{minipage}
+\caption{ #5 }
+\label{#6}
+\end{figure}
+}
+
+
+
+
+%\renewcommand\thechapter{\Roman{chapter}}
+\pagestyle{headings}
+
+%\usepackage[a4paper,margin=1cm,landscape]{geometry}
+%\usepackage{color}
+%\usepackage{ifpdf}

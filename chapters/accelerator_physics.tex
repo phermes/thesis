@@ -1,0 +1,605 @@
+\chapter{Particle Accelerator Physics}\label{chap:2}
+%
+\section*{Introduction}
+%
+The history of particle accelerators goes back to the 1930s when the first accelerators were designed to provide the particle energies required to study atomic nuclei. Nowadays, a vast variety of accelerator types is available for many different applications, reaching from low-energy machines for particle therapy in cancer treatment (for example Heidelberger Ionenstrahl-Therapiezentrum, HIT~\cite{HITref01}) over synchrotron light sources at intermediate energies (for example SOLEIL~\cite{SOLEILref01}) to high-energy synchrotron colliders for fundamental research, such as the Large Hadron Collider, presented in \chapref{thelhc}.
+
+This chapter gives an overview of some relevant physics aspects in modern synchrotron machines. The first section demonstrates the general description of essential beam properties, such as the transverse and longitudinal beam behaviour in the magnetic lattice of an accelerator. The focus is set to the functionality of the different elements used in the accelerator, considering particles of a defined species. The second section presents the theoretical description of the particle movement of arbitary particles in the magnetic lattice by means of the Hamiltonian formalism. 
+%
+
+\section{Particle Dynamics in Electromagnetic Fields}
+
+\subsection{Reference frame} \label{chap:refframe}
+
+
+\input{pictures/refframe.tex}
+
+
+
+Particle beams in circular accelerators are bent by means of magnetic dipole fields. With the design of the machine, a closed reference trajectory is defined which leads typically through the center of the beam pipes and magnets. This trajectory corresponds to the orbit of a particle at design momentum without transverse offsets, which is referred to as the ideal particle. With respect to the cartesian laboratory frame ($\hat X, \hat Y, \hat Z$), the position of the reference particle at the time $t$ is defined by the vector $\textbf{r}(s)$, where $s(t)$ is a parameter describing the distance travelled from a defined reference point in the accelerator (see \figref{fig:frame}). The cartesian accelerator coordinate system ($\hat x, \hat y, \hat z$), spanned by the unitary vectors ($\textbf{e}_x, \textbf{e}_y, \textbf{e}_z$), moves with the reference particle and thus with $\textbf{r}(s)$, as shown in \figref{fig:frame}. The particle position in the laboratory frame is then fully characterized by the vector
+%
+\begin{align}
+\textbf{Q}(x,y,z,s,t) = \textbf{r} (s) + x \textbf{e}_x + y \textbf{e}_y + z \textbf{e}_z \, . \label{eq:refframe}
+\end{align}
+%
+Inside the dipole magnets, the trajectory of the vector $\textbf{r}(s)$ is bent by a radius 
+\begin{align}
+\rho = \frac{1}{h_x} \, .
+\end{align}
+%
+%%
+%
+Electromagnetic fields are generally defined by the gradient of the electric scalar potential $V$ and the magnetic vector potential $\textbf{A}$. In the curvliniar reference system $(x,y,s,t)$, spanned by the unitary vectors $(\textbf{e}_x,\textbf{e}_y,\textbf{e}_s)$, the definition of the curl and the gradient are changed to:
+\begin{align}
+\nabla \times \textbf{A} = 
+\end{align}
+
+The electromagnetic fields $\textbf{E}$ and $\textbf{B}$ can then be derived from the scalar potential $V(x,y,s,t)$ and the vector potential $\textbf{B}(x,y,s,t)$ as follows
+\begin{align}
+\textbf{E} &= -\nabla V - \PD{\textbf{A}}{t}  \, , \\
+\textbf{B} &= \nabla \times \textbf{A} = \left( \partial_y A_s - \frac{\partial_s A_y}{1+h_x x } \right) \textbf{e}_x + \left( \frac{\partial_s A_x}{1+h_x x} - \frac{\partial_x A_s}{1+h_x x}  - \partial_x A_s \right) \textbf{e}_y + (\partial_x A_y - \partial_y A_x) \textbf{e}_z \, .
+\end{align}
+
+
+%
+\subsection{Hamiltonian Formalism of Particle Motion}
+Particles moving in the electromagnetic fields of a particle accelerator obey Hamilton's equation of motion and thus can be handled by the Hamiltonian formalism. So far, literature only handled the accelerator Hamiltonian and the resulting equations of motion for mono-isotopic machines, assuming that only one ion species constitutes the particle beam. In high-energy ion accelerators, such as the LHC, hundrets of different particle species may be generated in the collimation system. In this chapter, the Hamiltonian and the resulting tracking maps of different accelerator lattice elements are developed for arbitrary ions. 
+%
+%
+%\%
+%
+%
+%\subsection{Hamiltonian Equations of Motion}
+ In the Hamiltonian formulation of mechanics the motion of a particle with $N$ degrees of freedom is described by the time evolution of a set of $2\,N$ variables. As shown in the previous chapter, the longitudinal coordinate $s(t)$ is monotonically and smoothly raising in time, so that Hamilton's equations can be expressed using $s$ as the independent parameter:
+\begin{align}
+\frac{\mathrm{d} q_k}{\mathrm{d}s} = \frac{\partial \mathcal{H}}{\partial p_k} \quad \quad \quad \frac{\mathrm{d} p_k}{\mathrm{d}s} = -\frac{\partial \mathcal{H}}{\partial q_k} \quad \quad \quad k=1,2,...,N\, ,
+\end{align}
+where $q_k,p_k$ is the set of canonic conjugate variables corresponding to the degree of freedom $k$ and $\mathcal{H}=\mathcal{H}(p_k,q_k,s)$ is the Hamiltonian in which $s$ is the independent variable.
+
+The variables can be ordered in the form of a vector, thus 
+\begin{align}
+\mathbf{x} = (q_1,p_1,q_2,p_2,...,p_N,q_N)^T \, .
+\end{align}
+In order to get the correct signs of Hamilton's equations, a $2\,N \times 2\,N$ rearranging matrix is required which can be expressed as the \emph{symplectic matrix} $\mathbf{S}$:
+\begin{align}
+\mathbf{S}
+=
+\begin{pmatrix}
+\mathbf{s} & \mathbf{0}  & \cdots  & \mathbf{0} \\ 
+\mathbf{0} & \mathbf{s} &  & \mathbf{0} \\ 
+\vdots &  & \ddots  & \vdots \\ 
+\mathbf{0} & \hdots & \mathbf{0} & \mathbf{s}
+\end{pmatrix} \, ,
+ \quad \quad \text{with} \quad \quad \mathbf{s} = 
+ \begin{pmatrix}
+0 & 1\\ 
+-1 &  0
+\end{pmatrix} \, .
+\end{align}
+The particular shape of this matrix is determined by the specific ordering used for $\mathbf{x}$, and which allows to write Hamilton's equations in their \emph{symplectic form}
+\begin{align}
+\frac{\mathrm{d} \mathbf{x}}{\mathrm{d}s} = \mathbf{S} \, \frac{\partial \mathcal{H}}{\partial \mathbf{x}} \, , \quad \quad \text{with} \quad \quad \left( \frac{\partial \mathcal{H}}{\partial \mathbf{x}} \right)_i = \frac{\partial \mathcal{H}}{\partial x_i} \, .
+\end{align}
+
+Frequently, the set of canonical variables is subject to transformations (one application is discussed in Chap. \chapref{xxx}) referred to as $\mathcal{T}$:
+\begin{align}
+\mathcal{T}:  \quad \mathbf{x} = (q_1,p_1,q_2,p_2,...,p_N,q_N)^T \quad \rightarrow \quad \mathbf{X} = (Q_1,P_1,Q_2,P_2,...,P_N,Q_N)^T \, .
+\end{align}
+
+The transformation is called canonical or symplectic if the new set of variables $\mathbf{X}$ is also obeing Hamiltonian's equations with respect to a new Hamiltonian $\mathcal{K}(Q_k,P_k,s)$:
+\begin{align}
+\frac{\mathrm{d} Q_k}{\mathrm{d}s} = \frac{\partial \mathcal{K}}{\partial P_k} \quad \quad \quad \frac{\mathrm{d} P_k}{\mathrm{d}s} = -\frac{\partial \mathcal{K}}{\partial Q_k} \quad \quad \quad k=1,2,...,N\, ,
+\end{align}
+This new Hamiltonian can be derived through a generating function as described in detail in ~\cite{}. 
+
+The Jacobian matrix $\mathbf{M}$ of a transformation is defined by 
+\begin{align}
+M_{ij} = \left( \frac{\partial \mathbf{X}}{\partial \mathbf{x}} \right)_{i,j} = \frac{\partial X_i}{\partial x_j} \, , \quad \quad \quad i,j=1,2,...N \, .
+\end{align}
+One can show, that a given transformation is symplectic (or canonicial) if the Jacobian matrix obeys the \emph{symplectic condition}:
+\begin{align}
+\mathbf{M}^T \, \mathbf{S} \, \mathbf{M} =  \mathbf{S} \, .
+\end{align} 
+Thus, the symplectic condition provides a tool for direct testing of the canonicality of a transformation or mapping.
+
+\subsection{Transverse Particle Motion in Electromagnetic Fields}
+\subsubsection{General Case}
+As mentioned in \chapref{chap:refframe} and discussed in \chapref{chap:beamoptics}, the accelerator lattice is designed to provide bending and focusing fields for a reference particle of a defined particle species. Considering a heavy-ion accelerator, the latter can be defined by
+\begin{align}
+^{A_0}X_0^{(Z_0-n_{e,0})+} \quad \quad m_0 = m\left( ^{A_0}X_0^{(Z_0-n_{e,0})+} \right) \, .
+\end{align}
+Where $X_0$ is the element name, $A_0$ is the number of nuclei, $Z_0=q_0/e$ is the nuclear charge multiplicity, $m_0$ is the rest mass of the reference ion and $n_{e,0}$ is the number of electrons attached to the ion. In the LHC fully stripped \lead ions are used, thus $n_{e,0}=0$. 
+
+
+Different physical processes can change the ion species or momentum, one of them being the interaction of the ion with the material of a collimator (see \chapref{chap:3}). The particle properties of an aribtrary ion are generically given as follows:
+\begin{align}
+^{A}X^{(Z-n_{e})+} \quad \quad m = m\left( ^{A}X^{(Z-n_e)+} \right) \, .
+\end{align}
+Here and in the following, quantitites subscribted with zero refer to the reference particle, while unsubscribted quantities correspond to the tracked particle. 
+
+
+Charged particles moving in electromagnetic fields are subject to the Lorentz force~\cite{griffiths13}
+\begin{align}
+\mathbf{F} = q \, ( \mathbf{E} + \mathbf{v} \times \mathbf{B} ) \, ,
+\end{align} 
+where $q$ is the particle charge, $\mathbf{E}$ is the electric field vector, $\mathbf{v}$ is the particle speed vector, and $\mathbf{B}$ is the magnetic field vector. In absence of an electric field the Lorentz force becomes purely transverse. The interplay between the centripetal force and the Lorentz force bends the particle trajectory by a certain radius $\rho$ defined by~\cite{wiedemann1999particle}
+\begin{align}
+B \, \rho = \frac{P}{q} \, , \label{eq:rigidity}
+\end{align}  
+where $P$ is the particle momentum and $B \, \rho$ is referred to as the magnetic rigidity. The particle momentum and energy can be expressed as
+\begin{align}
+P = m \, \beta \, \gamma, \quad \quad \quad E = m \, \gamma \, c^2 \, ,
+\end{align}
+where $\beta=\frac{v}{c}$ is the particle speed normalized by the speed of light $c$ and the Lorentz factor by $\gamma = \frac{1}{\sqrt{1-\beta^2}}$. The design radius $\rho_0$ of a magnetic element is the radius of the ion trajectory for an on-momentum particle of the reference ion species defined by:
+
+
+Following \eqref{eq:rigidity}, the design rigidity can be expressed  in terms of the momentum per rest mass $p_0=P_0/m_0 = \beta \, \gamma$ of the reference species which is a pure function of the reference velocity:
+\begin{align}
+B \, \rho_0 = \frac{P_0}{q_0} = \frac{m_0 \, p_0}{Z_0 \, e} \, . \label{eq:14121901}
+\end{align}
+ The rigidity of an arbitrary ion with a momentum per rest mass $p_i = p_0 + \Delta p$ can be expressed in the generic way
+\begin{align}
+B\,\rho = \frac{m \, (p_0 + \Delta p)}{Z \, e} \, .
+\end{align} 
+Using \eqref{eq:14121901} and elementary transformations, this rigidity can be written as
+\begin{align}
+B \, \rho = \frac{m}{m_0} \frac{q_0}{q} \, B \, \rho_0 \, \left( 1 + \frac{p - p_0}{p_0} \right) =  B \, \rho_0 \, \frac{\left( 1 + \delta \right)}{\chi}  \, . \label{eq:15080401}
+\end{align}
+Thus, the bending radius of a real ion is scaled with respect to the reference bending radius by a factor of $\frac{(1+\delta)}{\chi}$. The two quantities $\chi$ and $\delta$ are independent from each other and define the dispersive offset by a scaling with the magnet dispersion. The relative velocity offset $\delta$ can be expressed in terms of the full ion momenta as
+\begin{align}
+\delta = \frac{P \, \frac{m_0}{m} - P_0}{P_0} = \frac{\beta \gamma - \beta_0 \gamma_0}{\beta_0 \gamma_0} \, . \label{eq:15010701}
+\end{align}
+In the latter expression, the dependence of the ion mass is fully eliminated. The isotopic dispersive offset scales with the mass to charge ratio relative to the reference species which is defined as
+\begin{align}
+\chi =  \frac{q}{q_0}  \frac{m_0}{m}\, .	\label{eq:chidef}
+\end{align}
+
+An alternative way to derive the dependency described in \eqref{eq:15080401} is by considering the ratio of the rigidities defined in \eqref{eq:14121901} and \eqref{eq:rigidity}:
+\begin{align}
+\frac{B \rho}{B \rho_0} = \frac{P}{P_0} \frac{q_0}{q} = \frac{q_0}{q} \frac{m}{m_0} \, \frac{\beta \gamma}{\beta_0 \gamma_0} = \frac{(1+\delta)}{\chi} \, . \label{eq:brho_brho0}
+\end{align}
+
+Of particular importance for the simulations presented in \chapref{chap:stier} is the fact that the rigidity of an ion with $\chi \neq 1$ and arbitrary $\delta$ is identical to the rigidity of an ion of the reference species ($\chi=1$) with the effective momentum offset
+\begin{align}
+\delta_\text{eff} = \frac{(1+\delta)}{\chi} -1 \,. \label{eq:d_effective}
+\end{align}
+This enables the possibility to compute the particle trajectory of an arbitrary ion by means of a tracking of an ion of the reference species with equivalent rigidity.
+
+Given that the energy can be expressed as $E=m\,c^2\,\gamma$, the following important relations can be deduced
+\begin{align}
+\frac{P}{P_0} &= \frac{m}{m_0} \, (1+\delta) & \frac{\gamma}{\gamma_0} &= \frac{\beta}{\beta_0} \, (1+\delta) \, , \label{eq:p_over_p0}\\ 
+\frac{E}{E_0} &= \frac{m}{m_0} \, \frac{\beta}{\beta_0} \, (1+\delta) & \frac{E}{P_0 c} &= \frac{m}{m_0} \frac{1}{\beta} \, (1+\delta) \, , \\
+\frac{E}{E_0} \frac{P_0 c}{P c} &= \frac{\beta_0}{\beta}
+\end{align}
+
+
+
+
+% The relative mass to charge offset is a measure for the rigidity change if ions of other species than the reference isotope move in the magnet:
+% \begin{align}
+% \eta_i = \frac{m_i \, Z_0}{Z_i \, m_0} \, .
+% \end{align}
+% Using $P_i=m_i \, \gamma_i \, v_i$, the ratio of the ion momentum to the reference momentum is given by
+% \begin{align}
+% \frac{P_i}{P_0} = \frac{m_i}{m_0} \,  (1+\delta) = \frac{m_i}{m_i} \, \frac{\gamma_i \, \beta_i}{\gamma_0 \, \beta_0} \, .
+% \end{align}
+% The relative momentum offset can be expressed as 
+% \begin{align}
+% 1+ \delta = \frac{m_0}{m} \, \left(  \beta_0 \, \beta \, p_\sigma + \frac{\beta}{\beta_0}  \right) \, .
+% \end{align}
+% %
+% The ratio between the particle energy and the kinetic energy of the reference particle gives
+% \begin{align}
+% \frac{E}{P_0 \, c} = \frac{1}{\beta_0} + \beta_0 \, p_\sigma = \frac{m}{m_0} \, \sqrt{ (1+\delta)^2 + \left( \frac{1}{\beta_0 \, \gamma_0} \right)^2 }
+% \end{align}
+% Finally, the momentum offset $\delta$ can be expressed as a function of $p_\sigma$
+% \begin{align}
+% (1+\delta)^2 = \frac{m_0^2}{m^2} \, \left(  \beta_0^2 \, p_\sigma^2 + 2 \, p_\sigma + \frac{1}{\beta_0^2} \, \left( 1- \frac{m^2}{m_0^2} \right) + \frac{m^2}{m_0^2}  \right) \, .
+% \end{align}
+
+\subsubsection{Mono-Isotopic Case}
+The mono-isotopic case is the standard case which is discussed in literature~\cite{}. The mono-isotopic equations are obtained by the following substitutions:
+\begin{align}
+m \rightarrow m_0, \quad \quad \quad q \rightarrow q_0, \quad \quad \quad  \chi \rightarrow 1\, .
+\end{align}
+In this case, \eqref{eq:15010701} yields
+\begin{align}
+\delta = \frac{P - P_0}{P_0} = \frac{\beta \gamma - \beta_0 \gamma_0}{\beta_0 \gamma_0} \, .
+\end{align}
+Note that the latter remains unchanged, thus $\delta$ is generally a relative velocity offset. Furthermore, it is also a relative momentum offset in the mono-isotopic case and a relative momentum per mass offset if multiple ion types are present.
+
+
+
+\subsection{The Accelerator Hamiltonian} \label{chap:accelerator_hamiltonian}
+
+Consider a physical system defined by the canonical conjugates $q_i,p_i$. The Hamiltonian defining the evolution of $q_i,p_i$ is given by~\cite{Proceedings1994zua}
+\begin{align}
+H = \dot{q}_i  p_i - \mathcal{L} (q,\dot{q},t)\,. \label{eq:hamlag}
+\end{align}
+The Lagrangian $\mathcal{L}$ of a particle of mass $m$ and charge $q$ moving inside an electromagnetic field defined by the vector potential $\mathbf{A}$ and the scalar potential $\phi$, with the speed vector $\mathbf{v}$ is given by
+\begin{align}
+\mathcal{L} = -\frac{m c^2}{\gamma} - q \, \phi + q \, \mathbf{v} \mathbf{A} \, . 
+\end{align}
+%
+Merging the two equations yields for the accelerator Hamiltonian 	 
+\begin{align}
+H = \sqrt{(\mathbf{p}-q \, \mathbf{A})^2 \, c^2 + m^2 c^4} + q \, \phi \, .
+\end{align}
+In the relativistic notation the accelerator Hamiltonian represents the total energy, including rest energy. Hamilton's principle claims that the physical system described by $\mathcal{L}(q,\dot{q},t)$ evolves such that the action functional is minimum, thus~\cite{}
+\begin{align}
+\delta S = \delta \left[ \int_{t_0}^{t_1} \mathcal{L} \, \mathrm{d}t  \right] = 0 \, .
+\end{align}
+Following \eqref{eq:hamlag}, the action functional can then be expressed in terms of the Hamiltonian
+\begin{align}
+S = \int_{t_0}^{t_1} (p_x  \dot{x} + p_y  \dot{y} + p_z  \dot{z} - H) \, \mathrm{d}t \, . \label{eq:action1}
+\end{align}
+ Change of the independent variable from $t$ to $z$ as $z(t)$ is monotonically increasing with $t$
+ \begin{align}
+S = \int_{z_0}^{z_1} (p_x  x' + p_y  y' + p_z  - H t') \, \mathrm{d}z \, . \label{eq:action2}
+\end{align}
+%
+Comparing \eqref{eq:action1} with \eqref{eq:action2} shows that with $z$ as the independent variable, the set of canoncial variables to use is
+\begin{align}
+(x,p_x) , (y,p_y), (-t,H) \, .
+\end{align}
+The new Hamiltonian is given by
+\begin{align}
+\tilde{H} = -p_z
+\end{align}
+%
+The old Hamiltonian $H$ represents the full ion energy $E$, thus one obtains for the new Hamiltonian
+%
+\begin{align}
+\tilde{H} = -p_z = - \sqrt{ \frac{(E-q\phi)^2}{c^2} - m^2c^2 - (p_x - q  A_x)^2 - (p_y -q  A_y)^2} - q  A_z
+\end{align}
+%
+To make the Hamiltonian expandable the quantities inside the square root must be small. The following substitutions are applied to obtain small quantities
+%
+\begin{alignat}{4}
+p_i &\rightarrow \tilde{p}_i = \frac{p_i}{P_0} \, \frac{m_0}{m} \quad \quad &\tilde{H} &\rightarrow \bar{H} = \frac{\tilde{H}}{P_0}  \frac{m_0}{m} \, , \\
+q\,A_i &\rightarrow \chi a_i = \chi \frac{q_0 A_i}{P_0}  \quad \quad &E &\rightarrow \tilde{E} = \frac{E}{P_0} \, \frac{m_0}{m} \, ,
+\end{alignat}
+%
+where $\chi$ is the well-known normalized mass to charge ratio as defined in \eqref{eq:chidef}.
+%
+Expressed in terms of the new coordinates, and assuming that a gauge can be found such that $\phi=0$, the transformed Hamiltonian is given by
+%
+\begin{align}
+\bar{H} = - \sqrt{ \frac{m_0^2}{m^2} \, \left( \frac{E^2 - m^2 c^4}{P_0^2c^2} \right)   - (\tilde{p}_x - \chi a_x)^2 - (\tilde{p}_y- \chi a_y)^2   } - \chi a_z \, ,
+\end{align}
+% 
+Using \eqref{eq:p_over_p0} and the relativistic energy-momentum relation the latter can be simplified to
+\begin{align}
+\bar{H} = - \sqrt{(1+\delta)^2  - (\tilde{p}_x - \chi a_x)^2 - (\tilde{p}_y-\chi a_y)^2 } - \chi a_z \, .
+\end{align}
+quantifying the longitudinal motion in a more convenient way requires another transformation to new canonical variables:
+%
+\begin{align}
+(x,\tilde{p}_x,y,\tilde{p}_y,-t,\tilde{E}) \rightarrow (X,P_x,Y,P_y,\sigma,p_\sigma) \, .
+\end{align}
+%
+The transformation can be provided using the generating function of the second order
+\begin{align}
+F_2 = x P_x + y P_y + (z-\beta_0 ct) \, \left( p_\sigma + \frac{E_0}{\beta_0 P_0 c} \right) \, ,
+\end{align}
+%
+from which the transformed variables $q_i$ and the new Hamiltonian $K$ follow from
+%
+\begin{align}
+p_i = \PD{F_2}{q_i} \quad \quad \quad q_i = \PD{F_2}{P_i} \quad \quad \quad K = \bar{H} + \PD{F_2}{z} = \bar{H}+p_\sigma \, .
+\end{align}
+The transformed coordinates are  
+%
+\begin{alignat}{5}
+X  &= x            \quad \quad  &Y   &&= y            \quad \quad &\sigma   &&= z - \beta_0 ct  \\ \label{eq:sigmadefinition}
+P_x&= \tilde{p}_x  \quad \quad  &P_y &&= \tilde{p}_y  \quad \quad &p_\sigma &&= \frac{\frac{m_0}{m} \, E - E_0}{\beta_0 P_0 c} 
+\end{alignat}
+%
+with the new Hamiltonian 
+\begin{align}
+K = p_\sigma - \sqrt{(1+\delta)^2 - (P_x - \chi a_x)^2 - (P_y-\chi a_y)^2} - \chi a_z \, .
+\end{align}
+After a last transformation for convenience: $P_i \rightarrow p_i$, $K \rightarrow H$, the final generic accelerator Hamiltonian is written as
+\begin{align}
+H = p_\sigma - \sqrt{(1+\delta)^2 - (p_x - \chi a_x)^2 - (p_y-\chi a_y)^2} - \chi a_z \, .
+\end{align}
+
+
+%
+In the general case of a curved coordinate system as described in Chap. \ref{}, the Hamiltonian changes to~\cite{}
+%
+\begin{align}
+H = p_\sigma - (1+h_x(s)\,x) \, \left(  \sqrt{ (1+\delta)^2  - (p_x - \chi a_x(s))^2 - (p_y-\chi a_y(s))^2} + \chi a_s(s)  \right) \, , \label{eq:rawHamiltonian}
+\end{align}
+%
+where $h_x(s) = \frac{1}{\rho(s)}$ is the radius of curvature of the particle trajectory. Note that the quantites $p_i$, $a_i$ and $\delta$ are defined differently than for the mono-isotopic Hamiltonian. In the case of $m \rightarrow m_0$ and $q \rightarrow q_0$, all derived equations converge into the well-known mono-isotopic equations.
+
+
+
+\section{Tracking Maps for Beam-Line Elements}
+The Hamiltonian as presented in ~\eqref{eq:rawHamiltonian} is written in its exact shape, thus without the usage of approximations. Depending on the complexity of the electromagnetic field of the beam-line element and the corresponding boundary conditions it can be useful to expand the square root and use the expanded Hamiltonian which is the second order Taylor expansion
+\begin{align}
+H \approx p_\sigma - (1+h_x(s)x) \left[ (1+\delta) \left( 1 - \frac{1}{2} \frac{(p_x - \chi a_x(s))^2 + (p_y - \chi a_y(s))^2 }{(1+\delta)^2} \right) + \chi a_s(s) \right] \, . \label{eq:expanded_hamiltonian}
+\end{align}  
+\subsection{Drift Space}
+A drift space is a field-free region, in which the particles move on a straight line. If a particle enters a drift space region of length $L$ with the initial coordinates $x_i,x_i'$, the final angle and position $x_f,x_f'$ are given by the trivial relation
+\begin{align}
+\begin{pmatrix} x_f \\ x_f' \end{pmatrix} = \begin{pmatrix} 1 & L \\ 0 & 1 \end{pmatrix} \begin{pmatrix} x_i \\ x_i' \end{pmatrix} \, .
+\end{align}
+The full set of symplectic tracking maps is obtained by means of the Hamiltonian. 
+
+
+\subsubsection{Exact Hamiltonian}
+A drift space is defined by the absence of electromagnetic fields, thus the vector potential is zero in all directions. With regard to \eqref{eq:rawHamiltonian}, the Hamiltonian is then given by
+\begin{align}
+H = p_\sigma - \sqrt{(1+\delta)^2 - p_x^2 -p_y^2}  = p_\sigma - p_z\, . \label{eq:full_H_drift}
+\end{align}
+The equations of motion derived from this Hamiltonian are
+\begin{alignat}{4}
+x' &= \TD{x}{z} = \PD{H}{p_x} = \frac{p_x}{ \sqrt{(1+\delta)^2 - p_x^2 -p_y^2} } = \frac{p_x}{p_z} \quad \quad \quad \quad &p_x' &&= -\PD{H}{x} = 0 \, , \\
+y' &= \TD{y}{z} = \PD{H}{p_y} = \frac{p_y}{\sqrt{(1+\delta)^2 - p_x^2 -p_y^2}} = \frac{p_x}{p_z} \quad \quad &p_y' &&= -\PD{H}{y} = 0 \, , \\
+\sigma' &=  \TD{\sigma}{z} = \PD{H}{p_\sigma} = \left( 1 - \frac{\beta_0}{\beta_z}  \right)     &p_\sigma' &&= -\PD{H}{\sigma} = 0 \, , 
+\end{alignat}
+where $\beta_z$ is defined as 
+\begin{align}
+\beta_z = \beta \, \frac{p_z}{1+\delta}\,.
+\end{align}
+%
+Integration of Hamiltonian's equations of motion delivers the transfer map 
+\begin{alignat}{4}
+x & \rightarrow x + x' L \quad \quad \quad \quad \quad \quad &p_x &\rightarrow p_x \, , \\
+y & \rightarrow y + y' L \quad \quad &p_y &\rightarrow p_y \, , \\
+\sigma & \rightarrow \sigma + \left(1 - \frac{\beta_0}{\beta_z}\right) L \quad \quad &p_\sigma &\rightarrow p_\sigma \, .
+\end{alignat}
+
+\subsubsection{Expanded Hamiltonian}
+Combining \eqref{eq:expanded_hamiltonian} and \eqref{eq:full_H_drift} yields for the expanded Hamiltonian
+\begin{align}
+H \approx p_\sigma - \delta + \frac{1}{2} \, \frac{p_x^2+p_y^2}{(1+\delta)} \, .
+\end{align}
+Hamilton's equations of motion are 
+\begin{alignat}{4}
+x' &= \TD{x}{z} = \PD{H}{p_x} = \frac{p_x}{ (1+\delta) } &p_x' &&= -\PD{H}{x} = 0 \, , \\
+y' &= \TD{y}{z} = \PD{H}{p_y} = \frac{p_y}{ (1+\delta) } \quad \quad &p_y' &&= -\PD{H}{y} = 0 \, , \\
+\sigma' &=  \TD{\sigma}{z} = \PD{H}{p_\sigma} =  1 - \frac{\beta_0}{\beta} \left( 1 + \frac{1}{2} \, \frac{p_x^2 + p_y^2}{(1+\delta)^2}  \right)   \quad \quad \quad  &p_\sigma' &&= -\PD{H}{\sigma} = 0 \, , 
+\end{alignat}
+
+
+\subsection{Dipole}
+Dipole magnets are used in particle accelerators to bend the particle trajectories. Magnetic dipole fields can be generated either in vertical or horizontal direction, resulting in horizontal or vertical curvature of the reference trajectory respectively. In reality most dipoles apply vertical fields in order to obtain horizontal bending forces. In the following, the reference curvature is considered to be purely horizontal or vertical 
+\begin{align}
+h_x \, h_y =0 \, . \label{eq:hovebending}
+\end{align}
+For simplicity, parts of the following derivations are only considered for a horizontal bending (which represents the most common case of a bending dipole). However, they are also valid for vertical bendings by permuting $x$ and $y$. The uniform magnetic field in a horizontal bending dipole can be described by the vector potential~\cite{}
+\begin{align}
+A_x = 0 \quad \quad \quad A_y =0 \quad \quad \quad A_s = -B_y x \, \left( 1- \frac{h_x x}{2 (1+h_x x)} \right)\, .
+\end{align}
+Ideally, the vertical magnetic field $B_y$ is matched to the reference momentum and charge such that the bending radius $\rho_0=h_x^{-1}$ is obtained. In reality, the magnet strength may differ from the reference, such that the real radius $\rho=k_0^{-1}$ is obtained and
+\begin{align}
+B_y = \frac{P_0 k_0}{q_0} \,  .
+\end{align}
+The resulting exact Hamiltonian is then given by
+\begin{align}
+H = p_\sigma - (1+h_x x)\, p_z + \chi \, k_0 \left( x + \frac{h_x x^2}{2} \right) \, .
+\end{align}
+Omitting non-linear and constant terms delivers for the expanded Hamiltonian 
+\begin{align}
+H \approx p_\sigma - \delta - (h_x x) (1+\delta) + \frac{1}{2} \frac{p_x^2 + p_y^2}{(1+\delta)} + \chi \, k_0 \, \left(x + \frac{h_x x^2}{2}\right) \, .
+\end{align}
+
+
+\subsubsection{Thick Dipole}
+With the expanded Hamiltonian, the equations of motion become 
+\begin{alignat}{4}
+x' &=  \PD{H}{p_x} = \frac{p_x}{1+\delta} \quad \quad \quad \quad &p_x' &= -\PD{H}{x} = h_x \, (1+\delta) - \chi \, k_0 \, (1+h_x x)  \, , \\ \label{eq:dipoleequationofmotion}
+y' &= \PD{H}{p_y} = \frac{p_y}{1+\delta} \quad \quad &p_y' &= -\PD{H}{y} = 0 ,  \\
+\sigma' &=  \PD{H}{p_\sigma} =  1 - \frac{\beta_0}{\beta} \left( 1+h_x x + \frac{1}{2} \frac{p_x^2 + p_y^2}{(1+\delta)^2} \right) \quad \quad  &p_\sigma' &= -\PD{H}{\sigma} = 0 \, , 
+\end{alignat}
+As expected, the dipole acts like a drift space in the vertical direction where no bending force is present. Starting from \eqref{eq:dipoleequationofmotion}, the horizontal motion can be described by the differential equation
+\begin{align}
+x''(s) + \frac{\chi \, h_x \, k_0}{(1+\delta)} \, x = \frac{h_x \, \delta}{(1+\delta)} + \frac{h_x - \chi \, k_0}{(1+\delta)} \, . \label{eq:diffeqdipole}
+\end{align}
+%
+The homogenious part of the equation describes an oscillation with frequency $\omega_x=\sqrt{\frac{\chi \, h_x \, k_0}{1+\delta}}$.
+
+
+
+Note that the inhomogenious part of the differential equation \eqref{eq:diffeqdipole} represents the dispersion in the magnet. Compared to the corresponding mono-isotopic equation~\cite{}, an additional term proportional to $(\chi-1)$ appears, which takes account for the isotopic dispersion. For particles of the reference species this term vanishes. 
+%
+%
+The following quantities are defined for convenience 
+\begin{alignat}{4}
+S_x &= \frac{\tilde{S}_x}{1+\delta} = \sin \omega_x L \quad \quad \quad &C_x &= \frac{\tilde{C}_x}{1+\delta} = \cos \omega_x L \, \\ \omega_x^2 &= \frac{\chi \, h_x \, k_0}{1+\delta}   &\Omega_x &= \frac{1+\delta}{k \,\chi} - \frac{1}{h_x} \, .
+\end{alignat}
+%
+The transfer map is given by
+\begin{align}
+x &\rightarrow x \, C_x + p_x \, \omega_x^{-1} \tilde{S}_x + \Omega_x \, \left(1 - C_x \right) \, , \\
+p_x &\rightarrow - x \, \omega_x \, \tilde{S}_x + p_x \, C_x + \omega_x \,   \Omega_x \, \tilde{S}_x \, , \\ 
+y &\rightarrow y + y' \, L , \\
+p_y &\rightarrow p_y \, . \\ 
+% \sigma &\rightarrow \sigma + \left( 1 - \frac{\beta_0}{\beta} \right) L \hfill \notag \\
+% %
+% &- \frac{\beta_0}{\beta} h_x \left( \frac{S_x}{\omega_x} x + \frac{1-C_x}{\chi h_x^2} p_x + \Omega_x \left[ L-\frac{S_x}{\omega_x} \right] \right) \notag \\
+% &-\frac{\beta_0}{\beta} h_y \left( \frac{S_y}{\omega_y} y + \frac{1-C_y}{\chi h_y^2} p_y + \Omega_y \left[ L-\frac{S_y}{\omega_y} \right] \right) \notag \\
+% &-\frac{1}{4} \frac{\beta_0}{\beta} \left( \omega_x \left[ \omega_x L- S_x C_x  \right] \, \left[ x - \Omega_x \right]^2  + x'^2 \left[ L + \frac{S_x C_x}{\omega_x} \right] + S_x^2 x' \left[ \Omega_x - 2 x \right] \right) \notag \\
+% &-\frac{1}{4} \frac{\beta_0}{\beta} \left( \omega_y \left[ \omega_y L- S_y C_y  \right] \, \left[ y - \Omega_y \right]^2  + y'^2 \left[ L + \frac{S_y C_y}{\omega_y} \right] + S_y^2 y' \left[ \Omega_y - 2 y \right] \right) \, . \notag \\
+\sigma &\rightarrow \sigma + L\left(1 - \frac{\beta_0}{\beta}\right) \\
+  & \qquad\, -\frac{\beta_0}{\beta} \Bigg[ \frac{h_x S_x}{\sqrt{G_x}} \cdot x + \frac{1-C_x}{h_x} \cdot p_x
+  + \frac{h_y S_y}{\sqrt{G_y}} \cdot y + \frac{1-C_y}{h_y} \cdot p_y
+  + \delta \left(2L - \frac{S_x}{\sqrt{G_x}} - \frac{S_y}{\sqrt{G_y}} \right) \Bigg] \\
+  & \qquad\, - \frac{1}{4}\frac{\beta_0}{\beta} \Bigg[ G_x \left(L-\frac{C_xS_x}{\sqrt{G_x}} \right)
+  \left(x - \frac{\delta}{h_x}\right)^2
+  + \left(L+\frac{C_xS_x}{\sqrt{G_x}} \right) \frac{p_x^2}{(1+\delta)^2}
+  -\left(x-\frac{\delta}{h_x}\right) \frac{2S_x^2}{1+\delta} \cdot p_x \\
+  & \qquad\, + G_y \left(L-\frac{C_yS_y}{\sqrt{G_y}} \right)
+  \left(y - \frac{\delta}{h_y}\right)^2 + \left(L+\frac{C_yS_y}{\sqrt{G_y}}\right) 
+  \frac{p_y^2}{(1+\delta)^2}
+  -\left(y-\frac{\delta}{h_y}\right)\frac{2S_y^2}{1+\delta} \cdot p_y \Bigg] \\
+%
+p_\sigma & \rightarrow p_\sigma \, .
+\end{align} 
+
+
+\subsubsection{Thin Dipole}
+%
+  \begin{figure}[b]
+  \centering
+  \includegraphics[width=0.6\textwidth]{pictures/15081102.pdf}
+  \caption{Transverse kicks received by a dipole magnet for particles with different values of $\delta,\chi$ normalized to the kick for the reference particle. The change of the kick in function of $\delta$ is referred to as the chromatic dispersion, the change as a function of $\chi$ as isotopic dispersion. The kicks haven been computed by means of the transport maps in thin lens approximation following \eqref{eq:thindipolekick}.}  
+  \label{pic:15081102}
+  %/home/phermes/Dropbox/PhD/notebooks/chromatic_isotopic_dispersion.pdf
+  \end{figure}
+%
+In many situations, as for the case of the thick dipole, the computation of tracking maps for a thick magnet is complicated. A common way of simplifying the transport maps is by the application of the thin lens approximation, in which a magnet of length $L$ is replaced by two drift spaces of length $L/2$ surrounding an infinetly thin dipole $L\rightarrow 0$.    
+
+The transport map of a horizontal thin dipole kick is given considering the previous equations in the limit with very small $L$
+\begin{alignat}{4}
+p_x & \rightarrow p_x + L \left[ h_x \, (1+\delta) - k_0 \, \chi \, (1 + h_x \, x)  \right]\, \label{eq:thindipolekick} ,\\ 
+p_y & \rightarrow p_y\, ,\\ 
+p_\sigma & \rightarrow p_\sigma \, .
+\end{alignat}
+%
+The transverse kick depends on the initial offset in $x$, which is known as weak focusing~\cite{}. Two particles with the same set of $\chi$ and $\delta$ are bent differently if they are bent in the same magnet with two different offsets $x_1,x_2$, as illustrated in \figref{pic:15092201}. Weak focusing refers to the effect that the particle trajectories of two particles starting at different positions are focussed to a defined point. 
+
+%
+The effect of dispersion is taken into account by the dependence on $\delta$ and $\chi$, which is illustrated in \figref{pic:15081102}. The chromatic dispersion, which is a pure function of the particle velocity, and the isotopic dispersion which only depends on the mass to charge ratio are independent effects which can compensate or enhance each other. In the mono-isotopic case $\chi \rightarrow 1$, \eqref{eq:thindipolekick} yields the well known shape (see \cite{})
+\begin{align}
+p_x \rightarrow p_x + \delta h_x L - h_x^2 L x \, .
+\end{align} 
+
+  \begin{figure}[t]
+  \centering
+  \includegraphics[width=0.4\textwidth]{pictures/15092201.pdf}
+  \caption{Bending behaviour in a magnetic dipole field for two particles starting with different initial conditions.}  
+  \label{pic:15092201}
+  %/home/phermes/Dropbox/PhD/pictures/150922_weak_focusing/drawing-compiled.pdf
+  \end{figure}
+
+\subsection{Transverse Kicker Magnet}
+
+Transverse kicker magnets are used in accelerators as the LHC to control the beam orbit. Technically they are identical with bending magnets, with the exception that the reference ratius is zero, such that $h_x=0$. Following the equations derived in the previous chapter, the transport map of a kicker magnet is given by
+\begin{alignat}{4}
+p_x & \rightarrow p_x - k_0 \, \chi \, L\, \label{eq:thindipolekick} ,\\ 
+p_y & \rightarrow p_y\, ,\\ 
+p_\sigma & \rightarrow p_\sigma \, .
+\end{alignat}
+
+\subsection{Quadrupole}
+  \begin{figure}[b]
+  \centering
+  \includegraphics[width=0.4\textwidth]{pictures/15080402.pdf}
+  \caption{Transverse profile of a quadrupole magnet. }  
+  \label{pic:15080402}
+  %/home/phermes/Dropbox/Uni/MSc-Thesis/pictures/quadprofile.pdf
+  \end{figure}
+Quadrupole magnets are used as focusing devices in an accelerator lattice, which is provided by a transverse magnetic field gradient (where $r^2 = x^2 + y^2$)
+\begin{align}
+g = \PD{B_\varphi}{r} \quad \quad \quad \quad \quad \quad [g] = \text{T}/\text{m}\, .
+\end{align}
+%
+The transverse profile together with the shape of the magnetic field lines are shown in \figref{pic:15080402}. The vector potential of a quadrupole magnet is given by
+\begin{align}
+A_x = 0 \quad \quad \quad A_y = 0 \quad \quad \quad A_s = - \frac{1}{2} \, g \, (y^2 -x^2) \, .
+\end{align}
+%
+Expressed in the normalized coordinates, the longitudinal vector potential becomes
+%
+\begin{align}
+a_s = - \frac{1}{2} \frac{q_0}{P_0} g  \, (y^2 -x^2)  = - \frac{1}{2} \, k \,  (y^2 -x^2) \, .
+\end{align}
+The quantity $k=\frac{q_0}{P_0} g$ is the normalized quadrupole gradient which has the unit $[k] = \text{m}^{-2}$. The optics of a machine in a certain configuration is defined by a full set of $k_i$ with $i= 1,...,N_q$, where $N_q$ is the number of quadrupoles in the machine. Thanks to the definition of the normalized quadrupole strength, the machine optics can be described by identical values valid for different energies, even if in reality the magnet currents are ramped with increasing beam energy. The reference trajectory passes through the center of the quadrupole where no magnetic field is present. In consequence, the reference trajectory is straight ($h_x=0$) and the exact Hamiltonian of a quadrupole yields	
+\begin{align}
+H = p_\sigma - \sqrt{(1+\delta)^2 - p_x^2 -p_y^2} + \frac{1}{2} \, k \, \chi\, (x^2 -y^2) \, .
+\end{align}
+
+\subsubsection{Thick quadrupole}
+%
+For the solution of the equations of motion, the following quantities are defined:
+\begin{align}
+K = k \, \chi \, ,\quad \quad \quad \quad  \omega^2 = |K| \, .
+\end{align}
+%
+The expaned Hamiltonian for the quadrupole is then given by
+\begin{align}
+H = p_\sigma + \frac{1}{2} \frac{p_x^2+p_y^2}{(1+\delta)} + \frac{1}{2} \, K \, (x^2 -y^2) -\delta \, .
+\end{align}
+Hamilton's equations deliver for the transverse directions:
+%
+\begin{alignat}{4}
+x' &= \PD{H}{p_x} = \frac{p_x}{(1+\delta)} \quad \quad \quad &p_x' &= - \PD{H}{x} = - K x \, ,  \\
+y' &= \PD{H}{p_y} = \frac{p_y}{(1+\delta)} \quad \quad \quad &p_y' &= - \PD{H}{y} = \phantom{-} K y \, , 
+\end{alignat}
+Using these relations, the transverse movement can be described by two differential equations of the same type
+\begin{align}
+x'' + K x &= 0 \, , \label{eq:quadeq1} \\
+y'' - K y &= 0 \, .
+\end{align}
+%
+This is the well-known Hill equation. The transverse transport map is the general solution of the two differential equations 
+\begin{alignat}{8}
+x &\rightarrow C_x x &&+ S_x \frac{p_x}{(1+\delta)} \quad \quad \quad \quad &p_x &\rightarrow C_x p_x &&-  S_x \, \omega^2 x \, (1+\delta) \, , \\ 
+y &\rightarrow C_y y &&+ S_y \frac{p_y}{(1+\delta)} \, &p_y &\rightarrow C_y p_y &&+  S_y \, \omega^2 y  \, (1+\delta) \, ,  \\
+\sigma & \rightarrow \sigma && &p_\sigma &\rightarrow \sigma + &&\left( 1 - \frac{\beta_0}{\beta} \right) L  \, & \\
+ & && & & &&-\frac{\omega^2}{4} \frac{\beta_0}{\beta} \left( [S_x C_x -L] x^2 - [S_y C_y -L] y^2 \right) \notag \\
+  & && & & &&-\frac{\omega^2}{2} \frac{\beta_0}{\beta} \left( -S_x^2 \frac{x p_x}{1+\delta} +S_y^2 \frac{y p_y}{1+\delta} \right) \notag \\
+ & && & & &&-\frac{1}{4} \frac{\beta_0}{\beta} \left( [L+S_xC_x] \frac{p_x^2}{(1+\delta)^2} + [L+S_yC_y] \frac{p_y^2}{(1+\delta)^2} \right) . \notag
+\end{alignat}
+The quantities $C_u$ and $S_u$ are defined as follows:
+\begin{alignat}{4}
+C_x = &\begin{cases}  \cos \left( \omega L \right)  & \text{if} \quad  K>0 \\ 
+\cosh \left( \omega L \right)  & \text{if} \quad  K<0 \end{cases} \quad \quad \quad&S_x = &\begin{cases}  \omega^{-1}  \sin \left( \omega L \right)  & \text{if} \quad  K>0 \\ \omega^{-1}\sinh \left( \omega L \right)  & \text{if} \quad  K<0 \end{cases}
+\, , \\ 
+C_y = &\begin{cases}  \cosh \left( \omega L \right)  & \text{if} \quad  K>0 \\ 
+\cos \left( \omega L \right)  & \text{if} \quad  K<0 \end{cases} \quad \quad \quad&S_y = &\begin{cases}  \omega^{-1}  \sinh \left( \omega L \right)  & \text{if} \quad  K>0 \\ \omega^{-1}\sin \left( \omega L \right)   & \text{if} \quad  K<0 \end{cases}
+\, , 
+\end{alignat}
+
+
+
+
+\subsubsection{Quadrupole in Thin Lens Approximation}
+In the thin lens approximation $\omega L \rightarrow 0$, the quadrupole transfer maps become
+\begin{alignat}{8}
+x &\rightarrow x \, ,  \quad \quad \quad \quad &p_x &\rightarrow  p_x &&-  K L \, x \, , \\ 
+y &\rightarrow y \, ,  \quad \quad \quad \quad &p_y &\rightarrow  p_y &&+  K L \, y \, , \\
+\sigma &\rightarrow \sigma \, ,  \quad \quad \quad \quad &p_\sigma &\rightarrow  p_\sigma \, &&  &.
+\end{alignat}
+This transfer map corresponds to a focusing lens in horizontal and a defocusing lens in vertical direction. Compared to the transverse kick $\Delta p_{x} = - k \, L\, x$ of the reference isotope, the kick for arbitrary ions scales linearly with $\chi$:
+\begin{align}
+\Delta p_{x} = - \chi \, k \, L \, x \, .
+\end{align}
+The focal length for the different isotopes therefore varies with $\chi$.	
+
+\subsection{Thin Multipole}
+Besides the two most important magnet types discussed in the previous chapters, higher order magnetic fields are used in particle accelerators. One example being sextupoles used to correct chromaticity~\cite{}. A multipole of order $n$ can be described by the vector potential
+\begin{align}
+A_x = 0 \, , \quad \quad \quad A_y = 0 \, , \quad \quad \quad A_z = - \text{Re} \sum_{n=1}^{\infty} (b_n + i a_n) \frac{(x+i y)^n}{n \, r_0^{n-1}} \, .
+\end{align} 
+where $a_n$ and $b_n$ are the multipole coefficients
+
+\newpage
+
+\subsection{Accelerating RF Cavity}
+  \begin{figure}[t]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/15081101.jpg}
+  \caption{Principle of the beam acceleration by means of RF cavities. The structure generates a longitudinal electric field. The wavelength of this }  
+  \label{pic:15081101}
+  %/home/phermes/Documents/1435503941_77cff2f9fcf76f625a60aa3135ed2c87.jpg
+  \end{figure}
+Radio Frequency Cavities generate longitudinal electric fields used to increase the particle energy.	
+
+
+
+
+
+\subsection{Beam Optics}
+
+
+\subsection{Longitudinal Particle Dynamics}
+
+Accelerating cavities, longitudinal movement, longitudinal coordinates, separatrix
+
+
+
