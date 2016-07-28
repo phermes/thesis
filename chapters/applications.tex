@@ -1,0 +1,708 @@
+\chapter{Simulations and Measurements} \label{chap:sim_meas}
+
+Alsongide with the comparison of simulated and measured loss patterns for benchmarking of the simulation tools, such comparisons allow the study of potential strategies of loss reductions. In this chapter, different studies carried out with STIER and hiSixTrack related to operational aspects are outlined and discussed.
+
+\section{Preparation of the Heavy-Ion Operation in 2015} \label{chap:prep2015}
+
+\begin{figure}[b]  
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/16020502.pdf}
+    \caption{Stored heavy-ion beam energy in the past LHC heavy-ion runs.}  
+    \label{pic:16020502}
+    %/home/phermes/Dropbox/PhD/notebooks/plots/stored_beam_energy.pdf
+\end{figure}
+
+With the \lead ion operation in late 2015, the LHC advanced into regimes of unprecedented heavy-ion momenta and stored beam energies~\cite{IPAC16:TUPMW027}. The collider reached a particle momentum of 6.37$\,Z\,$TeV and a stored beam energy of approximately 9.5~MJ, the latter being more than twice beyond the design value. While the number of injected bunches ($k_b=426$) was still below the design value of $k_b^{d} = 518$, the injector chain upgrades performed in the past led to a significant increase of the energy per bunch~\cite{}. Altogether with the small emittances achieved, these improvements enabled luminosities surpassing the design value by a factor of 3.6~\cite{IPAC16:TUPMW027}, in spite of the rather large $\beta^*=0.8\,$m applied in ATLAS, CMS and ALICE.
+
+The large beam intensity was highly challenging for the LHC collimation system. Occasionally, the amount of collimation cleaning debris absorbed in the IR7 DS exceeded the allowed threshold and led to protection dumps triggered by the BLM system. Furthermore, secondary losses at the tertiary collimators led to particle showers which produced perturbing background in the experiments, especially in ALICE. 
+
+Alongside the physics program, which was accomplished with great success and unprecedented integrated luminosities collected~\cite{IPAC16:TUPMW027}, various dedicated machine experiments were carried out with the LHC. These included the study of new collimation devices (crystal collimation~\cite{mirarchiphd}) and two quench tests: one in which a main dipole was quenched with the secondary BFPP beams generated in IP5~\cite{accnote_bfpp_quench}, and a collimation quench test with collimation debris generated at the TCP in IR7, described in \chapref{}.
+
+In this section, cleaning simulations carried out for the preparation and optimization of the collimation system in the 2015 configuration are presented together with loss patterns measured during operation. 
+
+\subsection{Validation of Collimator Settings} \label{chap:STIER:validation}
+
+In preparation of the heavy-ion run, the tool STIER was used to give an estimate about the expected cleaning performance and to study possible strategies to reduce the amount of losses at the IR7 DS magnets. This includes the study of different collimator settings, in particular different retractions of the TCSG collimators, to validate the collimation system and give estimates about the expected loss reduction in case of tighter settings. 
+
+With the geometrical collimator settings taken from the precedent proton operation, the TCSG collimators are retracted by $\Delta N_{S,P}=2.5\,\sigma$ with respect to the primary collimators. STIER was employed to simulate the cleaning inefficiency for the reference settings and in addition with retractions of $\Delta N_{S,P} = 2.0\,\sigma, 1.5\,\sigma$ and $1.0\,\sigma$. 
+
+In the fragmentation simulation, the \lead beam is simulated to impact the carbon target in the same geometry already used for the simulations presented in \chapref{} at an impact parameter of $b=2\,\mu$m. With an initial sample of $5\times10^6$ heavy-ions impacting the TCP jaw, the fragment distribution obtained from FLUKA is processed into initial coordinates in B1H for the tracking simulation as protons with equivalent rigidity performed with SixTrack. The simulation is carried out for both jaws individually to disentangle the losses arising from particles starting at each individual jaw. This approach turned out to be very useful for the analysis and mitigation of the losses at the TCT in IR2, as discussed in \chapref{chapter:quenchtest}. For the four simulations with different TCSG retractions, the same sample of initial coordinates is used, so the obtained loss patterns are quantitatively comparable without the need to consider statistical fluctuations of the loss pattern.
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}
+    \footnotesize
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16061502.pdf}};
+      \node [rotate=0 , fill=white, x={(image.south east)},y={(image.north west)},anchor=east]       at (0.995,0.92)  {$2.5\,\sigma$ retraction (nominal)};
+      \node [rotate=0 ,fill=white, x={(image.south east)},y={(image.north west)},anchor=east]       at (0.995,0.70)  {$2.0\,\sigma$ retraction };
+      \node [rotate=0 ,fill=white, x={(image.south east)},y={(image.north west)},anchor=east]       at (0.995,0.49)  {$1.5\,\sigma$ retraction };
+      \node [rotate=0 ,fill=white, x={(image.south east)},y={(image.north west)},anchor=east]       at (0.995,0.27)  {$1.0\,\sigma$ retraction };
+  \end{tikzpicture}
+  \caption{IR7 view of the STIER simulated loss maps for \lead ions at 6.37$\,$TeV in the configuration of the 2015 heavy-ion run for different retractions of the TCSG collimators with respect to the primary collimators. }  
+  \label{pic:16061502}
+  %/media/phermes/local/160614_STIER_validation/analysis/examples/validation_comparison.pdf
+  \end{figure}
+
+
+\begin{figure}[htbp]
+	% minipage mit (Blind-)Text
+	\begin{minipage}{0.5\textwidth} 
+  \centering
+  \begin{tikzpicture}
+    \footnotesize
+    \node[anchor=south west,inner sep=0] (image) at (0,0)      {\includegraphics[width=1.0\linewidth]{pictures/16061604.pdf}};
+    %
+    %  \node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]  at (0.50,0.50)  {text0};
+    %  pure text 
+        \node [draw,rotate=0 ,fill=white, x={(image.south east)},y={(image.north west)}]                   at (0.36,0.6)  {DS1};
+        \node [draw,rotate=0, fill=white ,x={(image.south east)},y={(image.north west)}]       at (0.75,0.6)  {DS2};
+        \end{tikzpicture}
+	\end{minipage}
+	% Auffüllen des Zwischenraums
+	\hfill
+	% minipage mit Grafik
+	\begin{minipage}{0.5\textwidth}
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16061607.pdf}};
+  \end{tikzpicture}
+	\end{minipage}
+	\caption{Left: Dispersion suppressor loss clusters with nominal TCSG retraction (top plot), with 1.0$\,\sigma$ TCSG retraction (middle plot). Right: Evolution of the highest cleaning inefficiency and the integrated losses in DS1 and DS2 as a function of the applied TCSG retraction.}
+	\label{pic:quantiative_TCSG_reduction} 
+ %/media/phermes/local/160614_STIER_validation/analysis/examples/cleaning_evolution.pdf
+\end{figure}
+
+
+
+
+
+
+\begin{table}[h]
+\centering
+\caption{STIER simulation results quantifying the cleaning performance as a function of the applied TCSG retraction $N_S-N_P$ for the 2015 heavy-ion run.}
+\label{tab:2015_performance_param}
+\begin{tabular}{ccccc}
+\toprule
+\begin{tabular}[c]{@{}c@{}}$N_S-N_P$ \\ {[}$\sigma${]}\end{tabular} & 
+\begin{tabular}[c]{@{}c@{}}$\eta^{max}_{cold}$\\ {[$10^{-2}/$m]}\end{tabular} &  
+\begin{tabular}[c]{@{}c@{}}$ \eta^{int}_{DS1}$\\ {[$10^{-2}$]}\end{tabular} &  
+\begin{tabular}[c]{@{}c@{}}$ \eta^{int}_{DS2}$\\ {[$10^{-2}$]}\end{tabular} &  
+\begin{tabular}[c]{@{}c@{}}$ \eta^{int}_{cold}$\\ {[$10^{-2}$]}\end{tabular}     \\ \midrule
+    2.5      &      1.44  &  8.1   &  5.5     &  14.0   \\
+    2.0      &      1.41  &  6.8   &  5.5     &  12.7   \\
+    1.5      &      1.31  &  5.6   &  5.4     &  11.3   \\
+    1.0      &      1.07  &  4.4   &  5.3     &  10.0   \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+
+The loss maps generated from the STIER simulations are shown for the full ring in \figref{pic:16061503} in the appendix and zoomed to IR7 in \figref{pic:16061502}. With the smaller TCSG opening, additional losses occur only at the TCSG.A6L7.B1 which is the first TCSG downstream of the primary collimators. For the tightest setting studied, the losses in the latter are increased by 60\% with respect to the nominal case. 
+
+The tightening of the TCSG settings does not lead to a significant change of the simulated loss pattern. The losses in the warm region downstream of the TCP can be slightly reduced. For the critical losses in the IR7 DS, slight differences in the loss pattern are visible for the different scenarios. A quantitative comparison of the cleaning performance with nominal retraction and the with tightest setting is shown in \figref{pic:quantitative_TCSG_reduction}. Also, selected numeric key quantities as a measure of the evolution of cleaning performance with decreasing TCSG retraction are listed in \tabref{tab:2015_performance_param}. 
+
+The comparison shows that, with tighter setting, the TCSG captures particularly ion fragments which are lost in the first DS loss cluster otherwise. In terms of integrated losses $\eta^{int}$, a reduction of almost 50\% is simulated in the DS1, compared to a reduction of only 4\% in the DS2. The highest loss peak in the superconducting LHC regions is found in the DS1 for all simulations, and is predicted to be reduced by approximately $25\%$ by applying the tightest setting. The loss distribution in the remaining LHC ring is not changed in a significant way. Further analysis of the loss pattern outside IR7 is presented in \chapref{chap:ir2loss}.
+
+In conclusion, the analysis shows that a significant reduction of the DS losses (at least one order of magnitude) can not be achieved by varying the TCSG settings. Given the low potential for improvement by closing the TCSG collimators, the nominal retraction was maintained. 
+
+
+
+\subsection{Orbit Bumps in the IR7 DS}
+
+The loss location of off-momentum particles lost due to magnetic dispersion can be modified by means of dedicated orbit changes. The losses due to BFPP, for example, were in the 2015 heavy-ion run shifted into the empty connection cryostat between two superconducting magnets, which reduced the amount of energy lost in the coils of the superconducting magnets and thus also the risk of a magnet quench. 
+
+\begin{figure}[b]  
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/16052601.pdf}
+    \caption{Projected penetration depth from the extrapolated particle track in the aperture.}  
+    \label{pic:16052601}
+    %/home/phermes/Dropbox/PhD/pictures/160526_penetration_depth/annotated/drawing_annotated-crop.pdf
+\end{figure}
+
+Such shifts of the loss position can be achieved if the theoretical particle trajectory (without aperture restrictions) is beating and the projected penetration depth $d_p$ into the aperture is not too large. The latter is the difference between the dimension of the aperture and the maximum amplitude a particle would reach at the dispersive peak downstream of the loss location, as illustrated in \figref{pic:16052601}. If the loss location of an off-momentum particle is known and $d_p$ is small enough to be compensated by a moderate orbit bump in the opposite direction, the loss location can be shifted towards the next dispersive peak, as shown in \figref{pic:16052602}. Additional bumps in the machine reduce the normalized aperture at the bump location and introduce additional dispersion in the machine, which must be taken into account and limits the achievable bump amplitude. The peak transverse amplitude of the BFPP bump applied in 2015 is $x_b = 3\,$mm. 
+
+The potential reduction of collimation losses by compensating bumps is limited by the asymmetry of the loss distribution in $x$. The maximum  relative reduction of the cleaning inefficiency $\Delta \bar{\eta}_{max}$ as a function of the cleaning inefficiency from particles impacting on the right side of the beam pipe $\eta_{R}$ and those impacting at the left side $\eta_L$ is given by
+\begin{align}
+\Delta \bar{\eta}_{max} = \frac{\eta_R}{\eta_L + \eta_R} \, ,
+\end{align}
+assuming that more particles impact the right side of the beam pipe.  In case of a full asymmetry of the losses, they can in theory be fully shifted by a dedicated bump.
+
+\begin{figure}[t]  
+    \centering
+    \includegraphics[width=0.8\textwidth]{pictures/16052603.pdf}
+    \caption{Loss location shift of an off-momentum particle by a compensating orbit bump.}  
+    \label{pic:16052602}
+    %/afs/cern.ch/work/p/phermes/private/150629_coupling_ions/hiSix/160526_tracks/loss_shift_with_bump.pdf
+\end{figure}
+
+
+The possibility of collimation loss mitigation with orbit bumps in the IR7 DS is explored in a dedicated STIER simulation for B1H in the 2015 heavy-ion run configuration. The fragmentation simulation setup and the reference simulation are taken over from the settings validation simulation presented in the previous chapter. 
+
+The simulation data unveils that in the DS1 75\% of the collimation debris impacts the aperture on the left hand side of the beam pipe, while in the DS2 it is 97\%. This finding is in line with the asymmetry in $\chi$ observed for the fragments leaving the primary collimator (see \figref{pic:16061608}). These numbers also describe the maximum potential for reduction, which is fully exploited if all losses at the dominating side of impact are alleviated.
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16061703.pdf}};
+    %
+      \node [draw,rotate=0,x={(image.south east)},y={(image.north west)}]  at (0.20,0.90)  {DS1};
+      \node [draw,rotate=0,x={(image.south east)},y={(image.north west)}]  at (0.70,0.90)  {DS2};
+
+    %  pure text 
+    %  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]       at (0.22,0.965)  {text1};
+    %  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.8)    {text2};
+    %
+  \end{tikzpicture}
+  \caption{Top row: Projected penetration depth of the different isotopes impacting the left side of the beam pipe in DS1 and DS2. Bottom row: Potential loss reduction as a function of the bump amplitude applied at each loss region. }  
+  \label{pic:16061701}
+  %/home/phermes/Dropbox/codes/python/160309_STIER_runII_bumps/amplitude_depth.pdf
+  \end{figure}
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.5\linewidth]{pictures/16061608.pdf}};
+    %
+    %  \node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]  at (0.50,0.50)  {text0};
+    %  pure text 
+    %  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]       at (0.22,0.965)  {text1};
+    %  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.8)    {text2};
+    %
+  \end{tikzpicture}
+  \caption{Distribution in $\chi$ for the particles leaving the primary collimator simulated with FLUKA for \lead at 6.37$\,Z$TeV.}  
+  \label{pic:16061608}
+  %/media/phermes/ph3tboffice/ph1tbwd/FLUKA_results/151105_HeavIon_6370GeV_2um_runII_2015/raw_data/chi_distribution_2015.pdf
+  \end{figure}
+
+Using the STIER simulation data, the possible loss reduction by an orbit bump is studied by means of the projected penetraction depth of the isotopes impacting at the two DS clusters. The quantity $d_p$ is extracted from the simulation data by a linear extrapolation of the particle trajectory on the basis of the longitudinal distance between impact location and quadrupole center (in which both betatron function and dispersion are maximum) and the impacting angle at the aperture. This method allows to relate a target loss reduction to the required bump amplitude at the loss location. The distribution of the projected penetration depth of particles impacting the DS is shown for the two different loss clusters in \figref{pic:16061701}. Both clusters show a broad distribution of $d_p$ reaching to values up to more than 25$\,$mm. On the bottom row of \figref{pic:16061701} the integrated losses are shown as a function of the projected penetration depth, which can be interpreted as the achievable loss reduction with respect to a given bump amplitude. Both integrated loss curves are calculated with respect to the highest achievable loss reduction, determined from the loss asymmetry. 
+
+
+
+
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16061706.pdf}};
+    %
+    %  \node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]  at (0.50,0.50)  {text0};
+    %  pure text 
+    %  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]       at (0.22,0.965)  {text1};
+    %  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.8)    {text2};
+    %
+  \end{tikzpicture}
+  \caption{Top row: nominal cleaning inefficiency in the 2015 heavy-ion configuration as simulated with STIER. Middle row: simulated cleaning inefficiency with an additional orbit bump having a maximum amplitude of $x_b=+3\,$mm at the DS2. Bottom row: beam orbit and periodic dispersion function with the applied bump.}  
+  \label{pic:16052701}
+  %/home/phermes/Dropbox/codes/python/160309_STIER_runII_bumps/lossmap_bump_comparison.pdf
+  \end{figure}
+
+
+
+The bump amplitude required to alleviate 50\% of the losses yields approximately 17$\,$mm in the DS1 and $13.7\,$mm in the DS2. Both bump amplitudes are beyond acceptable values because the reduction of normalized aperture they imply are unacceptable. Rather, applicable bump amplitudes are in the order of 3$\,$mm as done for the BFPP loss shift. With this value as a baseline, the reachable loss reduction yields only 6\% in the DS1 and 14\% in the DS2. 
+
+This conclusion is supported by the outcome of a dedicated STIER simulation with an additional bump in positive direction which peaks at an amplitude of $x_b=3\,$mm in the DS2. Besides the additional orbit bump applied, the configuration is identical to the reference simulation of the 2015 heavy-ion run. Compared to the reference simulation, the loss pattern is changed in the DS2 but the peak amplitude in the latter is almost unchanged, as shown in \figref{pic:16052701}. Given the small bump amplitude at the DS1 cluster, these losses are almost unchanged. The losses within the DS2 cluster are re-ordered because the loss location of the individual isotopes is shifted to the right. This is escpecially true for the losses at the right bound of the DS2, which are shifted into the first loss peak of the LHC arc region as becoming apparent through the increased loss rate at this location. The integrated losses in the DS2 are reduced by approximately 14\% in this scenario which is in excellend agreement with the prediction made on the basis of the projected penetration depth, supporting the accuracy of this method. 
+
+In conclusion, the analysis of the projected penetration depth shows that the alleviation of the DS losses would require very large bump aplitudes, which are not compatible with safe operation of the LHC. Also the shift of losses towards the connection cryostat, as it is done for the BFPP losses, is not possible within the available margins of bump amplitudes, because the effective momentum offset of the impacting particles is too large. On the contrary, the loss reduction that is achievable with reasonable bump amplitudes is not sufficiently beneficial to justify the additional efford of integrating it into the operational configuration. 
+
+% This simulation has furthermore proven the method of loss prediction by means of the projected penetration depth to be accurate. In the analysis of loss patterns, this method could also be useful to explain discrepancies between measured and simulated losses, because of orbit offsets or aperture displacements (see \chapref{}).
+
+
+
+% My hypothesis was that in the DS there are particles ending up at both
+% sides of the beam pipe (x<0, x>0), because particles with both signs of
+% delta_eff are generated. Now Roderik had the idea that I could check if
+% the same amount of energy deposited on both sides is identical. As a
+% matter of fact the energy deposited on x>0 is significantly larger than
+% on the other side (~factor 20).
+
+% The reason why the bumps are not effective could be that the particles
+% are too much off momentum and the bump amplitude is not sufficient to
+% avoid them being lost.
+
+% Find attached the comparison of the loss maps for three cases:
+
+%   * nominal without bump
+%   * bump of +3mm at MQ.9R7
+%   * bump of -3mm at MQ.9R7
+
+% The simulation is done for Run II conditions. 
+
+  % [(3, 1),    0.15161517193976892],
+  % [(203, 82), 0.059987912744568654],
+  % [(202, 82), 0.054357628332861764],
+  % [(199, 81), 0.04103390268372144],
+  % [(200, 81), 0.0406380961080765],
+  % [(201, 82), 0.035369827352218386],
+  % [(201, 81), 0.03490685772452313],
+  % [(198, 81), 0.028612559490733408],
+  % [(7, 3),    0.028273891240351855],
+  % [(200, 82), 0.026975152549905734],
+  % [(198, 80), 0.026866058395211372],
+  % [(196, 80), 0.02676397893184573],
+  % [(197, 80), 0.02287859898815695],
+  % [(197, 81), 0.020408720936471763],
+  % [(8, 3),    0.017968917065147375],
+  % [(10, 4),   0.01708417603420238],
+  % [(2, 1),    0.01683096661661283],
+  % [(195, 80), 0.016261258514147035],
+  % [(195, 79), 0.015158800309798085],
+  % [(6, 2),    0.01413517886023306], 
+%
+%
+%
+%
+
+\section{Suppression of Losses at the IR2 TCT}\label{chap:ir2loss}
+
+\begin{figure}[bthp]  
+    \centering
+    \begin{tikzpicture}
+      \footnotesize
+      \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16020101.pdf}};
+      \node [rotate=0,x={(image.south east)},y={(image.north west)}]  at (0.24,0.85)  {TCT2};
+      \node [rotate=0,x={(image.south east)},y={(image.north west)}]  at (0.5,1.02)  {Betatron loss map, B1H, 07.12.2015, 17:17:33h};
+      \draw [>=,x={(image.south east)},y={(image.north west)}] (0.24,0.80) -- (0.19,0.7);
+    \end{tikzpicture}
+      \caption{Beam 1 horizontal qualification loss map measured in the 2015 heavy-ion run.}  
+    \label{fig:2015_lossmap}
+    %/afs/cern.ch/work/p/phermes/private/151124_ion_lossmaps_runII/raw/IR2_TCT_loss_uncorrected.pdf
+\end{figure}
+
+The global B1H betatron qualification loss map measured in this operational period is shown in \figref{fig:2015_lossmap}. The cleaning inefficiency in the IR7 DS reaches $\eta_\text{DS} \approx 10^{-2}$, comparable to the 2011 heavy-ion run. The locations in the arc between IR7 and IR8, where high losses were measured in 2011, are free of loss signal above the background level. Very high loss signals with $\eta_\text{TCT2} \approx 6.6 \times 10^{-2}$ were measured at the horizontal tertiary collimator for Beam 1 in IR2, TCTPH.4L2.B1 (abbreviated TCT2). 
+
+The high collimation losses at the TCT2 where present during operation even without additional excitation from the ADT (see \figref{fig:}). Subsequently, the losses at the TCT2 caused a radiation background and hence distorted the operation of ALICE experiment. The STIER output data was consulted to understand these losses and work out possible strategies to reduce them.
+
+
+\subsection{Situation and Analysis}
+
+\begin{figure}[b]
+  \centering
+  \begin{tikzpicture}
+    \footnotesize
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16062901.pdf}};
+    \node [rotate=0,x={(image.south east)},y={(image.north west)}]                   at (0.90,0.93)    {Left TCP jaw};
+    \node [rotate=0,x={(image.south east)},y={(image.north west)}]                   at (0.90,0.47)    {Right TCP jaw};
+  \end{tikzpicture}
+  \caption{STIER simulation result in the 2015 configuration.}  
+  \label{pic:16062901}
+  %/home/phermes/Dropbox/PhD/pictures/160421_compare_STIER/LHC_left_right.pdf
+\end{figure}
+
+Considering that the losses occur at the horizontal TCT for B1, the STIER reference simulation presented in \chapref{chap:STIER:validation} can be taken as a baseline for the analysis. The global loss map as simulated with STIER is shown, disentangled for the particles starting at the left and the right TCP jaw, in \figref{pic:16062901}. With the TCT2 losses clearly visible in both simulations, the comparison unveils that the larger fraction originates from the left TCP jaw. The fragments starting from the left jaw cause 20 times more losses than those starting from the right jaw. 
+
+\begin{table}[t]
+	\centering
+	\caption{STIER simulated composition of losses on the TCT2 in the 2015 configuration.}
+    \label{tab:2015_ionrun}
+	\begin{tabular}{ccc}
+		\toprule
+		\begin{tabular}[c]{@{}c@{}}Isotope\\ (A,Z)\end{tabular} & \begin{tabular}[c]{@{}c@{}}TCP\\ jaw\end{tabular} & \begin{tabular}[c]{@{}c@{}}Fraction\\ (\%)\end{tabular} \\ \midrule
+		(207,82) & left  & 92.5 \\
+		(204,81) & right & 3.6  \\
+		(202,80) & left  & 2.2  \\
+		(199,79) & right & 0.3  \\  \bottomrule
+	\end{tabular}
+\end{table}
+
+The quantitative analysis summarized in \tabref{tab:2015_ionrun} shows that the isotope $^{207}$Pb$^{82+}$ starting at the left TCP jaw is clearly dominating over all other isotopes lost at the TCT2. About 92.5\% of the TCT2 loss is caused by this single isotope. Note, however,  that the production rate of this isotope and therefore also the loss composition at the TCT2 depends on the impact parameter at the TCP which is 2\,$\mu$m in this simulation. 
+
+An even better understanding of the situation can be obtained from the horizontal trajectory of the secondary $^{207}$Pb$^{82+}$ beam which is generated by EMD in the TCP. The simulated horizontal track of this isotope starting from the left TCP jaw is shown with the machine aperture and the collimators in \figref{pic:16020405}. The secondary beam of the un-matched isotope is not intercepted by the TCSG collimators in IR7 and passes the edge of the right TCTH.4L8.B1 (TCT8) jaw at a small distance. It finally impacts the left jaw of the TCT2 with an impact parameter of several mm. STIER predicts the secondary  $^{207}$Pb$^{82+}$ beam starting from the right TCP jaw to be intercepted by the momentum collimators in IR3. 
+
+\begin{figure}[b]  
+    \centering
+    \includegraphics[width=1.0\textwidth]{pictures/16020406.pdf}
+    \caption{Tracks of the secondary $^{207}$Pb$^{82+}$ beam starting at the left jaw of TCP.C6L7.B1 and intercepted by the TCTH.4L2.B1. In the STIER model, 92.5\% of the losses at the TCTH.4L2.B1 are caused by this secondary ion beam.}  
+    \label{pic:16020405}
+    %/media/phermes/ph3tboffice/ph1tbwd/160112_IR2_loss_mitigation/output_82_207_7/plots/pb207_tracks.pdf
+\end{figure}
+
+
+
+These findings allow for two different mitigation strategies which have been tested during the 2015 heavy-ion run with beam in the LHC.
+
+
+\subsection{Mitigation Strategies and their Application in the LHC}
+
+\subsubsection{Retraction of the left TCP jaw}
+
+The asymmetry in the origin of the TCT2 losses can be exploited by means of asymettric collimator settings. Given that the majority of losses is caused by particles starting from the left TCP jaw, a significant reduction of these losses can be expected if the latter is retracted. The primary losses in this case are shifted to the right TCP jaw and, at full retraction of the left jaw, the TCT2 losses should be reduced from $\eta_{\text{TCT}} = 6.6\cdot 10^{-2}$ to $\eta_{\text{TCT}} = 5 \cdot 10^{-3}$. Note that in this case the simulation result can only be compared quantitatively to the measurement because the initial BLM signal is known and scaled with the reduction factor calculated with STIER.
+
+
+\begin{figure}[htbp]  
+    \centering
+    \includegraphics[width=0.7\textwidth]{pictures/16062103.pdf}
+    \caption{Measured BLM Signal (RS09) at the TCT2 for different settings of the left TCP jaw.}  
+    \label{pic:16020307}
+    %/afs/cern.ch/work/p/phermes/private/151124_ion_lossmaps_runII/raw/tct2_mitigation_tcp.pdf
+\end{figure}
+
+
+The operational test of the mitigation strategy was carried out the 07.12.2015. In this experiment with low intensity beams circulating in the machine at 6.37\,TeV with squeezed optics, the left TCP jaw was stepwise retracted and the ADT used to induce the primary losses at the TCP. The individual loss maps measured for this experiment are shown in \figref{fig:retractionLM}. The measured signal\footnote{The error bars are estimated from variations of the measured $\eta_\text{TCT2}$ in different measurement campaigns. It corresponds to the difference between the largest and the smallest $\eta_\text{TCT2}$ measured.} at the TCT2 is shown as a function of the left TCP jaw position in \figref{pic:16020307}. During the experiment, the loss signal indeed decreased with increasing retraction of the left TCP jaw and yielded $\eta_\text{TCT2}=(6 \pm 6 )\cdot 10^{-3}$ at the most extreme scenario of a full retraction. This result is in excellent agreement with the prediction made by STIER. As a consistency check, the same experiment was repeated with with the left TCP jaw in place and the right TCP jaw retraction, with the result that no loss reduction was achieved. The outcome of this experiment confirms that the assumption that the collimation losses are dominated by secondary particles generated at the TCP is valid. 
+
+\subsubsection{Tightening the TCT in IR8}
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.7\linewidth]{pictures/16062102.pdf}};
+    %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
+    %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+  \end{tikzpicture}
+  \caption{Measured signal RS09 signal at the BLMTI.04L2.B1E10\_TCTPH.4L2.B1 (normalized to the highest loss singal in the ring) as a function of the TCTH.4L8.B1 half gap. The blue line shows the predicted upper boundary of the cleaning inefficiency $\eta_{max}$ as simulated with STIER. }  
+  \label{pic:16062101}
+  %/afs/cern.ch/work/p/phermes/private/151124_ion_lossmaps_runII/raw/tct2_mitigation_tct8.pdf
+  \end{figure}
+
+The track shows that the secondary ion beam passes the horizontal TCT8 at a very small distance in $x$. In a second experiment this prediction was studied by closing the TCT8 in steps. The measured loss maps for the individual steps are shown in \figref{pic:16060908}. For this experiment, STIER can be used to determine expected loss signal at the TCT2 as a function of the TCT8 half gap. To do so, the beam size of the secondary $^{207}$Pb$^{82+}$ beam must be determined, which can be done with a dedicated MAD-X simulation in which the betatron function is calculated taking into account the offset in rigidity with respect to the main beam\footnote{The betatron function is momentum-dependent.}. Assuming that the emittance is not significantly different than that of the main beam, the rms beam size is used to predict the transverse particle distribution, modelled as a Gaussian that is superimposed to the particle track predicted by STIER. With this model, the fraction of the secondary $^{207}$Pb$^{82+}$ beam that is intercepted by the TCT8 can be determined and converted into the expected loss reduction at the TCT2. The latter requires to take into account that the studied isotope is not the only one lost at the TCT2, thus the predicted reduction of the  secondary $^{207}$Pb$^{82+}$ beam intensity must be scaled with its contribution to the TCT2 losses, which yields 0.925. Furthermore, the remaining isotopes may also be intercepted by the TCT8 which would also reduce the TCT2 loss singal. This is not modelled in this approach, such that the result indicates only an upper boundary $\eta_\text{max}$ of the expected TCT2 signal. 
+
+
+The measured TCT2 singals as a function of the TCT8 half gap is shown together with $\eta_\text{max}$ predicted by STIER in \figref{pic:16062101}. Also this experiments shows an excellent agreement with the prediction made by STIER. 
+
+\subsection{Conclusions}
+
+Both mitigation strategies derived from the STIER simulation data have been proven to be effective and the predicted loss levels are quantitatively supported by the measured experimental data. This result underlines the importance of heavy-ion collimation simulation tools, which are essential to optimize the collimation system if the the stored beam energy shall be further increased. After the successfull test the application of asymmetric TCP settings to reduce the background at the ALICE experiment was under discussion. The decision was taken to accept the TCT2 losses and maintain the nominal collimator configuration to save the time otherwise required for a re-commissioning of the new configuration. 
+
+
+
+\section{Heavy-Ion Collimation Quench Test} \label{chapter:quenchtest}
+
+
+
+To exploit the full potential of the LHC and achieve the highest possible (integrated) luminosity, the intensity has to be pushed to the maximum which is compatible with safe and uninterrupted operation. Limitations on the achievable beam intensity are mainly imposed by the quench limit in the superconducing DS magnets downstream of IR7. As shown in \chapref{chap:quenchlim}, the quench limit of the latter is not well understood and subject to large uncertainties. They also depend on the loss scenario, which reflects in the fact that the BLM thresholds are set with respect to the expected quench limit for UFO\footnote{Unidentified Falling Objects in the beam pipe. Their interaction with the circulating beam causes secondary showers which can quench the superconducting magnets.} events~\cite{}. 
+
+The quench limit for other loss scenarios, such as the impact of collimation debris on the superconducting magnets must be experimentally accessed in operational conditions. Very high losses are produced at the primary collimator in dedicated tests with the aim to quench the IR7 DS magnets with the collimation debris in a controlled manner. 
+
+Multiple of such dedicated collimation quench tests have been carried out in the past to get experimental input for quench test analyses. They are summarized in \tabref{tab:quenchtests}. The measurements are complemented by theoretical simulations of the experimental set up which allow for detailed shower propagation and energy deposition studies and hence the interrelation of the measured BLM signal to the energy deposited in the magnet coils~\cite{IPAC15:TUPTY046}. The so obtained information gives indespensable input for the study of potential collimator upgrades required to further push the luminosity. 
+
+\begin{table}[htbp]
+\centering
+\caption{Key parameters of collimation quench tests carried out at the LHC. }
+\label{tab:quenchtests}
+\begin{tabular}{cccccccc} 
+\toprule
+\begin{tabular}[c]{@{}c@{}} Year \\ \mbox{} \end{tabular} & \begin{tabular}[c]{@{}c@{}}Energy\\ {[}$Z$ GeV{]}\end{tabular} & Particle & Method & \begin{tabular}[c]{@{}c@{}}$P_\text{max}$\\ {[}kW{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}loss duration\\ {[}s{]}\end{tabular} & Quench & \begin{tabular}[c]{@{}c@{}}Ref.\\  \mbox{} \end{tabular} \\ \midrule
+2011 & 3.5 & p & tune & 500 & 1 & No &  \\
+2013 & 4.0 & p & ADT & 1050 & 5-10 & No &  \\
+2015 & 6.5 & p & ADT & 585 & 4 & No &  \\
+2011 & 3.5 & \lead & tune & 151 & 0.075 & No &  \\
+2015 & 6.37 & \lead & ADT & 15 & 14 & Yes &  \\ \bottomrule
+\end{tabular}
+\end{table}
+
+The worse cleaning performance with heavy-ion beams implies smaller loss rates than with proton beams as can be seen in \tabref{tab:quenchtests}. Also the loss duration is of great importance for the quench limit. While the quench tests in early operation used tune resonance crossing methods which induces fast losses at the primary collimators, the tests from 2013 on could make use of the transverse damper. This led to a much better controllability of the losses and came along with a significant increase of the loss duration enabling to study the quench limit with steady state losses. The presented 2015 heavy-ion collimation quench test is the first collimation quench test in which a quench was achieved. The following analysis is partly presented in \cite{ACC-NOTE-16-0031}.
+
+
+\reference{https://accelconf.web.cern.ch/accelconf/HB2012/papers/mop245.pdf}
+
+\subsection{Preparation \& Experimental Schedule}
+
+The preparation of the test includes to determine the beam parameters, target loss rates and machine modifications required for the successful realization of the experiment. The quench limit in the DS magnets downstream of IR7 is probed with collimation debris which is lost immediately after its generation in the primary collimators. Therefore, the quench limit in operational conditions can be tested with un-squeezed beams in the IRs (flat top at 6.37\,$Z$\,TeV). Accordingly the collimator settings correspond to the operational settings in the collision mode, except for the TCTs and physics debris collimators (see \tabref{tab:sets_qt}). 
+
+\begin{table}[htbp]
+\centering
+\caption{Collimator settings in $\sigma$ applied in the collimation quench test.}
+\label{tab:sets_qt}
+\begin{tabular}{cccccc} 
+\toprule
+IR7    &       &   IR3   &          &    & IR1/2/5/8/6 \\ \midrule
+TCP    &  5.5  &   TCP   &  15.0    &    TCT  &   37.0 \\ 
+TCSG   &  8.0  &   TCSG  &  18.0    &    TCL  &   out  \\
+TCLA   & 14.0  &   TCLA  &  20.0    &   TCDQ  &   9.1  \\ \bottomrule
+\end{tabular}
+\end{table}
+
+The beam and plane to be used for the test can in principle be freely chosen, where preference should be given to the horizontal plane in which the DS losses are typically higher (see \chapref{}). The decision was taken to use B2H for the test to potentially benefit from synergies with the precedent proton quench test. 
+
+
+
+\subsubsection{Target Beam Loss Rate}
+
+The target loss rate at the primary collimator is an important measure which  must be defined before the experiment is started. The loss rate imposes a lower limit on the the number of bunches that must be excited simultaneously. Furthermore, the BLM thresholds have to be adjusted to allow for the high amount of losses which would trigger a beam dump otherwise. 
+
+As explained before, the quench limit is related to many uncertainties. The preparation target loss rate was therefore based on the operational BLM thresholds. The latter are set to 1.5 times the assumed quench limit for UFO events, which is taken as a baseline, in spite of the different loss mechanism due to the lack of more accurate approaches. The qualification loss map for B2H measured in the 2015 heavy-ion run is shown in \figref{}. The highest BLM signal at the superconducting LHC magnets is measured at the \texttt{BLMQI.09L7.B2I10\_MQ}. The measured cleaning inefficiency (RS09) at this BLM is $\eta = (1.6 \pm 0.2) \times 10^{-2}$. At the beam excitation associated with this loss map measurement, an intensity drop equivalent to a peak primary beam loss of $P_l=123\,$W was measured with the beam current transformators (BCT)~\cite{}. Taking into account the fact that the peak BLM signal $B_m$ at the loss map measurement is related to the assumed quench limit $B_q$ of the concerned BLM as
+%
+\begin{align}
+  \frac{B_m}{B_q} = (8.8 \pm 1.1) \cdot 10^{-3} \, ,
+\end{align}
+the BLM signal equivalent to the assumed quench limit for UFO events yields
+%
+\begin{align}
+  P_q^T = \frac{B_q}{B_m} \, P_l = (13.9 \pm 1.8) \, \text{kW} \, . \label{eq:peakloss}
+\end{align}
+%
+This number should, however, only be regarded as rough estimate because the loss mechanism is different from the UFO scenario to which the BLM threshold is adjusted. Furthermore, even for the UFO eventthe quench limit is related to uncertainties such that the primary loss rate at which a quench occurs might be above or below. For this reason, it was decided to prepare for a target beam loss rate significantly above this value and, during the experiment, increase the loss rate in steps to narrow down the real quench limit. 
+
+The upper boundary for the achievable loss rate is given by the power load the primary collimators can resist. Being designed to withstand continuous proton losses of 487~kW, the analysis of the 2013 proton collimation quench test demonstrated that their physical integraty is not endangered by losses up to 1~MW~\cite{IPAC14:MOPRO043}. 
+
+The dominating process of energy deposition in the collimator is different for protons and heavy-ions. The power deposited by an impacting proton and \lead ion at $7\,Z\,$TeV along the primary collimator is shown in Fig.~21.7 in \citedr. The charge dependence of the Bethe-Bloch formula indicates that the energy deposited by the \lead ions is much more driven by ionization losses than for protons with the peak energy deposited from \lead being approximately 57\,GeV/cm$^3$/charge. For protons it is approximately 6.5\,GeV/cm$^3$/charge, mainly due to hadronic showers produced during the passage through the collimator. Based on this finding, the peak loss rate at the primary collimator was conservatively limited to 100~kW, leaving enough margin to significantly outreach the power load derived in \eqref{eq:peakloss}.
+
+From the envisaged peak power load, the number of bunches required can be deduced. Conservatively assuming that one ion bunch carries $10^{10}$ charges with an energy of $6.37\,$TeV per charge, the energy per bunch yields $E_B=$10~kJ. The LHC interlock system triggers a beam dump if the bunch intensity of a circulating bunch is below 30\% of its nominal value, because the beam position monitors (BPM)~\cite{} require sufficiently populated bunches to accurately measure their position. With this information included, the required number of bunches for continuous losses over 10~s yields $ n_B^P=1.4$ bunches/kW.
+
+\subsubsection{BLM Thresholds}
+
+From the qualification loss map and the loss rate associated, the expected BLM signals at a peak loss rate of 100~kW can be estimated for the full ring. This data is used to derive the increase of BLM thresholds required to permit the target loss rate during the experiment without triggering a beam dump. In the preparation phase of the experiment the required modifications on the BLM thresholds (mainly the BLMs in IR7) were prepared and presented in \cite{BLM-ECR-0043}. 
+
+\subsection{Realization}
+
+	\begin{table}[tb]
+		\centering
+		\caption{Proposed and realized fills for the MD. The quench occurred in the first ramp.}
+		\label{tab:filling_scheme}
+		\begin{tabular}{cccc}
+                  \toprule
+		Fill & Bunches & E {[}$Z$ TeV{]} & $P_{max}${[}kW{]} \\ \midrule
+		\multicolumn{4}{c}{Planned} \\ \midrule
+		1    & 8     & 0.45          & $\approx 0.1$        \\
+		2    & 8 + 4$\times$24  & 6.37          & 13.5       \\
+		3    & 8$\times$24  & 6.37          & 50     \\
+		4    & 8$\times$24  & 6.37          & 100        \\ \midrule
+		\multicolumn{4}{c}{Realized} \\ \hline
+		1    & $3 \times 24$     & 0.45          & $0.6$        \\
+		2    & 2 + 12$\times$24  & 6.37          & 15.0       \\
+		\bottomrule
+		\end{tabular}
+	\end{table}
+
+From the $n_B^P$ parameter, the required number of bunches to achieve a given loss rate can be deduced. The chosen approach of a stepwise increase of the loss rate at the primary collimators reflects in the filling schedule that was foreseen for the experiment, shown in \tabref{tab:filling_scheme}. An initial fill at injection energy was dedicated to the set-up of the ADT. The control software of the latter is designed for the excitation of single bunches and had to be adjusted to allow for the excitation of the many bunches required to achieve the target loss rate. Also the time profile of the losses was adjusted to flatten the loss profile with continuous losses at a given level. More details on the ADT modifications are given in \cite{ACC-NOTE-16-0031}. 
+
+In the second fill four bunch trains of 24 bunches as well as 8 individual bunches were foreseen to be accelerated to top energy for a first quench attempt with a peak loss rate around 13.5~kW. This approximately corresponds to the loss rate required to reach the BLM signal equivalent to the assumed quench limit for UFO events. The individual bunches allowed a first test of the ADT excitation at top energy  for small intensities and hence without the risk of outreaching the envisaged loss rate. The bunch trains carry enough particles to allow multiple attempts at a peak loss rate of approximately 13.5~kW. In case a quench could not have been achieved, two optional fills were foreseen to increase the loss rate to 50~kW and 100~kW respectively. 
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \footnotesize
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16071302.pdf}};
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.50,1.0)    {Heavy Ion Collimation Quench Test - 13.12.2015};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
+    %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+  \end{tikzpicture}
+  \caption{Intensity and particle energy evolution during the quench test.}  
+  \label{pic:16071301}
+  %/afs/cern.ch/work/p/phermes/private/160112_ion_quenchtest/plots/plots/md_overview_thesis.pdf
+  \end{figure}
+
+
+The heavy-ion collimation quench test was carried out the 13.12.2015 from 17:00h and ended with the quench at 22:08~h (fill numbers 4722 \& 4723). The filling scheme and the envisaged peak loss rates were slightly modified during the experiment due to time constraints (see \tabref{tab:filling_scheme}). After the set up of the ADT in fill 1, the machine was filled with 12 bunch trains of 24 bunches and 2 single bunches which were accelerated to 6.37\,$Z$\,TeV. At the first excitation of 6 bunch trains, the MBB.9L7 quenched at a peak power loss of approximately 
+%
+\begin{align}
+P_q \approx (15 \pm 1) \, \text{kW}.
+\end{align} 
+The beam was subsequently dumped by the quench protection system (QPS). The intensity and energy evolution throughout the experiment is shown in \figref{pic:16071301}. 
+
+
+
+
+
+\subsection{Data Analysis}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16071102.pdf}};
+    %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
+    %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+  \end{tikzpicture}
+  \caption{Power load on the TCP, intensity evolution and measured BLM signal (BLMEI.09L7.B2I30, RS09) during the final beam excitation in which the quench was achieved in cell 9 L7.}  
+  \label{pic:16071101}
+  %/afs/cern.ch/work/p/phermes/private/160112_ion_quenchtest/plots/plots/power_load_thesis.pdf
+  \end{figure}
+
+The evolution of the beam intensity, the power loss derived from it and the BLM signal at the quench location during the final excitation which quenched the magnet is shown in \figref{pic:16071101}. The error bar on the beam intensity derived from the standard deviation of the BCT signal is negligible. The uncertainty on the peak power loss which is derived from the latter is therefore estimated based upon the fluctiations visible in the rising power load evolution. The loss rate increased continuously over approximately 14~s when the peak power load was achieved and the quench occured. Note that the apparent agreement with $P_q^T$ is coincitental because the loss scenario from which the latter is derived is fundamentally different. 
+
+In lack of better estimates, the measurement result can be used to scale the permitted stored beam energy in the LHC on the basis of the minimum beam lifetime. In this analysis it must be taken into account that the quench limit at design rigidity is going to be lower than at $6.37\,Z$\,TeV. Presently, no accurate estimate on the scaling of the quench limit with higher magnetic field is available, such that the total stored beam energy which can be derived from the quench test result represents only an upper limit. Considering the design value of $\tau=12\,\text{min}$ for minimum beam life time, the maximum stored beam energy at $7\,Z\,$TeV yields
+%
+\begin{align}
+  E_\text{max}^\text{tot} < P_q \, \tau = (10.8 \pm 0.8) \, \text{MJ} \, .
+\end{align}  
+This value is very close to the stored beam energy already achieved in the 2015 heavy-ion run and therefore imposes a serious limitation for the achievable luminosity in future operation. Eventual upgrades of the collimation system and studies of the cleaning inefficiency in future LHC configuration should take this limitation into account. From the measured cleaning inefficiency at the MBB.9L7 and the known peak power loss at the TCP, a rough estimate of the peak power deposited in the latter can be extracted as:
+%
+\begin{align}
+  P_\text{MBB} = \eta_Q \, P_q = (330 \pm 30)\,\text{W}. 
+\end{align}
+%
+This value should be regarded with caution, knowing that the energy deposited is related to the BLM signals via a repsonse function which is unknown. Better estimates for the power deposited can be obtained with the detailed shower deposition study carried out with FLUKA on the basis of a dedicated hiSixTrack simulation in which the \texttt{toucMap} data is used for a sub-sequent FLUKA simulation. 
+
+The hiSixTrack simulation is carried out with 6.8$\cdot 10^6$ initial \lead ions starting at IP1 for B2H. The simulated optics and collimator settings are identical to the settings applied in the measurement. The impact parameter at the TCP.C6R7.B2 was set to 0.5~$\mu$m to 2.0~$\mu$m on both collimator jaws. The simulated loss pattern is compared to the loss map measured during the quench test and the qualification loss map used for the preparation in \figref{pic:16071401} (full ring) and \figref{pic:16071402} (zoom to IR7). The highest loss lignal in the cold regions was measured at the time of the quench at the MBB.9L7 with a loss signal of $\eta_Q = (2.2 \pm 0.4) \cdot 10^{-2}$, while in the loss map the highest loss signal was measured at the MQY in the same cell, with a slightly lsower cleaning inefficiency. This discrepancy is not considered grave because the impact parameter might be different in the two measurements. 
+
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \footnotesize
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16071401.pdf}};
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.50,0.650)    {quench test};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
+    %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+  \end{tikzpicture}
+  \caption{Measured and simulated B2H loss maps for the B2H collimation quench test (full ring).}  
+  \label{pic:16071401}
+  %/home/phermes/Dropbox/PhD/pictures/160714_quench_test/comparison_qt.pdf
+  \end{figure}
+
+
+% \begin{figure}[h]
+%   \centering
+%   \begin{tikzpicture}
+%     \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16071303.pdf}};
+%     %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+%     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+%     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
+%     %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+%   \end{tikzpicture}
+%   \caption{Figure caption}  
+%   \label{pic:16071303}
+%   %/home/phermes/Dropbox/Talks/160303_quenchtest_simulation/pictures/16030413.pdf
+%   \end{figure}
+
+
+The qualification loss map simulated with hiSixTrack shows a good overall agreement with the measured loss maps. The dominating losses in IR7, IR6, and IR3 are well modelled in the simulation and also the loss peak C5 (see \figref{pic:16071303}) in the cold region downstream of IR5 is well predicted in hiSixTrack. Remarkable differences arise in the arcs between IR5 and IR6 as well as IR6 and IR7. The loss peaks in the prior are only visible in the loss map measured during the quench test, while they are neither simulated nor measured in the qualification loss map, even though their amplitude should be above the noise level. The same applies for the pronounced loss peaks in the arc between IR6 and IR7, where some of them are simulated in hiSixTrack, but not measured in the qualification loss map. These discrepancies are not understood and subject to further investigation. Possible reasons could be orbit fluctuations between the different measurements. 
+
+% \begin{figure}[h]
+%   \centering
+%   \begin{tikzpicture}
+%     \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16071304.pdf}};
+%     %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+%     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+%     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
+%     %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+%   \end{tikzpicture}
+%   \caption{Figure caption}  
+%   \label{pic:16071304}
+%   %/home/phermes/Dropbox/Talks/160303_quenchtest_simulation/pictures/16030416.pdf
+%   \end{figure}
+
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16071402.pdf}};
+    %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
+    %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+  \end{tikzpicture}
+  \caption{Figure caption}  
+  \label{pic:16071402}
+  %/home/phermes/Dropbox/PhD/pictures/160714_quench_test/comparison_qt_IR7.pdf
+  \end{figure}
+
+
+
+With hiSixTrack, the highest loss peak in the cold regions is located at the MBB.9L7, in line with the measurement and the quench location. At this location, the simulated cleaning inefficiency is $\eta_\text{MBB}^S = 2.4 \cdot 10^{-3} \text{m}^{-1}$. As explained before this value should not be compared quantitatively to the measured cleaning inefficiency. The loss composition in the DS1 and DS2 is listed in \tabref{}. While the losses in the DS1 are composed of many different isotopes with rather small contributions of single ion species, compared to the DS2. In the latter, more than one third of the losses are induced by $^{205}$Pb$^{82+}$. As shown in previous chapters, this diverse composition of the losses in the DS makes it difficult to mitigate these losses without hardware modifications. 
+
+
+\begin{table}[h]
+  \centering
+  \caption{Isotope composition in the DS clusters in the quench test simulation.}
+  \begin{tabular}{cccc}
+		\toprule
+                \multicolumn{2}{c}{DS1} & \multicolumn{2}{c}{DS2} \\ \midrule
+		Isotope (A,Z) & Fraction{[}\%{]} & Isotope (A,Z) & Fraction{[}\%{]} \\ \midrule
+		203, 82       & 7.7              & 205, 82       & 36.8 \\
+		202, 82       & 6.9              & 206, 82       & 21.3 \\
+		201, 81       & 5.3              & 203, 81       & 17.3 \\
+		200, 81       & 4.5              & 200, 80       & 6.8  \\
+		199, 81       & 4.1              & 202, 81       & 6.6  \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+
+
+
+\subsubsection{BLM Signals}
+
+An important outcome of the experiment are the measured BLM signals at quench with respect to the BLM thresholds. The BLM signals at the BLMEI.09L7.B2I30 at the moment of the quench are shown, normalized to the operational BLM thresholds, for all running sums in \figref{pic:16071403}. The highest signal is measured for RS10 with a factor 3.5 of the applied threshold. For RS09 and RS11, the thresholds were exceeded by 60\% and 110\% respectively~\cite{ACC-NOTE-16-0031}. This is an important information for the setting of BLM threholds in future heavy-ion runs. 
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.7\linewidth]{pictures/16071404.pdf}};
+    %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
+    %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+  \end{tikzpicture}
+  \caption{Figure caption}  
+  \label{pic:16071403}
+  %/afs/cern.ch/work/p/phermes/private/160112_ion_quenchtest/plots/plots/blm_ratio.pdf
+  \end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \subsection{Mitigation strategies}
+
+
+% % \begin{figure}[t]  
+% %     \centering
+% %     \includegraphics[width=1.0\textwidth]{pictures/16060901.pdf}
+% %     \caption{Measured loss maps with }  
+% %     \label{pic:16060901}
+% %     %/home/phermes/thesis/exp_data/STIER_experimental_validation.pdf
+% % \end{figure}
+
+
+
+
+% Prediction of loss reduction with STIER
+% \begin{itemize}
+%   \item Plot with red markers: compute the $\beta$-function for this off-momentum isotope (requires dedicated simulation with MAD-X, because the $\beta$-functions are momentum dependent). Then determine the beam size of the secondary $^{207}$Pb beam, assuming that the emittance is not significantly different from the reference emittance. Then compute the amount of the secondary beam intercepted by the TCT8 and determine, while considering that 92.7\% of the TCT2 losses arise from this isotope, the expeted loss reduction (that is the curve). 
+%   \item Undertainty in the plots: compare different loss map measurement campaings and check the difference of the relative BLM signal.
+
+%   \item Plot for the expected reduction from the TCP retraction: by knowing the fraction of losses at the TCT2 which come from the left jaw. 
+% \end{itemize}
+
+
+
+\subsection{Summary and Outlook}
+
+	% \begin{table}[h]
+	% 	\centering
+	% 	\caption{Beam parameters for heavy-ion operation: design value~\citedr , achieved at the 2015 heavy-ion run, foreseen to be achievable for the LIU upgrade and as requested for HL-LHC.}
+	% 	\label{tab:intensity_limitations}
+	% 	\begin{tabular}{ccccccc}
+	% 		\toprule
+	% 		                        & $E$             & $n_B$   & $I_B$             & $E^\text{tot}_{nom}$   & $E^{\text{tot}}_\text{max}$   \\ 
+	% 		                        & {[}$Z$ TeV{]}	  &         & [$10^7$ ions]     & [MJ]             & [MJ]                          \\ \midrule
+	% 		Design                  & 7.0             & 592     & $7$               & 3.81             & \multirow{4}{*}{$\leq 10.8$}         \\ %\cline{1-5}
+	% 		2015                    & 6.37            & 518     & $22 $             & 9.54             &                        	   \\ %\cline{1-5}
+	% 		LIU baseline     & 7.0             & 1152    & $17$              & 18.0             &                               \\ %\cline{1-5}
+	% 		HL-LHC request          & 7.0             & 1248    & $21 $             & 24.1             &                               \\ \bottomrule
+	% 	\end{tabular}
+	% \end{table}
+
+The LHC heavy-ion collimation quench test was the first collimation quench test in which a quench was achieved. With the collimation debris generated in the horizontal TCP for B2, the MBB.L7 was quenched when a power of $(15\pm 1)\,$kW was deposited at the primary collimator. Extrapolating from the TCP power load and the minimum beam life time, the upper limit for the achievable stored beam energy is 10.8~MJ. As shown in the next chapter, the beam intensities foreseen for the the future LHC operation after the LIU upgrade in the HL-LHC era are significantly above this value. In combination with the results of \chapref{chap:prep2015}, the most important conclusion of the heavy-ion collimation quench test is that the envisaged intensities can not be achieved without an upgrade of the LHC collimation system. A possible upgrade with additional collimators in the DS region is studied in the next chapter. 
+
+
+
+
+

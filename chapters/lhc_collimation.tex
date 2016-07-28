@@ -1,125 +1,271 @@
 \chapter{Collimation at the LHC}\label{chap:3}
 %
 \section*{Introduction}
-%
-At design energy and beam intensity, the LHC stores proton beams with a combined energy of $2 \times $362$\,$MJ~\cite{CERN-2004-003-V1}, corresponding to the amount of energy required to melt 600$\,$kg of copper. Besides the highly destructive potential of such energetic beams, which could cause serious damage at LHC components, already tiny amounts of this energy suffice to quench the superconducting LHC magnets~\cite{}. Such quenches are undesired because they interrupt the operation of the machine and reduce the time available to collect integrated luminosity for the experiments and therefore the statistics for rare events occuring at the particle collisions. 
-
-Many processes continuously scatter beam particles to large transverse amplitudes or cause them to lose fractions of their momentum. One example for these processes is intra-beam scattering (IBS). Particles which have been scattered to such large amplitudes compose a beam halo which continues moving inside the machine. If no countermeasures are taken, these halo particles are scattered further outside until they have reached a large enough amplitude to be absorbed at the global machine aperture bottleneck. The processes which continuously re-populate the beam halo can not be avoided such that beam losses during machine operation become unpreventable. 
-
-The ensemble of particles at betatronic amplitudes far from those of the beam core are referred to as the beam halo. In order to avoid uncontrolled losses of such halo particles, they are removed from the beam by intercepting them with a set of dedicated solid devices, the LHC collimation system. 
-
-In this chapter, the design, functionality and performance of the LHC collimation system are discussed for both, proton and heavy-ion beams.
-
-
 
 %
-\section{The LHC Collimation System}
-\subsection{Concept}
-  \begin{figure}[t]
-  \centering
-  \includegraphics[width=1.0\textwidth]{pictures/15071301.pdf}
-  \caption{Schematics of the LHC multi stage collimation system. Particles at large betatronic amplitudes are intercepted by the primary collimators (TCP) from which they should be scattered to even larger amplitudes to be captured by the secondary collimators (TCS), which are equipped with dedicated shower absorbers (TCLA). Particles escaping from the TCS constitute a tertiary beam halo which would be absorbed in the global aperture bottleneck, which are the superconducting triplet magnets in the experimental insertions. Therefore, the latter are protected with the tertiary collimators (TCT). Particles which have lost energy but have not been scattered enough in the TCP can still bypass the TCS and are most likely absorbed in the dipole magnets of the LHC arcs, where the dispersion rises.}  
-  \label{pic:15071001}
-  %/home/phermes/Dropbox/PhD/pictures/collimationsystem_drawing_thesis/drawing2.pdf
-  \end{figure}
+The LHC is designed to store particle beams of an unprecedented energy (see \figref{pic:16041401}). At design momentum and intensity, the LHC will store protons of a combined energy of 362~MJ per beam, two orders of magnitude more than in previous accelerators~\cite{CERN-2004-003-V1,collimationsystemref1}. 
 
-The aim of the system is the interception and controlled absorption of the transverse beam halo which is continuously re-populated during operation~\cite{}. In other accelerators, such halo particles can be intercepted and absorbed by means of collimators with two movable jaws that are brought closely to the beam center~\cite{}. Contrary to such low-energy machines, the highly energetic and destructive LHC beam halo can not be removed from the beam by means of a single collimation unit. With the high particle momenta and the large stored beam energies, no known material possesses a large enough absorption cross section and radiation hardness to immediately stop halo particles circulating in the LHC. Therefore, the LHC is equipped with a three-stage collimation system which is schematically illustrated for the example of the betatron cleaning insertion IR7 in \figref{pic:15071001}.
+The stored energy per beam is sufficient to melt 300~kg of copper. Uncontrolled deposition of the beam energy into the machine hardware can cause severe damage. Furthermore, even tiny fractions of the LHC beams can cause the superconducting magnets to quench if their energy is deposited in the magnet coils~\cite{}. Quenches interrupt the operation of the machine and thus reduce the time available to collect integrated luminosity for the experiments. 
 
-The primary beam halo of particles at large betatronic amplitudes is intercepted with the primary collimator (abb. Target   Collimator  Primary, TCP). This collimator type is the only collimator which should be exposed to the main beam. In order to provide enough radiation hardness, the collimator jaws are composed of a dedicated carbon-fibre composite (CFC). The collimation system relies upon the scattering of the halo particles at their passage through the CFC to even larger betatronic amplitudes. If a halo particle receives a sufficiently large transverse kick, it is intercepted by the secondary collimators (abb. Target Collimator Secondary, TCS). 
+Beam particles are subject to a range of physical processes which increase their betatron amplitude, e.g. intra-beam scattering~\cite{Mertens:1364596}, or change their momentum, such as the scattering at the interaction points~\cite{Bruce2014a}. When the resulting betatron amplitude or momentum offset is large enough, these particles can intercept the machine aperture and are lost. Beam losses are thus unavoidable in the operation of the machine. In order to clean the beams from such particles, the LHC is equipped with a multi-stage collimation system. 
 
-The TCS collimators are retracted with respect to the TCP, thus it should be only exposed to the secondary beam halo which carries a significantly lower amount of energy. Compared to the TCP collimators of 0.6$\,$m length, the TCS collimators are significantly longer being 1$\,$m long. Downstream of the TCS collimators, the secondary shower absorbers shall provide protection from particle showers arising from the interaction with the TCS.
-
-Scattered particles can still leak out of the TCS collimators and continue moving inside the machine (the so-called tertiary beam halo). In the LHC high luminosity mode with squeezed beams in the experimental insersions, these particles are most likely absorbed in the triplet magnets where the betatronic functions are extreme. In order to avoid beam losses in the triplet magnets, they are protected by the tertiary collimators (abb. Target Collimator Tertiary, TCT). This collimator type consists of copper to provide a high absorption cross section. The three described stages compose the three stage collimation system of the LHC.
-
-\begin{figure}
-\centering
-\resizebox{1.0\textwidth}{!}{\input{pictures/14121239.pgf}}
-\resizebox{1.0\textwidth}{!}{\input{pictures/14121503.pgf}}
-%\resizebox{1.0\textwidth}{!}{\input{pictures/14121222.pgf}}
-\caption{Optical functions in the two LHC collimation insertions.}
-\label{pic:14121222}
-\end{figure}
-
-The functionality of the momentum cleaning insertion in IR3 is the same as for IR7, with the difference that the optics in IR7 is matched for large betatronic functions at the TCP, while in IR3 it is matched for a larger dispersion function (see \figref{pic:14121222} for a comparison). In consequence, the TCP in IR3 intercepts off-momentum particles rather than particles at large betatronic amplitudes. 
-
-Besides the presented collimators of the three-stage collimation system, functional collimators are installed for other purposes than halo-cleaning. The TDI collimators installed in the two injection insertions IR2 and IR8 protect the LHC hardware from beam loss which could occur due to injection failures. They are composed of graphite in a different alloy than the CFC used for the TCP and TCT collimators. In order to protect a larger area in phase space, the TCLI collimators are installed downstream of the TDI. In case of a dumping failure, multiple components of the LHC could be seriously damaged, in particular the dumping system, magnets downstream of IP6 or even the detector components in the experimental insertions. Therefore, IR6 is equipped with the single-jaw dump protection collimator TCDQ and the double-jaw TCSG collimator (the same collimator type as it is used for the secondary collimators in IR3 and IR7). The jaw of the prior is composed of graphite and is the longest collimator used in the LHC having a length of 6$\,$m. 
-
-An overview of the different collimator types is given in \tabref{tab:collimator_types}. In the design phase of the machine, a progressive upgrade of the LHC collimation system was foreseen to increase the performance of the protection with increasing luminosity and energy~\citedr. 
-
-
- \subsection{Collimator Settings}
-
-
-\begin{table}[htbp]
-\caption{LHC collimator settings applied in the LHC heavy ion runs compared to the design settings. }
-\begin{center}
-\begin{tabular}{lcccccc}
-\toprule
-\midrule
- \multicolumn{2}{c}{Collimator} & \multicolumn{4}{c}{Half gap ($\sigma$)} \\
-Type & Region & 2010 & 2011 & 2013 & 2015 & Design \\ \midrule
-TCP  & IR7 & 5.7  & 5.7  & 4.3  & 9.9 & 6.0  \\
-TCS  & IR7 & 8.5  & 8.5  & 6.3  & 9.9 & 7.0  \\
-TCLA & IR7 & 17.7 & 17.7 & 8.3  & 9.9 & 10.0 \\ \midrule
-TCP  & IR3 & 12.0 & 12.0 & 12.0 & 9.9 & 15.0 \\
-TCS  & IR3 & 15.6 & 15.6 & 15.6 & 9.9 & 18.0 \\
-TCLA & IR3 & 17.6 & 17.6 & 17.6 & 9.9 & 20.0 \\ \midrule
-TCT  & IR1/IR2/IR5/IR8    & 15.0 & 11.8 &  9.0 & 9.9 & 8.3  \\ \midrule 
- \multicolumn{2}{c}{Energy [TeV]} & 3.5 & 3.5 & 4.0 & 6.5 & 7.0 \\
-\bottomrule
-\end{tabular}
-\end{center}
-\label{tab:14070901}
-\end{table}
-
-The multi-stage collimation system relies upon the scattering of the halo-particles 
-
-The functionality of the LHC betatron cleaning system is schematically illustrated in \figref{pic:14052202}. In the collimation regions IR3 and IR7, primary collimators (TCPs) are set to a collimator opening of $N_1$ (transverse distance from beam centre expressed in terms of $\sigma$) to intercept the trajectories of particles at large amplitudes. These particles interact with the collimator material, such that they are either scattered back into the beam or to a larger amplitude~\citedr.\
-
-Depending on the angular kick, the latter can then intercept the secondary collimators (TCS) of opening $N_2$, which is slightly retracted with respect to the TCPs ($N_2>N_1$). This is provided, if the angular kick $\Delta x'$ fulfills the condition~\cite{jeanneret1998optics}
-
+This chapter describes the functionality and performance of the LHC collimation system. The physical origins of inefficiencies in the collimation cleaning process are outlined and compared for both proton and heavy-ion beams.  
+%
+\section{Beam Losses in the LHC}
+%
+Is given by~\cite{lhcdr}
 \begin{align}
-\Delta x' > \sqrt{\frac{(N_1^2 - N_2^2) \, \epsilon_N }{ \gamma \, \beta_x } } \,,
+  \eta = \frac{ \tau \, R_q}{N_\text{tot}} \, ,
 \end{align}
-where $\epsilon_N$ is the transverse normalized emittance, $\beta_x$ is the horizontal optical $\beta$-function at the primary collimator and $\gamma$ is the Lorentz factor.
+where $\tau$ is the beam lifetime, $R_q$ is the quench limit, $\eta$ is the cleaning inefficiency.
 
-
-\section{Measurement of Losses during LHC Operation}
-
-The LHC is equipped with more than 4500 ionization chambers, the beam loss monitors (BLM)~\cite{BLMref1,BLMref02}, installed at the outer side of superconduction magnets, collimators and other locations which keep track of the particle losses at the particular locations. The ionization chambers measure secondary particle showers arising from the interaction of the ultra-relativistic particles interacting with the collimator material or with the beam pipe and surrounding components if they are lost. The BLM data is continuously monitored by the LHC interlock system which triggers a beam dump if a certain loss threshold is exceeded~\cite{guaglio2005reliability}. This is done to protect the machine from beam damage e.g. in the case of sudden instabilities or changes in the beam configuration inducing too much losses. Also losses of collisional debris can be monitored with this system. The so-obtained data is used to show the longitudinal distribution of losses as a so-called physics loss map.
-
-Besides the monitoring of the losses in operation, the BLM system can be used for a dedicated evaluation of the cleaning efficiency of the collimation system if the beams are excited to large transverse amplitudes or purposely momentum shifted by the RF system. This kind of measurement is described in the following as a qualification loss map.
-
-\subsection{The LHC Beam Loss Monitors}
-\begin{figure}[t]
-  \centering
-   \def\svgwidth{1.0\linewidth}
-   \input{pictures/hybrid_pictures/14062001.pdf_tex}
-  \caption{Illustrated positioning of BLMs at a superconducting LHC magnet~\cite{dehning2002lhc}.}
-\label{pic:14061701}
-\end{figure}
+\subsection{Particle Loss Types}\label{chap:physics_lossmaps}
 %
-The BLMs used at the LHC are ionization gas detectors of cylindrical shape, which are installed outside the beam pipe. They measure the particle showers which are produced by a particle hitting the LHC beam pipe.
-Inherently, the BLMs do not provide full azimutal or longitudinal coverage, such that the BLM response for the same amount of lost particles may vary between two different locations. Thus, the comparability of experimental measurements of the distribution of loss positions in the machine (lossmaps) with simulation data is therefore limited. Also, the translation of BLM signals into magnet heating and therefore the quench limit in terms of BLM signal is not trivial. Dedicated monte carlo simulations are necessary, in order to estimate the heating at a specific magnet due to a specific configuration of initial particle hits, under respect of the individual magnet geometry. However, the measurements give a very good idea of frequent loss positions and approximately the expectable loss intensity. 
+%
+Various physical processes lead to particle losses during the operation of a collider. Depending on the loss type and the amount of particle losses can be large enough to endanger the uniterrupted operation of the LHC. In the following, the most important processes which can cause beam loss are presented. Following the classification presented in \cite{CERN-2004-003-V1}, the origin of particle losses can be subdivided into losses from beam dynamics processes, operational variations and abormal losses from hardware failures. 
+%
+\subsubsection{} 
+
+Changes in the operational settings, such as changes of the optics, the beam energy, orbit corrections 
+
+Furthermore, changes of magnet strengths, for example occuring during the ramp or squeeze, may lead to temporary instabilities causing losses that can be monitored by means of the BLM system. 
+%
+\subsubsection{Physics Debris} 
+
+\paragraph{Bound-Free Pair Production}
+Debris from colliding heavy-ions is mainly generated in peripherical collisions at the interaction point. The most important debris with \lead ions is generated in the process of bound-free pair production. This process of the electromagnetic interaction is triggered by the pair generation of an electron-positron pair from a virtual photon. The generated electron is captured by one of the interacting nuclei and thus changes its charge state. In higher order processes, multiple vertices of virtual photons are involved and one nucleus can capture several electrons. The cross section for the higher order processes are smaller by the electromagnetic coupling constant with respect to the first order process. The BFPP process of $n$-th order is summarized as follows:
+%
+\begin{align}
+  \text{BFPP}n:  \quad ^{208}\text{Pb}^{82+} + ^{208}\text{Pb}^{82+} \rightarrow ^{208}\text{Pb}^{82+} + ^{208}\text{Pb}^{(82-n)+} + n e^+
+\end{align}
+%
+The cross-sections for this process depend on the 
 
 
-\subsection{Physics Loss Maps}
 
-During operation of the LHC, the losses in the machine are continuously monitored. The losses observed in this case arise from many different effects, the most important ones are summarized in the following:
-%
-\paragraph{Collimation losses} Different physical processes continuously re-populate the beam halo or lead to an energy loss of the involved particles. These particles should be intercepted by the LHC collimation system. The losses are registered by the BLMs installed at the collimators. Furthermore losses at the magnets arise from particles escaping from the collimation system. 
-%
-\paragraph{Losses from temporary instabilities} Furthermore, changes of magnet strengths, for example occuring during the ramp or squeeze, may lead to temporary instabilities causing losses that can be monitored by means of the BLM system. 
-%
-\paragraph{Physics debris} Debris from the experiments can involve [...] for protons. For the case of heavy-ions important debris arises from the bound free pair production (BFPP) process from the interaction of two \lead ions closely encountering each other at the interaction point. During the encounter of the two particles, an electron-positron pair is produced by the exchanged photon. The electron is then captured by the electron shell of one of the two involved nuclei:
+For the case of heavy-ions important debris arises from the bound free pair production (BFPP) process from the interaction of two \lead ions closely encountering each other at the interaction point. During the encounter of the two particles, an electron-positron pair is produced by the exchanged photon. The electron is then captured by the electron shell of one of the two involved nuclei:
 \begin{align}
 ^{208}\text{Pb}^{82+} + ^{208}\text{Pb}^{82+} \rightarrow ^{208}\text{Pb}^{82+} + ^{208}\text{Pb}^{81+} + e^+ \, .
 \end{align}
+The cross section of this process at 7$\,Z$~TeV is 220~b-225~b~\cite{BFPP1}.
+
+ has a very high cross section and is therefore very 
+
+
 Compared to the fully stripped nucleus, the $^{208}\text{Pb}^{81+}$ ion possesses a different mass to charge ratio and is thus subject to dispersion. The ion is lost at the DS at the end of the IR. Owing to the large cross section of the process, the BFPP loss is dominant in the physics loss map during heavy-ion operation.
 
 Examples for physics loss maps are shown for the case of proton and heavy-ion beams in \figref{fig:physics_loss_maps1}. In the measured loss map the contributions from the two beams can not be distinguished. Also, it is in general not trivial to de-convolute the contributions of the different processes described above. 
 %
-\subsection{Qualification Loss Maps}
+\subsubsection{Secondary Collimation Losses} 
+
+Different physical processes continuously re-populate the beam halo or lead to an energy loss of the involved particles. These particles should be intercepted by the LHC collimation system. The losses are registered by the BLMs installed at the collimators. Furthermore losses at the magnets arise from particles escaping from the collimation system. 
+
+%
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The LHC Collimation System}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Collimation Concept}
+%
+  \begin{figure}[b]
+    \centering
+    \includegraphics[width=1.0\textwidth]{pictures/16022402.pdf}
+    \caption{Schematic overview of the LHC multi stage collimation system. Based on~\cite{courier2013_collimation}.}  
+    \label{pic:15071001}
+  \end{figure}
+  %/home/phermes/Dropbox/PhD/pictures/collimationsystem_drawing_thesis/drawing2.pdf
+%
+Given the large particle energies at the LHC, the collimation system requires more than one cleaning instance, because the contradictory requirements of impedance reduction and collimator robustness can not be fulfilled by any known material~\citedr. The three-stage collimation system of the LHC is schematically illustrated at the example of the betatron cleaning insertion IR7 in \figref{pic:15071001}. An overview of the different collimator types is given in \chapref{chap:collimator_types}.
+
+The primary beam halo is intercepted by the primary collimators (Target Collimator Primary, TCP). In IR7, an horizontal and a vertical TCP provide betatron cleaning in both transverse planes\footnote{Called \textsc{TCP.C6L7.B1} (horizontal) and \textsc{TCP.D6L7.B1} (vertical).}. The TCPs define the global aperture bottleneck and are the collimators closest to the main beam~\cite{}. In order to provide enough robustness to withstand a large power load of impacting protons, the active material of the TCPs is a dedicated carbon-fibre composite (CFC)~\citedr. The multi-stage approach relies upon the particle scattering to even larger amplitudes at their passage through the TCP. If a halo particle receives a sufficiently large transverse kick, it is intercepted by the secondary collimators (abb. Target Collimator Secondary, TCS). 
+
+% old optics plot
+
+% \begin{figure}[t]
+% \centering
+% \resizebox{0.5\textwidth}{!}{\input{pictures/14121239.pgf}}
+% \resizebox{0.5\textwidth}{!}{\input{pictures/14121503.pgf}}
+% %\resizebox{1.0\textwidth}{!}{\input{pictures/14121222.pgf}}
+% \caption{Optical functions in the two LHC collimation insertions.}
+% \label{pic:14121222}
+% \end{figure}
+
+
+\begin{figure}[t]  
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/16030501.png}
+    \caption{Left: Jaw of a secondary collimator. The active material is CFC as for the TCPs. The collimators are water cooled through the copper pipes. Right: Two collimator jaws installed in a collimator tank. Figure taken from ~\cite{Bruce2014a}.}  
+    \label{pic:16030501}
+    %/home/phermes/Desktop/colli.png
+\end{figure}
+% 
+\begin{figure}[t]  
+    \centering
+    \includegraphics[width=1.0\textwidth]{pictures/16042009.pdf}
+    \includegraphics[width=1.0\textwidth]{pictures/16042007.pdf}
+    \caption{Optical functions in the two collimation insertions, IR3 (top) and IR7 (bottom). The vertical black lines represent the locations of the 
+      primary collimators}  
+    \label{pic:16042001}
+    %/home/phermes/Dropbox/PhD/pictures/160403_optics/IR7.pdf
+\end{figure}
+%
+The TCS collimators are retracted with respect to the TCP, thus it should be only exposed to the secondary beam halo with much less intensity than the primary halo. Downstream of the TCS collimators, shower absorbers (TCLA) are installed to protect the superconducting magnets downstream of the collimation IRs from from hadronic and electromagnetic showers generated at the TCS collimators.
+
+Particles can still leak out of the TCS collimators and continue moving inside the machine (tertiary beam halo). In the LHC high luminosity mode with squeezed beams in the experimental insersions, these particles are most likely absorbed in the triplet magnets where the betatronic functions are extreme~\cite{ipac2012:MOPPD062}. In order to avoid beam losses in the triplet magnets, they are protected by the tertiary collimators (abb. Target Collimator Tertiary, TCT). They also provide protection of the experiments from undesired background. The active material of the TCT collimators is tungsten (google: heavy alloy) to provide a high absorption cross section. 
+
+The optical functions in IR7 are optimized for small dispersion functions to intercept only particles at large betatron amplitudes. The momentum collimation region IR3 defines the momentum cut and intercepts particles with momentum offsets beyond a defined threshold. In this region, the optics are matched for a large horizontal dispersion function to intercept the off-momentum particles with the TCP. Contrary to the betatron cleaning, which is carried out for the horizontal, vertical and the skew plane with one dedicated primary collimator each, the principle of momentum cleaning requires a primary collimator only in the horizontal plane. The optical functions for the two LHC cleaning insertions are compared in \figref{pic:16042001}.  
+
+Note that a major inefficiency of the collimation system arises from inelastic interactions in the TCP, where (effectively) off-momentum particles leave the collimator without being captured by the TCS. This is true for both, proton and heavy-ion beams, where for the prior the main production process is single-diffractive dissociation~\cite{ipac10:TUPEB080}. Heavy-ions are subject to fragmentation processes (see \chapref{chap:ionmatterinteraction}) in which fragments with different mass to charge ratios are generated. In both cases, particles with rigidities different from the main beam bypass the secondary collimators and cause high losses in the superconducting magnets of the dispersion suppressor. The IR7 DS magnets are therefore in general the most critical loss location in the LHC ring, in which cleaning inefficiencies of $10^{-2}$ may be reached with heavy-ion beams.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Collimator Types} \label{chap:collimator_types}
+%
+\begin{table}[htbp]
+\centering
+\caption{Overview of the types of LHC collimators presently installed (H,V,S: horizontal, vertical, skew)~\cite{}.}
+\label{tab:ctypes}
+\begin{tabular}{lllll}
+Type                 & Region    & Name      & Plane & Material \\ \toprule
+Primary              & IR3       & TCP       & H     & CFC      \\
+Secondary            & IR3       & TCSG      & H     & CFC      \\
+Shower Absorbers     & IR3       & TCLA      & H,V   & W        \\ \midrule
+Primary              & IR7       & TCP       & H,V,S & CFC      \\
+Secondary            & IR7       & TCSG      & H,V,S & CFC      \\
+Shower Absorbers     & IR7       & TCLA      & H,V   & W        \\ \midrule
+Tertiary             & IR1/2/5/8 & TCT       & H,V   & W        \\
+Physics Absorbers    & IR1/5     & TCL       & H     & Cu       \\ \midrule
+Dump Protection      & IR6       & TCSG      & H     & CFC      \\
+Dump Protection      & IR6       & TCDQ      & H     & C        \\ \midrule
+Injection Protection & IR2/8     & TDI       & V     & C        \\
+Injection Protection & IR2/8     & TCLI/TCLD & V     & CFC      \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Besides the presented collimators of the three-stage collimation system, functional collimators are installed for other purposes than halo-cleaning (see \tabref{tab:ctypes}). 
+
+The TDI collimators installed in the two injection insertions IR2 and IR8 protect the LHC hardware from beam loss which could occur due to injection failures. They are composed of graphite in a different alloy than the CFC used for the TCP and TCT collimators. In order to protect a larger area in phase space, the TCLI collimators are installed downstream of the TDI. In case of a dumping failure, multiple components of the LHC could be seriously damaged, in particular the dumping system, magnets downstream of IP6 or even the detector components in the experimental insertions. Therefore, IR6 is equipped with the single-jaw dump protection collimator TCDQ and the double-jaw TCSG collimator (the same collimator type as it is used for the secondary collimators in IR3 and IR7). The jaw of the prior is composed of graphite and is the longest collimator used in the LHC having a length of 6$\,$m. 
+For the HL-LHC upgrade additional physics debris collimators, TCLX are forseen to be installed in the experimental insertions. 
+
+
+An overview of the different collimator types is given in \tabref{tab:collimator_types}. In the design phase of the machine, a progressive upgrade of the LHC collimation system was foreseen to increase the performance of the protection with increasing luminosity and energy~\citedr. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Collimator Settings}
+%
+\begin{table}[t]
+\caption{LHC collimator settings applied with squeezed beams at top energy in the LHC heavy ion runs, compared to the design settings. The settings refer to the beam size of proton beams at equivalent energy with a normalized proton beam emittance of $\epsilon_N = 3.5\,\mu$m$\,$rad. }
+%
+\begin{center}
+\begin{minipage}{10cm}
+\begin{tabular}{lcccccc}
+\toprule
+\midrule
+ \multicolumn{2}{c}{Collimator} & \multicolumn{5}{c}{Half gap ($\sigma$)} \\
+Type & Region & 2010 & 2011 & 2013 & 2015\footnote{Settings refer to a proton energy of $6.5\,$TeV.} & Design\footnote{For design emittance $\epsilon_N=3.75\,\mu$m$\,$rad.} \\ \midrule
+TCP  & IR7 & 5.7  & 5.7  & 4.3     & 5.5  & 6.0  \\
+TCS  & IR7 & 8.5  & 8.5  & 6.3     & 8.0  & 7.0  \\
+TCLA & IR7 & 17.7 & 17.7 & 8.3     & 14.0 & 10.0 \\ \midrule
+TCP  & IR3 & 12.0 & 12.0 & 12.0    & 15.0 & 15.0 \\
+TCS  & IR3 & 15.6 & 15.6 & 15.6    & 18.0 & 18.0 \\
+TCLA & IR3 & 17.6 & 17.6 & 17.6    & 20.0 & 20.0 \\ \midrule
+TCT  & IR1/IR2/IR5        & 15.0 & 11.8 &  9.0 & 13.7& 8.3  \\         
+TCT  & IR8                & 15.0 & 11.8 &  9.0 & 15.0& 8.3  \\ \midrule \midrule
+%\multicolumn{2}{c}{$\epsilon_N$ [$\mu$m rad]} & 1.4 & 1.4 & 1.4 & 1.37 & 1.5 \\
+\multicolumn{2}{c}{Heavy-ion energy [$Z\,$TeV]} & 3.5 & 3.5 & 4.0 & 6.37& 7.0 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\end{center}
+\label{tab:14070901}
+\end{table}
+%
+The collimator settings have susceptible influence on the reachable efficiency of the cleaning system yet they must obey numerous contraints:
+\begin{itemize}
+  \item The risk of damaging the machine hardware, including collimators, must be minimized.
+  \item The settings must ensure that the collimation hierarchy is maintained, which implies a smallest achievable retraction between the TCP and TCS collimators. In operation, this requirement led to the application of larger retractions between TCS and TCP than initially foreseen in the design phase.
+  \item The triplet aperture must always be protected by the tertiary collimators, which imposes a constraint on the smallest applicable TCT setting. A margin of 1$\,\sigma$ between the measured triplet aperture and the TCT gap is considered to be safe. 
+  \item The impedance induced by the collimators can change the tune of the individual particles, which must be taken into account for the collimator settings.
+\end{itemize}
+%
+By convention, the collimator settings are given as the collimator half gap in terms of the normalized beam size. The latter is determined using a normalized emittance of \mbox{$\epsilon_N^p = 3.5\,\mu$m rad} for proton beams. This value was chosen instead of the design emittance at top energy of $3.75\,\mu$m rad because the injectors could deliver a significantly better emittance than initially foreseen~\cite{}. This convention provides consistency and comparability between the runs. The collimator setting in terms of the normalized beam size also takes into account the energy dependence of the geometric emittance due to adiabatic damping. With the collimator settings used in 2015, at top energy the TCP is set to values as small as 1.4~mm, compared to 5.6~mm at injection energy. During the ramp the collimators are synchrously closed to take into account for the decreasing emittance. 
+
+The geometrical collimator settings for heavy-ion operation are so far adopted from the respective precedent proton runs. The emittance of heavy-ion beams is significantly smaller than for proton beams, mainly due to the electron cooling in LEIR. In the LHC Design Report, a heavy-ion emittance of $\epsilon_N^{\text{Pb}} = 1.5\,\mu$m rad is foreseen, which yields the same geometrical emittance as for proton beams at the same rigidity. An exception is the 2015 heavy-ion run at $6.37\,Z$~TeV, in which the geometrical emittance of the previous proton run at $6.5$~TeV were adopted, corresponding to an equivalent heavy-ion emittance of $\epsilon_N = 1.41\,\mu$m rad. 
+%
+% 
+% 
+
+
+
+Particles which are not absorbed by the TCPs should be captured by the retracted TCS collimators. This requires that they receive a sufficient transverse angular kick $\Delta x'$ at the TCP, mathematically expressed by the following inequality~\cite{ICOSIMref02}:
+%
+\begin{align}
+  \Delta x' > \sqrt{\frac{(N_P^2 - N_S^2) \, \epsilon_N }{ \gamma \, \beta_x } } \,.
+\end{align}
+%
+Here, $\beta_x$ is the horizontal betatron function at the TCP and $N_P$ and $N_S$ are the applied half gaps of the TCP and TCS respectively. The formula assumes an ideal betatron phase advance between TCP and TCS, such that the particle amplitude at the secondary collimator is maximized.
+%
+
+The collimator settings applied during heavy-ion operation with stable beams are compared to the design values in \tabref{tab:14070901}. The settings used so far differ from the design settings and have been modified over the years. Already at the beginning of LHC operation, the TCP gaps were chosen smaller than foreseen, because the proton emittances reached by the LHC injectors were smaller than expected~\cite{}. Furthermore, the margins between the collimator families were chosen to be increased in order to mitigate measured hierarchy violations\footnote{This applies for proton beams. Based on the measured loss signals in 2011, 2013 and 2015, the cleaning hierarchy with heavy-ion beams is, however, violated. With the smaller beam intensities, this is not considered critical for heavy ions.} during proton operation~\cite{}. Such violations can be caused by orbit instabilities or beta beating (wrong $\beta$ functions)~\cite{CERN-ATS-NOTE-2011-036MD}. Starting from the conservative settings applied at the beginning of the LHC operation, the settings were continuously optimized and re-set based on operational experience and on the results of dedicated experiments. This includes tightening of the collimator half gaps to allow for smaller $\beta^*$ values~\cite{CERN-ATS-2013-045}.
+
+The reference orbit is not necessarily at the center of the aperture (e.g. when crossing or separation bumps are applied). In this case, the collimators are aligned symmetrically around the reference orbit. In theoretical simulations, the reference orbit is known from the optics computation. During operation with beams, the collimators are aligned using beam based alignment methods~\cite{ipac2011:thpz034} or, for the TCTs, the embedded beam position monitors~\cite{accnote:150028}.
+
+
+
+\section{Measurement of Losses during LHC Operation}
+%
+\begin{figure}[b]  
+    \centering
+    \includegraphics[width=0.8\textwidth]{pictures/16033101.pdf}
+    \caption{Top: Ionization chambers of the LHC BLM sytem, mounted at the LHC Magnets. Bottom: Inner structure of an ionization chamber. Figures taken from \cite{BLM_homepage}.}  
+    \label{pic:16033101}
+    %/home/phermes/Desktop/pictures/pic.pdf
+\end{figure}
+
+The LHC is equipped with more than 4500 ionization chambers, the beam loss monitors (BLM)~\cite{BLMref1,BLMref02}, installed at the outer side of superconduction magnets, collimators and other locations which keep track of the particle losses throughout the ring (see Fig.~\ref{pic:16033101}). The ionization chambers are gas filled cylinders housing a structure of parallel electrodes. Charged particles traversing the detector ionize the gas particles and the created ions and their electrons are captured by the electrodes, which is measured as a drop of the high voltage at which the BLMs are operated. The measured signal is proportional to the radiation dose.
+
+%
+\begin{figure}[tb]
+    \centering
+    \def\svgwidth{1.0\linewidth}
+    \input{pictures/hybrid_pictures/14062001.pdf_tex}
+    \caption{Illustrated positioning of BLMs at a superconducting LHC magnet~\cite{dehning2002lhc}.}
+    \label{pic:14061701}
+\end{figure}
+%
+The BLMs measure the secondary particle showers from the interaction of beam particles with the material of collimators or with the beam pipes and surrounding components. Given their small size, the positioning of the BLMs is essential to monitor losses at strategic locations at which high losses are expected. A schematic illustration of the BLM positioning around the superconducting magnets is shown in \figref{pic:14061701}. 
+
+The following 
+\begin{itemize}
+  \item The ionization chambers do not provide full azimutal coverage, such that the BLM response for the same amount of lost particles may vary betweetwo different locations.
+  \item The signal in the ionization chamber depends on the propagation of the secondary particle shower from the location of the impacting beam particle.
+  \item The distinct longitudinal BLM locations (in average, the ionization chambers are spaced 7~m from each other (TBC)) may, in combination with the dependence on the shower propagation, lead to ambiguities between different loss scenarios.
+\end{itemize}
+
+The number of lost particles per length unit at a certain location can not be directly deduced from the BLM signals. Also the energy deposition in the magnet coils or studies on potential hardware damaging require dedicated simulations, including the shower propagation~\cite{}. However, the measurements with the BLMs indicate the loss positions and the approximate loss intensity. 
+
+The BLM data is continuously monitored by the LHC interlock system which triggers a beam dump if a certain loss threshold is exceeded~\cite{guaglio2005reliability}. This system protects the machine from beam induced quenches and potential damage e.g. in the case of sudden instabilities or if changes in the beam configuration induce dangerously high beam losses. 
+
+Both, the quench limit and the intensity limit at which the physical integrety of the collimators is endangered by beam induced plastic deformations, depend on the timescale at which the losses occur~\cite{IPAC15:MOPRO043}. The signals of the ionization chambers are sampled over twelve different integration timescales reaching from 40\,$\mu$s to $83.89\,$s, denominated as the running sums RS01 to RS12. With increasing integration times, the BLM thresholds are set to larger values~\cite{}, accounting for the larger quench limit with increasing loss duration. 
+
+The longitudinal distribution of losses in the LHC ring is referred to as a loss map. An important distinction can be made between physics loss maps, measured in nominal operation (see \chapref{chap:physics_lossmaps}), and qualification loss maps with artificially generated losses to study the collimation efficiency (see \chapref{chap:qualification_lossmaps}). 
+
+
+%\subsection{The LHC Beam Loss Monitors}
+
+
+
+
+
+
+%
+\subsection{Qualification Loss Maps}\label{chap:qualification_lossmaps  }
+
+Qualification loss maps are qualitatively different from loss maps during physics operation. For the latter, important loss locations are the primary collimators in IR3 and IR7, where the losses occur in both planes for both beams, indistinguishable in the measured loss map (note that there is also cross-talk between the BLMs for the two beams). Significant losses arise also from physics debris, for example during heavy-ion operation by the secondary ions generated by bound-free pair production~\cite{PhysRevLett.99.144801}. 
 
 
 In order to selectively study the cleaning efficiency of the LHC collimation system the collimation losses must dominate in the loss maps.
@@ -140,7 +286,7 @@ At their passage through matter, heavy ions interact differently than protons. I
 \begin{figure}[b]
   \begin{center}
 \begin{minipage}[t]{0.49\textwidth}
-\includegraphics[width=1\textwidth]{pictures/15091803.pdf}
+\includegraphics[width=1\textwidth]{pictures/15102003.pdf}
 \end{minipage}
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=1\textwidth]{pictures/15091802.pdf}
@@ -173,12 +319,12 @@ Nuclear Interaction length ($\approx$ fragmentation length) & 38.1$\,$cm & 2.5$\
 Electromagnetic dissociation length & - & 19$\,$cm \\ \bottomrule
 \end{tabular}
 \end{center}
-\label{}
+\label{tab:physics_ions_matter}
 \end{table}
 
 \subsection{Ion-Matter Interaction} \label{chap:ionmatterinteraction}
 
-Ultrarelativistic ions interact (collide) with the atoms of the traversed material in different manners. Such collisions do not require a physical overlap of the involving particles, but it is sufficient if the impact parameter $b$ (the smallest distance between the projectile and the target) is small enough such that a strong or electromagnetic interaction can take place. 
+Relativistic particles traversing matter are subject to different types of interactions. All of them can be described on a microscopic scale by the interaction of the particle (projectile) with the atoms (target) of the material traversed. In this section, the most relevant interactions for heavy-ion collimation are briefly introduced.
 
 \subsubsection{Energy Loss from Ionization}
 
@@ -189,6 +335,11 @@ Ultrarelativistic ions interact (collide) with the atoms of the traversed materi
   \label{pic:15091401}
   %/home/phermes/Desktop/lec1.png
   \end{figure}
+
+Ionization losses occur when projectile and target atoms interact such that the latter are ionized. The energy of the projectile is subsequently reduced ionization energy, thus the 
+
+and the projectile energy is subsequently
+
 
 Particles at the passage through matter can interact inelastically with the electrons of the constituing atoms. At such encounters, the target atoms are ionized and the liberated electron receives a fraction of the projectile's kinetic energy. This energy loss is described by the Bethe-Bloch formula:
 \begin{align}
@@ -208,28 +359,89 @@ Nuclear encounters with impact parameters smaller or equal than the sum of the r
 
 \subsubsection{Multiple Coulomb Scattering}
 
-Coulomb scattering occurs if the projectile is deviated from its trajectory while interacting with the coulomb field of the atoms in the collimator material.This elastic scattering can occur many times throughout the passage through the collimator materials, thus the many small scattering angles can superimpose to a larger final angle at exit of the material. The RMS angle due to multiple Coulomb scattering is well-described by the Moliere formula~\cite{Beringer:1900zz}
+Coulomb scattering occurs when the projectile is deviated from its trajectory while interacting with the coulomb field of the atoms in the collimator material. Hadronic projectiles 
+
+This elastic scattering can occur many times throughout the passage through the collimator materials, thus the many small scattering angles can superimpose to a larger final angle at exit of the material. The RMS angle in rad due to multiple Coulomb scattering is well-described by the Moliere formula~\cite{Beringer:1900zz}
 \begin{align}
 \theta_0 = \frac{13.6\,\text{MeV}}{\beta \, c \, p} \, Z \, \sqrt{\frac{\Delta s}{X_0}} \, \left[ 1 + 0.038 \, \ln \left( \frac{\Delta s}{X_0} \right) \right] \, ,
 \end{align}
-where $\beta\,c = v$ and $p$ are particle speed and momentum, $\Delta s$ is the distance the particle traversed inside the material, $Z$ is the charge of the beam particle and $X_0$ is the characteristic scattering length (see \chapref{xxx}). The latter is depending on the material and is either accessible via tabulated data or by means of the approximated formula in function of the charge $Z_m$ and nucleon number $A_m$ of the atoms constituing the material:
+where $\beta\,c = v$ and $p$ are particle speed and momentum, $\Delta s$ is the distance the particle traversed inside the material and $X_0$ is the radiation length which is characteristic for the material traversed. The radiation length is accessible via tabulated data or by means of the approximated formula depending on the charge $Z_m$, nucleon number $A_m$ and density $\rho_m$ of the material traversed by the particle~\cite{Beringer:1900zz}
+%
 \begin{align}
-X_0 = \frac{716.4 \, A_m}{Z_m (Z_m+1) \, \ln (287/\sqrt{Z_m})} \, .
+  X_0 = \frac{716.4 \, \text{g} \, \text{cm}^{-2} \, A_m}{\rho_m \, Z_m (Z_m+1) \, \ln (287/\sqrt{Z_m})} \, .
 \end{align}
+%
+The radiation length for the most important collimator materials is given in \tabref{tab:radiation_lengths}.
+
+\begin{table}[h]
+\centering
+\caption{Properties of the most important collimator materials, including materials foreseen for upgrades of the LHC collimation system. Data taken from~\cite{IPAC15:TUPTY029}.}
+\label{tab:radiation_lengths}
+\begin{tabular}{lllll}
+\toprule
+Material & $Z_m$ & $A_m$  & $\rho_m$ {[}g/cm$^3${]} & $X_0$ {[}cm{]}  \\ \midrule
+C (CFC)  & 6     & 12.01  & 1.67                    & 25.57          \\
+Cu       & 29    & 63.55  & 8.96                    & 1.435          \\
+W        & 74    & 183.85 & 19.30                    & 0.35           \\
+Mo$_2$C  & 30    & 67.978 & 8.40                     & 1.222         \\ \bottomrule
+\end{tabular}
+\end{table}
+
+% DATA FROM ELENA FOR FAST IMPLEMENTATION IF NECESSARY
+%       element Z       A       rho   X0[g/cm2] X0[cm] 
+% 1	Be	4	9.01	1.848	65.19	35.276
+% 2	Al	13	26.98	2.7	24.01	8.893
+% 3	Cu	29	63.55	8.96	12.86	1.435
+% 4	W	74	183.85	19.3	6.76	0.350
+% 5	Pb	82	207.19	11.35	6.37	0.561
+% 6	C (CFC)	6	12.01	1.67	-	25.57
+% 7	C2	6	12.01	4.52	-	9.40
+% -	graphite	6	12.01	2.25	42.700	18.978
+% -	diamond	6	12.01	3.14	42.700	13.599
+% -	B	5	10.8	2.37	52.690	22.232
+% -	Ni	28	58.69	8.9	12.680	1.425
+% 	O	8	16	-	34.240	-
+% -	Al2O3	10	20.392	3.97	27.940	7.038
+% 10	Mo	42	95.962	10.22	9.8	0.9589041096
+% -	Mo2C	30	67.978	8.4	10.266	1.222
+% 8	MoGr	6.653	13.532	2.5	29.828	11.931
+% 9	CuCD	11.898	25.238	5.4	17.073	3.162
+% 11	Glidcop	28.823	63.149	8.93	12.881	1.442
+% 12	Inermet	67.657	166.677	18	6.922	0.385
 
 
-\subsection{Fragmentation and Scattering at the Primary Collimators}
+
+\subsection{Efficiency of a Staged Cleaning Approach for Heavy Ions}
 
  \begin{figure}[b]
- \begin{minipage}[t]{0.5\textwidth}
- \includegraphics[width=1\textwidth]{pictures/15091301.pdf}
- \end{minipage}
- \begin{minipage}[t]{0.5\textwidth}
- \includegraphics[width=1\textwidth]{pictures/15091003.pdf}
- \end{minipage}
- \caption{Comparison of the distribution $P_\text{eff}$ and the scattering angle of particles leaking out the TCP carbon material between a proton beam (top) and a heavy-ion beam (bottom). The simulation was carried out using FLUKA at an energy 3.5$\,Z\,$TeV with the beam impacting perpendicularly at a carbon target of thickness $10.3\,$cm. The thickness corresponds to the interaction length in the TCP material with an impact parameter of $b=3\,\mu$m (see Sec.~\ref{chap:stier_description}).} %The black lines indicate $\pm \Delta \theta_\text{min}$ as shown in Eq.~(\ref{minkick}). Ions with $\Delta \theta$ between the two lines are not captured by the secondary collimators. }
- \label{fig:15022301}
+   \begin{minipage}[t]{0.5\textwidth}
+     \includegraphics[width=1\textwidth]{pictures/15091301.pdf}
+   \end{minipage}
+   \begin{minipage}[t]{0.5\textwidth}
+     \includegraphics[width=1\textwidth]{pictures/15091003.pdf}
+   \end{minipage}
+   \caption{Comparison of the distribution $P_\text{eff}$ and the scattering angle of particles leaking out the TCP carbon material between a proton beam (top) and a heavy-ion beam (bottom). The simulation was carried out using FLUKA at an energy 3.5$\,Z\,$TeV with the beam impacting perpendicularly at a carbon target of thickness $10.3\,$cm. The thickness corresponds to the interaction length in the TCP material with an impact parameter of $b=3\,\mu$m (see Sec.~\ref{chap:stier_description}).} %The black lines indicate $\pm \Delta \theta_\text{min}$ as shown in Eq.~(\ref{minkick}). Ions with $\Delta \theta$ between the two lines are not captured by the secondary collimators. }
+   \label{fig:15022301}
  \end{figure}
+
+The multi-stage collimation system is relies upon different mechanisms to capture particles which can leave the primary collimator. Their loss locations depend on the type of interaction they have undergone in the TCP. 
+
+\begin{itemize}
+   \item Elastic scattering: The particle rigidity is very close to the rigidity of the main beam. In the case of heavy ions, the particle species has not changed. The particle is scattered to larger transverse betatron amplitudes. If the transverse angular kick is sufficient, the particle is intercepted by the secondary collimators. Otherwise, they are intercepted by the TCP or a TCS on a subsequent turn.
+   \item Inelastic interactions with small momentum offsets: particles leaving the TCP with small momentum offsets and scattered at small angles continue moving through the magnetic lattice and are intercepted by the TCP in the momentum collimation region IR3.
+   \item Inelastic interactions with large rigidity offsets and large angular scattering: particles leaving the TCP with large momentum offsets, scattered at large angles. Examples for such processes are single diffractive events for protons and nuclear fragmentation for heavy-ions. These particles are mainly lost in the secondary collimators. 
+   \item Inelastic interactions with large rigidity offsets and small angular scattering:  In this scenario, the outcoming particles have large rigidity offsets, but they are not scattered to angles large enough to be intercepted by the TCS collimators. These particles are mainly intercepted by the aperture of the superconducting dispersion suppressor magnets downstream of IR7. 
+\end{itemize}
+
+
+% different cleaning situations for protons:
+%    1. proton lost in primary collimator
+%    2. elastic proton scattering in primary collimator to an angle x' large enough such that the particle is
+%       intercepted by the secondary collimator
+%    3. elastic proton scattered in primary collimator (small losses from ionization and showering) but 
+%       uncaptured of the secondary collimator, particle is captured at one of the next passages
+%    4. inelastic scattering (single diffractive events), particles lose significant amounts of energy and
+%       are lost in the DS region downstream of the collimator 
 
 
 
@@ -277,44 +489,44 @@ In nominal operation with heavy ion collisions, losses at the dispersion suppres
 
 However, these increased losses are not visible in the lossmaps from the measurements even with collisions taking place in the IRs, since these losses are covered by the higher losses in other regions during the beam excitation.
 
-\begin{table}[htbp]
-\caption{Measured Lossmaps in 2011 (not complete list)}
-\begin{center}
-\begin{tabular}{cccc}
-\toprule
-Date & Beam/Direction & Time & $\Delta f_{\text{RF}}$ (Hz) \\ %\hline
-(year-month-day) &  & (hours-min-sec) &  \\ \toprule %\hline
-\multicolumn{4}{c}{Non-Colliding Beams, $\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
-2011-11-06 & B1/H & 23-37-24 & 0 \\ %\hline
-2011-11-06 & B1/V & 23-39-23 & 0 \\ %\hline
-2011-11-06 & B2/H & 23-40-32 & 0 \\ %\hline
-2011-11-06 & B2/V & 23-41-14 & 0 \\ %\hline
-2011-11-06 & both & 23-43-50 & $+500$ \\ %\hline
-2011-11-07 & both & 04/10/11 & $-500$ \\ \midrule
-\multicolumn{4}{c}{Colliding Beams, $\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
-2011-11-06 & B1/H & 19-48-01 & 0 \\ %\hline
-2011-11-06 & B2/H & 19-50-29 & 0 \\ 
-2011-11-06 & B1/V & 19-53-11 & 0 \\
-2011-11-06 & B2/V & 19-54-34 & 0 \\ \midrule
-\multicolumn{4}{c}{Non-Colliding Beams, ALICE Crossing angle $\theta = -80 \, \mu$rad}  \\ %\hline
-\multicolumn{4}{c}{$\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
-2011-10-30 & B1/V & 00-41-39 & 0 \\ %\hline
-2011-10-30 & B1/H & 00-43-55 & 0 \\
-2011-10-30 & B2/V & 00-48-04 & 0 \\ 
-2011-10-30 & B2/H & 00-49-33 & 0 \\ \midrule
-\multicolumn{4}{c}{Non-Colliding Beams, End of Ramp before Squeeze}  \\ %\hline
-%\multicolumn{4}{c}{}  \\ \hline
-\multicolumn{4}{c}{$\beta^*=$(11m,10m,11m,10m)}  \\ \midrule
-2011-11-05 & B1/V & 17-09-13 & 0  \\ %\hline
-2011-11-05 & B2/V & 17-14-04 & 0 \\ %\hline
-2011-11-05 & both & 17-20-07 & $-1000$ \\ %\hline
-2011-11-05 & B1/H & 19-18-26 & 0 \\ %\hline
-2011-11-05 & B2/H & 19-24-01 & 0 \\ %\hline
-2011-11-05 & both & 19-26-20 & $+1000$ \\ \bottomrule
-\end{tabular}
-\end{center}
-\label{tab:14051601}
-\end{table}
+% \begin{table}[htbp]
+% \caption{Measured Lossmaps in 2011 (not complete list)}
+% \begin{center}
+% \begin{tabular}{cccc}
+% \toprule
+% Date & Beam/Direction & Time & $\Delta f_{\text{RF}}$ (Hz) \\ %\hline
+% (year-month-day) &  & (hours-min-sec) &  \\ \toprule %\hline
+% \multicolumn{4}{c}{Non-Colliding Beams, $\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
+% 2011-11-06 & B1/H & 23-37-24 & 0 \\ %\hline
+% 2011-11-06 & B1/V & 23-39-23 & 0 \\ %\hline
+% 2011-11-06 & B2/H & 23-40-32 & 0 \\ %\hline
+% 2011-11-06 & B2/V & 23-41-14 & 0 \\ %\hline
+% 2011-11-06 & both & 23-43-50 & $+500$ \\ %\hline
+% 2011-11-07 & both & 04/10/11 & $-500$ \\ \midrule
+% \multicolumn{4}{c}{Colliding Beams, $\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
+% 2011-11-06 & B1/H & 19-48-01 & 0 \\ %\hline
+% 2011-11-06 & B2/H & 19-50-29 & 0 \\ 
+% 2011-11-06 & B1/V & 19-53-11 & 0 \\
+% 2011-11-06 & B2/V & 19-54-34 & 0 \\ \midrule
+% \multicolumn{4}{c}{Non-Colliding Beams, ALICE Crossing angle $\theta = -80 \, \mu$rad}  \\ %\hline
+% \multicolumn{4}{c}{$\beta^*=$(1m,1m,1m,3m)}  \\ \midrule
+% 2011-10-30 & B1/V & 00-41-39 & 0 \\ %\hline
+% 2011-10-30 & B1/H & 00-43-55 & 0 \\
+% 2011-10-30 & B2/V & 00-48-04 & 0 \\ 
+% 2011-10-30 & B2/H & 00-49-33 & 0 \\ \midrule
+% \multicolumn{4}{c}{Non-Colliding Beams, End of Ramp before Squeeze}  \\ %\hline
+% %\multicolumn{4}{c}{}  \\ \hline
+% \multicolumn{4}{c}{$\beta^*=$(11m,10m,11m,10m)}  \\ \midrule
+% 2011-11-05 & B1/V & 17-09-13 & 0  \\ %\hline
+% 2011-11-05 & B2/V & 17-14-04 & 0 \\ %\hline
+% 2011-11-05 & both & 17-20-07 & $-1000$ \\ %\hline
+% 2011-11-05 & B1/H & 19-18-26 & 0 \\ %\hline
+% 2011-11-05 & B2/H & 19-24-01 & 0 \\ %\hline
+% 2011-11-05 & both & 19-26-20 & $+1000$ \\ \bottomrule
+% \end{tabular}
+% \end{center}
+% \label{tab:14051601}
+% \end{table}
 
 
 
@@ -323,28 +535,28 @@ Date & Beam/Direction & Time & $\Delta f_{\text{RF}}$ (Hz) \\ %\hline
 
 
 
-  \begin{figure}[t]
-  \centering
-  \includegraphics[width=1\textwidth]{pictures/14062619.pdf}
-  \caption{Comparison of the simulated with the measured heavy ion losses in the betatron cleaning region IR7.}  
-  \label{pic:14062610}
-  \end{figure}
+%   \begin{figure}[t]
+%   \centering
+%   \includegraphics[width=1\textwidth]{pictures/14062619.pdf}
+%   \caption{Comparison of the simulated with the measured heavy ion losses in the betatron cleaning region IR7.}  
+%   \label{pic:14062610}
+%   \end{figure}
 
 
 
-  \begin{figure}[t]
-  \centering
-  \includegraphics[width=1\textwidth]{pictures/14062620.pdf}
-  \caption{Comparison of the simulated with the measured heavy ion losses in the whole LHC ring.}  
-  \label{pic:14062610}
-  \end{figure}
+%   \begin{figure}[t]
+%   \centering
+%   \includegraphics[width=1\textwidth]{pictures/14062620.pdf}
+%   \caption{Comparison of the simulated with the measured heavy ion losses in the whole LHC ring.}  
+%   \label{pic:14062610}
+%   \end{figure}
 
 
-\begin{figure}[htb]
-  \centering
-   \def\svgwidth{1.0\linewidth}
-   \input{pictures/hybrid_pictures/14062604.pdf_tex}
-  \caption{Realistic model to simulate fragmentation at collimators }
-  \label{pic:14062604}
-\end{figure}
+% \begin{figure}[htb]
+%   \centering
+%    \def\svgwidth{1.0\linewidth}
+%    \input{pictures/hybrid_pictures/14062604.pdf_tex}
+%   \caption{Realistic model to simulate fragmentation at collimators }
+%   \label{pic:14062604}
+% \end{figure}
 

@@ -1,8 +1,6 @@
 \chapter{Simulation Tools}\label{chap:simulation_tools}
 \section*{Introduction}
-Very important contributions to the excellent performance of the LHC came from theoretical simulations. Many tools have been developed and used to predict important physics aspects in the machine. For collimation, particularly software for particle tracking and simulations of particle-matter interaction are important. The prior requires also a detailed model for optics computation, as the configuration of the magnetic lattice is crucial for the particle motion in the machine. In order to have a complete picture of the collimation efficiency, information must be exchanged between the tracking tool and the particle-matter interaction, which can be realized in different manners. In this chapter, software tools important for the simulation of heavy-ion collimation are presented with their different advantages and limitations. 
-
-
+Important contributions to the excellent performance of the LHC came from theoretical simulations. Many tools have been developed and used to predict various physics aspects of the machine. For collimation, particularly software for particle tracking and simulations of particle-matter interaction are important. The prior requires also a detailed model for optics computation, as the configuration of the magnetic lattice is crucial for the particle motion in the machine. In order to have a complete picture of the collimation efficiency, information must be exchanged between the tracking tool and the particle-matter interaction, which can be realized in different manners. In this chapter, different software tools important for the description of the heavy-ion collimation simulation tools are presented.
 
 
 
@@ -10,7 +8,7 @@ Very important contributions to the excellent performance of the LHC came from t
 \section{MAD-X}
 MAD-X (Methodical Accelerator Design)~\cite{MADXref01} is the standard tool to simulate beam dynamics and compute beam optics in particle accelerators. The software is a complete migration of MAD-8 (written in FORTRAN77) to C++ and was introduced in 2002 for the design and simulation of the LHC optics~\cite{MADXref02}.
 
-The software computes the evolution of the betatronic functions by means of transfer matrices for the individual lattice elements. The structure of the machine and the strengths of the magnets are given by the user by means of dedicated input files. A matching function provides the functionality to adjust specific variables such that previously defined constraints are fulfilled. An aperture model of the machine can be processed and compared with the beam position and dimensions to evaluate the available normalized aperture throughout the machine. A dedicated function produces the required optics input for SixTrack (see next Chapter). 
+The software computes the global Twiss parameters by means of transfer matrices for the individual lattice elements. The structure of the machine and the strengths of the magnets are given by the user by means of dedicated input files. A matching function provides the functionality to adjust specific variables such that previously defined constraints are fulfilled. An aperture model of the machine can be processed and compared with the beam position and dimensions to evaluate the available normalized aperture throughout the machine. A dedicated function produces the required optics input for SixTrack (see next Chapter). 
 
 
 
@@ -27,6 +25,25 @@ The software computes the evolution of the betatronic functions by means of tran
 % %/home/phermes/Dropbox/codes/python/140105_plot_deltakin/my-awesome-plot.pgf
 % \end{figure}
 
+\begin{itemize}
+\item Integrated Monte-Carlo package to simulate the interaction of particle beams with matter. 
+\end{itemize}
+
+
+
+
+\subsection{FLUKA element database} \label{chapter:fedb}
+
+
+\begin{figure}[t]  
+    \centering
+    \includegraphics[width=1.0\textwidth]{pictures/16031203.pdf}
+    \caption{FLUKA geometry of the three primary collimators in IR7 for beam 1.}  
+    \label{pic:16031201}
+    %/home/phermes/Desktop/eeeee.png
+\end{figure}
+
+
 
 \section{ICOSIM}
 ICOSIM (Ion Collimation Simulation) was the first tool developed for the simulation of heavy-ion beam collimation in the LHC. Before the first LHC heavy-ion run took place in 2010  
@@ -35,14 +52,19 @@ ICOSIM (Ion Collimation Simulation) was the first tool developed for the simulat
 
 
 \section{SixTrack}
-SixTrack~\cite{SixTrackref01,SixTrackref02,SixTrackref03,SixTrackref04} is the present standard tool for the simulation of proton collimation. It is designed to provide symplectic six-dimensional tracking of relativistic proton beams in high energy synchrotrons over many turns. Designed and maintained at CERN, the software is subject to regular updates providing new features for dedicated functions or improved physics models. 
+
+SixTrack~\cite{SixTrackref01,SixTrackref02,SixTrackref03,SixTrackref04} is designed to provide symplectic six-dimensional tracking of relativistic proton beams in high energy synchrotrons over many turns. Initially developed for dynamic aperture studies, the software was extended by many functionalities, such as an integrated routine for the simulation of proton collimation in high energy colliders as the LHC~\cite{colltrack}. 
+
+
+
+Designed and maintained at CERN, the software is subject to regular updates providing new features for dedicated functions or improved physics models. 
 
 The tracking algorithm is based on symplectic transfer maps which are computed for all lattice elements in thin lens approximation. Chromatic effects are simulated up to 20th order, making SixTrack an excellent tool to provide accurate tracking for off-momentum beam particles. 
 
 
   \begin{figure}[t]
   \centering
-  \includegraphics[width=0.8\textwidth]{pictures/15070701.png}
+  \includegraphics[width=1\textwidth]{pictures/15070701.png}
   \caption{}  
   \label{pic:15070701}
   %/home/phermes/Desktop/tra.png
@@ -68,3 +90,10 @@ The input for SixTrack is essentially based on two files: \textbf{fort.2} and \t
 
 
 \section{SixTrack-FLUKA Coupling}
+
+\begin{itemize}
+\item Network port for the exchange of particles
+\item Injection/Extraction markers in the LHC lattice to identify locations where particles should be sent.
+\end{itemize}
+
+The lattice used in SixTrack is adjusted to provide injection and extraction markers identifying the beginning and end of the collimator tanks (see Fig.~\ref{fig:coupling_extraction}).

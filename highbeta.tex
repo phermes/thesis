@@ -1,22 +1,12 @@
 
 \input{chapters/header}
 
-
-
-
-\usepackage{pgf}
-
-%________Show Bibliography in Table of Contents
-%
-%         \usepackage[nottoc]{tocbibind}
-
 \begin{document}
 
 \include{chapters/titlepage}
 
-
 \begin{abstract}
-The LHC collimation system is an essential part of the machine to provide protection against beam halo at high particle intensities at the accelerator.
+  The LHC collimation system is an essential part of the machine to provide protection against beam halo at high particle intensities at the accelerator.
 \end{abstract}
 
 \newpage
@@ -28,19 +18,36 @@ The LHC collimation system is an essential part of the machine to provide protec
 
 %\flushleft
 %\printglossaries
+
+
+
+
 \include{chapters/introduction}
 \include{chapters/accelerator_physics}
 \include{chapters/the_lhc}
-\include{chapters/lhc_collimation}
-\include{chapters/simulation}
+%\include{chapters/lhc_collimation}
+%\include{chapters/simulation}
 \include{chapters/InitialSimulation}
 \include{chapters/heavy_ion_sixtrack}
+\include{chapters/applications}
+\include{chapters/outlook}
 \include{chapters/appendix}
- 
 
 % bibliography
 \bibliographystyle{alphaphdev}
 \bibliography{literature}
+
+\newpage
+\section*{List of Symbols and Acronyms}
+\glsaddall
+\printglossary[type=symbol,style=mylong]%,style=supergroup]
+%\glsaddall
+\printglossary[type=acronym,style=mylong]
+
+
+% \newpage
+% \glsaddall
+% \printglossaries
 
 
 % danksagung

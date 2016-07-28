@@ -11,6 +11,7 @@
 \usepackage{graphics}
 \usepackage{url}
 
+\usepackage{pgf}
 
 \usepackage{wrapfig}
 \usepackage{color}
@@ -22,6 +23,7 @@
 \usepackage{bbold}
 \usepackage{ifthen}
 
+\usepackage{blindtext}
 
 
 \def\PD#1#2{\frac{\partial #1}{\partial #2}}
@@ -31,7 +33,6 @@
 
 
 %\titleformat*{\section}{\LARGE\bfseries}
-
 
 %\lea\def\lead{ $^{208}$Pb$82+$ }
 %\newcommand{\lead}{$^{208}$Pb$^{82+}$}
@@ -85,7 +86,51 @@
 % to place the glossary in the document, use \printglossary
 %Once you have defined a term, you can use it in the document. The glossaries package provides a number of commands that are described in the section "Links to Glossary Entries" in the main glossaries user manual. Here, I shall just cover the main commands:
 
+\usepackage{setspace}
+\usepackage[nonumberlist,acronyms]{glossaries}
+
+% \newglossarystyle{supergroup}{%
+%   \renewenvironment{theglossary}%
+%   {\tablehead{}\tabletail{}%
+%    \begin{supertabular}{@{}l@{}lp{\glsdescwidth}}}%
+%   {\end{supertabular}}%
+%   \renewcommand*{\glossaryheader}{}%
+%   \renewcommand*{\glsgroupskip}{}%
+%   \renewcommand*{\glossentry}[2]{%
+%     &\multicolumn{2}{@{}l}{%
+%      \bfseries\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}%
+%     }% 
+%     \tabularnewline
+%   }%
+%   \renewcommand{\subglossentry}[3]{%
+%      &\glssubentryitem{##2}%
+%      \glstarget{##2}{\glossentryname{##2}}
+%      &
+%      \glossentrydesc{##2}\glspostdescription\space
+%      ##3%
+%      \tabularnewline
+%   }%
+% }
+
+\newglossarystyle{mylong}{%
+  \setglossarystyle{long}%
+  \renewenvironment{theglossary}%
+     {\begin{longtable}[l]{@{}p{\dimexpr 2cm-\tabcolsep}p{0.8\hsize}}}% <-- change the value here
+     {\end{longtable}}%
+ }
+
+%\usepackage[nopostdot,  style=super, nonumberlist, toc]{glossaries} % nomain, if you define glossaries in a file, and you use \include{INP-00-glossary}
+%\makeglossaries
+
+\input{glossary.tex}
+%\loadglsentries[main]{glossary}
+%\makeglossaries
+%\newglossaryentry{hate}{name=\ensuremath{x}, description={$x$ is a variable, just kidding}, sort=x}
+
+
+
 %\gls{<label>}
+
 
 %This prints the term associated with <label>. Using the example in the previous section, \gls{oesophagus} will display œsophagus. If the hyperref package has also been loaded, the term will also be hyperlinked to the relevant entry in the glossary.
 
@@ -182,8 +227,21 @@
 
 \newcommand{\bst}{$\beta^*$}
 \newcommand{\lead}{$^{208}$Pb$^{82+}\,$}
+
 \renewcommand{\baselinestretch}{1.2}
 \renewcommand{\arraystretch}{1.2}
+
+
+\newcommand{\reference}[1]{ \tiny TREF: \colorbox{blue!30}{\url{#1}}\\  \normalsize }
+
+
+\newcommand{\iso}[3]{$^{#1}$#2$^{#3}$}
+\newcommand{\mum}{$\,\mu$m~}
+\newcommand{\vect}[1]{\boldsymbol{#1}}     % vector
+\newcommand{\dd}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+
+
 %\frenchspacing
 \sloppy \hfuzz 2pt \vfuzz 2pt
 \renewcommand{\topfraction}{0.9}
@@ -258,9 +316,10 @@
 \DeclareMathOperator{\erf}{erf}
 
 \tikzset{math3d/.style= {x={(1cm,0cm)}, y={(0.353cm,0.353cm)}, z={(0cm,1cm)}}}
+\tikzset{>=latex}
 
 
-
+ 
 %%%% Table design
 
 \usepackage{booktabs}%__________ use toprule midrule and bottomrule
@@ -272,14 +331,17 @@
  {#1\balkenlaenge} \textcolor{black!40}{\rule{\balkenlaenge}{1.5ex}} & #1\,\%}
 
 %\renewcommand\thempfootnote{\arabic{mpfootnote}}
-\renewcommand{\eqref}[1]{Eq.~\ref{#1}}
+\renewcommand{\eqref}[1]{Eq.~(\ref{#1})}
+\newcommand{\eqsref}[2]{Eqs.~(\ref{#1}) and (\ref{#2})}
+
 \newcommand{\phase}{\phi}
 \newcommand{\bone}{\mbox{Beam 1 }}
 \newcommand{\btwo}{\mbox{Beam 2 }}
 \newcommand{\figref}[1]{\mbox{Fig. \ref{#1}}}
 \newcommand{\citedr}{\cite{CERN-2004-003-V1}}
 \newcommand{\chapref}[1]{\mbox{Chap. \ref{#1}}}
-\newcommand{\tabref}[1]{\mbox{Table \ref{#1}}}
+\newcommand{\tabref}[1]{\mbox{Tab. \ref{#1}}}
+\newcommand{\lstref}[1]{\mbox{List. \ref{#1}}}
 
 \newcommand{\minipages}[4]{
 \begin{figure}[t]

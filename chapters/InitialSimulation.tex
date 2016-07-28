@@ -1,99 +1,283 @@
 \chapter{SixTrack with Ion-Equivalent Rigidities }\label{chap:stier}
 %
-\section*{Introduction}
-The design of the LHC collimation system forsees the primary collimator in the betatron collimation region IR7 as the first collimator in the collimation hierarchy. It should be the only collimator exposed to particles of the main beam and is therefore in general the device with the highest amount of particle losses in the whole LHC ring. The loss distribution measured during qualification loss maps is therefore dominated by secondary ion fragments originating from an interaction of the main beam with the TCP. Tertiary particles generated from scattering and fragmentation in collimators downstream of the TCP should only contribute marginally to the final loss map. 
-
-Based on these assumptions, an intermediate approach for the simulation of heavy-ion collimation was established. Instead of using the simplified fragmentation model at all collimators in ICOSIM, this approach relies on a detailed fragmentation simulation at the TCP using a Monte-Carlo event generator, such as \textsc{FLUKA}, followed by a tracking of the heavy-ion fragments by means of SixTrack. Given that SixTrack is not designed for the tracking of ions different from protons, the mass to charge ratios of the many different isotopes are taken into account by using an effective momentum offset. In this case, the ions are tracked as protons with ion equivalent rigidities. The approach is referred to as SixTrack with Ion-Equivalent Rigidities (STIER). 
-
-In this chapter, the STIER approach is described in detail and the obtained loss maps are benchmarked with qualification loss maps measured in the 2011 heavy-ion run. The analysis result is also compared to loss maps simulated by means of ICOSIM. Based on the results, the requirements for a new heavy-ion collimation simulation software are outlined. Parts of the contents in this chapter have been published in ~\cite{hermes_nim}.
-
-\newpage
-\section{Simulation Approach}
 %
-  \begin{figure}[h]
+%\section*{Challenges in Heavy-Ion Collimation}
+%
+% The design of the LHC collimation system forsees the primary collimator in the betatron cleaning insertion IR7 as the first collimator in the cleaning hierarchy. It should be the only collimator exposed to particles of the main beam and is under normal circumstances the location with the highest amount of lost particles in the LHC ring. Besides the losses in the primary collimator, the measured qualification loss maps is expected to be dominated by secondary ion fragments from the interaction of the main beam with the material of the primary collimator. Tertiary particles generated from scattering and fragmentation in collimators downstream of the TCP should only contribute marginally to the final loss map. 
+
+% Based on these assumptions, an intermediate simulation tool for heavy-ion cleaning was established. Instead of using a simplified fragmentation model for all collimators, this approach relies upon a detailed fragmentation simulation at the TCP, while the particle-matter interaction with other collimators is neglected. The resulting heavy-ion distribution starting at the TCP is tracked as protons with equivalent momenta in SixTrack, to take into account for the rigidities of the different heavy ions. The approach is referred to as SixTrack with Ion-Equivalent Rigidities (STIER). Initially developped to study the effect of the simplifications in ICOSIM and to determine the requirements for an improved simulation tool, STIER simulations proved to be in good agreement with the measured losses. It was used in the 2015 heavy-ion run to validate the collimator settings and to develop loss mitigation strategies, which were successfully tested in operation (see \chapref{}).
+
+\section{Collimation of Heavy-Ion Beams in the LHC}
+
+\begin{figure}[htbp]
+  \begin{center}
+\includegraphics[width=0.6\textwidth]{pictures/15102003.pdf}
+\includegraphics[width=0.6\textwidth]{pictures/15091802.pdf}
+\caption{Qualification loss maps measured in 2011 with proton~\cite{Bruce2014a} and \lead beams~\cite{} at $3.5\,Z\,$TeV with identical collimator settings and optics, except in IR2. The vertical dashed lines mark the LHC octants. The upper plots show the full LHC ring, the bottom plots a zoom to IR7.}
+\label{fig:meas_lm_comparison}
+  \end{center}
+\end{figure}
+
+The LHC collimation performance with heavy-ion beams is significantly worse than with proton beams. Qualification loss maps measured in the 2011 operation with protons and \lead ions are directly compared in Fig.~\ref{fig:meas_lm_comparison}. The B1H qualification loss maps are measured with beams at a momentum of $3.5\,Z\,$TeV$/c$ with identical collimator settings (see \tabref{tab:14070901}) and squeezed optics settings  only different in IR2, where the \mbox{$\beta^*=0.8\,$m} for heavy-ion beams instead of the $\beta^*=10\,$m applied for protons. 
+
+In both qualification loss maps the collimation regions capture the largest fraction of losses, where the peak loss rate at the TCP in the momentum cleaning insertion IR3 is two orders of magnitude higher for \lead ions than for protons. While the proton loss signals are beyond the noise level mostly in regions close to collimators, the loss distribution of heavy-ion beams shows pronounced peaks at amplitudes up to $10^{-2}$ in superconducting regions across the LHC ring. Both loss maps show the highest losses in superconducting regions in the DS magnets downstream of IR7 with the heavy-ion loss signal two orders of magnitude higher than the corresponding signal measured with proton beams. Additional losses in cold regions are measured with heavy-ion beams in the arc region between IR7 and IR8 and in the cold regions downstream of IP8, IP1 and IP2. 
+
+This finding and its consequences on the feasibility of heavy-ion operation should be regarded in the context of the stored heavy-ion beam energy which is two orders of magnitude below that of protons. It shows that heavy-ion operation in the LHC is viable in principle, but the collimation system should be evaluated with the same thoroughness as it is for proton beams. Particularly the cleaning performance should be theoretically accessible by means of simulation tools to allow for potential optimizations and to study the potential benefit by hardware upgrades. 
+
+\newpage 
+This chapter points out the challenges that are related to the operation with heavy-ion beams and the simulation of the heavy-ion collimation performance. The outcome of this analysis led to the development of a new collimation simulation software, that described and applied for the configuration of the 2011 heavy-ion operation with \lead beams. The loss maps are compared to the simulations with the previous standard simulation tool ICOSIM and, based on the results, the requirements for a further improved collimation simulation software are outlined. The content of this chapter has partly been published in~\cite{phermes_hb2014,NIM:819}.
+%
+
+
+
+\section{Efficiency of Staged Collimation for Heavy-Ions} \label{colleff:ions}
+
+
+The loss locations of residual particles that inevitably leave the primary collimator in IR7 depend on the type of interaction the particles have undergone. By virtue of its design, the collimation system is most efficient if they have been subject to small changes in rigidity but  received transverse momentum transfers large enough to scatter them into the secondary collimators, as described by \eqref{dx:secon}. Losses in the IR7 DS are therefore associated with angular kicks $\Delta x'$ inside the angular acceptance and rigidity changes $\delta_\text{eff} = (1+\delta)/\chi$ outside the rigidity acceptance of the DS magnets. A rough estimate for the latter is given by 
+%
+\begin{align}
+  \delta_\text{eff}^\text{max}  = \pm A_g \, D_x^l \, . \label{rigacc}
+\end{align}
+%
+the geometric aperture $A_g$ in the magnet (approximately 24~mm in the IR7 DS) and $D_x^l$ is the local dispersion a particle receives if it starts from the TCP without previous dispersive offset. This relation is valid in linear approximation for a particle without betatron offset. For real particles with betatron offsets, the  acceptance is reduced, so the expression in \eqref{rigacc} should be regarded as an upper boundary. 
+
+% Therefore, the effectiveness of the LHC multi-stage collimation system with low residual collimation losses in the IR7 DS region depends is best if the particles leaving the primary collimator 
+
+
+% different cleaning situations for protons:
+%    1. proton lost in primary collimator
+%    2. elastic proton scattering in primary collimator to an angle x' large enough such that the particle is
+%       intercepted by the secondary collimator
+%    3. elastic proton scattered in primary collimator (small losses from ionization and showering) but 
+%       uncaptured of the secondary collimator, particle is captured at one of the next passages
+%    4. inelastic scattering (single diffractive events), particles lose significant amounts of energy and
+%       are lost in the DS region downstream of the collimator 
+
+
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \small
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16072101.pdf}};
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.85,0.65)    {Protons};
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.85,0.976)    {\lead};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+    \node [rotate=90 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (1.02,0.45)    {Abundance [a.u.]};
+    \draw[<-,color=black,x={(image.south east)},y={(image.north west)}]       (0.80,0.52) -- (0.84,0.47);
+    \draw[<-,color=black,x={(image.south east)},y={(image.north west)}]       (0.87,0.53) -- (0.84,0.47);
+    \node [x={(image.south east)},y={(image.north west)},anchor=west,align=center]       at (0.78,0.44)    {Angular \\ acceptance};
+
+  \end{tikzpicture}
+  \caption{Top and middle plot: FLUKA simulated heat map of transverse angular kick received at the passage through a 10~cm thick carbon target vs particle momentum per nucleon for an initial beam of \lead ions (top) and protons (middle). The horizontal lines represent the TCSG acceptance and the vertical lines the rigidity acceptance of the MQ.11R7.B1. All data points are weighted with the number of nucleons per bin, roughly proportional to the energy per bin. The bottom plot shows a projected and weighted histogram of all particles inside the TCSG acceptance as a function of the momentum per nucleon. }  
+  \label{pic:16072101} %/media/phermes/ph3tboffice/ph1tbwd/FLUKA_results/150506_HeavyIon_3500GeV_perpendicular_3um/scattering_protons_ions.pdf
+  \end{figure}
+
+
+
+
+% \begin{figure}[b]
+%   \begin{center}
+% \includegraphics[width=0.65\textwidth]{pictures/15091004.pdf}
+% \caption{Energy fraction of particles leaking out of the primary collimator which are uncaptured by the secondary collimators. Simulation carried out by FLUKA for an initial proton beam (blue) and \lead beam (black). Out-scattered protons are mostly concentrated at the reference momentum $P_E=3500\,\text{GeV}/c$. On the contrary, many ion fragments are effectively off-momentum and therefore likely to be absorbed in the aperture at a dispersive maximum. The dashed lines show the integral of the fragment energy starting at 1000$\,$GeV/$c$. Only 0.5\% of the escaping proton energy is carried by particles with rigidity offsets larger than 1\%, while for ions the corresponding value is 84.2\%. }
+% \label{fig:15062510.pdf}
+%   \end{center}
+% \end{figure}
+ 
+To study the difference between fragmentation of  \lead ions and scattering of protons in the material of the primary collimators, two dedicated simulations were carried out with FLUKA. In both cases, a particle beam with an energy of $3.5\,Z\,$TeV is simulated to perpendicularly hit a carbon target of 10.3$\,$cm thickness. This corresponds to the interaction length of the heavy-ions in the primary collimator with an impact parameter of $b=3\,\mu$m. The resulting distribution in terms of the momentum per nucleon and the scattering angle $\Delta x'$ of all out-coming particles is shown for both simulations in the top and middle plot of Fig.~\ref{pic:16072101}. The horizontal lines show the minimum anglular kick $\Delta x'$ required such that a particle intercepts the secondary collimator. The vertical lines show the rigidity acceptance of the MQ.11R7.B1 assuming an aperture of $A_g = \pm 24~\,$mm and a local dispersion fuction of $D_x^l = 2.4\,$m. The particular magnet was chosen, because it is the magnet close to the characteristic second DS loss cluster DS2. The dispersion function in this magnet is larger than in the previous MQ.9R7.B1 at the DS1 cluster, so the presented rigidity acceptance is rather conservative. 
+
+The comparison demonstrates that the number of particles outside the rigidity acceptance of the DS magnets but inside the angular acceptance of the TCSG is significantly larger for the heavy-ion distribution than for protons. The bottom plot of \figref{pic:16072101} shows the projected number of nucleons inside the angular acceptance of the TCSG collimators. For rigidities beyond $\pm \delta_\text{eff}^\text{max}$, the fraction of heavy-ions (black line) is larger by up to three orders of magnitude compared to the proton distribution. 
+
+The integrated energy carried by protons inside the angular acceptance and outside the rigidity acceptance is $5 \cdot 10^{-3}$ of the total proton energy leaving the collimator. The equivalent quantity for heavy-ions is 9$\cdot 10^{-1}$, thus two orders of magnitude above the out-leaking proton energy. This finding is the origin of the measured cleaning inefficiency two orders of magnitude higher for heavy-ions than for proton beams. Given the drastic impact on the cleaning inefficiency, the effect of fragmentation and the motion of the ion fragments in the LHC must be accurately modelled in a simulation tool for heavy-ion collimation.
+
+
+
+
+
+ % We consider the collimator openings shown in Tab.~\ref{tab:collimator_gaps} and a normalized emittance of $\epsilon_N=3.5\,\mu$m rad. All ions in between these lines are not captured by the secondary collimators. The proton spectrum shows a sharp cut at $P/q=3.5\,$TeV/$c$, while the heavy-ion fragments can have larger effective momenta than the impacting ion, if $\chi>1$. 
+
+
+ % \begin{figure}[b]
+ %   \begin{minipage}[t]{0.5\textwidth}
+ %     \includegraphics[width=1\textwidth]{pictures/15091301.pdf}
+ %   \end{minipage}
+ %   \begin{minipage}[t]{0.5\textwidth}
+ %     \includegraphics[width=1\textwidth]{pictures/15091003.pdf}
+ %   \end{minipage}
+ %   \caption{Comparison of the distribution $P_\text{eff}$ and the scattering angle of particles leaking out the TCP carbon material between a proton beam (top) and a heavy-ion beam (bottom). The simulation was carried out using FLUKA at an energy 3.5$\,Z\,$TeV with the beam impacting perpendicularly at a carbon target of thickness $10.3\,$cm. The thickness corresponds to the interaction length in the TCP material with an impact parameter of $b=3\,\mu$m (see Sec.~\ref{chap:stier_description}).} %The black lines indicate $\pm \Delta \theta_\text{min}$ as shown in Eq.~(\ref{minkick}). Ions with $\Delta \theta$ between the two lines are not captured by the secondary collimators. }
+ %   \label{fig:15022301}
+ % \end{figure}
+
+
+
+
+
+
+% Fig.~\ref{fig:15022301} shows the distribution of momentum per charge vs. the scattering angle of atomic nuclei produced by the interaction of an initial proton beam compared to an initial \lead beam at $3.5\,Z\,$TeV with the solid graphite material of the horizontal LHC IR7 TCP as simulated with FLUKA. In the simulated case, the incoming beams hit the collimator material at an angle $\theta<0$ with an impact parameter (the transverse distance of the impacting particle beam from the collimator edge) of $b=3\,\mu$m as shown in Fig.~\ref{fig:15021801.pdf}. Therefore, particles with positive scattering angles are suppressed in the spectrum, due to their larger interaction length in the material.
+
+
+% On the basis of this simulation, Fig.~\ref{fig:15062510.pdf} shows the distribution of particles which have not received an angular kick large enough to be captured by the secondary collimators, in function of the momentum per charge unit. For the proton case, the energetic fraction carried by particles with $P_E \ll 3500\,\text{GeV}/c$ takes values between $10^{-5}$ and $4 \times 10^{-5}$ and the distribution shows only a sharp peak at the reference energy. We conclude that in this case, only small amounts of the uncaptured protons have significant momentum offsets and are likely to be absorbed in regions with large dispersion. For the heavy-ion fragments, energy amounts between $10^{-4}$ to $2 \times 10^{-2}$ are carried by fragments with significant momentum offsets (note that in this case, also fragments with $P_E>3500\,\text{GeV}/c$ are present). For the ion case, 82.5\% of the out-leaking ion energy is carried by isotopes with $P_E$ offsets larger than $0.02$ which remain uncaptured by the TCS and intercept with the aperture in the IR7 DS region and at other dispersive maxima. This becomes apparent in the worse cleaning efficiency measured in the past heavy-ion runs, as shown in the next section.
+
+
+
+
+
+
+
+
+
+
+
+\section{The ICOSIM Simulation Tool}
+
+The worse cleaning performance for heavy-ion beams was yet anticipated in the LHC design phase, because it was known that the interaction of the heavy ions with the collimator material can lead to fragmentation into other isotopes, with negative consequences on the cleaning inefficiency. This was incorporated into a dedicated simulation software for heavy-ion collimation cleaning, Ion Collimation Simulation (ICOSIM)~\cite{ICOSIMref02,ICOSIMref01}. 
+
+It is an integrated program for particle tracking with a Monte-Carlo module to simulate the interaction of heavy-ions with the collimator materials. The tracking routine is based on a matrix multiplication with chromatic modelling in linear approximation and sextupole fields in thin-lens approximation. The information about the magnetic lattice is read from MAD-X output. Along with the tracking, the particle amplitudes are compared to a simplified aperture model, in which the aperture cross sections are approximated by an ellipse. Once the aperture is identified to be intercepted at the end of an element, the exact location is determined by extrapolation, as desribed in the previous chapter. 
+
+ICOSIM is equipped with a subroutine to sample the initial distribution, typically a Gaussian distribution in $x,x'$. In order to simulate diffusion, the emittance of the tracked particle bunch is increased by applying random transverse kicks. The simulation is typically carried out over 500 turns for 2 million initial particles. 
+
+The integrated Monte-Carlo module simulates the interaction of the ions with matter, including energy loss from ionization via the Bethe-Bloch equation and multiple Coulomb scattering, as well as fragmentation processes from EMD and NF~\cite{ICOSIMref02}. The latter is computed using tabulated cross-section information for the two processes which is generated beforehand with FLUKA. When a particle is subject to fragmentation in the collimator, the heaviest fragment is given back to the tracking routine, and transverse momentum transfers from the fragmentation process are not taken into account~\cite{ICOSIMref02}. At the time of development, these simplifications were considered to be of small importance for the simulation result, because the transverse momentum transfer from the fragmentation process and the energy loss related to it are small~\cite{ICOSIMref02}. 
+
+With the first heavy-ion run of the LHC, the heavy-ion loss patterns simulated with ICOSIM have been compared to experimentally measured data. The result of this benchmarking unveiled that the simulation result predicted well the most important losses in the IR7 DS region but that important loss patterns in other regions are not simulated by the software. The loss maps simulated with ICOSIM are compared to the measured data from the 2011 heavy-ion run in \chapref{chap:STIERresults}. 
+
+Based on this result, the development of a new improved simulation tool was initiated which is presented in this document. The new simulation software for heavy-ion collimation shall be easy to use, well-benchmarked and contain accurate physics models. As a first step in this development the requirements of an improved simulation tool have to be determined. One important hypothesis is that the discrepancy between ICOSIM and the measured loss map might arise from the fact that the transverse momentum transfer and kicks in kinetic energy in the fragmentation process is not included in ICOSIM. Contributions to the real loss patterns could also come from light ions which are omitted in ICOSIM. To study these hypotheses, the intermediate simulation tool SixTrack with Ion-Equivalent Rigidities (STIER) was developed. 
+
+
+% \textit{The heavy-ion loss distribution is dominated by losses in the betatron collimators of IR7, followed by the momentum collimators in IR3. Downstream of the betatron collimation region, two loss clusters in the dispersion suppressor region were measured at amplitudes of $\eta_\text{max} = 10^{-2}$ (two orders of magnitude larger than the DS loss clusters for protons). Four loss peaks at $\eta_\text{max} = 10^{-4} - 10^{-2}$ are present downstream of the dispersion suppressor in the arc magnets between IR7 and IR8. The losses at the TCT in IR8 are smaller with heavy-ion beams than for proton beams. Two loss peaks in the arc region between IR8 and IR1 are visible in both loss maps, but is larger by 2-3 orders of magnitude for the heavy-ion beam. The TCT losses in IR1 are followed by a large loss peak in the arc region between IR1 and IR2, with $\eta_\text{max}=10^{-3}$. While IR2 is free of losses beyond the noise level in the proton loss map, four major loss peaks, one being at the TCT, are visible in octant 2 with the heavy-ion beams. The difference loss patterns in this region can be explained from the different optical configuration used in the two measurements. The loss rate in IR3 is larger by 2 orders of magnitude for the heavy-ion case, indicating the large amount of effectively off-momentum ions which is present in the machine. The losses at the IR5 TCT and the dump protection devices in IR6 are higher with proton beams than with heavy-ion beams.}
+
+
+
+
+%\newpage
+\section{The STIER Simulation Tool}
+
+ The design of the LHC collimation system forsees the primary collimator in the betatron cleaning insertion IR7 as the first collimator in the cleaning hierarchy. It should be the only collimator exposed to particles of the main beam and is under normal circumstances the location with the highest amount of lost particles in the LHC ring. Losses in other locations should be dominantly cause by secondary ion fragments from the interaction of the main beam TCP. Particles generated from scattering and fragmentation in all other collimators should only contribute marginally to the final loss map. 
+
+Based on these assumptions, an intermediate simulation tool for heavy-ion cleaning was established. Instead of using a simplified fragmentation model for all collimators, this approach relies upon a detailed fragmentation simulation at the TCP, while the particle-matter interaction with other collimators is neglected. The resulting heavy-ion distribution starting at the TCP is tracked as protons with equivalent momenta in SixTrack, to take into account for the rigidities of the different heavy ions. The approach is referred to as SixTrack with Ion-Equivalent Rigidities (STIER). Initially developped to study the effect of the simplifications in ICOSIM and to determine the requirements for an improved simulation tool, STIER simulations proved to be in good agreement with the measured losses. It was used in the 2015 heavy-ion run to validate the collimator settings and to develop loss mitigation strategies, which were successfully tested in operation (see \chapref{chap:sim_meas}).
+
+%
+  \begin{figure}[b]
   \centering
   \includegraphics[width=0.5\textwidth]{pictures/15063001.pdf}
-  \caption{Schematics of a STIER simulation: The phase space parameters of the particles impacting on the collimator jaw of the primary collimator are computed using MAD-X. With the obtained angle of incidence, the fragmentation of the heavy-ion beam at the collimator material is simulated using the Monte-Carlo event generator FLUKA. The outcoming ion fragments are tracked as protons with ion-equivalent rigidities by means of SixTrack.}  
+  \caption{Three stages of the STIER simulation setup.}  
   \label{pic:15062601}
   %/home/phermes/Dropbox/PhD/pictures/STIER-schematics/thesis/simulation-overview4.pdf
   \end{figure}
 %
-STIER relies upon three consecutive simualtions as shown in \figref{pic:15062601}. First, an initial optics computation is carried out using MAD-X to determine the phase space parameters and thus the angle of incidence of the primary beam halo at the TCP. With this information, the fragmentation of the main beam at the primary collimator is simulated by means of FLUKA. The third and last step includes the tracking of the resulting ion fragments using protons in SixTrack starting at the TCP with ion-equivalent rigidities. 
+STIER relies upon three consecutive simulation steps shown in \figref{pic:15062601}. In the first step, the phase space properties of the particles impacting the collimator jaws are determined by means of MAD-X. The angle of incidence is then used as an input for the following simulation step in which the interaction of the primary heavy-ion beam with the material of the primary collimator is simulated using FLUKA. The information about the outcoming ion fragments is then converted to input for SixTrack where the ions are tracked as protons with specific momenta to match the rigidities of the individual isotopes.
 
-In the following sub-sections, the three STIER stages are described in detail and important simulation results for every stage are summarized. Some of the results are important also for the development of the advanced heavy-ion collimation tool that is described in the next chapter.
+In the following sub-sections, the three STIER stages are described in detail and important simulation results for every stage are summarized. Some of the results are important also for the development of the advanced heavy-ion collimation tool described in \chapref{chap:hisix}.
 %
 %
 \subsection{Optics Calculation}
 %
 \begin{figure}[htpb]
   \centering
-   \def\svgwidth{0.5\linewidth}
-   \input{pictures/hybrid_pictures/14070304.pdf_tex}
-  \caption{Phase space diagram for at the TCP locations. The particles hitting the collimator edge (indicated by the red dots) have a certain angle $x'= \alpha \, \sqrt{ \frac{\epsilon}{\beta_x} }  $. }
+   \def\svgwidth{0.6\linewidth}
+   \input{pictures/hybrid_pictures/16021601.pdf_tex}
+  \caption{Phase space diagram of particles at a maximum normalized betatron amplitude $N_P$. Particles hitting the left and right jaw of the TCP have specific coordinates in phase space.}
   \label{pic:14070304}
 \end{figure}
 %
-The tool MAD-X is used to obtain the optical functions at the location of the primary collimator. Besides, the \texttt{fort.2} input for the SixTrack simulation is generated by means of MAD-X. Particles which hit the primary collimator have specific properties in phase space, as illustrated in \figref{pic:14070304}. Of particular importance for the sub-sequent fragmentation simulation is the angle of incidence at the collimator which is defined by the normalized half gap $N_P$, the geometric emittance $\epsilon_x$ and the Twiss parameters $\beta_x,\alpha_x$ at the location of the TCP:
+As a first step of the STIER simulation approach, the optical functions are computed with the tool MAD-X. This simulation delivers both the phase space parameters at the TCP and the fort.2 optics input required for SixTrack. 
+
+Particles impacting the primary collimator have specific properties in phase space, as illustrated in \figref{pic:14070304}. The angle of incidence $x_{r/l}'$ at the left and right collimator jaw is defined by the normalized half gap $N_P$, the geometric emittance $\epsilon_x$ and the Twiss parameters $\beta_x,\alpha_x$ at the location of the TCP as follows~\cite{wiedemann1999particle}
 \begin{align}
-x' = \pm N_P \, \alpha_x \, \sqrt{\frac{\epsilon_x}{\beta_x}} \, . \label{eq:angle_of_incidence}
+x_{r/l}' = \pm N_P \, \alpha_x \, \sqrt{\frac{\epsilon_x}{\beta_x}} \, . \label{eq:angle_of_incidence}
 \end{align}
 %
-In the 2011 heavy-ion run the collimator settings were based upon a normalized emittance of \mbox{$\epsilon_N = 1.4\,\mu$m$\,$rad} corresponding approximately to the geometric emittance as for proton beams at $3.5\,$TeV.
-%
-The resulting angles of incidence for 3.5$\,Z\,$TeV and the hypothetical case of $7\,Z\,$TeV are shown in \tabref{tab:optical_functions}.
-%
-%
-\begin{table}[t]
-\centering
-\caption{Summary of the parameters used to calculate the angle of incidence at the primary collimator. The presented emittance $\epsilon_x=\frac{\epsilon_N}{\beta \gamma}$ is the geometric emittance of the heavy-ion beam. The Twiss parameters $\beta_x$ and $\alpha_x$ are computed using MAD-X. The angle $x'$ is calculated by means of \eqref{eq:angle_of_incidence}.}
-\label{tab:optical_functions}
-\begin{tabular}{ccccccc}
-\toprule
-\begin{tabular}[c]{@{}c@{}}E\\ {[}$Z$ GeV{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$\epsilon_x$\\ {[}$\mu$m rad {]}\end{tabular}& \begin{tabular}[c]{@{}c@{}}$\beta_x$\\ {[}m{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$\alpha_x$\\ {[} {]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$\gamma$\\ {[} {]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$N_p$\\ {[}$\sigma${]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$x'$\\ {[}rad{]}\end{tabular} \\ \midrule
-3500 & $9.38 \times 10^{-10}$  & 148.46 & 2.04 & 1482.78 & 5.70 & 2.912$\times 10^{-5}$ \\
-7000 & $x \times 10^{-10}$  & 148.46 & 2.04 & 2964.50 & 5.70 & $\times 10^{-5}$ \\ \bottomrule
-\end{tabular}
-\end{table}
- 
-\subsection{Fragmentation Simulation}
-%
-\begin{figure}[htb]
-  \centering
-   \def\svgwidth{0.65\linewidth}
-   \input{pictures/hybrid_pictures/14112701.pdf_tex}
-  \caption{Schematic illustration of the set-up for the fragmentation simulation.}
-  \label{pic:14112701}
-\end{figure}
-%
-The fragmentation simulation in STIER is carried out by means of a Monte-Carlo event generator such as Geant4~\cite{Agostinelli2003250,1610988} or \textsc{FLUKA}. The latter is used for the study case presented below. A primary \lead beam of $10^7$ particles at an energy of $3.5\,Z\,$TeV is simulated to hit a carbon target at an angle $x'$ and an impact parameter $b$. Based on the results of the prior optics computation the angle of incidence is set to be $x'=2.912\times 10^{-5}$. Assuming that the diffusion processes in heavy-ion and proton beams are similar, prior SixTrack simulations with protons deliver values for the impact parameter in the range $1\,\mu \text{m} \leq b \leq 10\,\mu$m. 
+For LHC emittances and collimator settings, the distance the primary beam particles travel through the collimator material scales, in good approximation, linearly with the angle of incidence of the main beam at the collimator jaw. With the typical angles of incidence (see \tabref{tab:optical_functions}) and impact parameters of $1\,\mu$m to $10\,\mu$m at TCP, the travelled distances are in the same order of magnitude as the nuclear fragmentation length (see \tabref{tab:physics_ions_matter}). The isotopic composition of the outcoming heavy-ions thus strongly depends on the angle of incidence.
 
-The collimator is modelled as a 60$\,$cm long block of carbon as shown in \figref{pic:14112701}. At the end of the collimator jaw, the ions are selected and their energies, angles and species are written to an output file. 
 
-\begin{figure*}[t]
-\begin{minipage}[t]{0.495\textwidth}
-\includegraphics[width=\textwidth]{pictures/15092402.pdf}
-\end{minipage}
-\begin{minipage}[t]{0.495\textwidth}
-\includegraphics[width=\textwidth]{pictures/15092404.pdf}
-\end{minipage}
-\caption{Spectrum of ions obtained in the fragmentation simulation of \lead~ions at $E=3.5\,Z\,$TeV impacting the material of the primary collimator with an impact parameter $b=3\,\mu$m. Left: Spectrum of $\chi_N$ as defined in \eqref{eq:normalized_chi}. The black line represents the case $\chi=1$. Right: Energy fraction carried by the individual isotopes, normalized with the total ion energy which leaks out of the collimator, as calculated by means of \eqref{eq:energyfraction}. The most important ions are those with $A,Z$ close to the main beam and very light ion fragments, such as protons and $\alpha$ particles. A detailed overview of the energy fraction carried by the most important isotopes is given in \tabref{tab:importance}.}
-\label{fig:stier_fragmentation}
-\end{figure*}
+% The geometrical collimator settings are 
+% While the settings for proton assume a normalized emittance of $\epsilon_x^{p}=3.5\,\mu$m, the design normalized emittance of the heavy-ion beams is $\epsilon_x^{\text{Pb}}=1.5\,\mu$m. 
 
-\figref{pic:15091701} shows the spectrum of isotopes generated in the fragmentation simulation for STIER with \mbox{$b=3\,\mu$m}. The left side shows the normalized $\chi$ defined as
-\begin{align} 
-\chi_N=\begin{cases} \chi & \text{if } \chi<1 \\ \chi^{-1} & \text{if } \chi>1 \end{cases} \, . \label{eq:normalized_chi}
-\end{align}
-The right side shows the energy fraction $e_f$ carried by the individual isotopes, normalized by the total outleaking ion energy:
-\begin{align}
-e_f(A,Z) = \frac{n(A,Z) \, A }{\sum_{A,Z} n(A,Z) \, A} \,, \label{eq:energyfraction}
-\end{align}
-where $n(A,Z)$ is the number of ions of the species $A,Z$ obtained from the fragmentation simulation. The individual ion energy is scaled with $A$ which roughly takes into account the energy weight, assuming that all ions have approximately the same energy per nucleon. The isotopes carrying the largest amount of energy amongst all out-coming ions are summarized for the three cases, $b=1\,\mu$m, $b=3\,\mu$m and $b=10\,\mu$m in \tabref{tab:importance}.
+% For the past heavy-ion runs in 2011, 2013 and 2015, the geometrical collimator gaps of the previous proton runs were kept for heavy-ion operation. 
 
-As expected, the number of very small ion fragments increases with increasing $b$, since distance an ion travels through the collimator material scales linearly with $b$, such that an ion can be fragmented several times throughout the passage. For the case of $b=1\,\mu$m, the amount of energy carried by protons and \lead ions is in the same order of magnitude, with 4.7\% of the energy carried by protons and 3.6\% carried by \lead. At $b=10\,\mu$m, approximately 40\% of the outcoming beam energy is carried by protons and 16\% by $^4$He$^{2+}$ ions, while the contribution of particles of the main beam has diminished by three orders of magnitude. In conclusion, the impact parameter plays an important role for the isotopic spectrum generated in the process of heavy-ion fragmentation. The impact on the resulting loss distribution is studied in the next chapter.
+% than for protons mainly due to the electron cooling in LEIR. 
+
+% Given the different masses, the geometrical emittances for heavy-ion beams and 
+
+
+% The equivalent emittance of heavy-ion beams is given in \tabref{tab:optical_functions}.
+%
+A summary of the Twiss parameters at the TCP, the collimator opening and the resulting angles of incidence for different scenarios are shown in \tabref{tab:optical_functions}. Note that the optics in IR7 remains unchanged during the LHC cycle and for the different configurations. 
+
 %
 %
 \begin{table}[b]
+\centering
+\caption{Summary of the parameters used to calculate the angle of incidence at the primary collimator. The Twiss parameters $\beta_x$ and $\alpha_x$ are computed using MAD-X. The angle $x'$ is calculated by means of \eqref{eq:angle_of_incidence} with $\epsilon_N = 1.4 \times 10^{-6}\mu$m$\,$rad.}
+\label{tab:optical_functions}
+\begin{tabular}{ccccccc}
+\toprule
+\begin{tabular}[c]{@{}c@{}}E\\ {[}$Z$ GeV{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$\beta_x$\\ {[}m{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$\alpha_x$\\ {[} {]}\end{tabular} & %
+\begin{tabular}[c]{@{}c@{}}$\epsilon_N$\\ {[}$\mu$m rad{]}\end{tabular} & %
+\begin{tabular}[c]{@{}c@{}}$\gamma$\\ {[} {]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$N_p$\\ {[}$\sigma${]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}$x'$\\ {[}rad{]}\end{tabular} \\ \midrule
+3500 &  148.46 & 2.04 & 1.50 & 1482.8 & 5.7 & $-2.9\times 10^{-5}$ \\
+6370 &  148.46 & 2.04 & 1.41 & 2696.8 & 5.5 & $-2.1\times 10^{-5}$ \\
+7000 &  148.46 & 2.04 & 1.50 & 2964.5 & 5.7 & $-2.1\times 10^{-5}$ \\ \bottomrule
+\end{tabular}
+\end{table}
+%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %
+ %  FRAGMEnTATION SIMULATION
+ %  
+ %
+ %
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\subsection{Fragmentation Simulation}
+%
+\subsubsection{Simulation Setup}
+%
+\begin{figure}[b]
+  \centering
+  \def\svgwidth{0.65\linewidth}
+  \input{pictures/hybrid_pictures/14112701.pdf_tex}
+  \caption{
+    Geometry used for the FLUKA simulation of the fragmentation
+    at the TCP.%
+  }
+  \label{pic:14112701}
+\end{figure}
+%
+A Monte-Carlo event generator is used to simulate the interaction of the heavy-ion beam with the material of the primary collimator. In the STIER simulations presented, the software FLUKA is employed for this purpose, but in principle any tool suitable to simulate ion-matter interaction can be used (for example Geant4~\cite{Agostinelli2003250,1610988}). 
+
+The primary collimator is modelled as a simple rectangular carbon cuboid of 60~cm length (see \figref{pic:14112701}). Alternatively, the more accurately modelled collimator geometry of the FEDB can be used . Comparisons between fragmentation simulations using the two geometries have shown no significant discrepancy in the resulting spectrum of heavy-ion fragments. The density of the carbon composite is set to a density of 1.61~g/cm$^3$ to account for the CFC material used for the TCPs. Species, energy and transverse momentum of the heavy-ions passing the boundary crossing at the end of the collimator jaw are saved to an output file. Other particles, such as electrons, pions, mesons, etc. are ignored because they are lost most probably in the warm aperture immideately downstream of the TCP. While this approximation is valid for cleaning simulations, in which the global cleaning inefficiency is simulated, detailed shower simulations in the collimation region IR7 take them into account.  
+
+The FLUKA input file is adjusted to take into account for electromagnetic dissociation, nuclear fragmentations using the DPMJET-III model~\cite{} as well as subsequent nuclear evaporation.
+
+In the presented simulations of the 2011 cleaning performance, the primary beam is simulated as $10^7$ particles of \lead at an energy of $3.5\,Z\,$TeV, impacting the TCP at an angle of incidence of $x'_{r,l}= \pm 2.91\times 10^{-5}\,$rad. The impact parameter $b$ depends on the transverse diffusion speed and is experimentally unaccessible. Simulations of the diffusion indicate that realistic values for the impact parameters lie in the range of 1~$\mu$m to 10~$\mu$m~\cite{}.  
+
+\subsubsection{Isotope Spectrum}
+
+\begin{figure*}[b]
+  \begin{minipage}[t]{0.495\textwidth}
+    \includegraphics[width=\textwidth]{pictures/15092402.pdf}
+  \end{minipage}
+  \begin{minipage}[t]{0.495\textwidth}
+    \includegraphics[width=\textwidth]{pictures/15092404.pdf}
+  \end{minipage}
+  \caption{Spectrum of ions obtained in the fragmentation simulation of \lead~ions at $E=3.5\,Z\,$TeV impacting the material of the primary collimator with an impact parameter $b=3\,\mu$m. Left: Spectrum of $\chi_N$ as defined in \eqref{eq:normalized_chi}. The black line represents the case $\chi=1$. Right: Energy fraction carried by the individual isotopes, normalized with the total ion energy which leaks out of the collimator, as calculated by means of \eqref{eq:energyfraction}.}
+  \label{fig:stier_fragmentation}
+\end{figure*}
+
+The isotopic spectrum of the heavy ions leaving the TCP in the fragmentation simulation with $b=3\,\mu$m is shown in \figref{fig:stier_fragmentation}. The left hand side shows the normalized mass to charge ratio $\chi_N$ defined as
+\begin{align} 
+  \chi_N=\begin{cases} \chi & \text{if } \chi<1 \\ \chi^{-1} & \text{if } \chi>1 \end{cases} \, , \label{eq:normalized_chi}
+\end{align}
+as a function of $A,Z$. The right hand side shows the energy fraction $e_f$ carried by the individual isotopes, normalized by the total energy of all ions leaving the collimator:
+\begin{align}
+e_f(A,Z) = \frac{n(A,Z) \, A }{\sum_{A,Z} n(A,Z) \, A} \,, \label{eq:energyfraction}
+\end{align}
+where $n(A,Z)$ is the number of ions of the species $[A,Z]$ obtained from the fragmentation simulation. The individual ion energy is scaled with $A$ which roughly takes into account the energy weight, assuming that all ions have approximately the same energy per nucleon. The isotopes carrying the largest amount of energy amongst all out-coming ions are summarized for the three cases, $b=1\,\mu$m, $b=3\,\mu$m and $b=10\,\mu$m in \tabref{tab:importance}.
+The ions carrying the most fraction of energy are those with $[A,Z]$ close to the main beam and very light ion fragments, such as protons and $\alpha$-particles. A detailed overview of the energy fraction carried by the most important isotopes is given for different impact parameters in \tabref{tab:importance}.
+
+%
+%
+\begin{table}[t]
 \centering
 \caption{Isotopes with the largest energetic fractions leaking out the collimator material from the initial fragmentation simulation. }
 \small
@@ -121,7 +305,10 @@ $^{208}$Pb$^{82+}$&  & $3.6 \times 10^{-2}$ & & $3.6\times 10^{-2}$  & & $1.4 \t
 %
 %
 
-A very important quantity for the setup of the new heavy-ion collimation software is the momentum per nucleon of the ion fragments (see \chapref{chap:hisix_coupling}). The distribution momentum per nucleon $p_A$ of the outcoming ions is shown in \figref{pic:15091701}. Most of the ions have $p_A$ close to the momentum per nucleon of the incoming \lead beam, which is at 1379.8$\,$GeV/$A$. Parts of the fermi-motion in the nucleus can be transferred to individual ion fragments, such that the ion can have significantly larger momentum per nucleon. The highest $p_A$ that was obtained from the simulation is 3200$\,$GeV$/A$.
+
+The number of very small ion fragments increases with larger impact parameters, since the distance an ion travels through the collimator material scales linearly with $b$. Therewith, the probability of fragmentation increases exponentially. For an impact parameter of $b=1\,\mu$m, the amount of energy carried by protons and \lead ions is in the same order of magnitude, with 4.7\% of the energy carried by protons and 3.6\% carried by \lead. At $b=10\,\mu$m, approximately 40\% of the outcoming beam energy is carried by protons and 16\% by $^4$He$^{2+}$ ions, while the contribution of particles of the main beam has diminished by three orders of magnitude. Apparently, the impact parameter plays an important role for the isotopic spectrum generated in the process of heavy-ion fragmentation. The impact on the resulting loss distribution is studied in the following chapters.
+
+
 
   \begin{figure}[t]
   \centering
@@ -132,51 +319,79 @@ A very important quantity for the setup of the new heavy-ion collimation softwar
   \end{figure}
 
 
-\subsection{Tracking in SixTrack}
 
-SixTrack is designed for proton tracking, so the tracking does not include effects of isotopic dispersion. Based on \eqref{eq:d_effective}, the effective momentum offset $\delta_\text{eff}$ of an ion of the reference species to have the same magnetic bending behaviour as an arbitrary ion with $\delta,\chi$, is given by
+
+
+
+
+In the ICOSIM tool it is assumed that the momentum per nucleon of the fragments generated in NF and EMD processes is similar to $p_A$ of the main beam ($\delta \approx 0$). The fragmentation simulation for STIER allows for the analysis of the $p_A$ spectrum for the outcoming ions, shown in \figref{pic:15091701}. Most of the ions have $p_A$ close to that of the incoming \lead beam, which is at 1379.8$\,$GeV/$A$. Parts of the fermi-motion in the nucleus can be transferred to individual ion fragments, such that the ion can have significantly larger momentum per nucleon. The largest $p_A$ that was obtained from the FLUKA simulation is approximately 3200$\,$GeV$/A$. This broad spectrum of momenta indicates that an improved heavy-ion collimation tool should include the change of kinetic energy from the fragmentation process, especially if light heavy-ions shall be included in the simulation.
+
+
+% \begin{figure}[htbp]  
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{pictures/16021602.pdf}
+%     \caption{Transverse angles of the two ion species $^{207}$Pb$^{82+}$ and $^{4}$He$^{2+}$.}  
+%     \label{pic:16021601}
+%     %/media/phermes/ph3tboffice/ph1tbwd/FLUKA_results/150506_HeavyIon_3500GeV_perpendicular_3um/transverse_angle.pdf
+% \end{figure}
+
+
+
+
+
+
+
+
+
+\subsection{Heavy-Ion Tracking in SixTrack}
+
+SixTrack is designed for the tracking of protons, so the tracking does not include effects of isotopic dispersion. Based on \eqref{eq:d_effective}, the effective momentum offset $\delta_\text{eff}$ of an ion of the reference species to have the same magnetic bending behaviour as an arbitrary ion with $\delta,\chi$, is given by
 %
 \begin{align}
 \delta_\text{eff} = \frac{(1+\delta)}{\chi} -1 \,. 
 \end{align}
 %
-If the reference species is a proton of momentum $P_0$, the applicable effective proton momentum to simulate the tracking behaviour of an ion with mass and charge $m$ and $Z$ is given by (see \eqref{eq:brho_brho0})
+If the reference species is a proton of momentum $P_0$, the applicable effective proton momentum to simulate the tracking behaviour of an ion with mass and charge $m$ and $Z$ is given by:
 \begin{align}
   P_E = P_0 \, (1+\delta_\text{eff}) = \frac{P}{Z} \, .
 \end{align}
+%
+The isotopic dispersion of heavy-ion species not matched to the magnetic lattice can therefore be accurately simulated by assigning the ion-equivalent momentum $P_E$ to the tracked proton. From the FLUKA simulation data on the ion fragments leaving the primary collimator, the momentum and charge are easliy extracted and converted into the momenta used for the initial distribution in STIER. Furthermore, the transvserse angles $x'$ and $y'$ and positions $x,y'$ are incorperated into the initial conditions. 
 
-\begin{itemize}
-\item Collimators set to perfect absorbers
-\item Track all isotopes from the fragmentation simulation.
-\end{itemize}
+In order to take into account for the different energy deposited from heavy-nuclei compared to light nuclei, the cleaning inefficiency must be calculated taking into account either the physical momentum of the impacting nuclei or their nuclear mass number. The latter is slightly less accurate, but simpler to implement and is used in the loss maps presented in the following. Given that the losses are not to be compared quantitatively to the measured loss signals, this approximation is acceptable. 
+
+The aperture losses are identified with BeamLossPattern, in a manner fully identical to that used for proton studies with SixTrack. The Monte-Carlo routine implemented in SixTrack to simulate the proton interaction with the collimators must be evaded because it is not adapted to heavy-ions. The collimators in the STIER approach are therefore set to perfect absorbers. This approach will lead to an overestimation of the collimator losses which should be considered in the analysis of the simulated loss pattern. 
+
+The accelerating RF cavities are switched off in STIER because the acceleration depends on $Z$ which is not incoporated. However, it is expected that the number of turns that a heavy-ion fragment can perform in the machine without being lost is very small compared to the synchrotron frequency ($\approx 500 turns$). 
 
 
-\section{Simulation Results}
-\subsection{Full Heavy-Ion Loss Map Simulations}
+
+\section{Simulation Results} \label{chap:STIERresults}
+\subsection{Full Heavy-Ion Loss Map Simulations} \label{chap:STIER:full}
 
 %\subsection{Loss Map simulations} \label{sec:lm_simulations}
 \begin{figure*}[htbp]
 \begin{minipage}[t]{0.495\textwidth}
-\includegraphics[width=\textwidth]{pictures/15092301.pdf}
+\includegraphics[width=\textwidth]{pictures/15102001.pdf}
 \end{minipage}
 \begin{minipage}[t]{0.495\textwidth}
-\includegraphics[width=\textwidth]{pictures/15092302.pdf}
+\includegraphics[width=\textwidth]{pictures/15102002.pdf}
 \end{minipage}
 \caption{Comparison of loss map simulations using ICOSIM (top row), a simplified STIER approach (second row), a full STIER simulation (third row) and the measured loss maps during the 2011 LHC heavy-ion run at 3.5\,$Z\,$TeV. The right graph in the bottom row also shows the locally generated dispersion function $D_x$ starting at $D_x=0$ at the TCP. The left column shows the loss map over the full LHC ring, while the right column shows the same loss map zoomed into the betatron collimation region IR7. The STIER simulations are carried out assuming an impact parameter of $b=3\,\mu$m.}
 \label{fig:comparison_lossmaps}
 \end{figure*}
 
-
-\textit{The result of the ICOSIM simulation is shown in the first row Fig.~\ref{fig:comparison_lossmaps} for the full LHC ring (left) and zoomed into IR7 and the following arcs (right). Fragments scattered out of the collimators are in this model absorbed closely to the collimators where the fragmentation occurred and do not continue moving inside the machine for long distances. Losses in warm regions are visible only in IR3 but not in IR7. The mass number of the heaviest created and tracked fragment is $A_\text{max} = 90$ which can be traced back to the simplified fragmentation algorithm. The high measured loss peaks (see bottom row in Fig.~\ref{fig:comparison_lossmaps}) in the arcs between IR7 and IR8 are, with one exception, not reproduced by ICOSIM. The most critical losses in the dispersion suppressor located in the cells 8 and 9 of IR7 are visible in the simulated loss map. The local cleaning inefficiency in this region peaks at approximately $\eta=10^{-2}$, which is comparable to the measured loss distribution. However, it shall again be emphasized that the BLM signals with limited coverage can not be compared quantitatively to the simulated loss maps. The longitudinal extensions of the loss clusters in the DS do not fully match with the ones of the measured losses. 
+The content of this chapter was published also in \cite{NIM:819}.
+The result of the ICOSIM simulation is shown in the first row of Fig.~\ref{fig:comparison_lossmaps} for the full LHC ring (left) and zoomed into IR7 and the following arcs (right). Fragments scattered out of the collimators are in this model absorbed closely to the collimators where the fragmentation occurred and do not continue moving inside the machine for long distances. Losses in warm regions are visible only in IR3 but not in IR7. The mass number of the heaviest created and tracked fragment is $A_\text{max} = 90$ which can be traced back to the simplified fragmentation algorithm. The high measured loss peaks (see bottom row in Fig.~\ref{fig:comparison_lossmaps}) in the arcs between IR7 and IR8 are, with one exception, not reproduced by ICOSIM. The most critical losses in the dispersion suppressor located in the cells 8 and 9 of IR7 are visible in the simulated loss map. The local cleaning inefficiency in this region peaks at approximately $\eta=10^{-2}$, which is comparable to the measured loss distribution. However, it shall again be emphasized that the BLM signals with limited coverage can not be compared quantitatively to the simulated loss maps. The longitudinal extensions of the loss clusters in the DS do not fully match with the ones of the measured losses. 
 %
 %
-The loss maps from the simplified STIER simulation are shown in the second row of Fig.~\ref{fig:comparison_lossmaps}. The losses are more broadly distributed over the LHC ring when the full spectrum of fragments is included. This indicates that light isotopes are by no means only lost locally in the secondary collimators or in the warm regions surrounding them. Parts of the losses in the warm region of IR7 are reproduced in this simulation approach, originating mainly from very light isotopes at $|\delta_\text{eff}|\gg0$. The two clusters of losses in the IR7 DS are increased in their intensity and longitudinal extension, since the isotopes which are neglected in ICOSIM are now included and are lost in these regions. The loss peak with the largest amplitude is still in the IR7 DS but is increased to \mbox{$\eta_\text{max} = 10^{-1}$}. One of the loss peaks in the arcs is, as in ICOSIM, reproduced in this simulation. Also here, the simulated peak intensity is increased with respect to ICOSIM.}
+The loss maps from the simplified STIER simulation are shown in the second row of Fig.~\ref{fig:comparison_lossmaps}. The losses are more broadly distributed over the LHC ring when the full spectrum of fragments is included. This indicates that light isotopes are by no means only lost locally in the secondary collimators or in the warm regions surrounding them. Parts of the losses in the warm region of IR7 are reproduced in this simulation approach, originating mainly from very light isotopes at $|\delta_\text{eff}|\gg0$. The two clusters of losses in the IR7 DS are increased in their intensity and longitudinal extension, since the isotopes which are neglected in ICOSIM are now included and are lost in these regions. The loss peak with the largest amplitude is still in the IR7 DS but is increased to \mbox{$\eta_\text{max} = 10^{-1}$}. One of the loss peaks in the arcs is, as in ICOSIM, reproduced in this simulation. Also here, the simulated peak intensity is increased with respect to ICOSIM.
 
 
 %\subsection{Isotope Contributions to Loss Peaks} \label{chap:isocontributions}
 
 
-\begin{table*}[htbp]
+\begin{table*}[b]
 \caption{STIER simulated contributions on the total deposited energy at the warm magnets in IR7 (W1), the two loss clusters in the IR7 DS (C1 and C2) and in the arcs downstream of IR7 (A1,A2,A3,A4) as shown in Fig.~\ref{fig:comparison_lossmaps} }
 \small
 \setlength\tabcolsep{2.5pt}
@@ -201,17 +416,17 @@ $^{3}$He$^{2+}$     & 1.4               & $^{203}$Pb$^{82+}$ & 3.2              
 
 
 
-\textit{The loss maps generated with the full STIER simulation are shown in comparison to the measurement and the ICOSIM loss map in the third row of Fig.~\ref{fig:comparison_lossmaps}. This approach shows the best agreement with the measured loss distribution. The four highest loss peaks in the arcs become visible when the angles and energies of the fragments are included. 
+The loss maps generated with the full STIER simulation are shown in comparison to the measurement and the ICOSIM loss map in the third row of Fig.~\ref{fig:comparison_lossmaps}. This approach shows the best agreement with the measured loss distribution. The four highest loss peaks in the arcs become visible when the angles and energies of the fragments are included. 
 %
 A larger amount of the losses in the warm IR7 magnets (W1) is visible, coming mainly from the very light fragments scattered out of the collimator (see Tab.~\ref{tab:contrib} for the mainly contributing isotopes). The two loss clusters (C1 and C2) in the IR7 DS are modeled with a correct longitudinal extension and order of magnitude (the mainly contributing isotopes to C1 and C2 are also listed in Tab.~\ref{tab:contrib}). It is remarkable that the second loss cluster C2 is dominated by heavy fragments of Pb, created by electromagnetic dissociation (the three isotopes contribute to 61.8\,\% of the total deposited energy), while the highest fraction of C1 is due to very light isotopes (H and He ions) where the four most important isotopes only compose only 19.5\,\% of the energy deposited in C1. With 1227 different isotope species lost in C1, the deposited energy is shared between a much larger number of isotopes than at C2, where only 334 different isotopes are absorbed. 
 %
 The distributions of the quantity $\chi$ for the isotopes lost in the regions C1,C2 are graphically represented in Fig.~\ref{fig:15032102}. As expected, the aperture in the cold region C1 captures a very broad range of isotopes. In the cold region C2, mostly isotopes with mass to charge ratios close to the reference ion species contribute to the total deposited energy. 
 %
-The graph at the right bottom of Fig.~\ref{fig:comparison_lossmaps} shows also the locally generated dispersion function $D_x$ starting at the primary collimator. The dispersion increases from $D_x\approx0\,$m in the warm IR7 magnets to $D_x \approx 1\,$m at the end of the C1. At the second loss cluster C2, the dispersion increases to even $D_x=2.4\,$m. We conclude that the isotope distribution shown in Fig.~\ref{fig:15032102} can be explained by the fact that the isotopes with large momentum offsets are removed from the beam already in the C1, while the isotopes with rigidities closer to the main beam are not sufficiently off-momentum to be intercepted by the aperture at this location. When the dispersion further increases at C2, also the isotopes with smaller $|\delta_\text{eff}|$ are lost in the aperture, while the isotopes with $A<190$ have already been removed from the beam in C1. Here it shall be pointed out that the fraction of light isotopes depends strongly on the chosen impact parameter for the fragmentation simulation.}
+The graph at the right bottom of Fig.~\ref{fig:comparison_lossmaps} shows also the locally generated dispersion function $D_x$ starting at the primary collimator. The dispersion increases from $D_x\approx0\,$m in the warm IR7 magnets to $D_x \approx 1\,$m at the end of the C1. At the second loss cluster C2, the dispersion increases to even $D_x=2.4\,$m. We conclude that the isotope distribution shown in Fig.~\ref{fig:15032102} can be explained by the fact that the isotopes with large momentum offsets are removed from the beam already in the C1, while the isotopes with rigidities closer to the main beam are not sufficiently off-momentum to be intercepted by the aperture at this location. When the dispersion further increases at C2, also the isotopes with smaller $|\delta_\text{eff}|$ are lost in the aperture, while the isotopes with $A<190$ have already been removed from the beam in C1. Here it shall be pointed out that the fraction of light isotopes depends strongly on the chosen impact parameter for the fragmentation simulation.
 
 
 
-\begin{figure}[b]
+\begin{figure}[t]
 \centering
  \includegraphics[width=0.6\textwidth]{pictures/15092501.pdf}
 % \includegraphics[width=0.5\textwidth]{pictures/15062202.pdf}
@@ -221,36 +436,55 @@ The graph at the right bottom of Fig.~\ref{fig:comparison_lossmaps} shows also t
 \label{fig:15032102}
 \end{figure}
 
-\textit{Contrary to this, the isotope composition at the arc loss peaks (A1,A2,A3,A4) is very homogeneous (see Tab.~\ref{tab:contrib}). At the passage through the arcs, the locally generated dispersion function is beating with amplitudes between $0.8\,\text{m} < D_x < 2.5\,\text{m}$. The loss peaks A1-A4 are located at local maxima of the function $D_x$. The similarity of their isotopic composition can be explained by the fact that, especially for isotopes with rigidities closely to the main beam, the individual starting conditions at the TCP (starting angle and collimator jaw) can partly compensate or enhance dispersive effects, thus some ions of the same species can travel for longer distances than others. It shall be emphasized that except $^1$H$^{3+}$, all isotopes listed for A1-A4 in Tab.~\ref{tab:contrib} are also included in the ICOSIM simulation. We conclude that the decisive properties determining at which of the four locations a particle is absorbed are the angle and momentum at which the particle is emitted at the TCP, which are not included in ICOSIM. Hence, an accurate simulation of heavy ion loss patterns requires inevitably the incorporation of angular and energetic shifts by fragmentation at the collimator, which should be considered for future simulations.
+Contrary to this, the isotope composition at the arc loss peaks (A1,A2,A3,A4) is very homogeneous (see Tab.~\ref{tab:contrib}). At the passage through the arcs, the locally generated dispersion function is beating with amplitudes between $0.8\,\text{m} < D_x < 2.5\,\text{m}$. The loss peaks A1-A4 are located at local maxima of the function $D_x$. The similarity of their isotopic composition can be explained by the fact that, especially for isotopes with rigidities closely to the main beam, the individual starting conditions at the TCP (starting angle and collimator jaw) can partly compensate or enhance dispersive effects, thus some ions of the same species can travel for longer distances than others. It shall be emphasized that except $^1$H$^{3+}$, all isotopes listed for A1-A4 in Tab.~\ref{tab:contrib} are also included in the ICOSIM simulation. We conclude that the decisive properties determining at which of the four locations a particle is absorbed are the angle and momentum at which the particle is emitted at the TCP, which are not included in ICOSIM. Hence, an accurate simulation of heavy ion loss patterns requires inevitably the incorporation of angular and energetic shifts by fragmentation at the collimator, which should be considered for future simulations.
 %
 The fraction of nucleons which is absorbed in the aperture was calculated to be $f_\text{glob}=0.167$ almost two orders of magnitude larger than for comparable simulations with proton beams where this quantity takes typically values in the order of $f_\text{glob}=0.002$~\cite{Bruce2014a}.
 %
-Parts of the losses far downstream of the TCP are longitudinally shifted with respect to the measured loss peaks in the same region of the LHC. These shifts could come from small aperture displacements in the real machine, or offsets of the closed orbit by the same amount. An analysis of the particle trajectories at the corresponding loss locations shows that displacements as small as $\Delta a =300\,\mu$m are sufficient to shift the loss location of the impacting ions, while at the loss peaks A1-A4 displacements of $\Delta a > 600\,\mu$m are required for a significant reduction of the loss peak amplitude. Another possible explanation is that a non-equal amount of secondary ion fragments is produced at the two collimator jaws, which is studied in the next sub-chapter.}
+Parts of the losses far downstream of the TCP are longitudinally shifted with respect to the measured loss peaks in the same region of the LHC. These shifts could come from small aperture displacements in the real machine, or offsets of the closed orbit by the same amount. An analysis of the particle trajectories at the corresponding loss locations shows that displacements as small as $\Delta a =300\,\mu$m are sufficient to shift the loss location of the impacting ions, while at the loss peaks A1-A4 displacements of $\Delta a > 600\,\mu$m are required for a significant reduction of the loss peak amplitude. Another possible explanation is that a non-equal amount of secondary ion fragments is produced at the two collimator jaws, which is studied in the next sub-chapter.
+
+
+
+
+
 
 \subsection{Dependence on the starting Collimator Jaw}
 
-\begin{figure}[b]
+\begin{figure}[t]
   \begin{center}
-\includegraphics[width=0.6\textwidth]{pictures/15092502.pdf}
+\includegraphics[width=0.7\textwidth]{pictures/15092502.pdf}
 \caption{STIER simulations starting at the left and right collimator jaw, shown in comparison to the measured loss map. The simulations are carried out considering an impact parameter of $3\,\mu$m. }
 \label{fig:15032201.pdf}
   \end{center}
 \end{figure}
 
-\textit{An intrinsic advantage of the STIER setup is the possibility to study the loss behaviour of isotopes starting at the individual collimator jaws. So far, all STIER results assume the same amount of ions impacting on the two TCP jaws. However, studies with proton beams have shown that the beam halo in the real machine can impact the two collimator jaws asymmetrically, as discussed in \cite{Bruce2014a} and seen from SixTrack simulations. This process is very hard to model accurately in simulations, as it depends on the interplay of a large number of machine imperfections that are not well known. In Fig.~\ref{fig:15032201.pdf}, the loss map is shown, as simulated with STIER with the same settings as above for particles starting at the left and right collimator jaw separately. A different behaviour of the losses can be expected because the betatronic motion and the dispersion can amplify or compensate each other, depending on the starting conditions of the ion.
+An intrinsic advantage of the STIER setup is the possibility to study the loss behaviour of isotopes starting at the individual collimator jaws. So far, all STIER results assume the same amount of ions impacting on the two TCP jaws. However, studies with proton beams have shown that the beam halo in the real machine can impact the two collimator jaws asymmetrically, as discussed in \cite{Bruce2014a} and seen from SixTrack simulations. This process is very hard to model accurately in simulations, as it depends on the interplay of a large number of machine imperfections that are not well known. In Fig.~\ref{fig:15032201.pdf}, the loss map is shown, as simulated with STIER with the same settings as above for particles starting at the left and right collimator jaw separately. A different behaviour of the losses can be expected because the betatronic motion and the dispersion can amplify or compensate each other, depending on the starting conditions of the ion.
 \\
-From the obtained loss maps it can be seen that the simulation result for the particles starting at the right collimator jaw is in much better agreement with the measured data than for particles starting at the left jaw. The largest fraction of the loss peaks between IR8 and IR1 as well as between IR1 and IR2 which are unobserved in the measurement but visible in STIER come from particles starting at the left jaw. However, still one intense peak, visible in the simulation for the right jaw, is unobserved in the measurement, which might come from aperture or orbit displacements as discussed above. In conclusion, the discrepancies of STIER in the regions far downstream of the TCP might come from both, asymmetric losses at the two collimator jaws and small beam displacements relative to the aperture. }
+From the obtained loss maps it can be seen that the simulation result for the particles starting at the right collimator jaw is in much better agreement with the measured data than for particles starting at the left jaw. The largest fraction of the loss peaks between IR8 and IR1 as well as between IR1 and IR2 which are unobserved in the measurement but visible in STIER come from particles starting at the left jaw. However, still one intense peak, visible in the simulation for the right jaw, is unobserved in the measurement, which might come from aperture or orbit displacements as discussed above. In conclusion, the discrepancies of STIER in the regions far downstream of the TCP might come from both, asymmetric losses at the two collimator jaws and small beam displacements relative to the aperture. 
 
 
-\subsection{Dependence on the Impact Parameter}
-
-\textit{In the real machine, the impact parameter $b$ of the ions hitting the collimators may vary. For the STIER simulations presented so far, an impact parameter of 3$\,\mu$m was assumed, based on previous proton studies. As shown in Tab.~\ref{tab:particle_matter_interaction}, the interaction lengths for fragmentation processes by EMD and NF are smaller than the length of the collimator jaw of the primary collimator (60$\,$cm). With increasing impact parameter, the traversed distance of the heavy-ion beam inside the material increases, leading to a drastic change of the fragmentation rates into the different isotopes. In particular the production of very light ion fragments, such as protons, $\alpha$-particles and neutrons increases, while the rate of surviving ions of the main beam drops significantly with increasing $b$. An overview of the energetic fraction carried by different out-coming isotopes after the ion-collimator interaction is given in Tab.~\ref{tab:isotope_abundances}. Note that the values are scaled with the ion mass, so the ion abundance is reduced by a factor of $A$ with respect to the given values. With an impact parameter of $b=3\,\mu$m, the two most important isotopes are protons and $\alpha$ particles followed by \lead ions of the initial species. 
-\\
-The loss maps as simulated with STIER for the three different impact parameters are compared in Fig.~\ref{fig:15062502.pdf}. The loss patterns are qualitatively similar but the loss peak intensities differ quantitatively. For the smallest impact parameter, the highest losses occur at the primary collimator in IR7. The main contribution of these losses comes from \lead ions that were not fragmented but scattered at small angles in the TCP. They move inside the machine for one or multiple turns until they are intercepted by the global bottleneck, which is the primary collimator. In reality, however, these ions are again subject to fragmentation and scattering inside of the TCP, which is not considered in the presented simulation. The losses at the DS region peaks at $\eta=10^{-3}$, which is smaller than in the other simulations, due to the large amount ions of the main beam surviving the initial passage through the TCP. The remaining losses in the aperture and the other collimators are located at elements which are also subject to losses for the other impact parameters, but the loss amplitudes are smaller. For the cases of $b=3\,\mu$m and $b=10\,\mu$m the highest losses are visible at the secondary collimator, which is consistent with the loss pattern measured during operation. Both simulated loss patterns are dominated by ion fragments instead of ions of the main beam. The losses in the DS clusters peak at $\eta=10^{-2}$ for $b=3\,\mu$m and are larger by a factor of 3 for the case of $b=10\,\mu$m. In the latter case, the production yield of effectively off-momentum isotopes is highest among the studied scenarios, which becomes apparent by the comparatively small amount of fragments captured by the collimation system.
-\\
-We conclude that the impact parameter does seem to influence the cleaning inefficiency but not on the longitudinal distribution of the losses. }
 
 
+
+
+\subsection{Loss locations of individual isotopes}
+
+\begin{figure}[htbp]  
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/16021505.pdf}
+    \caption{STIER simulated loss locations of the isotopes $^{207}$Pb$^{82+}$, $^{204}$Tl$^{81+}$, $^{206}$Pb$^{82+}$, $^{4}$He$^{2+}$, $^{1}$H$^{1+}$ (from top to bottom). The vertical axis describes the number of ions $n^i$ lost, normalized by the total number of ions $n^i_{tot}$ of the species $i$. }  
+    \label{pic:16021501}
+    %/home/phermes/Dropbox/PhD/pictures/160215_STIER_isotopes/isotopes.pdf
+\end{figure}
+
+STIER allows the study of the distribution of losses for the individual isotopes. With the previous studies it became apparent that the measured loss pattern may be affected by light ion fragments also in the superconducting magnets. The STIER simulation result allows for the study of loss locations for any of the isotopes created in the TCP. In \figref{pic:16021501} the loss maps for five individual isotopes are compared. Note that the loss peaks are normalizated with respect to the total number of ions of the respective species lost in the ring. The first plot shows the loss pattern for the isotope $^{207}$Pb$^{82+}$ with a rigidity offset $\delta_\text{eff} = 0.0048$. The losses are globally distributed, showing that the isotope is within the momentum acceptance of the arcs. The losses are mainly localized at collimators, few of them at the secondary collimators in IR7 and the dominating part at the TCP in IR3 and the TCTs in IR2 and IR8. It shall be shown later that for a different particle momentum and changed optics, a significantly larger fraction of this isotope is lost at the TCT in IR2 (see \chapref{chap:ir2loss}). 
+
+The loss pattern of \iso{204}{Tl}{81+} with $\delta = 0.0072$ shows a defined peak at the horizontal TCT in IR8 and significant losses in superconducting magnets from IR7 to IR2. Again, the TCP in IR3 captures a large fraction of this isotope. These losses disappear, if the rigidity offset is further increased to $\delta=0.0097$ as it is visible in the loss pattern of the isotope \iso{206}{Pb}{82+}. Most of these ion fragments are lost at the TCSGs, in the IR7 DS magnets and in the arc region between IR7 and IR8. Their rigidity is too different from that of the main beam to reach IR3. This isotope is also an important contributor to the losses in the IR7 DS as discussed in the previous chapter. 
+
+In the domain of more extreme rigidity offsets the losses are mostly localized in IR7 as shown for \iso{4}{He}{2+} and \iso{1}{H}{1+}. Most of the prior isotope are lost in the IR7 collimators, with small fractions intercepted in the IR7 DS. All protons are lost in the IR7 collimation system, so they are not contributing to the losses in cold regions.
+
+
+
+\subsection{Dependence on the Impact Parameter} \label{subsec:impactparam}
 
 \begin{figure}[t]
   \begin{center}
@@ -259,9 +493,38 @@ We conclude that the impact parameter does seem to influence the cleaning ineffi
 \label{fig:15062502.pdf}
   \end{center}
 \end{figure}
+In the real machine, the impact parameter $b$ of the ions hitting the collimators may vary. For the STIER simulations presented so far, an impact parameter of 3$\,\mu$m was assumed, based on previous proton studies.  With increasing impact parameter, the traversed distance of the heavy-ion beam inside the material increases, leading to a drastic change of the fragmentation rates into the different isotopes. In particular the production of very light ion fragments, such as protons, $\alpha$-particles and neutrons increases, while the rate of surviving ions of the main beam drops significantly with increasing $b$. An overview of the energetic fraction carried by different out-coming isotopes after the ion-collimator interaction is given in Tab.~\ref{tab:isotope_abundances}. Note that the values are scaled with the ion mass, so the ion abundance is reduced by a factor of $A$ with respect to the given values. With an impact parameter of $b=3\,\mu$m, the two most important isotopes are protons and $\alpha$ particles followed by \lead ions of the initial species. 
+\\
+The loss maps as simulated with STIER for the three different impact parameters are compared in Fig.~\ref{fig:15062502.pdf}. The loss patterns are qualitatively similar but the loss peak intensities differ quantitatively. For the smallest impact parameter, the highest losses occur at the primary collimator in IR7. The main contribution of these losses comes from \lead ions that were not fragmented but scattered at small angles in the TCP. They move inside the machine for one or multiple turns until they are intercepted by the global bottleneck, which is the primary collimator. In reality, however, these ions are again subject to fragmentation and scattering inside of the TCP, which is not considered in the presented simulation. The losses at the DS region peaks at $\eta=10^{-3}$, which is smaller than in the other simulations, due to the large amount ions of the main beam surviving the initial passage through the TCP. The remaining losses in the aperture and the other collimators are located at elements which are also subject to losses for the other impact parameters, but the loss amplitudes are smaller. For the cases of $b=3\,\mu$m and $b=10\,\mu$m the highest losses are visible at the secondary collimator, which is consistent with the loss pattern measured during operation. Both simulated loss patterns are dominated by ion fragments instead of ions of the main beam. The losses in the DS clusters peak at $\eta=10^{-2}$ for $b=3\,\mu$m and are larger by a factor of 3 for the case of $b=10\,\mu$m. In the latter case, the production yield of effectively off-momentum isotopes is highest among the studied scenarios, which becomes apparent by the comparatively small amount of fragments captured by the collimation system.
+\\
+We conclude that the impact parameter does seem to influence the cleaning inefficiency but not on the longitudinal distribution of the losses. 
+
+
+
+
+
+
+
+
+\subsection{Loss Classification of Residual Heavy-Ion Fragments}
+
+\begin{itemize}
+%
+   \item \textbf{Elastic scattering}: The particle rigidity is very close to the rigidity of the main beam. In the case of heavy ions, the particle species has not changed. The particle is scattered to larger transverse betatron amplitudes. If the transverse angular kick is sufficient, the particle is intercepted by the secondary collimators. Otherwise, they are intercepted by the TCP or a TCSG on a subsequent turn.
+%
+   \item \textbf{Inelastic interactions with small rigidity change}: Particles leaving the TCP with small momentum offsets and scattered at small angles continue moving through the magnetic lattice. Many of them are intercepted by the TCP in the momentum collimation region IR3, but - depending on their initial conditions - they can also be lost at other locations, such as TCT collimators. Typical rigidity offsets for such particles are in the order of $10^{-4}$. An important example for such particles in \lead operation are $^{207}$Pb$^{82+}$ ions, which can continue to move in the machine for several km. 
+%
+   \item \textbf{Inelastic interactions with large rigidity change}: Residual particles produced in nuclear interactions (single diffractive dissociation for protons and nuclear fragmentation or multiple EMD for heavy ions) can have rigidity offsets in the order of $10^{-3}$ or above. Depending on their initial conditions they may be beyond the momentum acceptance of the DS region in IR7 and therefore lost in these magnets. The losses from these particles compose the characteristic DS clusters in this region. The transverse momentum can partly compensate for the dispersive effect, such that the loss location for particles of the same rigidity may alter. In ICOSIM the latter effect was considered negligible, but in the studies presented in the following chapters it is demonstrated to have a considerable influence on the real loss distribution.
+%
+   \item \textbf{Inelastic interactions with extreme rigidity change}:
+Heavy-ion fragments with mass to charge ratios very different from the main beam (significantly above $10^{-1}$) are subject to large dispersive offsets already after the passage of the normal conducting magnets in the straight section of IR7. Typically these ions are very light (protons, deuterium, tritium, $^{4}$He$^{2+}$,...) and have large transverse momenta compared to the main beam. In consequence, these particles are lost in IR7, partly in the secondary collimators, partly in the aperture of the normal conducting elements and the surrounding beam pipes. 
+%
+\end{itemize}
+
 
 \section{Chromatic Tracking in ICOSIM and SixTrack}
-\begin{figure*}[t]
+
+\begin{figure*}[b]
 \begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{pictures/15092506.pdf}
 \end{minipage}
@@ -272,11 +535,18 @@ We conclude that the impact parameter does seem to influence the cleaning ineffi
 \label{fig:15032202.pdf}
 \end{figure*}
 
+ICOSIM tracks off-momentum heavy ions by means of a matrix formalism with chromatic effects modelled in linear order. This approximation implies only small errors for small rigidity offsets, but becomes important when $\delta_\text{eff}$ increases. SixTrack on the other hand provides full symplectic tracking with magnetic multipole fields modelled up to 20th order. 
+
+To study the relevance of the chromatic modelling dedicated tracking simulations of the isotopes \iso{8}{Li}{3+} (with $\delta_\text{eff} = 0.054$) and \iso{207}{Pb}{82+} (with $\delta_\text{eff} = -0.005$) are carried out with identical optics and initial conditions in SixTrack and ICOSIM. Assuming that the chromatic modelling in SixTrack is superior to that of ICOSIM, this comparison allows to quantify the error implied by the linear truncation of the equation of motion in the ICOSIM implementation. 
+
+The simulations are launched at the edge of the right jaw of the TCP.C6L7.B1 with a starting angle identical to the angle of incidence at the collimator derived from the phase space parameters. The simulated tracks are compared in \figref{fig:15032202.pdf}. For the isotope \iso{207}{Pb}{82+}, the tracks simulated with SixTrack and ICOSIM are nearly identical. At a distance of 2~km from the TCP, the horizontal positions simulated with the two codes differ by 200~$\mu$m, a small deviation compared to the orbit fluctuations in the machine. On the contrary, for the isotope \iso{8}{Li}{3+} the horizontal position differs by 3~mm already after a longitudinal distance of 450~m, demonstrating the drastic impact of the linear approximation on the simulated track for particles with large rigidity offsets. Thus, in spite of the fact that these ions are lost closesly to the TCP, the error on the simulated track may cause a shift in their simulated loss position that could be of practical relevance for whatever reason. From the previous analysis of the loss locations for different isotopes it becomes apparent, that particles with rigidity offsets of which underlines their importance for the simulated loss pattern.
+
+In conclusion, the accurate simulation of particles with large rigidity offsets requires to take into account higher order chromatic effects in the tracking routine. 
 
 
-\textit{The chromatic modeling in ICOSIM is done in linear approximation, while SixTrack provides tracking up to order of 20. The expected deviations of the computed particle trajectories are small for particles with $|\delta_\text{eff}| \approx 0$, but increase for particles with large effective momentum offsets. To study this effect, we perform two tracking simulations with identical starting conditions at the TCP using SixTrack and ICOSIM. The tracks are computed for the two different isotopes, $^{8}$Li$^{3+}$ and $^{207}$Pb$^{82+}$, assuming that both start at the TCP with the same angle (the angle of incidence used for the fragmentation simulation) with the momentum per nucleon of the initial \lead beam. The difference in the bending behavior results from the different mass to charge ratios, quantified as $\chi_\text{Li}=1.054$ and $\chi_\text{Pb}=0.995$. The tracks are illustrated in Fig.~\ref{fig:15032202.pdf}. 
-\\
-For the $^{207}$Pb$^{82+}$ ion, with small $\delta_\text{eff}$, the simulated tracks are different by 200$\,\mu$m after a distance of 3$\,$km. With the light $^{8}$Li$^{3+}$ fragment, significant deviations between the simulated tracks occur after only a few magnets. The particle tracks differ by approximately 3$\,$mm after only 450$\,$m. 
-\\
-Such deviations can significantly change the simulated loss maps. Given that there are numerous ions with even larger effective momentum offsets (e.g. for protons $\chi_p = 0.39$) the tracking of such fragments must be carried out with a more elaborated chromatic tracking algorithm than used in ICOSIM. The light fragments can, as discussed in Sec.~\ref{sec:lm_simulations} contribute significantly to the losses not only locally at the collimators. Based on this result, SixTrack appears to be the better candidate to provide heavy-ion tracking, especially if the light fragments should be included in the simulation. }
 
+\section{Summary and Conclusions}
+
+The STIER simulation tool proved that the discrepancy between measured and simulated loss pattern can be traced back to the simplified fragmentation routine and that a significantly improved agreement can be achieved if the kicks in transverse momentum and kinetic energy are included in the simulation framwork. Also the study of loss locations of light ion fragments not included in ICOSIM has shown that their loss locations may be in the regions of interest, in particular in the superconducting IR7 DS magnets. With the improved accurace of cleaning simulations, STIER was used for many LHC studies, including operational preparation and the development of loss mitigation strategies, described in \chapref{chap:sim_meas}.
+
+The comparison of the chromatic tracking in ICOSIM and SixTrack demonstrates that the purpose of accurate tracking of off-rigidity ions can be best served by SixTrack. A further improved simulation tool for heavy-ion collimation should therefore be based on SixTrack. The development of a new version of SixTrack, adapted for the tracking of multi-isotopic heavy-ion beams is described in the next chapter.

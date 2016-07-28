@@ -1,20 +1,191 @@
-\chapter*{Appendix\markboth{Appendix}{Appendix}}
+
+% \chapter{Appendix\markboth{Appendix}{Appendix}}
+\appendix
+
+\chapter{}
 
 %\chapter*{Appendix}
-\begin{appendix}
+% \begin{appendix}
 
 %\renewcommand\thesection{\thesection.\alph{section}}
-\renewcommand{\thesection}{\thepart \Alph{section})}
+%\renewcommand{\thesection}{\thepart \Alph{section})}
 
-\section{Derivation of Ion Rigidities}
+\section{Tracking Map Symplecticity} \label{chap:sympl}
+The symplecticity can be probed with the Jacobian of the tracking map. It can be shown~\cite{CERN-SL-95-12} that a tracking map is symplectic if its Jacobian matrix $\mathcal{J}$ fulfills the symplectic condition:
+%
+\begin{align}
+  \mathcal{J}^T \, S \, \mathcal{J} = S \, .
+\end{align}
+The Jacobian matrix is related to the initial coordinates and the final coordinates as follows:
+%
+\begin{align}
+  \mathcal{J} = \PD{(x^f,p_x^f,y^f,p_y^f,\sigma^f,p_\sigma^f)}{(x^i,p_x^i,y^i,p_y^i,\sigma^i,p_\sigma^i)}  = %
+\begin{pmatrix} 
+\PD{x^f}{x^i} &
+\PD{x^f}{p_x^i} &
+\PD{x^f}{y^i} &
+\PD{x^f}{p_y^i} &
+\PD{x^f}{\sigma^i} &
+\PD{x^f}{p_\sigma^i} \\
+\PD{p_x^f}{x^i} &
+\PD{p_x^f}{p_x^i} &
+\PD{p_x^f}{y^i} &
+\PD{p_x^f}{p_y^i} &
+\PD{p_x^f}{\sigma^i} &
+\PD{p_x^f}{p_\sigma^i} \\
+\PD{y^f}{x^i} &
+\PD{y^f}{p_x^i} &
+\PD{y^f}{y^i} &
+\PD{y^f}{p_y^i} &
+\PD{y^f}{\sigma^i} &
+\PD{y^f}{p_\sigma^i} \\
+\PD{p_y^f}{x^i} &
+\PD{p_y^f}{p_x^i} &
+\PD{p_y^f}{y^i} &
+\PD{p_y^f}{p_y^i} &
+\PD{p_y^f}{\sigma^i} &
+\PD{p_y^f}{p_\sigma^i} \\
+\PD{\sigma^f}{x^i} &
+\PD{\sigma^f}{p_x^i} &
+\PD{\sigma^f}{y^i} &
+\PD{\sigma^f}{p_y^i} &
+\PD{\sigma^f}{\sigma^i} &
+\PD{\sigma^f}{p_\sigma^i} \\
+\PD{p_\sigma^f}{x^i} &
+\PD{p_\sigma^f}{p_x^i} &
+\PD{p_\sigma^f}{y^i} &
+\PD{p_\sigma^f}{p_y^i} &
+\PD{p_\sigma^f}{\sigma^i} &
+\PD{p_\sigma^f}{p_\sigma^i} \\
+\end{pmatrix} \, .
+\end{align}
+
+
+\subsection{Thick Dipole}
+For simplicity and due to the lack of relevance for hiSixTrack, the symplecticity of the thick dipole is here only discussed in two dimensions. Following the tracking map shown in the Eqs. (\ref{eq:solution_thick_dipole}) to (\ref{eq:tckdp4}), the two-dimensional Jacobian matrix yields: 
+\begin{align}
+\mathcal{J} = 
+\left(
+\begin{array}{cccc}
+ C_x & \frac{S_x}{(1+\delta) \omega_x } & 0 & 0 \\
+ -S_x (1+\delta) \omega_x  & C_x & 0 & 0 \\
+ 0 & 0 & 1 & \frac{L}{1+\delta} \\
+ 0 & 0 & 0 & 1 \\
+\end{array}
+\right) \, .
+\end{align}
+%
+The symplectic condition $\mathcal{J}^T \, \mathbf{S} \, \mathcal{J} = \mathbf{S}$ is fulfilled.
+
+
+\subsection{Thin Dipole}
+
+From the tracking map for the thin dipole, presented in the Eqs. (\ref{eq:thindip01}) to (\ref{eq:thindip02}), the following Jacobian can be derived:
+\begin{align}
+  \mathcal{J} = 
+\begin{pmatrix} 1 & 0 & 0 & 0 & 0 & 0 \\ -L \, k_0 \, \chi \, h_x & 1 & 0 & 0 & 0 & \frac{\beta_0}{\beta} \, L \, h_x \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 \\ -\frac{\beta_0}{\beta} \,  L \, h_x & 0 & 0 & 0 & 1 & -h_x \, x \, L \, \frac{\mathrm{d}}{\mathrm{d} p_\sigma} \frac{\beta_0}{\beta} \\ 0 & 0 & 0 & 0 & 0 & 1   \end{pmatrix}
+\end{align}
+This Jacobian fulfills the symplectic condition.
+
+\subsection{Thick Quadrupole}
+
+The Jacobian matrix of the thick quadrupole in four dimensions is given by:
+%
+\begin{align}
+  \mathcal{J} = 
+\left(
+\begin{array}{cccc}
+ \cos ( \omega_x L ) &  \frac{\sin (\omega_x L)}{(1+\delta) \omega_x } & 0 & 0 \\
+ -(1+ \delta) \omega_x  \sin (\omega_x L) & \cos (\omega_x L) & 0 & 0 \\
+ 0 & 0 & \cosh (\omega_x L) & \frac{\sinh (\omega_x L)}{(1+\delta) \omega_x } \\
+ 0 & 0 & (1+\delta) \omega_x  \sinh (\omega_x L) & \cosh (\omega_x L) \\
+\end{array}
+\right) \, .
+\end{align}
+The symplectic condition is fulfilled.
+
+
+ 
+\subsection{Thin Quadrupole}
+
+From the tracking map for the thin quadrupole, presented in the Eqs. () to (), the following Jacobian can be derived:
+\begin{align}
+  \mathcal{J} = 
+\begin{pmatrix} 1 & 0 & 0 & 0 & 0 & 0 \\ -K \, L & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & K \, L & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1   \end{pmatrix}
+\end{align}
+This Jacobian fulfills the symplectic condition. 
+
+\newpage
+%\section{Measured Loss Maps}
+\section{IR2 Loss Mitigation Experiment - Loss Maps}
+%
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \footnotesize
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.97\linewidth]{pictures/16060909.pdf}};
+    \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.970)  {TCT.4L8.B1 at 13$\,\sigma$ (Nominal settings)};
+    \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.735)    {TCT.4L8.B1 at 12$\,\sigma$};
+    \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.495)    {TCT.4L8.B1 at 11$\,\sigma$};
+    \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.26)     {TCT.4L8.B1 at 10$\,\sigma$};
+    \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.9,0.26)     {07.12.15 17:35:53};
+  \end{tikzpicture}
+  \caption{Loss maps measured in the 2015 heavy-ion run with different settings of the TCTH.4L8.B1. Each loss map was measured the 07.12.2015}  
+  \label{pic:16060908}
+  %/home/phermes/thesis/exp_data/STIER_experimental_validation_TCT8.pdf
+  \end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+  \footnotesize
+  \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16060901.pdf}};
+  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.975)    {Nominal settings};
+  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.785)    {Left TCP jaw retracted by 0.5$\sigma$};
+  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.595)    {Left TCP jaw retracted by 1.0$\sigma$};
+  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.40)     {Left TCP jaw fully retracted};
+  \node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west,fill=white]       at (0.1,0.205)    {Right TCP jaw fully retracted};
+\end{tikzpicture}
+\caption{Loss maps measured in the 2015 heavy-ion run with different TCP configurations. Each loss map was measured the 07.12.2015 at the times indicated at top right of each plot.}
+\label{fig:retractionLM}
+\end{figure}
 
 
 
+
+\newpage
+
+
+
+\section{STIER Loss Maps}
+
+\subsection{Settings validation for the 2015 heavy-ion run}
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \footnotesize
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16061505.pdf}};
+
+      \node [rotate=0 , fill=white, align=right, x={(image.south east)},y={(image.north west)},anchor=east]       at (0.995,0.95)  {$2.5\,\sigma$ retraction \\ (nominal)};
+      \node [rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=east]       at (0.995,0.73)  {$2.0\,\sigma$ retraction };
+      \node [rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=east]       at (0.995,0.49)  {$1.5\,\sigma$ retraction };
+      \node [rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=east]       at (0.995,0.25)  {$1.0\,\sigma$ retraction };
+      \footnotesize
+      \node [rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=east]       at (0.8,1.02)  {STIER B1H loss map, $^{208}$Pb$^{82+}$, $E = 6.37\,Z\,$TeV, $N_P=5.5\,\sigma$};
+  \end{tikzpicture}
+  \caption{STIER simulated loss maps in the 2015 configuration for different retractions of the TCSG collimators.}  
+  \label{pic:16061503}
+  %/media/phermes/local/160614_STIER_validation/analysis/examples/validation_comparison_LHC.pdf
+  \end{figure}
+
+
+
+\newpage
 
 \section{Accelerator Hamiltonian in a Curved Coordinate System}
 
 %
-  \begin{figure}[t]
+  \begin{figure}[b]
   \centering
   \includegraphics[width=0.25\textwidth]{pictures/15041701.png}
   \caption{}  
@@ -52,15 +223,176 @@ A_S &= A_z \, \cos \left( \frac{S}{\rho} \right) + A_x \, \sin \left( \frac{S}{\
 \end{align}
 When the Hamiltonian is now transformed into the curved coordinate system in the accelerator frame, the transformation follows the same steps as shown in Chap.~\ref{chap:accelerator_hamiltonian}. 
 
-\section{Variables in SixTrack}
+
+\newpage
+
+\section{Implementation of hiSixTrack}
+
+The SixTrack source is saved saved altogether in the three files \lstinline{sixtrack.s}, \lstinline{lielib.s} and \mbox{\lstinline{dabnew.s}}. To build the SixTrack executable, a compilation file \lstinline{make_six} is executed with dedicated flags that activate given functionalities. Examples for such flags are the \lstinline{collimat} flag to compile the collimation version of SixTrack. An excellent overview of the compilation of SixTrack is given in \cite{Fjellstrom:1642385}. Specific functions of the SixTrack-FLUKA coupling are stored in an external module saved as \lstinline{mod_fluka.f90}. 
 
 
 
-\section{Implemented Heavy-Ion Tracking Maps}
+\subsection{Variables in hiSixTrack}
+
+\begin{table}[b]
+\centering
+\caption{Variables in SixTrack~\cite{STdevwiki}.}
+\label{tab:sixtrack_variables}
+\begin{tabular}{clccc}
+\toprule
+Variable             & Description                                   & Symbol     & Unit & Definition  \\ \midrule
+\texttt{j}           & particle index                                &                      &      &   \\
+\texttt{napx}        & number of tracked particles                   &                      &      &   \\
+\texttt{npart}       & maximum number of tracked particles           &                      &      &   \\ \midrule
+ & \textbf{Reference particle properties} \\ \midrule
+\texttt{e0}          & Energy of the reference particle              & $E_0$                & MeV  &                      \\
+\texttt{e0f}         & Momentum of the reference particle            & $P_0$                & MeV/$c^2$  &                      \\ 
+\texttt{pma}         & Proton rest mass            & $m_p$                & MeV/$c^2$  &               \\ \midrule
+ & \textbf{Particle arrays} \\ \midrule
+\texttt{xv(1,j)}     & Horizontal coordinate                         & $x$                  & mm   & \eqref{eq:refframe}  \\
+\texttt{xv(2,j)}     & Vertical coordinate                           & $x$                  & mm   & \eqref{eq:refframe}  \\
+\texttt{yv(1,j)}     & Horizontal slope                              & $x'$                 & mrad \\
+\texttt{yv(2,j)}     & Vertical slope                                & $y'$                 & mrad \\
+\texttt{sigmv(j)}    & Path length difference                        & $\sigma$             & mm   & \eqref{eq:sigmadefinition}  \\
+\texttt{dpsv(j)}     & Relative momentum offset                      & $\delta$             & -    &      \\
+\texttt{oidpsv(j)}   & Relative momentum offset                      & $\frac{1}{1+\delta}$ & -    &     \\
+\texttt{ejfv(j)}     & Particle momentum                             & $P$                  & MeV/$c$    &     \\
+\texttt{ejv(j)}      & Particle energy                               & $E$                  & MeV    &     \\ \bottomrule
+\end{tabular}
+\end{table}
 
 
-\subsection{Horizontal Kicker Magnet}
-\begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of an horizontal kicker.]
+
+
+\begin{table}[b]
+\centering
+\caption{Variables introduced or modified in hiSixTrack.}
+\label{tab:hisixtrack_variables}
+\begin{tabular}{clccc}
+\toprule
+Variable             & Description           & Symbol & Unit & Definition\\ \midrule
+ & \textbf{Reference particle properties} \\ \midrule
+\texttt{zz0}           &  Charge multiplicity of the reference ion species    & $Z_0$     & - &       \\
+\texttt{aa0}           &  Nucleon number of the reference ion species         & $A_0$     & - &       \\
+\texttt{nucm0}         &  Rest mass of the reference ion species              & $m_0$     & GeV/$c^2$ &       \\ \midrule
+ & \textbf{Particle arrays} \\ \midrule
+\texttt{nzz(j)}        &  Charge multiplicity of the tracked ion              & $Z$       & - &       \\
+\texttt{naa(j)}        &  Nucleon number of the tracked ion                   & $A$       & - &       \\
+\texttt{nucm(j)}       &  Rest mass of the tracked ion                        & $m$       & GeV/$c^2$ & \\
+\texttt{mtc(j)}        &  Relative mass to charge ratio                       & $\chi$    & - & \eqref{eq:chidef}      \\
+\texttt{dpsv(j)}       &  Relative \textbf{momentum per mass} offset          & $\delta$  & -    & \eqref{eq:15010701}     \\
+\texttt{moidpsv(j)}    &  Relative rigidity offset  & $\frac{\chi}{1+\delta}$    & - &   \eqref{eq:brho_brho0}   \\ \bottomrule
+\end{tabular}
+\end{table}
+
+SixTrack tracks a variety of different arrays, to store information of the tracked particle bunch. Besides the obvious arrays \lstinline{xv(i,j),yv(i,j),sigmv(j),dpsv(j)} containing information about the six-dimensional particle coordinates, other arrays store information about the particle energy and momentum as well as auxiliary quantities derived from them. In the process of tracking, the latter are re-initialized every time the particle momentum (and in hiSixTrack the particle species) may have changed, which is true for the collimators and accelerating elements. An overview of the most relevant particle arrays is given in \tabref{tab:sixtrack_variables}.
+
+Some of these variables are re-defined in hiSixTrack in order to be compatible with the generic multi-isotopic definitions introduced in \chapref{transverse:ions}. This includes the relative offset of the momentum per mass unit $\delta$ which implemented in the SixTrack as the relative momentum offset. The implementation in both SixTrack and hiSixTrack is shown in \lstref{lst_delta}. The quantity $ \frac{\delta}{1+\delta}$ follows the re-definition of $\delta$.
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Definition of $\delta$ in SixTrack and hiSixTrack.,label=lst_delta]
+!        dpsv  (j)   = (ejfv(j)-e0f)/e0f                    ! SixTrack
+         dpsv  (j)   = (ejfv(j)*(nucm0/nucm(j))-e0f)/e0f    ! hiSixTrack
+         oidpsv(j)   = one/(one+dpsv(j))
+\end{lstlisting}
+\end{minipage}
+
+
+In addition, new variables are introduced to keep track of the particle species and to facilitate the implementation of the heavy-ion tracking maps. These variables are summarized in \tabref{tab:hisixtrack_variables}. For the identification of the tracked particles, the mass number $A$ and charge multiplicity $Z$ and rest mass $m$ are stored in arrays. The latter is not important for the identification of the particle, but is used to calculate $\chi$. The information about the reference species $A_0,Z_0,m_0$ is read from \lstinline{fort.3} with a newly introduced block \lstinline{HION}, described in the next subsection. 
+
+The quantity \lstinline{mtc(j)} represents the relative mass to charge ratio $\chi$. Its definition in the SixTrack source is shown in \lstref{lst_dist_readdis}. Note that instead of using the particle charge $Q$, hiSixTrack uses the nuclear charge multiplicity $Z$, assuming that the all electrons are removed from the tracked particle and the reference particle. If non-fully stripped ions should be tracked with hiSixTrack, the source has to be extended for an additional array storing the effective ion charge. The variable \lstinline{moipdsv(j)} describes the auxiliary quantity $\frac{\chi}{1+\delta}$ representing the relative difference in magnetic rigidity.
+
+While in SixTrack the particle mass is hard-coded as a constant parameter \lstinline{pma} that is applied for all particles, hiSixTrack requires a new implementation of mass-dependent equations in which the particle mass is a variable. Depending on the context, \lstinline{pma} refers to the mass of the reference particle or of the tracked particle and is replaced in hiSixTrack by \lstinline{nucm0} or \lstinline{nucm(j)} accordingly. In  \lstref{listing_einstein}, the Einstein energy-momentum relation is shown as it is implemented in SixTrack and hiSixTrack for both the reference particle and for a tracked particle.
+\vspace{0.5cm}
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Definition of the reference momentum in SixTrack and hiSixTrack.,label=listing_einstein]
+!        MOMENTUM OF THE REFERENCE PARTICLE
+         e0f=sqrt(e0**2-pma**2)              ! SixTrack
+         e0f=sqrt(e0**2-nucm0**2)            ! hiSixTrack
+!
+!        ENERGY OF THE TRACKED ION j
+         ejv(j)=sqrt(ejfv(j)**2+pma**2)      ! SixTrack
+         ejv(j)=sqrt(ejfv(j)**2+nucm(j)**2)  ! hiSixTrack
+\end{lstlisting}
+\end{minipage}
+
+\subsection{Initialization of hiSixTrack}
+
+hiSixTrack is activated by calling the new \lstinline{HION} block in the fort.3 file. This block acquires information on the reference particle species ($A_0,Z_0,m_0$). The code defining the HION block in the hiSixTrack source code is shown in \lstref{lst:hion_src}. An example input block to call hiSixTrack for different heavy-ion reference species is given in \lstref{lst:f3hi}.
+
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Definition of the information acquisition from the \lstinline{fort.3} in the hiSixTrack source file.,label=lst:hion_src]
+!     P. HERMES 01-07-2015
+!     HEAVY ION BLOCK
+ 2400 read(3,10020,end=1530,iostat=ierro) ch
+      if(ierro.gt.0) call prror(58)
+      if(ch(1:1).eq.'/') goto 2400
+      if(ch(:4).eq.next) goto 110
+      ch1(:nchars+3)=ch(:nchars)//' / '
+      read(ch1,*) aa0, zz0, nucm0
+      nucm0 = nucm0  * 1.0D+03 !  [GeV/c^2] -> [MeV/c^2] ! hiSixTrack
+      write(*,*) 'Heavy-ion reference species:', aa0, zz0, nucm0
+      goto 110
+\end{lstlisting}
+\end{minipage}
+
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption={New heavy-ion block in the fort.3 file to activate hiSixTrack. In the given example, the chosen reference ion species is \lead. Lines starting with '/' are commented out.}, label={lst:f3hi}]
+HION
+/1     1    0.93827231            /PROTONS
+/40   18    37.2155493            /ARGON IONS
+208   82    193.68769             /LEAD IONS
+NEXT
+\end{lstlisting}
+\end{minipage}
+
+\subsection{Initial Particle Distribution}
+
+In the framework of the SixTrack-FLUKA coupling, SixTrack provides subroutine \lstinline{dist_readdis} to load an initial distribution from an external file. The subroutine is called by the \lstinline{DIST} block in the fort.3 file. For hiSixTrack, the routine is adapted to read also $A,Z$ and the particle mass $m$. Already the implementation in SixTrack foresaw different isotopes, so only minor changes are required to access the heavy-ion specific properties from the input file.
+
+When the initial distribution is read from the file, the acquired quantities are processed to fill the required arrays for the tracking. The modification includes the new definition of $\delta$, the correct nuclear rest mass (as shown in the previous sub-section), the initialization of $\chi$ and auxiliary quantities derived from it. The relevant code is shown in \lstref{lst_dist_readdis}.
+
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Definition of the subroutine \lstinline{dist_readdis} in hiSixTrack.,label=lst_dist_readdis]
+         call dist_readdis( napx, npart, enom, pnom, clight,
+     &                         x, y, xp, yp, s, pc, aa, zz, m )
+!        [...]         
+!        LOOP OVER ALL PARTICLES
+         do j=1, napx
+!            VALUES RELATED TO LOSSES
+             nlostp(j) = j
+             pstop (j) = .false.
+!            VALUES RELATED TO MOMENTUM (MODIFIED IN HISIXTRACK)
+             ejv   (j)   = sqrt(ejfv(j)**2+nucm(j)**2)	             
+             dpsv  (j)   = (ejfv(j)*(nucm0/nucm(j))-e0f)/e0f
+             oidpsv(j)   = one/(one+dpsv(j))
+!            NEW IN HISIXTRACK
+             mtc     (j) = (nzz(j)*nucm0)/(zz0*nucm(j))  
+             moidpsv (j) = mtc(j)*oidpsv(j)
+             omoidpsv(j) = c1e3*((one-mtc(j))*oidpsv(j))
+!       [...]
+\end{lstlisting}
+\end{minipage}
+
+
+
+
+\subsection{Implemented Heavy-Ion Tracking Maps} \label{chap:implement}
+
+Some of the re-defined tracking maps in hiSixTrack are shown in \lstref{lst:kickermagnet} to \lstref{lastmap}. 
+
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of an horizontal kicker.,label=lst:kickermagnet]
 +cd kickv01h
 +if .not.tilt
 !            yv(1,j)=yv(1,j)+(strack(i)*oidpsv(j))        ! SixTrack
@@ -71,8 +403,10 @@ When the Hamiltonian is now transformed into the curved coordinate system in the
             yv(2,j)=yv(2,j)+(stracks(i)*oidpsv(j))*mtc(j) 
 +ei
 \end{lstlisting}
+\end{minipage}
 
-\newpage
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of an horizontal kicker.]
 +cd kickvxxh
 +if .not.tilt
@@ -86,19 +420,25 @@ When the Hamiltonian is now transformed into the curved coordinate system in the
      &strackc(i)*cikve))*mtc(j)                                          !hr02
 +ei
 \end{lstlisting}
+\end{minipage}
 
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of a vertical dipole kick.]
 +cd kickv01v
 +if .not.tilt
-            yv(2,j)=yv(2,j)+(strack(i)*oidpsv(j))*mtc(j) ! P. HERMES for hiSix
+            yv(2,j)=yv(2,j)+(strack(i)*oidpsv(j))*mtc(j)  ! modified for hiSixTrack
 +ei
 +if tilt
-            yv(1,j)=yv(1,j)-(stracks(i)*oidpsv(j))*mtc(j) ! P. HERMES for hiSix
-            yv(2,j)=yv(2,j)+(strackc(i)*oidpsv(j))*mtc(j) ! P. HERMES for hiSix
+            yv(1,j)=yv(1,j)-(stracks(i)*oidpsv(j))*mtc(j) ! modified for hiSixTrack
+            yv(2,j)=yv(2,j)+(strackc(i)*oidpsv(j))*mtc(j) ! modified for hiSixTrack
 +ei
 \end{lstlisting}
+\end{minipage}
 
-\begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of a vertical dipole kick.]
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Definition of the transfer map of a vertical dipole kick.,label=lastmap]
 +cd kickvxxv
             !write(*,*), 'PH: kickvxxv'
 +if .not.tilt
@@ -114,21 +454,175 @@ When the Hamiltonian is now transformed into the curved coordinate system in the
      &stracks(i)*cikve))*mtc(j)
 +ei
 \end{lstlisting}
+\end{minipage}
+
+\section{Implementation of the hiSixTrack-FLUKA Coupling}
+
+\subsection{Code Structure}
+
+The SixTrack-FLUKA coupling requires various changes with respect to the standalone tools to provide particle exchange between the different codes. First an active server must provide the particle exchange, which is provided by a network port, the FlukaIO protocol, developed for this purpose~\cite{flukaiotwiki}. Before the set up of hiSixTrack, this protocol was already equipped with a function to send information about $A,Z,m$ back and forth. Only minor modifications (implemented by V. Vlachoudis) were necessary to adapt the FlukaIO for the hiSixTrack-FLUKA coupling. 
+
+The coupled codes hiSixTrack (tracker) and FLUKA (server) need modifications to communicate over network port. In FLUKA, this 
+
+
+\subsection{Changes in FLUKA Input and Subroutines}
+
+This subsection gives a brief overview of the modifications at the FLUKA user routines, input file and compilation to allow for the accurate heavy-ion exchange appropriate fragmentation simulation. 
+
+\subsubsection{Initialization and Particle Reception}
+
+The communication between FLUKA and the FlukaIO is established via the user routine \texttt{source.f}~\cite{} and the corresponding \texttt{SOURCE} card in the FLUKA input file. Among other applications which are not used for the heavy-ion simulations, it is used to receive the particle distribution from SixTrack and write the \texttt{toucMap} file. The function to write the latter is extended for the heavy-ion application by additional information on $A,Z$. Furthermore, the initialization of FLUKA variables is implemented (author: A. Mereghetti), depending on the particle type. 
+
+\subsubsection{Sending Particles back to the Tracker}
+
+The particle bunch is sent back to the tracker via the \texttt{fluscw.f} user routine, which is activated over the \texttt{USRBDX} card with the special \texttt{SDUM} keyword \texttt{BACK2ICO} (see \cite{FLUKA:manual}). In this user routine the particles are selected and the \texttt{fort.66} file containing the correction data for the collimator losses is populated as shown in \lstref{lst:fluscw}. The user routine is activated when the boundary crossing condition is fulfilled (in this framework a transition from the vacuum surrounding the collimators to black absorber). The type of boundary crossing is defined in the \texttt{USRBDX} card, as shown in \lstref{lst:usrbdx}, for the nominal SixTrack-FLUKA coupling on top and for the heavy-ion version on the bottom. In the latter, the particle type is changed to the scoring of all particles instead of only protons.
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Send particles to FLUKA as implemented in hiSixTrack.,label=lst:fluscw]
+      DOUBLE PRECISION FUNCTION FLUSCW ( IJ    , PLA   , TXX   , TYY   ,
+     &                                   TZZ   , WEE   , XX    , YY    ,
+     &                                   ZZ    , NREG  , IOLREG, LLO   ,
+     &                                   NSURF )
+     [...]
+*  |  boundary crossing when ISCRNG=1
+      IF ( ISCRNG .EQ.1 ) THEN
+*  |  |  ...the SDUM of which is the special one:
+         IF ( TITUSX(JSCRNG) .EQ. SPCSDM ) THEN
+*           (PLA is kinetic energy [GeV] (PLA<0), ESCO is total energy)
+            ESCO = -PLA + AM(IJ)
+*           hiST: write all particles not sent back to fort.66
+            IF ( IJ .GT. 0 .OR. IJ .LT. -6 ) THEN
+                WRITE(66,*) 
+     &                 IJ, IBARCH(IJ), ICHRGE(IJ),ICPPNT,ESCO
+            RETURN
+            END IF
+    [...]
+\end{lstlisting}
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=USRBDX card in the FLUKA input for the nominal SixTrack-FLUKA coupling (commented out) and the heavy-ion version on bottom.,label=lst:usrbdx]
+*USRBDX          99.0    PROTON     -42.0   VAROUND  BLKROUND          BACK2ICO
+*USRBDX        8000.0   1.0E-04     210.0                              &
+USRBDX          99.0  ALL-PART     -42.0   VAROUND  BLKROUND          BACK2ICO
+USRBDX      576000.0   1.0E-04     210.0                   
+\end{lstlisting}
+\end{minipage}
+
+
+\subsubsection{Compilation}
+
+The computation high-energy hadronic interactions in FLUKA requires the activation of the DPMJET-III~\cite{fluka-course}. For this purpose, the linking of the user routines is done with a different linker, which is incorporated in the FLUKA \texttt{Makefile} in the framework of the hiSixTrack-FLUKA coupling where the usage of the default \texttt{lfluka} linker is replaced by \texttt{ldpm3qmd}.
 
 
 
+\subsubsection{Input File}
 
-\section{Modifications on the SixTrack-FLUKA Coupling}
+Besides the changes on the \texttt{USRBDX} card mentioned above, minor changes at the FLUKA input make the framework compatible for heavy-ion applications. The \texttt{SDUM} of the \texttt{BEAM} card is changed from \texttt{PROTON} to \texttt{HEAVYION} with the subsequent definition of the main beam isotope. Furthermore, heavy-ion specific EMD and nuclear evaporation are activated by means of their dedicated cards, as shown in \lstref{lst:input}.
 
-\begin{lstlisting}[language=Fortran,caption=]
-!     PH hisix compute the number of nucleons sent to FLUKA
-      nnuc0 = 0
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Changes in the FLUKA input for heavy-ion applications,label=lst:input]
+* activate EMD and Evaporation for heavy-ions 
+PHYSICS          2.0                                                  EM-DISSO 
+PHYSICS     3.0                                                       EVAPORAT
+* maximum momentum per nucleon (3000 for 3.5Z TeV, 6000 for 6.37Z TeV)
+BEAM           6000.                                                  HEAVYION
+HI-PROPE         82.      208.                                                
+*
+\end{lstlisting}
+\end{minipage}
+
+
+\subsection{Changes in hiSixTrack}
+Heavy-ion SixTrack requires multiple changes to make adapt the software for the exchange of different ion species. The subroutines related to particle exchange are summarized in the \texttt{mod\_fluka} module but are still called from \texttt{sixtrack.s}. 
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Send particles to FLUKA as implemented in hiSixTrack.,label=lst:coupling_send]
+      subroutine kernel_fluka_entrance( nturn, i, ix )
+      use mod_fluka
+      [...]
++ca hions
+      [...]	
+      nnuc0 = 0                      ! nucleons sent to FLUKA
+      ien0  = 0.0                    ! ion energy sent to FLUKA
+
+      do j=1,npart                   ! initialize array of particle ids 
+         pids(j) = 0
+      end do
+	
+      do j=1,napx                    
+         nnuc0   = nnuc0 + naa(j)    ! count nucleons
+         ien0    = ien0  + ejv(j)    ! count energy [GeV]
+         pids(j) = fluka_uid(j)      ! array of particle ids sent to FLUKA
+      end do
+
+      ret = fluka_send( nturn, fluka_geo_index(ix), eltot, napx,        &
+     & xv(1,:), yv(1,:), xv(2,:), yv(2,:), sigmv, ejv , naa(:), nzz(:), &
+     &nucm(:) ) 
+
+     [...]
+     return
+     end subroutine
+\end{lstlisting}
+\end{minipage}
+
+\paragraph{kernel\_fluka\_exit}
+\mbox{} \\
+The subroutine \texttt{kernel\_fluka\_exit} is called when the particle bunch is sent back from FLUKA to hiSixTrack. It makes use of the \texttt{fluka\_receive} subroutine defined in the \texttt{mod\_fluka} module.
+
+\vspace{0.5cm}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Fortran,caption=Receive particles from FLUKA as implemented in hiSixTrack.,label=lst:coupling_send]
+
+      subroutine kernel_fluka_exit( nturn, i, ix )
+      use mod_fluka
+      [...]
++ca hions
+      [...]
+      ret = fluka_receive( nturn, fluka_geo_index(ix), eltot, napx,     &
+     &xv(1,:), yv(1,:), xv(2,:), yv(2,:), sigmv, ejv, naa(:),nzz(:)     &
+     & ,nucm(:) ) 
+
+      nnuc1 = 0                 ! init. number of nucleons leaving collimator
+      ien1  = 0.0               ! init. total energy leaving collimator
       do j=1,napx
-         nnuc0 = nnuc0 + naa(j)
+         [...]
+!        Update hiST arrays (naa, nzz, nucm are initialized by fluka_receive)
+         ejfv    (j) = sqrt((ejv(j)-nucm(j))*(ejv(j)+nucm(j))) ! ion momentum
+         rvv     (j) = (ejv(j)*e0f)/(e0*ejfv(j))               ! beta0/beta
+         dpsv    (j) = (ejfv(j)*(nucm0/nucm(j))-e0f)/e0f       ! delta
+         oidpsv  (j) = 1.0D+00/(1.0D+00+dpsv(j))               ! 1/(1+delta)
+         dpsv1   (j) = (dpsv(j)*1.0D+03)*oidpsv(j)             ! 
+         mtc     (j) = (nzz(j)*nucm0)/(zz0*nucm(j))            ! chi
+         moidpsv (j) = mtc(j)*oidpsv(j)                        ! chi/(1+delta)
+         omoidpsv(j) = 1.0D+03*((1.0D+00-mtc(j))*oidpsv(j))    ! 
+         nnuc1       = nnuc1 + naa(j)                          ! increase nucleon counter
+         ien1        = ien1  + ejv(j)                          ! increase energy counter
+      end do
+      ! hiSixTrack: if energy is lost at the collimator, write to fort.208
+        if ((ien0-ien1).gt.one) then
+            write(208,*), fluka_geo_index(ix), nnuc0-nnuc1,             &
+     &     (ien0-ien1)*1d-3
+        end if
+!     hisix: check which particle ids have not been sent back
+!            write their ids to fort.209
+!            pids(j) was defined in the subroutine kernel_fluka_entrance
+!            napx: number of particles received 
+      do j=1,npart                                       ! loop over all pids possible
+	  pid_q = zero
+	  do k=1,napx                                    ! loop over pids received
+	      if (pids(j).eq.fluka_uid(k)) then
+	          pid_q = one
+	      end if
+	  end do
+	  if (pid_q.eq.zero.and.pids(j).ne.zero) then
+              write(209,*), fluka_geo_index(ix), pids(j)
+	  end if
       end do
 \end{lstlisting}
+\end{minipage}
 
-
-
-
-\end{appendix}
