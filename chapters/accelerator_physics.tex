@@ -2,9 +2,11 @@
 %
 \section*{Introduction}
 %
-The history of particle accelerators goes back to the 1930s when the first accelerators were designed to provide the particle energies required to study atomic nuclei. Nowadays, a vast variety of accelerator types is available for many different applications, reaching from low-energy machines for particle therapy in cancer treatment (for example Heidelberger Ionenstrahl-Therapiezentrum, HIT~\cite{HITref01}) over synchrotron light sources at intermediate energies (for example SOLEIL~\cite{SOLEILref01}) to high-energy synchrotron colliders for fundamental research, such as the Large Hadron Collider, presented in \chapref{thelhc}.
+The history of particle accelerators goes back to the 1930s when the first accelerators were designed to provide the particle energies required to study atomic nuclei. Nowadays, a vast variety of accelerator types is available for many different applications, reaching from low-energy machines for particle therapy in cancer treatment (for example Heidelberger Ionenstrahl-Therapiezentrum, HIT~\cite{HITref01}) over synchrotron light sources at intermediate energies (for example SOLEIL~\cite{SOLEILref01}) to high-energy synchrotron colliders for fundamental research, such as the Large Hadron Collider (LHC), presented in \chapref{thelhc}.
 
-This chapter gives an overview of physics aspects in modern hadron synchrotrons. The first section demonstrates the general description of essential beam properties, such as the transverse and longitudinal beam behaviour in the magnetic lattice of an accelerator. The focus is set to the functionality of the different elements used in the accelerator, considering particles of a defined species. The second section presents the theoretical description of the particle movement of arbitary particles in the magnetic lattice by means of the Hamiltonian formalism. 
+
+Particles in the magnetic lattice of high energy synchrotrons like the LHC perform quasi-harmonic transverse oscillations around a reference trajectory. Furthermore, the accelerating devices lead to longitudinal oscillations. Evidently, these types of particle motion are important for the description of the collimation system and the simulation of particle motion for residual particles created in it. In this chapter, the theoretical background to quantify the transverse and longitudinal motion is briefly introduced. Since the new simulation tool to be developed aims for the tracking of multiple different isotopes, the magnetic bending is quantified for different isotopes at the beginning of the chapter. The following section quantifies the transverse oscillations of beam particles in a lattice of bending and focusing magnets. The last section describes the longitudinal particle motion.
+
 %
 
 \section{Particle Dynamics in Electromagnetic Fields}
@@ -38,14 +40,17 @@ Electromagnetic fields are generally defined by the gradient of the electric sca
 
 
 
-\subsection{Transverse Particle Motion in Electromagnetic Fields}\label{transverse:ions}
+\subsection{Magnetic Bending of Particles with different Charges and Masses}\label{transverse:ions}
+
+This section gives a brief overview on the motion of charged particles in the confining and guiding electromagnetic fields of a particle accelerator. The transverse betatron motion in the accelerator magnets is introduced as the solution of the equations of motion. Important definitions to quantifiy the rigidity offset of heavy-ions with respect to a reference particle are given in this section.
+
 \subsubsection{General Case}
+%
 The accelerator lattice is designed to provide bending and focusing fields for a reference particle of a defined particle species. Consider a heavy-ion accelerator for the reference species
 \begin{align}
 ^{A_0}X_0^{(Z_0-n_{e,0})+} \quad \quad m_0 = m\left( ^{A_0}X_0^{(Z_0-n_{e,0})+} \right) \, ,
 \end{align}
-where $X_0$ is the element name, $A_0$ is the number of nuclei, $Z_0=q_0/e$ is the nuclear charge multiplicity, $m_0$ is the rest mass of the reference ion and $n_{e,0}$ is the number of electrons attached to the ion. In the LHC, fully stripped \lead ions are stored and accelerated, so the electron number is $n_{e,0}=0$. 
-
+where $X_0$ is the element name, $A_0$ is the number of nuclei, $Z_0=q_0/e$ is the nuclear charge multiplicity, $m_0$ is the rest mass of the reference ion and $n_{e,0}$ is the number of electrons attached to the ion. 
 
 Different physical processes can change the ion species or momentum, one of them being the interaction of the ion with the material of a collimator (see \chapref{chap:3}). The particle properties of an aribtrary ion are generically given as follows:
 \begin{align}
@@ -74,11 +79,11 @@ B \, \rho_0 = \frac{P_0}{q_0} = \frac{m_0 \, p_0}{Z_0 \, e} \, . \label{eq:14121
 \begin{align}
 B\,\rho = \frac{m \, (p_0 + \Delta p)}{Z \, e} \, .
 \end{align} 
-Using \eqref{eq:14121901} and elementary transformations, this rigidity can be written as
+Using \eqref{eq:14121901} and elementary transformations, the contributions from velocity offset and the mass to charge ratio with respect to that of the reference isotope can be seprated into two different factors. The heavy-ion rigidity can then be expressed in terms of the rigidity of the ideal particle
 \begin{align}
 B \, \rho = \frac{m}{m_0} \frac{q_0}{q} \, B \, \rho_0 \, \left( 1 + \frac{p - p_0}{p_0} \right) =  B \, \rho_0 \, \frac{\left( 1 + \delta \right)}{\chi}  \, . \label{eq:15080401}
 \end{align}
-Thus, the bending radius of a real ion is scaled with respect to the reference bending radius by a factor of $\frac{(1+\delta)}{\chi}$. The two quantities $\chi$ and $\delta$ are independent from each other and are the source of dispersion in a magnet. The relative momentum per mass offset $\delta$ can be expressed in terms of the full ion momenta as
+The bending radius of a real ion is scaled with respect to the reference bending radius by a factor of $\frac{(1+\delta)}{\chi}$. The two quantities $\chi$ and $\delta$ are independent from each other and are the source of dispersion in a magnet. The relative momentum per mass offset $\delta$ can be expressed in terms of the full ion momenta as
 \begin{align}
 \delta = \frac{P \, \frac{m_0}{m} - P_0}{P_0} = \frac{p - p_0}{p_0} = \frac{\beta \gamma - \beta_0 \gamma_0}{\beta_0 \gamma_0} \, . \label{eq:15010701}
 \end{align}
@@ -137,14 +142,14 @@ The mono-isotopic case is the standard case which is discussed in literature (se
 \begin{align}
 m \rightarrow m_0, \quad \quad \quad q \rightarrow q_0, \quad \quad \quad  \chi \rightarrow 1\, .
 \end{align}
-In this case, \eqref{eq:15010701} yields the well-known expression
+In this case, \eqref{eq:15010701} yields the standard expression used in literature:
 \begin{align}
 \delta = \frac{P - P_0}{P_0} = \frac{\beta \gamma - \beta_0 \gamma_0}{\beta_0 \gamma_0} \, .
 \end{align}
-Note that the latter remains unchanged, thus $\delta$ is always a pure fuction of the particle velocity. Initially, this comes from the velocity dependence of the Lorentz force. Furthermore, it is also a relative momentum offset in the mono-isotopic case and a relative momentum per mass offset if multiple ion types are present.
+Note that the latter expression remains unchanged, so $\delta$ is always a pure fuction of the particle velocity. This finding can be drawn back to the velocity dependence of the Lorentz force. Furthermore, it is also a relative momentum offset in the mono-isotopic case and a relative momentum per mass offset if multiple ion types are present.
 
 
-
+\newpage
 \section{Linear Transverse Dynamics}
 
 \subsection{The Accelerator Beam Line}
@@ -157,7 +162,7 @@ Note that the latter remains unchanged, thus $\delta$ is always a pure fuction o
     %/home/phermes/Dropbox/codes/madx/160426_blg_hllhc/annotated/beamline-crop_annotated.pdf
 \end{figure}
 
-The particle beams in a high energy synchrotron are guided and focussed by means of dedicated magnetic fields of different multipole orders. The magnets are assembled to a beam line  to guide the beam on the foreseen trajectory and to confine its transverse dimensions. An example of a short section of the beam line of the CERN Large Hadron Collider (see \chapref{thelhc}) is shown in \figref{pic:16060601}. In this subsection, a brief overview of the functionality of the different beam line elements is given, to conclude on their influence on the particle motion in the next subsection.
+The particle beams in a high energy synchrotron are guided and focussed by means of dedicated magnetic fields of different multipole orders. The magnets are assembled to a beam line  to guide the beam on the foreseen trajectory and to confine its transverse dimensions. An example of a short section in the region IR1 of the beam line of the CERN Large Hadron Collider (see \chapref{thelhc}) is shown in \figref{pic:16060601}. In this subsection, a brief overview of the functionality of the different beam line elements is given, to conclude on their influence on the particle motion in the next subsection.
 
 \subsubsection{Dipole Magnets} 
 
@@ -210,22 +215,28 @@ Close to the experiments, where the beams collide, the two counter-rotating beam
 
 \subsubsection{Quadrupole Magnets}
 
-Quadrupole magnets (see \figref{pic:16061101}) are used to confine the transverse dimensions of the particle beams, called focussing. The magnetic field in a quadrupole is not of equal strength at every position but increases linearly with the distance from the transverse quadrupole center:
+Quadrupole magnets (see \figref{pic:16061101}) are used to provide focussing in order to confine the transverse dimensions of the particle beams. The magnetic field in a quadrupole is not of equal strength at every position but increases linearly with the distance from the transverse quadrupole center:
 \begin{align}
 B_y = g \, x \, , \quad \quad B_x = - g \, y \, .
 %g = \PD{B_\varphi}{r}  \quad \quad \text{where} \quad \quad r^2 = x^2+y^2 \quad \quad \text{and} \quad \quad [g] = \text{T}/\text{m}\, .
 \end{align}
-The magnetic field gradient $g$, measured in T/m, defines the strength of the quadrupole. If a particle is not moving through the center of the quadrupole it is subject to a transverse force which is focusing (directed towards the ideal trajectory) in one transverse direction and defocusing in the other. Therefore the effective confinement of the beam dimensions in both transverse directions requires multiple quadrupole magnets which are arranged in a specific manner. Given that the ideal particle is not subject to a magnetic field, the reference trajectory in a quadrupole is straight and $h_x=0$. 
+The magnetic field gradient $g$, measured in T/m, defines the strength of the quadrupole. The quantity $g$ is often expressed normalized by the momentum, referred to as the focusing strength $k$ with the unit m$^{-2}$:
+%
+\begin{align}
+  k = \frac{q_0}{P_0} \, g \, .
+\end{align}
+%
+If a particle is not moving through the center of the quadrupole it is subject to a transverse force which is focusing (directed towards the ideal trajectory) in one transverse direction and defocusing in the other. Therefore the effective confinement of the beam dimensions in both transverse directions requires multiple quadrupole magnets which are arranged in a specific manner. Given that the ideal particle is not subject to a magnetic field, the reference trajectory in a quadrupole is straight and $h_x=0$. 
 
 \subsubsection{Sextupole Magnets}
 
-The Lorentz force depends on the magnetic rigidity of the particle traversing the magnetic field. Thus, the focal length of a quadrupole magnet depends on the particle momentum, so the guidance of the optical lattice becomes momentum dependent. In circular accelerators this momentum dependence can lead to instabilities and resonances, which is compensated by means of sextupole magnets, with a cross-section as shown on the right hand side of \figref{pic:16061101}. Sextupoles are installed right downstream of the main dipoles and shown in the beam line plot as rose rectangles.
+The Lorentz force depends on the magnetic rigidity of the particle traversing the magnetic field. Thus, the focal length of a quadrupole magnet depends on the particle momentum, so the guidance of the optical lattice becomes momentum dependent. In circular accelerators this momentum dependence, together with an inevitable spread in momentum between beam particles, can lead to instabilities and resonances. They are compensated by means of sextupole magnets, with a cross-section as shown on the right hand side of \figref{pic:16061101}. Sextupoles in the LHC are installed right downstream of the main dipoles and shown in the beam line plot as rose rectangles.
 
 
 \subsection{Equation of Motion}\label{chap:eqmotion}
 \subsubsection{General Solution}
 
-The transverse motion can be described in leading order by expanding the magnetic dipole and quadrupole fields and considering the equation of motion in the approximation of small $x,y$ and $\delta$~\cite{lee2012accelerator}. The resulting equation of motion for the case of $\chi=1$ in horizontal direction\footnote{This chapter refers to the horizontal direction $x$. The derivation for $y$ is equivalent with the difference that in vertical direction $h_x=0$. Furthermore it should be kept in mind that the quadrupole is always focusing in one and defocusing in the other plane.} is given by:
+The transverse motion can be described in leading order by expanding the magnetic dipole and quadrupole fields and considering the equation of motion in the approximation of small $x,y$ and $\delta$~\cite{lee2012accelerator}. Higher orders are ignored in this approach. The resulting equation of motion for the case of $\chi=1$ in horizontal direction\footnote{This chapter refers to the horizontal direction as $x$. The derivation for $y$ is equivalent with the difference that in vertical direction $h_x=0$. Furthermore it should be kept in mind that the quadrupole is always focusing in one and defocusing in the other plane.} is given by:
 \begin{align}
 x'' &- \left(k(s) - h_x^2(s)\right) x = \delta \, h_x (s) \, , \label{eq:hill1} 
 \end{align}
@@ -241,7 +252,7 @@ where, using the substitution $K(s) = -k(s)+h_x^2(s)$, the quantities $S_x(s)$, 
 &S_x(s) &&= \frac{1}{\sqrt{-K}} \, \sinh \left( \sqrt{-K} \, s \right)  \quad && \text{and}  \quad   C_x (s) &&= \cosh \left(\sqrt{-K} \, s\right) \quad  \text{for } K<0\,. 
 \end{alignat}
 %
-The particle trajectories in the beam line element is thus either a harmonic oscillation or an exponential function depending on the sign of $K$. A widely used application of the general solution in \eqref{eq:general_solution} is the derivation of transfer maps for the individual beam line elements, defined by the length $L$ and their strength $K$. The particle coordinates $x,x'$ at the end of the beam line element are then related to the coordinates $x_0,x_0'$ at its beginning by means of the matrix multiplication
+The particle trajectories in any linear beam line element are thus either harmonic oscillations or exponential functions depending on the sign of $K$. A widely used application of the general solution in \eqref{eq:general_solution} is the derivation of transfer maps for the individual beam line elements, defined by the length $L$ and their strength $K$. The particle coordinates $x,x'$ at the end of the beam line element are then related to the coordinates $x_0,x_0'$ at its beginning by means of the matrix multiplication
 %
 \begin{align}
 \begin{pmatrix} x \\ x' \end{pmatrix} = \begin{pmatrix} C_x (L) & S_x(L) \\ C_x'(L) & S_x'(L)  \end{pmatrix} \, \begin{pmatrix} x_0 \\ x_0' \end{pmatrix} = \mathcal{M} \, \begin{pmatrix} x_0 \\ x_0' \end{pmatrix} \, . \label{eq:transfer_matrix}
@@ -298,7 +309,7 @@ Using \eqref{eq:transfer_matrix}, the transfer matrices $\mathcal{M}_D$ of a dri
 
 
 
-The analytical treatment of the transfer matrices can be significantly simplified if the magnet length $L$ is small compared to $1/KL$. The magnetic bending can then be treated as a point-like transverse kick which is given to the particle at the center of the magnet, while the the particle trajectory at the rest of the magnet remains undisturbed, so behaves like a drift space (see \figref{pic:thinlens}). Mathematically, this thin lens approximation~\cite{CERN-SL-95-12} corresponds to the limit
+The analytical treatment of the transfer matrices can be significantly simplified if the magnet length $L$ is small compared to $1/KL$. The magnetic bending can then be treated as a point-like transverse kick which is given to the particle at the center of the magnet, while at the rest of the element length the particle trajectory remains undisturbed, so behaves like a drift space (see \figref{pic:thinlens}). Mathematically, this thin lens approximation~\cite{CERN-SL-95-12} corresponds to the limit
 \begin{align}
   L \rightarrow 0 \quad \text{with} \quad K \, L = \text{const.} 
 \end{align} 
@@ -309,56 +320,76 @@ The transfer matrix for a quadrupole magnet simplifies in the thin lens approxim
 which is equivalent to the transfer matrix of a thin optical lens with focal length $f=\frac{1}{KL}$.
 %
 \subsubsection{Periodic Solution and Betatron Motion}
+An alternative to the solution of the homogeneous part of the equation of motion, given before in matrix form, is given by: 
+%
+\begin{align}
+x(s) = \sqrt{\tilde{\epsilon}_x} \, \sqrt{\beta_x(s)} \, \cos \left( \psi_x(s) + \phi \right) \, , \label{eq:betatron_oscillation}
+\end{align}
+%
+where $\tilde{\epsilon}$ and $\phi$ are mathematically the integration constants and represent the initial conditions of the particle. The function $\beta_x(s)$ is the betatron function related to the maximum amplitude the particle trajectory can take at the position $s$. 
+
 In circular accelerators the quantity $K(s)$ is a periodic quantity with period length $C$:
 \begin{align}
 K(s) = K(s+C) .
 \end{align}
-The equation of motion (\ref{eq:hill1}) with periodic $K(s)$ is the Hill differential equation~\cite{wiedemann1999particle}.
-The solution of Hill's equation is a quasi-harmonic oscillation 
-\begin{align}
-x(s) = \sqrt{\tilde{\epsilon}} \, \sqrt{\beta_x(s)} \, \cos \left( \psi(s) + \phi \right) \, , \label{eq:betatron_oscillation}
-\end{align}
-where $\tilde{\epsilon}$ and $\phi$ are mathematically the integration constants and represent the initial conditions of the particle. The function $\beta_x(s)$ is a periodic function with period $C$, referred to as the betatron function. It is purely defined by the magnetic lattice in the accelerator. 
-
-It defines the maximum local amplitude at a given location. The quantity $\psi(s)$ is the phase of the betatron oscillation defined by
-\begin{align}
-\psi(s) = \int_0^s \frac{\mathrm{d}s}{\beta(s)} \, .
-\end{align}
-The total number of betatron oscillations over one turn is the machine tune
+The equation of motion (\ref{eq:hill1}) with periodic $K(s)$ is the Hill differential equation~\cite{wiedemann1999particle}. The solution of Hill's equation is identical to \eqref{eq:betatron_oscillation}, but the periodicity implies that also $\beta_x(s)$ is periodic in $s$ with period $C$:
 %
 \begin{align}
-  Q = \frac{1}{2 \pi} \int_0^C \frac{\mathrm{d}s}{\beta(s)} \, .
+  \beta_x (s) = \beta_x (s+C) \, .
+\end{align}
+The betatron function is purely defined by the magnetic lattice in the accelerator. The particles perform transverse quasi-harmonic oscillations, with the coordinate $x$, around the ideal trajectory. The local amplitude of these so-called betatron oscillations is defined by $\tilde{\epsilon}_x$, the betatron function $\beta_x(s)$ and the betatron phase $\psi_x(s)$, defined as
+%
+\begin{align}
+  \psi_x(s) = \int_0^s \frac{\mathrm{d}s}{\beta_x(s)} \, .
+\end{align}
+%
+The total number of horizontal betatron oscillations over one turn is the machine tune
+%
+\begin{align}
+  Q_x = \frac{1}{2 \pi} \int_0^C \frac{\mathrm{d}s}{\beta_x(s)} \, .
 \end{align}
 %
 %
-From \eqref{eq:betatron_oscillation} it can be deduced that $\tilde{\epsilon}$ is a constant of motion\footnote{Note that $\tilde{\epsilon}$ remains constant only if the forces acting on the particle are purely conservative.}, mathematically the Courant-Snyder invariant, for the individual particle:
+From \eqref{eq:betatron_oscillation} it can be deduced that $\tilde{\epsilon}_x$ is a constant of motion, mathematically the Courant-Snyder invariant, for the individual particle:
+%
 \begin{align}
-\tilde{\epsilon} = \gamma(s) \, x'(s) + 2 \, \alpha(s) \, x(s) \, x'(s) + \beta(s) \, x'^2 (s) \, . \label{eq:parameric_ellipse}
+\tilde{\epsilon}_x = \gamma_x(s) \, x'(s) + 2 \, \alpha_x(s) \, x(s) \, x'(s) + \beta_x(s) \, x'^2 (s) \, . \label{eq:parameric_ellipse}
 \end{align}
-The quantities $\beta(s)$, $\alpha(s)$ and $\gamma(s)$ are the Twiss parameters~\cite{wiedemann1999particle}. They are defined by the beam lattice in the machine. The time derivative of the betatron function $\beta_x(s)$ defines the two other Twiss parameters as:
+%
+The quantities $\beta_x(s)$, $\alpha_x(s)$ and $\gamma_x(s)$ are the Twiss parameters~\cite{wiedemann1999particle}. They are defined by the beam lattice in the machine. The time derivative of the betatron function $\beta_x(s)$ defines the two remaining Twiss parameters as:
 \begin{align}
-\alpha(s) = - \frac{1}{2} \beta'(s) \quad \quad \gamma(s) = \frac{1+\alpha(s)^2}{\beta(s)} \, .
+\alpha_x(s) = - \frac{1}{2} \beta_x'(s) \quad \quad \gamma_x(s) = \frac{1+\alpha_x(s)^2}{\beta_x(s)} \, .
 \end{align}
 
 The evolution of an initial set $(\alpha_{x,0},\beta_{x,0},\gamma_{x,0})$ of Twiss parameters in the accelerator depends on the lattice elements and is, equivalent to the transformation of the particle coordinates in \eqref{eq:transfer_matrix}, described by their transfer matrices as follows:
+%
 \begin{align}
   \beta_x(s) = C_x^2 \, \beta_{x,0} -2 \, S_x^2 \, C_x^2 \, \alpha_{x,0} + S_x^2 \, \gamma_{x,0} \, .
 \end{align}
-
-
-The expression in \eqref{eq:parameric_ellipse} is the parametric representation of an ellipse in $x,x'$ enclosing a phase space volume of $\pi \tilde{\epsilon}$. Shape and orientation of the phase space ellipse are changing as a function of the the Twiss parameters, but the volume in phase space enclosed by the ellipse remains unchanged (see \figref{fig:phasespace_transformation}). Following \eqref{eq:betatron_oscillation}, the largest possible amplitude in $x$ and $x'$ the particle can reach yields:
+%
+\begin{figure}[b]  
+    \centering
+    \includegraphics[width=1\textwidth]{pictures/16021801.pdf}
+    \caption{Individual particle trajectories in a periodic quadrupole lattice.}  
+    \label{pic:16021801}
+    %/home/phermes/Dropbox/PhD/pictures/160217_beam_enveloppe/enveloppe.pdf
+\end{figure}
+%
+The expression in \eqref{eq:parameric_ellipse} is the parametric representation of an ellipse in $x,x'$ enclosing a phase space volume of $\pi \tilde{\epsilon}_x$. Shape and orientation of the phase space ellipse are changing as a function of the the Twiss parameters, but the volume in phase space enclosed by the ellipse remains unchanged. Following \eqref{eq:betatron_oscillation}, the largest possible amplitude in $x$ and $x'$ the particle can reach yields:
 %
 \begin{align}
   x_\text{max} = \sqrt{\tilde{\epsilon} \, \beta_x(s)} \quad \text{and} \quad x_\text{max}' = - \alpha_x (s) \, \sqrt{\frac{\tilde{\epsilon}}{\beta_x(s)}}
 \end{align}
-
+%
 The phase space volume $\tilde{\epsilon}$ is thus related to the peak amplitude of the betatron oscillation for a given $\beta$-function. If many particles compose the beam, the r.m.s. value of the individual $\tilde{\epsilon}$ is referred to as the emittance, which is directly related to the r.m.s. beam size $\sigma_x(s)$:
 %
 \begin{align}
   \sigma_x (s) = \sqrt{\epsilon_x \, \beta_x} \quad \text{with} \quad \epsilon_x = \langle \tilde{\epsilon_x} \rangle_{\text{rms}} \, .
 \end{align}
 %
-The emittance is a measure for the beam quality and should be as small as possible. It is related to the transverse particle motion, which is reduced due to the relativistic time dilatation. Therefore, the beam emittance decreases proportionally to $\frac{1}{\beta \, \gamma}$ which is known as adiabatic damping. The normalized emittance is defined as 
+The quantity $x_\text{max}$ defines an r.m.s. beam envelope containing the individual particle tracks. In \figref{pic:16021801}, the betatron motion of particles with different initial conditions within $\epsilon_x$ is shown in a periodic lattice of quadrupoles and bending dipoles. It is clearly visible how the individual particle tracks are confined by $\sigma_x$.
+%
+The emittance is a measure for the beam quality and should be as small as possible. If the particle beam is accelerated, only the longitudinal momentum is increased. One can therefore show that the ratio of transverse momentum to longitudinal momentum decreases $\frac{1}{\beta \, \gamma}$, which is referred to as adiabatic damping~\cite{wiedemann1999particle}. Consequently, the normalized emittance is defined as 
 %
 \begin{align}
   \epsilon_N = \epsilon \, \beta \gamma \, ,
@@ -366,14 +397,6 @@ The emittance is a measure for the beam quality and should be as small as possib
 and remains constant for all particle energies, assuming that, besides the acceleration, only conservative forces  act on the beam. The emittance is measured in $\mu$m rad.
 
 
-
-\begin{figure}[b]  
-    \centering
-    \includegraphics[width=1\textwidth]{pictures/16021801.pdf}
-    \caption{Individual particle trajectories in a periodic quadrupole lattice. The individual betatron amplitude depends on the betatron phase of each particle. The r.m.s. beam envelope is defined by the $\beta$-function and the r.m.s. beam emittance $\epsilon$.}  
-    \label{pic:16021801}
-    %/home/phermes/Dropbox/PhD/pictures/160217_beam_enveloppe/enveloppe.pdf
-\end{figure}
 
 
 \subsubsection{Solution of the inhomogeneous Equation of Motion}
@@ -403,7 +426,10 @@ In order to be coherent with the definition in the simulation tools used, in the
   D_x(s) = -\bar{D}_x(s) \, .
 \end{align}
 %
-As shown in \eqref{eq:inhsol}, the dispersion function relates the momentum offset of the particle to an additional transverse amplitude. It thus quantifies the particle deviation due to dispersive effects. Note that this mathematical description represents a linear approximation and higher order dispersive effects are not taken into account. For particles with large momentum offsets, a more accurate description is given by a fully symplectic transformation which can be derived from the accelerator Hamiltonian (see \chapref{chap:hamiltonian}). 
+As shown in \eqref{eq:inhsol}, the dispersion function relates the momentum offset of the particle to an additional transverse amplitude. The quantity $D_x (s) \, \delta$ gives the closed orbit around which all off-momentum particles perform betatron oscillations. 
+
+
+Note that this mathematical description represents a linear approximation and higher order dispersive effects are not taken into account. For particles with large momentum offsets, a more accurate description is given by a fully symplectic transformation which can be derived from the accelerator Hamiltonian (see \chapref{chap:hamiltonian}). 
 
 
 
@@ -411,18 +437,29 @@ As shown in \eqref{eq:inhsol}, the dispersion function relates the momentum offs
 
 \input{pictures/cavity.tex}
 
-The beams circulating in a high energy synchrotron are bunched, thus there is no continuous current of beam particles through the beam pipe. Rather, dedicated longitudinal slots are assigned for a given number of particle bunches which are populated with the beam particles. The longitudinal bunch spacing and therefore the maximum number of circulating bunches is determined by the accelerating RF cavities which keep the particles in phase at constant energy and accelerate them to the top energy~\cite{wiedemann1999particle}. 
-
-An accelerating cavity operated at an angular frequency $\omega$ provides an electric field given by~\cite{}:
+The beams in the LHC are accelerated and longitudinally confined by means of radiofrequency cavities (RF cavities)~\cite{wiedemann1999particle}. They are operated with RF waves and provide a longitudinal electric field $V(t)$ of a defined angular frequency $\omega$ 
+%
 \begin{align}
-  V(t) = V_0 \, \sin (\omega \, t) \, .
+  V(t) = V_0 \, \sin (\omega \, t) \, ,
 \end{align}
+%
+where $V_0$ is the peak amplitude of the electric field. The temporal periodicity of the accelerating field implies that only particles within a certain range of arrival times are within the acceptance of the cavity and others receive inappropriate kicks leading to strong momentum deviations and subsequent particle loss in magnets due to dispersion. Therefore, the longitudinal slots defined by the acceptance of the RF cavities are quantized. Every possible slot where particles can perform stable oscillations is called a bucket. In principle, every bucket can be filled with a bunch of multiple particles, with some limitations given by other beam instrumes, such as the extraction kicker magnet. The distance between subsequent buckets defines the minimum bunch spacing that can be achieved. 
+
+This chapter gives an overview of the longitudinal particle dynamics associated to this effect and aims to quantify the longitudinal acceptance imposed by the RF cavities. 
+
+
+
+
+
 Using the revolution time $T_S$ of the synchronous particle, the frequency of the RF cavity can be expressed as
 \begin{align}
   \omega = h \, \frac{2 \, \pi}{T_S} \, ,
 \end{align}
 where $\omega$ is chosen such that $h$ is an integer, the harmonic number. The latter condition assures that the synchronous particle is in phase with the RF voltage, such that the energetic kick it receives remains constant. A real particle is not in phase with the RF cavity, but arrives with a certain phase offset
 %
+
+
+
 
 
 

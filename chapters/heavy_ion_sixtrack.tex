@@ -930,11 +930,7 @@ Specific simulation output is required for the study of heavy-ion losses. The hi
 
 \section{Loss Map Simulation with the hiSixTrack-FLUKA coupling}
 
-% what is the initial halo
-% how many particles were simulated
-% what is the impact parameter
-% mention that protons and shower particles are not included
-% identical settings to the 2011 heavy-ion run and the STIER simulation presented in a previous chapter
+
 
 To validate the accuracy of full cleaning simulations with hiSixTrack, the measured BLM pattern in the 2011 heavy-ion run is compared to simulation results obatined with hiSixTrack and STIER. \figref{pic:16042202} shows the resulting loss patterns. 
 
@@ -975,18 +971,39 @@ The loss maps are shown in the Figs. \ref{pic:16042202} (full LHC), \ref{pic:160
 
 The losses in the warm elements of IR3 and IR7 are, as expected, not modelled accurately in either simulation because the secondary particle showers are not included in the simulation. The general shape of the collimator losses in IR7 is different between the two simulation tools. Note in particular the different ratio of losses at the primary collimator and the TCSG collimators immediately downstream. This difference can be drawn back to two effects: first, the TCP losses in STIER are uniquely originating from out-scattered \lead ions surviving one or multiple turns and then impact on the TCP again. The energy lost in the TCP at the initial passage is not included in STIER, with the evident consequence of a significant reduction of simulated losses at the TCP. Secondly, the STIER simulation includes protons, which are mostly lost at the TCSG collimators and therefore change the loss ratio between TCP and TCSG in favour of the TCSG. This assumption is supported by low statistics hiSixTrack simulations including protons. 
 
-One additional loss peak in the arc between IR8 and IR1 is simulated with hiSixTrack. Further investigation shows 
+One additional loss peak in the arc between IR8 and IR1 (marked as A8 in \figref{pic:16042202}) is simulated in hiSixTrack. Further investigation shows that this additional peak is indeed generated from multiple collimator interactions. A more detailed analysis is shown in the next section.
 
 
 The direct comparison of the simulated global heavy-ion beam loss pattern shows that the loss distribution is dominated by particles starting from the IR7 TCP. The difference between the resulting loss pattern from STIER and hiSixTrack are mainly visible at regions downstream of the collimators in IR3 and IR2. This finding is in line with the assumption under which the STIER tool was developed and supports the accuracy of the loss maps simulated with it. 
 
-\begin{figure}[t]  
-    \centering
-    \includegraphics[width=1.0\textwidth]{pictures/16042202.pdf}
+% \begin{figure}[t]  
+%     \centering
+%     \includegraphics[width=1.0\textwidth]{pictures/16042202.pdf}
+%     \caption{B1H betatron loss maps measured in the 2011 heavy-ion run compared to simulations with the hiSixTrack-FLUKA coupling and STIER.}  
+%     \label{pic:16042202}
+%     %/home/phermes/Dropbox/PhD/pictures/160422_hisix_STIER_2011/LHC_2011.pdf
+% \end{figure}
+
+
+
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}
+    \small
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16042202.pdf}};
+    %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
+    \node [draw,rotate=0 , fill=white, x={(image.south east)},y={(image.north west)},anchor=west]       at (0.94,0.58)    {A8};
+    \draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.95,0.55) -- (0.915,0.48);
+  \end{tikzpicture}
     \caption{B1H betatron loss maps measured in the 2011 heavy-ion run compared to simulations with the hiSixTrack-FLUKA coupling and STIER.}  
     \label{pic:16042202}
-    %/home/phermes/Dropbox/PhD/pictures/160422_hisix_STIER_2011/LHC_2011.pdf
-\end{figure}
+  %/home/phermes/Dropbox/PhD/pictures/160422_hisix_STIER_2011/IR7_2011.pdf
+  \end{figure}
+
+
+
 
 
 \begin{figure}[t]
@@ -1038,6 +1055,14 @@ $\eta_{sec}^{int}/\eta^{int}_{tot}$& $5\cdot 10^{-3}$ & $3\cdot 10^{-3}$ & $3\cd
 \end{table}
 %
 
-The simulation data shows that only minor contributions to all loss peaks arise from these secondary fragmentation processes. The highest contribution in the concrete simulation case is reached at the A1 cluster where 3\% of the losses are caused by these heavy-ion fragments. On a global scale, approximately 0.8\% of aperture losses arise from these ions. 
+The simulation data shows that only minor contributions to all loss peaks arise from these secondary fragmentation processes. The highest contribution in the concrete simulation case is reached at the A1 cluster where 3\% of the losses are caused by these heavy-ion fragments. 
+
+While the losses in the regions mentione above are affected only insignificantly by secondary fragmentation processes, in the arc region between IR7 and IR8 a new loss peak A8 is simulated in hiSixTrack. The STIER simulation does not predict losses at this location. 
+
+
+
+On a global scale, approximately 0.8\% of aperture losses arise from these ions. 
+
+
 
 In conclusion, ions from fragmentation at secondary collimators contribute only insignificantly to the global loss map, even in the DS clusters downstream of IR7. This finding quantitatively confirms the conclusion based on a comparison of the STIER and hiSixTrack loss maps drawn in the previous chapter. Note that this conclusion might not be valid for other study cases at different particle momenta, with other heavy-ion species or collimator settings.
