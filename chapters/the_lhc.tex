@@ -131,7 +131,7 @@ In 2015, the formerly distinct steps of ramp and squeeze have been merged to red
 An important measure for the performance of a collider is the luminosity. The instantaneous luminosity $\mathcal{L}(t)$ is a time dependent proportionality between the cross section $\sigma_p$ of a physical process and the expected event rate $\frac{\mathrm{d}N_p}{\mathrm{d}t}$ in a given machine configuration~\cite{wiedemann1999particle}:
 %
 \begin{align}
-  \frac{\mathrm{d}N_p (t)}{\mathrm{d}t} = \mathcal{L} \, \sigma_p \, .
+  \frac{\mathrm{d}N_p (t)}{\mathrm{d}t} = \mathcal{L} \, \sigma_p \, . \label{eq:eventrate}
 \end{align}
 %
 The luminosity is proportional to the number of bunches $n_b$, the square of the number of particles per bunch $N_P$, the revolution frequency in the machine $f$, the relativistic $\gamma$ (to account for the adiabatic damping) and inversely proportional to the $\beta^*$ value and the normalized emittance:
@@ -139,30 +139,31 @@ The luminosity is proportional to the number of bunches $n_b$, the square of the
   \mathcal{L} = \frac{n_b N_b^2 f \gamma}{4 \pi \epsilon_N \beta^*} \, F \, . \label{eq:lumi}
 \end{align}
 %
-The additional factor $F$ takes into account for the luminosity reduction due to the fact that the colliding bunches are not fully overlapping when a crossing angle $\theta_C$ is applied. The correction factor depends on the longitudinal r.m.s. beam size $\sigma_l$, the transverse beam size at the IP ($\sigma_x=\sigma_y=\sigma^*$) and the crossing angle as follows:
+The additional factor $F$ takes into account for the luminosity reduction due to the fact that the colliding bunches are not fully overlapping when a crossing angle $\theta_C$ is applied. The correction factor depends on the longitudinal r.m.s. beam size $\sigma_l$, the transverse beam size at the IP ($\sigma_x=\sigma_y=\sigma^*$) and the crossing angle as follows~\cite{proceedingsCAS:herr}:
 %
 \begin{align}
   F = \frac{1}{\sqrt{1+\left(\frac{\sigma^*}{\sigma_l} \, \tan \frac{\theta}{2} \right)}} \, \frac{1}{\sqrt{1+\left(\frac{\sigma_l}{\sigma^*} \, \tan \frac{\theta}{2} \right)}} \,.
 \end{align}
 %
-Following \eqref{eq:lumi}, the luminosity is measured in the unit cm$^{-2}\,$s$^{-1}$. Note that this corresponds to $10^{24}\,\text{b}^{-1} \, \text{s}^{-1}$. The latter expression in combination with the definition given in \eqref{} elegantly illustrates the dependence of the number of expectable events with a cross section $\sigma$ (measured in barns) per time unit. Even more information on the performance of the accelerator can therefore be obtained if the instantaneous luminosity is integrated over the duty time $T$, referred to as the integrated luminosity:
+Following \eqref{eq:lumi}, the luminosity is measured in the unit cm$^{-2}\,$s$^{-1}$. Note that this corresponds to $10^{24}\,\text{b}^{-1} \, \text{s}^{-1}$. The latter expression in combination with the definition given in \eqref{eq:eventrate} elegantly illustrates the dependence of the number of expected events with a cross section $\sigma$ (measured in barns) per time unit. Even more information on the performance of the accelerator can therefore be obtained if the instantaneous luminosity is integrated over the duty time $T$, referred to as the integrated luminosity:
 %
 \begin{align}
   \mathcal{L}^\text{int} = \int_{0}^T \mathcal{L} \, \mathrm{d} t \, .
 \end{align} 
 %
-Obviously, it is of great interest to enlarge the integrated luminosity to the maximum possible extend, to allow for the study of rare events. This can be done either by increasing the instantaneous luminosity (if not restricted by the experiments) or by optimizing the duty cycle of the machine in order to extend the time the machine is operated in its collision mode (see \chapref{chap:lhccycle}).
+Obviously, it is of great interest to enlarge the integrated luminosity to the maximum possible extent, to allow for the study of rare events. This can be done either by increasing the instantaneous luminosity (if not restricted by the experiments) or by optimizing the duty cycle of the machine in order to extend the time the machine is operated in its collision mode (see \chapref{chap:lhccycle}).
 
 \input{pictures/16070312.tex}
   % #PHTHESIS FILE ORIGIN
   %/home/phermes/workspace/tikz/drawing.tex
 
 %
-The instantaneous luminosity can be increased if smaller $\beta^*$ values applied, the emittance is reduced, the stored beam intensity is increased or if the luminosity reduction factor is enlarged. While the achievable emittance, number of bunches and bunch intensity depend strongly on the performance of the LHC injectors, the $\beta^*$ value is imposed to an inferior limit due to aperture restrictions. The geometrical luminosity reduction factor $F$ could be improved by reducing the crossing angle, which then interfers with the constraints imposed by the beam-beam interaction.
+The instantaneous luminosity can be increased if smaller $\beta^*$ values are applied, the emittance is reduced, the stored beam intensity is increased or if the luminosity reduction factor is enlarged. While the achievable emittance, number of bunches and bunch intensity depend strongly on the performance of the LHC injectors, the $\beta^*$ value is imposed to an inferior limit due to aperture restrictions~\cite{PhysRevSTAB.18.061001}. The geometrical luminosity reduction factor $F$ could be improved by reducing the crossing angle, which then interfers with the constraints imposed by the long-range beam-beam interaction.
 %
 
-From the hardware side, the latter can possibly be improved by deciated RF cavities, the crab cavities~\cite{}, which are to be installed left and right of the collision point. As shown in \figref{pic:cc} they tilt the colliding bunches to increase their overlap at the collision point. This approach reduces the effective crossing angle and so improves the factor $F$. Crab cavities are not installed in the present LHC configuration, but their installation is foreseen for HL-LHC (see \chapref{chap:hllhc}).
-
+From the hardware side, the latter can possibly be improved by deciated RF cavities, the crab cavities~\cite{}, which are to be installed left and right of the collision point in the future HL-LHC~\cite{}. As shown in \figref{pic:cc} they tilt the colliding bunches to increase their overlap at the collision point. This approach reduces the effective crossing angle and so improves the factor $F$. 
+ 
+\reference{https://cdsweb.cern.ch/record/1493034/files/RC_9_04.pdf}
 
 
 
@@ -171,51 +172,80 @@ From the hardware side, the latter can possibly be improved by deciated RF cavit
 
 \section{LHC Performance in Operation} \label{chap:lhccycle}
 %
+ 
+The LHC design beam parameters for proton (p) and \lead ion operation are summarized in \tabref{tab:lhc_protonsparams} and \tabref{tab:lhc_parameters}, respectively. In this section a brief overview of the beam parameters achieved in LHC operation so far is given.
+
+\subsection{Proton Beams}
+
+\begin{table*}[b]
+\centering
+\caption{Comparison of the LHC design beam parameters for proton beams~\cite{}. The data for 2016 is as of July 2016 and may be subject to change.}
+\label{tab:lhc_protonsparams}
+ \small
+\begin{tabular}{cc|c|ccccc}
+\multicolumn{2}{c|}{} &  \multicolumn{1}{c|}{Nominal} & \multicolumn{4}{c}{Achieved in the LHC} \\ \toprule
+
+\multicolumn{2}{c|}{Year}     &         & 2010   & 2011   & 2012   & 2015   & 2016                            \\ \midrule
+$E$                & [TeV]    & 7       & 3.5    & 3.5    & 4.0    & 6.5    & 6.5                             \\
+$\gamma$           &          & 7460.5  & 3730.3 & 3730.3 & 4263.2 & 6927.6 & 6927.6                          \\
+$n_b$              &          & 2808    & 368    & 1380   & 1380   & 2244   & 2076                            \\
+$n_p$            & [$10^{11}$] & 1.15    & 1.0    & 1.3    & 1.5    & 1.1    & 1.1                             \\
+$\epsilon_N$  & [\mum$\,$rad] & 3.75    & 2.6    & 2.4    & 2.4    & 3.5    & 3.4                             \\ 
+$E_s$ &[MJ]                   & 362     & 23     & 112    & 143    & 277    & 266                             \\
+$\mathcal{L}_\text{peak}$ &[$10^{34}\,$cm$^{-2}\,$s$^{-1}$] 
+                              & 1.0     & 0.021  & 0.35   & 0.77   & 0.51   & 1.01                            \\
+$\mathcal{L}_\text{int}$ & [fb$^{-1}$]
+                              &         & 0.0048 & 5.5    & 22.8   & 4.2    & 8.1                             \\ \bottomrule
+\end{tabular}
+\end{table*}
+
+
+
+
+
+The LHC proton program started with the first data taking phase in 2010. In this first operational period the LHC was operated with small beam intensities at 3.5\,TeV, half the design energy. With the operational experience gained, the stored beam intensity in 2011 could be increased by almost one order of magnitude and a signficiant amount of integrated luminosity was collected. The 2012 proton operation was fully dedicated to luminosity production and the integrated luminosity could be doubled with respect to the predecedent year. In this year the top energy was increased to 4\,TeV~\cite{IPAC16:WEOCA01}.
+
+At the beginning of 2013, LHC operation stopped for long shutdown 1 (LS1), a consolidation and upgrade phase with the main aim to consolidate the superconducting splices in order to reach proton momenta of 6.5\,TeV to 7.0\,TeV~\cite{IPAC13:MOZB202}.
+After a successful re-start in 2015, the LHC was operated at an unprecedented proton energy of 6.5\,TeV. In the following year the LHC operated the first time at nominal luminosity due to the reduced $\beta^*$ value and increased bunch intensity.
+
+\reference{https://hb2016.esss.se/prepress/papers/moam5p50.pdf}
+\reference{https://cds.cern.ch/record/1631030/files/CERN-ACC-Note-2013-0041\%20v2.pdf?}
+
+\subsection{Heavy-Ion Beams}
+
 
 \begin{table*}[b]
 \centering
 \caption{Comparison of the LHC design beam parameters for heavy-ion beams and proton beams in comparison to the parameters typically achieved in the LHC heavy-ion runs.~\cite{CERN-2004-003-V1,pPbref01,jowett-RLIUP13,PbPbref01,Jowett:1492972}. The parameters given for p-Pb operation refer to the \lead beam.}
 \label{tab:lhc_parameters}
  \small
-\begin{tabular}{cc|cc|cccc}
-\multicolumn{2}{c|}{} &  \multicolumn{2}{c|}{Nominal} & \multicolumn{4}{c}{Achieved in the LHC} \\ \toprule
+\begin{tabular}{cc|c|cccc}
+\multicolumn{2}{c|}{} &  \multicolumn{1}{c|}{Nominal} & \multicolumn{4}{c}{Achieved in the LHC} \\ \toprule
 
-\multicolumn{2}{c|}{Year}     &  &  & 2010 & 2011 & 2013 & 2015 \\% \midrule
-\multicolumn{2}{c|}{Species}  & p-p & Pb-Pb & Pb-Pb & \multicolumn{1}{c}{Pb-Pb} & p-Pb & \multicolumn{1}{c}{Pb-Pb} \\ \midrule
+\multicolumn{2}{c|}{Year}          &       & 2010  & 2011 & 2013 & 2015 \\% \midrule
+\multicolumn{2}{c|}{Species}       & Pb-Pb & Pb-Pb & \multicolumn{1}{c}{Pb-Pb} & p-Pb & \multicolumn{1}{c}{Pb-Pb} \\ \midrule
+$E$          & {[}TeV{]}     & 7$\,Z$ & 3.5$\,Z$ & 3.5$\, Z$ & 4.0$\, Z$ & 6.37$\,Z$\\
 
+$\gamma$     &               & 2963.5 & 1481.8 & 1481.8 & 1693.4 & 2696.8\\
 
-$E$          & {[}TeV{]}    & 7 & 7$\,Z$ & 3.5$\,Z$ & 3.5$\, Z$ & 4.0$\, Z$ & 6.37$\,Z$\\
+$n_b$        &                & 592 & 137 & 358 & 338 & 518\\
 
-$\gamma$     &              & 7460.5 & 2963.5 & 1481.8 & 1481.8 & 1693.4 & 2696.8\\
+$n_p$        & {[}$10^8${]}   & 0.7 & 1.12 & $1.20 \pm 0.25$ & $1.40\pm0.27$ & $2.2\pm0.3$\\
 
-$n_b$        &              & 2808 & 592 & 137 & 358 & 338 & 518\\
+$\epsilon_N$ & {[}$\mu$m$\,$rad{]}  & 1.5 & 2.0 & $1.7\pm0.2$ & - & $1.50\pm0.15$ \\
 
-$n_p$        & {[}$10^8${]} & 1.15$\times 10^{3}$ & 0.7 & 1.12 & $1.20 \pm 0.25$ & $1.40\pm0.27$ & $2.2\pm0.3$\\
+$E_s$ &{[}MJ{]}  & 3.81 & 0.71 & 1.98$\pm$0.42 & 2.18$\pm$ 0.42 & 9.54$\pm$1.30\\
 
-$\epsilon_N$ & {[}$\mu$m$\,$rad{]} & 3.75 & 1.5 & 2.0 & $1.7\pm0.2$ & - & $1.50\pm0.15$ \\
-
-$E_s$ &{[}MJ{]} & 362 & 3.81 & 0.71 & 1.98$\pm$0.42 & 2.18$\pm$ 0.42 & 9.54$\pm$1.30\\
-
-$\mathcal{L}_\text{peak}$ &[$10^{27}\,$cm$^{-2}\,$s$^{-1}$] & $1.0\times 10^7$ & \begin{tabular}[c]{@{}l@{}}1 (Pb-Pb)\\ \textit{115}(p-Pb)\end{tabular} & 0.03 & 0.5 & \textit{110} & 3.0\\ 
-
+$\mathcal{L}_\text{peak}$ &[$10^{27}\,$cm$^{-2}\,$s$^{-1}$]  & \begin{tabular}[c]{@{}l@{}}1 (Pb-Pb)\\ 115(p-Pb)\end{tabular} & 0.03 & 0.5 & 110 & 3.0\\ 
+$\mathcal{L}_\text{int}$ & [fb$^{-1}$]
+                              &         &  &     &    &                                 \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-% 
-The LHC design beam parameters for proton (p) and \lead ion operation are summarized in \tabref{tab:lhc_parameters}. Also the beam parameters so far achieved in LHC operation with heavy-ion beams are presented in this table. In this section a brief overview of the beam parameters achieved in LHC operation so far is given for proton and heavy-ion beams.
+The first LHC run with heavy-ions took place in 2010, in which mostly operational experience at 3.5\,$Z\,$TeV was collected and the produced luminosity was insignificant. The second heavy-ion run in late 2011 was carried out at 3.5\,$Z$\,TeV and delivered half the design luminosity~\cite{PbPbref01}. In 2013 a mixed particle mode was established, in which protons were collided with \lead ions at 4$\,Z\,$TeV~\cite{pPbref01}. This was the first time such asymmetric collisions were achieved in a collider.
 
-\subsection{Proton Beams}
-
-The LHC proton program started with the first data taking phase in 2010. In this first operational period the LHC was operated with small beam intensities at 3.5\,TeV, half the design energy. With the operational experience gained, the stored beam intensity in 2011 could be increased by almost one order of magnitude and a signficiant amount of integrated luminosity was collected. The 2012 proton operation was fully dedicated to luminosity production and the integrated luminosity could be doubled with respect to the predecedent year. In this year the top energy was increased to 4\,TeV~\cite{IPAC16:WEOCA01}.
-
-The luminosity collected in 2011 and half 2012 was already sufficient for the discovery of the Higgs boson~\cite{}. At the beginning of 2013, LHC operation stopped for long shutdown 1 (LS1), a consolidation and upgrade phase with the aim of further increasing the stored beam energy and particle momentum. In 2015, the LHC was re-started and operated at an unprecedented proton energy of 6.5\,TeV. In the following year the LHC operated the first time at nominal luminosity due to the reduced $\beta^*$ value and increased bunch intensity.
-
-\subsection{Heavy-Ion Beams}
-
-The first LHC run with heavy-ions took place in 2010, in which mostly operational experience at 3.5\,$Z\,$TeV was collected and the produced luminosity was unsignificant. The second heavy-ion run in late 2011 was carried out at 3.5\,$Z$\,TeV and delivered half the design luminosity~\cite{PbPbref01}. In 2013 a mixed particle mode was established, in which protons were collided with \lead ions at 4$\,Z\,$TeV~\cite{pPbref01}. This was the first time such asymmetric collisions were achieved in a collider.
-
-The 2015 operational period with heavy ions started with a reference proton run at 2.51$\,$TeV per beam in order to obtain the same center of mass energy as in the p-Pb run of 2013. For the same reason, the ensuing Pb-Pb operation was carried out at an energy of $6.37\,Z\,$TeV, instead of the 6.5$\,Z\,$TeV which would have been possible after the precedenting proton operation at equivalent rigidity~\cite{IPAC16:TUPMW027}. This allows the experiments to compare data at the same center of mass energy for three different collision types: p-p, p-Pb and Pb-Pb. In the 2015 Pb-Pb running period, the LHC outreached the design value of the stored \lead beam energy more than twice, due to the unexpected performance of the LHC injectors reflecting the bunch intensity which has tripled with respect to its design value. This remarkable performance led to an outreach of the design luminosity by a factor three~\cite{IPAC16:TUPMW027}.
+The 2015 operational period with heavy ions started with a reference proton run at 2.51$\,$TeV per beam in order to obtain the same center of mass energy as in the p-Pb run of 2013. For the same reason, the ensuing Pb-Pb operation was carried out at an energy of $6.37\,Z\,$TeV, instead of the 6.5$\,Z\,$TeV which would have been possible after the precedenting proton operation at equivalent rigidity~\cite{IPAC16:TUPMW027}. This allows the experiments to compare data at the same center of mass energy for three different collision types: p-p, p-Pb and Pb-Pb. In the 2015 Pb-Pb running period, the LHC exceeded the design value of the stored \lead beam energy more than twice, due to the better-than-nominal performance of the LHC injectors, where the bunch intensity which has tripled with respect to its design value. This remarkable performance led to an excess of the design luminosity by a factor three~\cite{IPAC16:TUPMW027}.
 
 \section{The LHC Magnets}
 
@@ -238,7 +268,7 @@ Many different types of magnets provide the guiding and confining forces require
 
 \subsection{Main Dipoles}
 
-The 1232 LHC main dipoles are bending magnets of 14.3~m magnetic length capable of delivering a maximum magnetic field of 8.3~T. They are designed for a bending radius of $\rho=\frac{1}{h_x} = ????~\text{m}$ yielding a maximum particle energy of $7\,Z\,$TeV. To provide such large magnetic fields, they are cooled with liquid Helium for an operation at a temperature of 1.9~K. More information on the superconducting LHC dipoles can be found in \citedr.
+The 1232 superconducting LHC main dipoles are bending magnets of 14.3~m magnetic length capable of delivering a maximum magnetic field of 8.3~T. They are designed for a bending radius of $\rho=\frac{1}{h_x} = 2804~\text{m}$ yielding a maximum particle energy of $7\,Z\,$TeV. To keep the NbTi coils in a superconducting state, they are cooled with liquid helium for an operation at a temperature of 1.9~K. More information on the superconducting LHC dipoles can be found in \citedr.
 %
 \subsection{Quadrupoles}
 The LHC is equipped with many different quadrupoles to provide the focusing required to confine the beams in the LHC arcs and prepare their transverse properties for the collision in the IPs. Depending on their purpose, they are normal or superconducing (and hence provide different field gradients), have different lengths and provide various bore diameters depending on the local aperture requirements~\citedr. 
@@ -262,16 +292,24 @@ For a given set of two of the three independent parameters, a critical value for
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
     %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
   \end{tikzpicture}
-  \caption{Critical surface of the superconducting NbTi coils used for the LHC magnets~\cite{courier2013_quench}.}  
+  \caption{Critical surface of the superconducting NbTi coils used for the superconducting LHC magnets operated at 1.9~K~\cite{courier2013_quench}.}  
   \label{pic:16070401}
   %/home/phermes/Desktop/CCque1_07_13.jpg
   \end{figure}
 
-The superconducting LHC magnets are sensitive to radiation induced heating of their NbTi-coils. They risk to quench if the energy deposited in their coils by impacting beam particles (or their secondary showers) exceeds a defined threshold, referred to as the quench limit. Assuming that the magnetic field and the current density are fixed, the quench is caused by beam-induced heating of the magnet coil. For losses occuring on a short time scale ($<$5\,s), the quench limit is measured in terms of the minimum quench energy density MQED~\cite{PhysRevSTAB.18.061002} in units of mJ/cm$^3$. In contrast, the energy deposited from steady state losses (duration $\geq 5\,$s) is effectively reduced by heat transfer of the superfluid Helium, such that for this scenario the quench limit is quantified by the minimum quench power density (MQPD) in terms of mW/cm$^3$~\cite{lhcprojreport44,PhysRevSTAB.18.061002}. The dependance of these quantities on the loss duration is illustrated in \figref{pic:16070403}.
+The superconducting LHC magnets are sensitive to radiation induced heating of their NbTi-coils. They risk to quench if the energy deposited in their coils by impacting beam particles (or their secondary showers) exceeds a defined threshold, referred to as the quench limit. Assuming that the magnetic field and the current density are fixed, the quench is caused by beam-induced heating of the magnet coil. 
+
+Typically, three different loss types are distinguished, depending on the time scale $\tau$ at which they occur~\cite{PhysRevSTAB.18.061002}:
+\begin{itemize}
+  \item Short duration: $50\,\mu$s$>\tau$,
+  \item Intermediate duration: $50\,\mu$s$<\tau< 5\,$s,
+  \item Steady state losses: $\tau>5\,$s.
+\end{itemize}
+For every time scale of losses different physical mechanisms are relevant for the quench risk. They are explained in detail in \cite{PhysRevSTAB.18.061002}. For short and intermediate duration losses, the quench limit is measured in terms of the minimum quench energy density (MQED) in units of mJ/cm$^3$. On the other hand, the energy deposited from steady state losses is effectively reduced by heat transfer of the superfluid helium, such that for this scenario the quench limit is quantified by the minimum quench power density (MQPD) in terms of mW/cm$^3$~\cite{lhcprojreport44,PhysRevSTAB.18.061002}. The dependance of these quantities on the loss duration is illustrated in \figref{pic:16070403}.
 
 % An example for simulated quench limits for different energies and loss durations at the LHC MQ magnets is presented in \figref{pic:16070402}. 
 
-So far, beam-induced quenches have only occured in dedicated quench tests, hence have not imposed a limitation in nominal operation with subsequent loss of time and integrated luminosity. However, with the envisaged higher stored beam intensities and constant loss rates, the beam-induced quenches might become a serious issue in the operation of the LHC. 
+So far, three beam-induced quenches have occured in standard proton operation of the LHC, both caused by UFO events~\cite{IPAC16:TUPMW023}. Furthermore, two beam-induced quenches have occured with heavy-ion beams in dedicated quench tests with both collimation losses~\cite{ACC-NOTE-16-0031} and BFPP losses (see \chapref{interactionIP} and \cite{accnote_bfpp_quench}). With the envisaged higher stored beam intensities and constant loss rates, the beam-induced quenches might become a serious issue in the operation of the LHC. 
 
 \begin{figure}[t]
   \centering
@@ -295,6 +333,7 @@ So far, beam-induced quenches have only occured in dedicated quench tests, hence
   \begin{tabular}{lccc} 
     \toprule
     Author           & Reference & MQPD {[}mW/cm$^{3}${]} & Year \\ \midrule
+    Schaumann \textit{et al.} & \cite{accnote_bfpp_quench}  & 13               & 2016 \\
     Auchmann \textit{et al.} & \cite{PhysRevSTAB.18.061002}  & 27-49                  & 2015 \\
     Granieri \textit{et al.} & \cite{IEEE:granieri}          & 47-49                  & 2014 \\
     Bocian \textit{et al.} & \cite{IEEE:bocian}              & 12                     & 2008 \\
@@ -303,11 +342,11 @@ So far, beam-induced quenches have only occured in dedicated quench tests, hence
 \end{table}
 
 
+\reference{https://cds.cern.ch/record/2127951/files/CERN-ACC-Note-2016-0024.pdf}
 
-Reliable predictions of upper intensity limitations due to the risk of quench require accurate estimates of the quench limit. Theoretically, these are not easy to access, because the effective heat transfer to the superconducing coils depends on the geometry of the superconducting coils, the type of insulation, their heat capacities, the rate at which the superconducting helium can remove thermal energy from the coils and many more~\cite{ipac13:THPEA045}. Accordingly, the estimated quench limits are associated to rather large uncertainties and have changed drastically over time when improved simulation models became available and by taking into account experimental data from quench tests. A non-complete summary of the temporal evolution of the estimated quench limits in the MB coils at $7\,$TeV is given in \tabref{tab:quenchlim}.
+Reliable predictions of upper intensity limitations due to the risk of quench require accurate estimates of the quench limit. Theoretically, these are not easy to access, because the effective heat transfer to the superconducing coils depends on their geometry, the type of insulation, their heat capacities, the rate at which the superconducting helium can remove thermal energy from the coils and many more~\cite{ipac13:THPEA045}. Accordingly, the estimated quench limits are associated to rather large uncertainties and have changed drastically over time when improved simulation models became available and by taking into account experimental data from quench tests. A non-complete summary of the temporal evolution of the estimated quench limits in the MB coils at $7\,$TeV is given in \tabref{tab:quenchlim}.
 
-
-
+The threatening of the operational duty time by the risk of quench is one of the motivations for the LHC collimation system aiming to intercept particles which would hit - and potentially quench - the superconducting LHC magnets.
 
 
 
@@ -326,9 +365,9 @@ The LHC is designed to store particle beams of an unprecedented energy (see \fig
 
 This energy is sufficient to melt 300~kg of copper. Uncontrolled deposition of the beam energy into the machine hardware can cause severe hardware damage. Even tiny fractions of the LHC beams can cause the superconducting magnets to quench.
 
-Beam particles are subject to a range of physical processes which increase their betatron amplitude, e.g. intra-beam scattering~\cite{Mertens:1364596}, or change their momentum, such as the scattering at the interaction points~\cite{Bruce2014a}. When the resulting betatron amplitude or momentum offset is large enough, these particles can intercept the machine aperture and are lost. Beam losses are thus unavoidable in the operation of the machine. In order to clean the beams from such particles, the LHC is equipped with a multi-stage collimation system. 
+Beam particles are subject to a range of physical processes which increase their betatron amplitude, e.g. intra-beam scattering~\cite{ICHEA:PIWINSKI,PartACC13115}, or change their momentum, such as the scattering at the interaction points~\cite{}. When the resulting betatron amplitude or momentum offset is large enough, these particles can intercept the machine aperture and are lost. Beam losses are thus unavoidable in the operation of the machine. In order to clean the beams from such particles and localize the unavoidable losses to safe elements, the LHC is equipped with a multi-stage collimation system. 
 
-This chapter describes the functionality and performance of the LHC collimation system. The physical origins of inefficiencies in the collimation cleaning process are outlined and compared for both proton and heavy-ion beams.  
+The present chapter describes the functionality and performance of the LHC collimation system. The physical origins of inefficiencies in the collimation cleaning process are outlined and compared for both proton and heavy-ion beams. These princples are going to be used later-on to study the origin of the worse cleaning performance with heavy-ion beams and develop the requirements of a heavy-ion collimation simulation tool.
 
 %
 
@@ -338,45 +377,50 @@ This chapter describes the functionality and performance of the LHC collimation 
 \subsection{Concept}
 %
 
+\begin{figure}[b]  
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/16030501.png}
+    \caption{Left: Jaw of a secondary collimator. The collimators are water cooled through the copper pipes. Right: Two collimator jaws installed in a collimator tank. Courtesy of \cite{Bruce2014a}.}  
+    \label{pic:16030501}
+    %/home/phermes/Desktop/colli.png
+\end{figure}
+
+
+The LHC requires very robust collimators to withstand the impact of the intense bunches with highly energetic particles. On the other hand, the required robustness implies a sufficiently low density of the material with the inevitable consequence of a reduced absorption rate of the beam particles. Therefore, the LHC collimation system relies upon a multi-stage system with different collimators to effectively absorb the beam halo.  
+
+The LHC collimators consist of two movable jaws which are adjusted around the beam which passes in between. An example for a collimator jaw and the assembly in a collimator tank is shown in \figref{pic:16030501}. The different types of collimators are presented in \chapref{chap:collimator_types}.
+
+The LHC collimation system is schematically illustrated at the example of the betatron cleaning insertion IR7 in \figref{pic:15071001}. An instance of primary collimators (Target Collimator Primary, TCP) serves the purpose of intercepting the primary beam halo (particles of the main beam which are at large amplitudes). In IR7, a horizontal, a vertical and a skew TCP provide betatron cleaning in both transverse planes. The TCPs define the global aperture bottleneck and are the collimators closest to the main beam~\citedr. In order to provide enough robustness to withstand a large power load of impacting protons, the active material of the TCPs is a dedicated carbon-fibre composite (CFC)~\citedr. The multi-stage approach relies upon the particle scattering to even larger amplitudes at their passage through the TCP. If a halo particle receives a sufficiently large transverse kick, it is intercepted by the secondary collimators (abb. Target Collimator Secondary, TCS). 
+
 \input{pictures/16070404.tex}
   % #PHTHESIS FILE ORIGIN
   %/home/phermes/Dropbox/PhD/pictures/160704_collsys/drawing.tex
 
-Given the large particle energies at the LHC, the collimation system requires more than one cleaning instance, because the contradictory requirements of impedance reduction and collimator robustness can not be fulfilled by any known material~\citedr. The three-stage collimation system of the LHC is schematically illustrated at the example of the betatron cleaning insertion IR7 in \figref{pic:15071001}. An overview of the different collimator types is given in \chapref{chap:collimator_types}.
 
-An instance of primary collimators (Target Collimator Primary) serves the purpose of intercepting the primary beam halo (particles of the main beam which are at large amplitudes). In IR7, an horizontal and a vertical TCP provide betatron cleaning in both transverse planes. The TCPs define the global aperture bottleneck and are the collimators closest to the main beam~\citedr. In order to provide enough robustness to withstand a large power load of impacting protons, the active material of the TCPs is a dedicated carbon-fibre composite (CFC)~\citedr. The multi-stage approach relies upon the particle scattering to even larger amplitudes at their passage through the TCP. If a halo particle receives a sufficiently large transverse kick, it is intercepted by the secondary collimators (abb. Target Collimator Secondary, TCS). 
-
-\begin{figure}[t]  
-    \centering
-    \includegraphics[width=0.6\textwidth]{pictures/16030501.png}
-    \caption{Left: Jaw of a secondary collimator. The active material is CFC as for the TCPs. The collimators are water cooled through the copper pipes. Right: Two collimator jaws installed in a collimator tank. Figure taken from ~\cite{Bruce2014a}.}  
-    \label{pic:16030501}
-    %/home/phermes/Desktop/colli.png
-\end{figure}
 % 
 \begin{figure}[t]  
     \centering
-    \includegraphics[width=1.0\textwidth]{pictures/16042009.pdf}
-    \includegraphics[width=1.0\textwidth]{pictures/16042007.pdf}
+    \includegraphics[width=0.950\textwidth]{pictures/16042009.pdf}
+    \includegraphics[width=0.950\textwidth]{pictures/16042007.pdf}
     \caption{Optical functions in the two collimation insertions, IR3 (top) and IR7 (bottom). The vertical black lines represent the locations of the 
       primary collimators}  
     \label{pic:16042001}
     %/home/phermes/Dropbox/PhD/pictures/160403_optics/IR7.pdf
 \end{figure}
 %
-The TCS collimators are retracted with respect to the TCP, thus it should be only exposed to the secondary beam halo with much less intensity than the primary halo. Downstream of the TCS collimators, shower absorbers (TCLA) are installed to protect the superconducting magnets downstream of the collimation IRs from from hadronic and electromagnetic showers generated at the TCS collimators.
+The TCS collimators are retracted with respect to the TCP, thus they should be only exposed to the secondary beam halo with much less intensity than the primary halo. Downstream of the TCS collimators, shower absorbers (TCLA) are installed to protect the superconducting magnets downstream of the collimation IRs from from hadronic and electromagnetic showers generated at the TCSG collimators. They intercept also parts of the tertiary beam halo which can still leak out of the TCSG collimators and continue moving inside the machine. 
 
-Particles can still leak out of the TCS collimators and continue moving inside the machine (tertiary beam halo). In the LHC high luminosity mode with squeezed beams in the experimental insersions, these particles are most likely absorbed in the triplet magnets where the betatronic functions are extreme~\cite{ipac2012:MOPPD062}. In order to avoid beam losses in the triplet magnets, they are protected by the tertiary collimators (abb. Target Collimator Tertiary, TCT). They also provide protection of the experiments from undesired background. The active material of the TCT collimators is tungsten (google: heavy alloy) to provide a high absorption cross section. 
+During LHC physics operation, these particles are most likely absorbed in the triplet magnets where the betatronic functions are extreme~\cite{ipac2012:MOPPD062}. In order to avoid beam losses in the triplet magnets, they are protected by the tertiary collimators (abb. Target Collimator Tertiary, TCT). They also provide protection of the experiments from undesired background~\cite{Bruce2013825}. The active material of the TCT collimators is a tungsten heavy alloy, INERMET 180~\cite{}, providing a high absorption cross section. 
 
-The optical functions in IR7 are optimized for small dispersion functions to intercept only particles at large betatron amplitudes. The momentum collimation region IR3 defines the momentum cut and intercepts particles with momentum offsets beyond a defined threshold. In this region, the optics are matched for a large horizontal dispersion function to intercept the off-momentum particles with the TCP. Contrary to the betatron cleaning, which is carried out for the horizontal, vertical and the skew plane with one dedicated primary collimator each, the principle of momentum cleaning requires a primary collimator only in the horizontal plane. The optical functions for the two LHC cleaning insertions are compared in \figref{pic:16042001}.  
+The optical functions in IR7 are optimized for small dispersion functions to intercept only particles at large betatron amplitudes. The momentum collimation region IR3 defines the momentum cut and intercepts particles with momentum offsets beyond a defined threshold. In this region, the optics is matched for a large horizontal dispersion function to intercept the off-momentum particles with the TCP. Contrary to the betatron cleaning, which is carried out for the horizontal, vertical and the skew plane with one dedicated primary collimator each, the principle of momentum cleaning requires a primary collimator only in the horizontal plane. The optical functions for the two LHC cleaning insertions are compared in \figref{pic:16042001}.  
 
-Note that a major inefficiency of the collimation system arises from inelastic interactions in the TCP, where (effectively) off-momentum particles leave the collimator without being captured by the TCS. This is true for both, proton and heavy-ion beams, where for the prior the main production process is single-diffractive dissociation~\cite{ipac10:TUPEB080}. Heavy-ions are subject to fragmentation processes (see \chapref{chap:ionmatterinteraction}) in which fragments with different mass to charge ratios are generated. In both cases, particles with rigidities different from the main beam bypass the secondary collimators and cause high losses in the superconducting magnets of the dispersion suppressor. The IR7 DS magnets are therefore in general the most critical loss location in the LHC ring, in which cleaning inefficiencies of $10^{-2}$ may be reached with heavy-ion beams.
+Note that a major inefficiency of the collimation system arises from inelastic interactions in the TCP, where (effectively) off-momentum particles leave the collimator without being captured by the TCS. This is true for both proton and heavy-ion beams, where for the former the main production process is single-diffractive dissociation~\cite{ipac10:TUPEB080}. Heavy-ions are subject to fragmentation processes (see \chapref{chap:ionmatterinteraction}) in which fragments with different mass to charge ratios are generated. In both cases, particles with rigidities different from the main beam bypass the secondary collimators and cause high losses in the superconducting magnets of the dispersion suppressor, where the main dipoles act as spectrometers bending the off-energy particles differently than the main beam . The IR7 DS magnets are therefore in general the most critical loss location in the LHC ring, in which cleaning inefficiencies of $10^{-2}$ may be reached with heavy-ion beams.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Collimator Types} \label{chap:collimator_types}
 %
-\begin{table}[htbp]
+\begin{table}[b]
 \centering
 \caption{Overview of the types of LHC collimators presently installed in the machine (H,V,S: horizontal, vertical, skew)~\citedr.}
 \label{tab:ctypes}
@@ -390,7 +434,7 @@ Primary              & IR7       & TCP       & H,V,S & CFC      \\
 Secondary            & IR7       & TCSG      & H,V,S & CFC      \\
 Shower Absorbers     & IR7       & TCLA      & H,V   & W        \\ \midrule
 Tertiary             & IR1/2/5/8 & TCT       & H,V   & W        \\
-Physics Absorbers    & IR1/5     & TCL       & H     & Cu       \\ \midrule
+Physics Debris Absorbers    & IR1/5     & TCL       & H     & Cu       \\ \midrule
 Dump Protection      & IR6       & TCDQ      & H     & C        \\
 Dump Protection      & IR6       & TCSP      & H     & CFC      \\ \midrule
 Injection Protection & IR2/8     & TDI       & V     & C        \\
@@ -398,18 +442,35 @@ Injection Protection & IR2/8     & TCLI/TCLD & V     & CFC      \\ \bottomrule
 \end{tabular}
 \end{table}
 
-Besides the presented collimators of the three-stage collimation system, functional collimators are installed for other purposes than halo-cleaning (see \tabref{tab:ctypes}). 
+Aside from the presented primary, secondary and tertiary collimators, additional collimators are installed at strategic locations throughout the ring to prevent from particle losses which are unvulnerable for the collimators installed in IR3 and IR7. A list of all collimator types in the present LHC is given in \tabref{tab:ctypes}.
 
-The TDI collimators installed in the two injection insertions IR2 and IR8 protect the LHC hardware from beam loss which could occur due to injection failures. They are composed of graphite in a different alloy than the CFC used for the TCP and TCT collimators. In order to protect a larger area in phase space, the TCLI collimators are installed downstream of the TDI. In case of a dumping failure, multiple components of the LHC could be seriously damaged, in particular the dumping system, magnets downstream of IP6 or even the detector components in the experimental insertions. Therefore, IR6 is equipped with the single-jaw dump protection collimator TCDQ and the double-jaw TCSG collimator (the same collimator type as it is used for the secondary collimators in IR3 and IR7). The jaw of the prior is composed of graphite and is the longest collimator used in the LHC having a length of 6$\,$m. 
-For the HL-LHC upgrade additional physics debris collimators, TCLX are forseen to be installed in the experimental insertions. Furthermore, new TCSP collimators with CFC as the active material are to be installed in IR6.
+In the high luminosity insertions IR1 and IR5, dedicated physics debris collimators (Target collimator long, TCL) are installed to protect the machine from debris created at the collisions in the IP~\cite{assmann:chamonixXIV}. Those particles may be scattered and/or off-momentum and would otherwise be likely to be lost at the DS magnets of the experimental insersion.
+
+In case of a beam dump failure, multiple components of the LHC could be seriously damaged, in particular the dumping system, magnets downstream of IP6 or even the detector components in the experimental insertions. Therefore, IR6 is equipped with the single-jaw dump protection collimator TCDQ (Target Collimator Dump Quadruple) and the double-jaw TCSP (Target Collimator Secondary with Pick-up) collimator~\cite{assmann:chamonixXIV}. The jaw of the TCDQ is composed of graphite and is the longest collimator used in the LHC having a length of 9$\,$m. 
+ \newpage
+The TDI (Target Dump Injection) collimators installed in the two injection insertions IR2 and IR8 protect the LHC hardware from beam loss which could occur due to injection failures. They are composed of graphite in a different composition than CFC. In order to protect a larger area in phase space, the TCLI (Target Collimator Long Injection Protection) collimators are installed downstream of the TDI~\citedr. 
 
 
-An overview of the different collimator types is given in \tabref{tab:ctypes}. In the design phase of the machine, a progressive upgrade of the LHC collimation system was foreseen to increase the performance of the protection with increasing luminosity and energy~\citedr. 
 
 
-\newpage
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Collimator Settings}
+
+The positions of the movable collimator jaws can be individually adjusted. By convention, the collimator openings are given as the half gap between the jaws in units of the normalized beam size $\sigma$.  The settings in $\sigma$ are identical for the individiual collimation stages, and can be adjusted to optimize the collimation efficiency. Yet the settings must oby the following constraints:
+% 
+\begin{itemize}
+  \item The risk of damaging the machine hardware, including collimators, must be minimized.
+  \item The settings must ensure that the collimation hierarchy\footnote{The collimation hierarchy demands that the highest losses occur at the TCP, followed by the TCSGs etc.} is maintained even under realistic drifts of the orbit or optics. This implies a smallest achievable retraction between the TCP and TCS collimators. In operation, this requirement led to the application of larger retractions between TCS and TCP than initially foreseen in the design phase.
+  \item The triplet aperture must always be protected by the tertiary collimators, which imposes a constraint on the smallest applicable TCT setting. 
+  \item The impedance induced by the collimators can change the tune of the individual particles, which must be taken into account for the collimator settings.
+  \item All tungsten collimators and apertures must be sufficiently retracted from the TCDQ/TSP to avoid damaging during an asynchronous dump~\cite{projectnote293}.
+\end{itemize}
+%
+ The normalized beam size is determined using a normalized emittance of \mbox{$\epsilon_N^p = 3.5\,\mu$m rad} for proton beams. This value was chosen instead of the design emittance at top energy of $3.75\,\mu$m rad because the injectors could deliver a significantly better emittance than initially foreseen~\cite{abc}. This convention provides furthermore simplicity because the same reference emittance applies for the whole cycle and establishes consistency and comparability between the runs. 
+
+The collimator setting in terms of the normalized beam size also takes into account the energy dependence of the geometric emittance due to adiabatic damping. With the collimator settings used in 2015, at top energy the TCP is set to values as small as 1.4~mm, compared to 5.6~mm at injection energy. During the ramp, the collimators are synchronously closed to take into account for the decreasing emittance. 
 %
 \begin{table}[b]
 \caption{LHC collimator settings applied with squeezed beams at top energy in the LHC heavy ion runs, compared to the design settings. The settings refer to the beam size of proton beams at equivalent energy with a normalized proton beam emittance of $\epsilon_N = 3.5\,\mu$m$\,$rad. }
@@ -432,6 +493,7 @@ TCT  & IR1/IR2/IR5        & 15.0 & 11.8 &  9.0 & 13.7& 8.3  \\
 TCT  & IR8                & 15.0 & 11.8 &  9.0 & 15.0& 8.3  \\ \midrule \midrule
 %\multicolumn{2}{c}{$\epsilon_N$ [$\mu$m rad]} & 1.4 & 1.4 & 1.4 & 1.37 & 1.5 \\
 \multicolumn{2}{c}{Heavy-ion energy [$Z\,$TeV]} & 3.5 & 3.5 & 4.0 & 6.37& 7.0 \\
+\multicolumn{2}{c}{Proton energy [$Z\,$TeV]} & 3.5 & 3.5 & 4.0 & 6.5& 7.0 \\
 \bottomrule
 \end{tabular}
 \end{minipage}
@@ -439,21 +501,10 @@ TCT  & IR8                & 15.0 & 11.8 &  9.0 & 15.0& 8.3  \\ \midrule \midrule
 \label{tab:14070901}
 \end{table}
 %
-The collimator settings have susceptible influence on the reachable efficiency of the cleaning system yet they must obey numerous contraints:
-\begin{itemize}
-  \item The risk of damaging the machine hardware, including collimators, must be minimized.
-  \item The settings must ensure that the collimation hierarchy is maintained, which implies a smallest achievable retraction between the TCP and TCS collimators. In operation, this requirement led to the application of larger retractions between TCS and TCP than initially foreseen in the design phase.
-  \item The triplet aperture must always be protected by the tertiary collimators, which imposes a constraint on the smallest applicable TCT setting. A margin of 1$\,\sigma$ between the measured triplet aperture and the TCT gap is considered to be safe. 
-  \item The impedance induced by the collimators can change the tune of the individual particles, which must be taken into account for the collimator settings.
-\end{itemize}
-%
-By convention, the collimator settings are given as the collimator half gap in terms of the normalized beam size. The latter is determined using a normalized emittance of \mbox{$\epsilon_N^p = 3.5\,\mu$m rad} for proton beams. This value was chosen instead of the design emittance at top energy of $3.75\,\mu$m rad because the injectors could deliver a significantly better emittance than initially foreseen~\cite{}. This convention provides consistency and comparability between the runs. The collimator setting in terms of the normalized beam size also takes into account the energy dependence of the geometric emittance due to adiabatic damping. With the collimator settings used in 2015, at top energy the TCP is set to values as small as 1.4~mm, compared to 5.6~mm at injection energy. During the ramp the collimators are synchrously closed to take into account for the decreasing emittance. 
-
-The geometrical collimator settings for heavy-ion operation are so far adopted from the respective precedent proton runs. The emittance of heavy-ion beams is significantly smaller than for proton beams, mainly due to the electron cooling in LEIR. In the LHC Design Report, a heavy-ion emittance of $\epsilon_N^{\text{Pb}} = 1.5\,\mu$m rad is foreseen, which yields the same geometrical emittance as for proton beams at the same rigidity. An exception is the 2015 heavy-ion run at $6.37\,Z$~TeV, in which the geometrical emittance of the previous proton run at $6.5$~TeV were adopted, corresponding to an equivalent heavy-ion emittance of $\epsilon_N = 1.41\,\mu$m rad. 
+The geometrical collimator openings in mm for heavy-ion operation are so far adopted from the respective precedent proton runs. The normalized emittance of heavy-ion beams is significantly smaller than for proton beams, mainly due to the electron cooling in LEIR. In the LHC Design Report, a heavy-ion emittance of $\epsilon_N^{\text{Pb}} = 1.5\,\mu$m rad is foreseen, which yields the same geometrical emittance as for proton beams at the same rigidity. An exception is the 2015 heavy-ion run at $6.37\,Z$~TeV, in which the geometrical emittance of the previous proton run at $6.5$~TeV was adopted, corresponding to an equivalent heavy-ion emittance of $\epsilon_N = 1.41\,\mu$m rad. 
 %
 % 
 % 
-
 
 
 Particles which are not absorbed by the TCPs should be captured by the retracted TCS collimators. This requires that they receive a sufficient transverse angular kick $\Delta x'$ at the TCP, mathematically expressed by the following inequality~\cite{ICOSIMref02}:
@@ -518,7 +569,7 @@ The local cleaning inefficiency allows a simple scaling of the total loss rate t
 where $P_\text{TCP}$ is the power load on the primary collimator.
 
 %
-\subsubsection{Losses from interactions at the IP}
+\subsubsection{Losses from interactions at the IP} \label{interactionIP}
 
 
 
@@ -879,6 +930,8 @@ The COLLIMATION block in the fort.3 file contains information about the settings
 The initial beam halo can be selected from different options, the most notable ones being an annular halo in $x,x'$ at an amplitude large enough such that the particles hit the primary collimator, or a pencil beam with controlled impact parameter at a given collimator. Even though 
 
 Collimation simulations with SixTrack are usually carried out for 200 turns with an initial sample of 6.4 million protons  starting at IP1. Given the large amount of required space which has to be allocated for the aperture loss detection, and the high amount of required CPU time, the simulations are split into 1000 sub-simulations which are submitted to the CERN batch computing service in which they are processed in parallel, if possible~\cite{}[http://information-technology.web.cern.ch/services/batch]. The post-processing is carried out on the virtual machine of the cluster, such that only the relevant output is saved back in the user directory and the required disk space is reduced by several orders of magnitude. 
+
+\reference{https://cds.cern.ch/record/851591/files/ab-2005-033.pdf}
 
 % \section{ICOSIM}
 

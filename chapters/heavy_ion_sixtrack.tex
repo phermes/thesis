@@ -1045,7 +1045,7 @@ With the inclusion of secondary fragmentation in hiSixTrack the impact of the la
 %
 \begin{table}[b]
 \centering
-\caption{Energy fraction of ion fragments generated at secondary collimators in IR7 with respect to the total integrated energy lost in different LHC regions. }
+\caption{Energy fraction of ion fragments generated at secondary interactions collimators with respect to the total integrated energy lost in different LHC regions. }
 \label{tab:secondary}
 \begin{tabular}{cccccccc}
                                 \toprule                                             & DS1              & DS2              & A1                 & A2                & A3                & A4              & Global \\ \midrule
@@ -1055,14 +1055,12 @@ $\eta_{sec}^{int}/\eta^{int}_{tot}$& $5\cdot 10^{-3}$ & $3\cdot 10^{-3}$ & $3\cd
 \end{table}
 %
 
-The simulation data shows that only minor contributions to all loss peaks arise from these secondary fragmentation processes. The highest contribution in the concrete simulation case is reached at the A1 cluster where 3\% of the losses are caused by these heavy-ion fragments. 
+The simulation data shows that only minor contributions to all loss peaks arise from these secondary fragmentation processes. The highest contribution in the concrete simulation case is reached at the A1 cluster where 3\% of the losses are caused by these heavy-ion fragments. On a global scale, approximately 0.8\% of aperture losses arise from these ions. 
 
-While the losses in the regions mentione above are affected only insignificantly by secondary fragmentation processes, in the arc region between IR7 and IR8 a new loss peak A8 is simulated in hiSixTrack. The STIER simulation does not predict losses at this location. 
+While the losses in the regions mentione above are affected only insignificantly by secondary fragmentation processes, in the arc region between IR7 and IR8 a new loss peak A8 is simulated in hiSixTrack. The STIER simulation does not predict any losses at this location. 
 
+Further analysis shows that mainly particles of the species \iso{206}{Pb}{82+} generated at the TCP are lost at A8. All of the studied particles are generated at secondary interactions of \lead ions with the TCP after being scattered in it in a previous turn. The scattered \lead ions have lost some of their initial momentum and impact the TCP again with different angle or impact parameter than the particles of the primary halo. The residual \iso{206}{Pb}{82+} ions generated at the second interaction at the TCP have considerably different starting conditions than those generated during the primary fragmentation which leads to a different loss location. 
 
+Evidently, the loss peak can not be simulated with STIER because secondary fragmentation at the TCP is not included in the simulation framework. 
 
-On a global scale, approximately 0.8\% of aperture losses arise from these ions. 
-
-
-
-In conclusion, ions from fragmentation at secondary collimators contribute only insignificantly to the global loss map, even in the DS clusters downstream of IR7. This finding quantitatively confirms the conclusion based on a comparison of the STIER and hiSixTrack loss maps drawn in the previous chapter. Note that this conclusion might not be valid for other study cases at different particle momenta, with other heavy-ion species or collimator settings.
+In conclusion, ions generated from fragmentation at subsequent collimator interactions may lead to additional features of the simulated loss pattern, although, compared to the losses from the primary TCP interaction, their contribution is small. Around 0.8\% of the global aperture losses simulated in hiSixTrack arise from particles generated in secondary fragmentation processes. Note that this conclusion might not be valid for other study cases at different particle momenta, with other heavy-ion species or collimator settings.

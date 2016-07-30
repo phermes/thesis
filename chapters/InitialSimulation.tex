@@ -67,7 +67,12 @@ the geometric aperture $A_g$ in the magnet (approximately 24~mm in the IR7 DS) a
     \draw[<-,color=black,x={(image.south east)},y={(image.north west)}]       (0.80,0.52) -- (0.84,0.47);
     \draw[<-,color=black,x={(image.south east)},y={(image.north west)}]       (0.87,0.53) -- (0.84,0.47);
     \node [x={(image.south east)},y={(image.north west)},anchor=west,align=center]       at (0.78,0.44)    {Angular \\ acceptance};
+    \node [x={(image.south east)},y={(image.north west)},anchor=west,align=center]       at (0.58,0.41)    {Rigidity \\ acceptance};
+    \draw[->,color=black,x={(image.south east)},y={(image.north west)}]       (0.69,0.42) -- (0.725,0.44);
+    \draw[->,color=black,x={(image.south east)},y={(image.north west)}]       (0.69,0.42) -- (0.755,0.39);
 
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.5,0.10)    {Protons};
+    \node [x={(image.south east)},y={(image.north west)}, align=center]                   at (0.40,0.25)    {\lead \\ fragments};
   \end{tikzpicture}
   \caption{Top and middle plot: FLUKA simulated heat map of transverse angular kick received at the passage through a 10~cm thick carbon target vs particle momentum per nucleon for an initial beam of \lead ions (top) and protons (middle). The horizontal lines represent the TCSG acceptance and the vertical lines the rigidity acceptance of the MQ.11R7.B1. All data points are weighted with the number of nucleons per bin, roughly proportional to the energy per bin. The bottom plot shows a projected and weighted histogram of all particles inside the TCSG acceptance as a function of the momentum per nucleon. }  
   \label{pic:16072101} %/media/phermes/ph3tboffice/ph1tbwd/FLUKA_results/150506_HeavyIon_3500GeV_perpendicular_3um/scattering_protons_ions.pdf

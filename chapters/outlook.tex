@@ -42,6 +42,12 @@ For the future of the LHC, a drastic increase of the luminosity is foreseen to i
 %
 An essential keystone for this aim is the increase of the bunch intensity and the possible number of bunches that can be stored in the machine. This is made possible by the LHC injectors upgrade (LIU)~\cite{IPAC11:WEPS017,IPAC2015:THPF093}, a modification of the injector chain with hardware upgrades and even the replacement of LINAC2 by a new H$^-$ accelerator LINAC4~\cite{IPAC2015:THPF093}. The schedule to reach the HL-LHC parameters foresees a stepwise luminosity increase in which double of the design luminosity shall be reached after the LIU in long shutdown 2~\cite{hllhc:asdhep}.
 
+
+
+For the HL-LHC upgrade additional physics debris collimators, TCLX are forseen to be installed in the experimental insertions. Furthermore, new TCSP collimators with CFC as the active material are to be installed in IR6.
+
+Crab cavities are not installed in the present LHC configuration, but their installation is foreseen for HL-LHC (see \chapref{chap:hllhc}).
+
 The luminosity increase is envisaged for both, proton and heavy-ion beams. The relevant parameters are compared for the design values, the values achieved in 2015 and present optimistic estimates for the LIU and HL-LHC upgrade in \tabref{tab:LIU_HL_Parameters}. 
 
 This comparison makes apparent that the stored beam energies are envisaged to increase drastically to values more than six times the deisgn values. Note that the target bunch intensity for LIU has already been exceeded in the 2015 heavy-ion run. Inevitably, the increased stored beam energy will increase the collimation losses, especially in the IR7 DS regions. The collimation quench test unveiled that with the present collimation system the largest acceptable stored beam energy is very close to the values yet achieved in the 2015 heavy-ion run. 
@@ -207,8 +213,10 @@ The comparison shows, as for the STIER study case at 3.5\,$Z\,$TeV qualitatively
 \begin{figure}[t]
   \centering
   \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.6\linewidth]{pictures/16070806.pdf}};
-    %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+    \footnotesize
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=0.6\linewidth]{pictures/16072901.pdf}};
+    \node [fill=white,x={(image.south east)},y={(image.north west)}]                   at (0.77,0.82)    {$d$};
+    \node [rotate=90,x={(image.south east)},y={(image.north west)}]                   at (1.03,0.55)    {Traversed distance $d$};
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
     %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
@@ -309,13 +317,15 @@ In the assumption that the underlying physical process is related the secondary 
 %     %/media/phermes/ph3tboffice/ph1tbwd/hisix_results/HLLHC/B1H/analysis/postprocessing/examples/TCLD_comparison_IR7.pdf
 % \end{figure}
 
+\newpage
+
 \section{Operation with other Heavy-Ion Species}
 
 The LHC injectors are capable of providing heavy-ios of species different from \lead to the LHC. The NA61/Shine experiment has so far received \iso{40}{Ar}{18+} ions for fixed target experiments and \iso{129}{Xe}{54+} ions are scheduled for future operation \cite{EDMS:1570447,CERN-2014-006}. 
 
-The cleaning performance with these ion species are carried out in the HL-LHC configuration with the optical and collimator settings identical to those used in \chapref{chap:hllhc} with the primary beam impacting with $b=1\,\mu$m. The loss maps simulated for the different heavy-ion species and for protons are compared in \figref{pic:16072601} (zoom to IR7) and \figref{pic:16072602} (full LHC ring). 
+The cleaning simulations with these ion species are carried out in the HL-LHC configuration with the optical and collimator settings identical to those used in \chapref{chap:hllhc} with the primary beam impacting the TCP with $b=1\,\mu$m. The loss maps simulated for the different heavy-ion species and for protons are compared in \figref{pic:16072601} (zoom to IR7) and \figref{pic:16072602} (full LHC ring). 
 
-The proton simulation result is obtained with the standard proton SixTrack using BeamLossPattern aperture check and carried out in a HL-LHC simulation campaign by D. Mirarchi, presented in~\cite{IPAC16:WEPMW030}. 
+The proton simulation result (courtesy of D. Mirarchi \cite{IPAC16:WEPMW030}) is obtained with the standard proton SixTrack using the \texttt{BeamLossPattern} aperture check.
 
 \begin{figure}[t]
   \centering
@@ -331,7 +341,7 @@ The proton simulation result is obtained with the standard proton SixTrack using
   %/media/phermes/local/hisix_results/HLLHC/Other_Ions/analysis/postprocessing/isotope_comparison_IR7.pdf
   \end{figure}
 
-The losses in the IR7 region are very similar for all simulations with heavy-ions. Slight differences in terms of shape of the loss patterns in the DS clusters are visible between the different heavy-ion species but the cleaning inefficiency for the different species are in the same order of magnitude, as summarized in \tabref{tab:hl_isotopes}. Unsurprisingly, the loss peaks in the remaining ring are at the same locations where the dispersion function takes local maxima. They are, however, at different amplitudes due to differences in the fragmentation spectra for the different isotopes. 
+The losses in the IR7 region are very similar for \lead ions, \iso{129}{Xe}{54+} ions, and \iso{40}{Ar}{18+} ions. Slight differences in terms of shape of the loss patterns in the DS clusters are visible between the different heavy-ion species but the simulated cleaning inefficiency is in the same order of magnitude, as summarized in \tabref{tab:hl_isotopes}. Unsurprisingly, the loss peaks in the remaining ring are at the same locations where the dispersion function takes local maxima. They are, however, at different amplitudes due to differences in the fragmentation spectra for the different isotopes. The beam loss pattern of \iso{4}{He}{2+} shows significantly less losses at in the DS clusters and at all other aperture loss locations. Compared to the proton simulation the DS losses with \iso{4}{He}{2+} are higher by one order of magnitude.
 
 
 
@@ -350,7 +360,7 @@ The losses in the IR7 region are very similar for all simulations with heavy-ion
   \end{figure}
 
 
-\begin{table}[t]
+\begin{table}[b]
 \centering
 \caption{Cleaning inefficiency for different isotopes in the HL-LHC configuration.}
 \label{tab:hl_isotopes}
@@ -365,12 +375,12 @@ The losses in the IR7 region are very similar for all simulations with heavy-ion
     \iso{129}{Xe}{54+}      &      3.5   &  12.0  &  8.3     &  28     \\
     \iso{40}{Ar}{18+}       &      2.5   &  11.1  &  4.6     &  17     \\
     \iso{4}{He}{2+}         &      0.07  &  0.6   &  0.2     &  0.9     \\
-    p                       &  6.5$\cdot10^{-3}$  &  $3.9\cdot10^{-2}$   &  $3.5\cdot10^{-2}$ &  $9 \cdot 10^{-2}$   \\ \bottomrule
+    p                       &  7$\cdot10^{-3}$  &  $4\cdot10^{-2}$   &  $4\cdot10^{-2}$ &  $9 \cdot 10^{-2}$   \\ \bottomrule
 \end{tabular}
 \end{table}
  
 
-The worst cleaning inefficiency in terms of peak loss and integrated loss in the DS1 is simulated for \iso{129}{Xe}{54+}, but the difference to the cleaning inefficiency for \lead is small. A remarkable difference between \lead and the lighter heavy-ion species is the ratio of the integrated losses in the DS1 and DS2. While for \lead the quantities $\eta^{int}_{DS1}$ and $\eta^{int}_{DS2}$ take similar values with a slight overweight towards DS2, the lighter ion fragments have a clear tendency to have higher integrated losses in the first DS cluster. For \iso{40}{Ar}{18+}, the integrated losses in the DS1 are more than twice as high as in the DS2. For \iso{4}{He}{2+} the ratio is approximately three. This observation is an inevitable consequence of the quantization of nucleons in the nuclei, which implies a larger rigidity offset for the same amount of neutron loss for lighter isotopes. 
+The worst cleaning inefficiency in terms of peak loss and integrated loss in the DS1 is simulated for \iso{129}{Xe}{54+}, but the difference to the cleaning inefficiency for \lead is small (see \tabref{tab:hl_isotopes}. A remarkable difference between \lead and the lighter heavy-ion species is the ratio of the integrated losses in the DS1 and DS2. While for \lead the quantities $\eta^{int}_{DS1}$ and $\eta^{int}_{DS2}$ take similar values with a slight overweight towards DS2, the lighter ion fragments have a clear tendency to have higher integrated losses in the first DS cluster. For \iso{40}{Ar}{18+}, the integrated losses in the DS1 are more than twice as high as in the DS2. For \iso{4}{He}{2+} the ratio is approximately three. This observation is an inevitable consequence of the quantization of nucleons in the nuclei, which implies a larger rigidity offset for the same amount of neutron loss for lighter isotopes. 
 
 \begin{table}[b]
 \centering
@@ -386,14 +396,7 @@ The worst cleaning inefficiency in terms of peak loss and integrated loss in the
 \end{tabular}
 \end{table}
 
-In \tabref{tab:isohl:chi}, the $\chi-1$-values of particles generated from EMD1 and EMD2 are summarized as a measure of the rigidity offset for the different reference species. Furthermore, $\chi-1$ for the EMD1 and EMD2 isotopes is given as a function of $A$ for different isotopes in \figref{pic:16072603}. The $\chi-1$ value for the EMD isotopes increases continuously with decreasing mass number of the reference isotope. With increasing rigidity offset, the probability that the residual heavy-ion fragment is lost closesly to the TCP increases. 
-
-
-
-Therefore, the loss location of these isotopes is closer to the TCP, the lighter the ion species of the main beam. 
-
-Thus, the observed asymmetry between the integrated signals in the DS cluster is related 
-
+In \tabref{tab:isohl:chi}, the $\chi-1$-values of particles generated from EMD1 and EMD2 are summarized as a measure of the rigidity offset for the different reference species. Furthermore, $\chi-1$ for the EMD1 and EMD2 isotopes is given as a function of $A$ for different isotopes in \figref{pic:16072603}. The $\chi-1$ value for the EMD isotopes increases continuously with decreasing mass number of the reference isotope. With increasing rigidity offset, the probability that the residual heavy-ion fragment is lost at the first DS cluster increases. The finding confirms the observation made with the simulated loss patterns.
 
 
 \begin{figure}[b]
@@ -412,14 +415,10 @@ Thus, the observed asymmetry between the integrated signals in the DS cluster is
   \end{figure}
 
 
- 
-
-In conclusion, the simulation with hiSixTrack shows that the cleaning inefficiency for other heavy-ion species that could be possibly injected into the LHC is comparable to that of \lead. Therefore, the same limitations in terms of stored beam energy apply similarly for the other ion species. 
+In conclusion, the simulation with hiSixTrack shows that the cleaning inefficiency for other heavy-ion species that could be possibly injected into the LHC is comparable or better to that of \lead. Therefore, the same limitations in terms of stored beam energy apply similarly for the other ion species. 
 
 
 \chapter{Outlook}
-
-
 
 \subsection{}
 
@@ -430,3 +429,4 @@ In conclusion, the simulation with hiSixTrack shows that the cleaning inefficien
 
 
 \chapter{Summary and Conclusions}
+
