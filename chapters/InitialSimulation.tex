@@ -7,28 +7,10 @@
 
 % Based on these assumptions, an intermediate simulation tool for heavy-ion cleaning was established. Instead of using a simplified fragmentation model for all collimators, this approach relies upon a detailed fragmentation simulation at the TCP, while the particle-matter interaction with other collimators is neglected. The resulting heavy-ion distribution starting at the TCP is tracked as protons with equivalent momenta in SixTrack, to take into account for the rigidities of the different heavy ions. The approach is referred to as SixTrack with Ion-Equivalent Rigidities (STIER). Initially developped to study the effect of the simplifications in ICOSIM and to determine the requirements for an improved simulation tool, STIER simulations proved to be in good agreement with the measured losses. It was used in the 2015 heavy-ion run to validate the collimator settings and to develop loss mitigation strategies, which were successfully tested in operation (see \chapref{}).
 
-\section{Collimation of Heavy-Ion Beams in the LHC}
-
-\begin{figure}[htbp]
-  \begin{center}
-\includegraphics[width=0.6\textwidth]{pictures/15102003.pdf}
-\includegraphics[width=0.6\textwidth]{pictures/15091802.pdf}
-\caption{Qualification loss maps measured in 2011 with proton~\cite{Bruce2014a} and \lead beams~\cite{} at $3.5\,Z\,$TeV with identical collimator settings and optics, except in IR2. The vertical dashed lines mark the LHC octants. The upper plots show the full LHC ring, the bottom plots a zoom to IR7.}
-\label{fig:meas_lm_comparison}
-  \end{center}
-\end{figure}
-
-The LHC collimation performance with heavy-ion beams is significantly worse than with proton beams. Qualification loss maps measured in the 2011 operation with protons and \lead ions are directly compared in Fig.~\ref{fig:meas_lm_comparison}. The B1H qualification loss maps are measured with beams at a momentum of $3.5\,Z\,$TeV$/c$ with identical collimator settings (see \tabref{tab:14070901}) and squeezed optics settings  only different in IR2, where the \mbox{$\beta^*=0.8\,$m} for heavy-ion beams instead of the $\beta^*=10\,$m applied for protons. 
-
-In both qualification loss maps the collimation regions capture the largest fraction of losses, where the peak loss rate at the TCP in the momentum cleaning insertion IR3 is two orders of magnitude higher for \lead ions than for protons. While the proton loss signals are beyond the noise level mostly in regions close to collimators, the loss distribution of heavy-ion beams shows pronounced peaks at amplitudes up to $10^{-2}$ in superconducting regions across the LHC ring. Both loss maps show the highest losses in superconducting regions in the DS magnets downstream of IR7 with the heavy-ion loss signal two orders of magnitude higher than the corresponding signal measured with proton beams. Additional losses in cold regions are measured with heavy-ion beams in the arc region between IR7 and IR8 and in the cold regions downstream of IP8, IP1 and IP2. 
-
-This finding and its consequences on the feasibility of heavy-ion operation should be regarded in the context of the stored heavy-ion beam energy which is two orders of magnitude below that of protons. It shows that heavy-ion operation in the LHC is viable in principle, but the collimation system should be evaluated with the same thoroughness as it is for proton beams. Particularly the cleaning performance should be theoretically accessible by means of simulation tools to allow for potential optimizations and to study the potential benefit by hardware upgrades. 
-
-\newpage 
-This chapter points out the challenges that are related to the operation with heavy-ion beams and the simulation of the heavy-ion collimation performance. The outcome of this analysis led to the development of a new collimation simulation software, that described and applied for the configuration of the 2011 heavy-ion operation with \lead beams. The loss maps are compared to the simulations with the previous standard simulation tool ICOSIM and, based on the results, the requirements for a further improved collimation simulation software are outlined. The content of this chapter has partly been published in~\cite{phermes_hb2014,NIM:819}.
-%
 
 
+
+The outcome of the previous analysis led to the development of a new collimation simulation software, that described and applied for the configuration of the 2011 heavy-ion operation with \lead beams. The loss maps are compared to the simulations with the previous standard simulation tool ICOSIM and, based on the results, the requirements for a further improved collimation simulation software are outlined. The content of this chapter has partly been published in~\cite{phermes_hb2014,NIM:819}.
 
 \section{Efficiency of Staged Collimation for Heavy-Ions} \label{colleff:ions}
 

@@ -1034,7 +1034,7 @@ The framework allows for the automatic output of a \texttt{toucMap} file which c
 
 \chapter{Collimation of Heavy-Ion Beams in the LHC}
 
-This chapter points out the challenges that are related to the operation with heavy-ion beams and the simulation of the heavy-ion collimation performance. The outcome of this analysis led to the development of a new collimation simulation software, that described and applied for the configuration of the 2011 heavy-ion operation with \lead beams. The loss maps are compared to the simulations with the previous standard simulation tool ICOSIM and, based on the results, the requirements for a further improved collimation simulation software are outlined. The content of this chapter has partly been published in~\cite{phermes_hb2014,NIM:819}.
+This chapter points out the challenges that are related to the operation with heavy-ion beams and the simulation of the heavy-ion collimation performance. 
 %
 
 \subsection{Heavy-Ion Qualification Loss Maps}\label{chap:qualification_lossmaps}

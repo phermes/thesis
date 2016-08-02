@@ -1,8 +1,8 @@
-\chapter{Simulations and Measurements} \label{chap:sim_meas}
+\chapter{Simulations and Measurements}
 
 Alsongide with the comparison of simulated and measured loss patterns for benchmarking of the simulation tools, such comparisons allow the study of potential strategies of loss reductions. In this chapter, different studies carried out with STIER and hiSixTrack related to operational aspects are outlined and discussed.
 
-\section{Preparation of the Heavy-Ion Operation in 2015} \label{chap:prep2015}
+\section{Preparation of the Heavy-Ion Operation in 2015}
 
 \begin{figure}[b]  
     \centering
@@ -407,7 +407,7 @@ The preparation of the test includes to determine the beam parameters, target lo
 \label{tab:sets_qt}
 \begin{tabular}{cccccc} 
 \toprule
-IR7    &       &   IR3   &          &    & IR1/2/5/8/6 \\ \midrule
+IR7    &       &   IR3   &          &    IR1/2/5/8/6 & \\ \midrule
 TCP    &  5.5  &   TCP   &  15.0    &    TCT  &   37.0 \\ 
 TCSG   &  8.0  &   TCSG  &  18.0    &    TCL  &   out  \\
 TCLA   & 14.0  &   TCLA  &  20.0    &   TCDQ  &   9.1  \\ \bottomrule
@@ -477,19 +477,9 @@ In the second fill four bunch trains of 24 bunches as well as 8 individual bunch
     \footnotesize
     \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16071302.pdf}};
     \node [x={(image.south east)},y={(image.north west)}]                   at (0.50,1.0)    {Heavy Ion Collimation Quench Test - 13.12.2015};
-    \node [draw,fill=white,rotate=0 ,x={(image.south east)},y={(image.north west)},align=center]            at (0.22,0.35)    {ADT setup \\ at injection energy};
-    \node [draw,fill=white,rotate=0 ,x={(image.south east)},y={(image.north west)},align=center]            at (0.40,0.6)    {Filling with 12x24 \\ bunch trains};
-
-    \node [draw,fill=white,rotate=0 ,x={(image.south east)},y={(image.north west)},align=center]            at (0.64,0.6)    {Ramp};
-
-    \node [draw,fill=white,rotate=0 ,x={(image.south east)},y={(image.north west)},align=center]            at (0.8,0.8)    {Quench};
+    %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
-    \draw[-,color=black,x={(image.south east)},y={(image.north west)}]             (0.43,0.54) -- (0.5,0.5);
-
-    \draw[-,color=black,x={(image.south east)},y={(image.north west)}]             (0.64,0.56) -- (0.68,0.52);
-
-    \draw[-,color=black,x={(image.south east)},y={(image.north west)}]             (0.8,0.8) -- (0.85,0.78);
-
+    %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
   \end{tikzpicture}
   \caption{Intensity and particle energy evolution during the quench test.}  
   \label{pic:16071301}
@@ -539,21 +529,20 @@ This value is very close to the stored beam energy already achieved in the 2015 
 %
 This value should be regarded with caution, knowing that the energy deposited is related to the BLM signals via a repsonse function which is unknown. Better estimates for the power deposited can be obtained with the detailed shower deposition study carried out with FLUKA on the basis of a dedicated hiSixTrack simulation in which the \texttt{toucMap} data is used for a sub-sequent FLUKA simulation. 
 
-The hiSixTrack simulation is carried out with 6.8$\cdot 10^6$ initial \lead ions starting at IP1 for B2H. The simulated optics and collimator settings are identical to the settings applied in the measurement. The impact parameter at the TCP.C6R7.B2 was set to 0.5~$\mu$m to 2.0~$\mu$m on both collimator jaws. The simulated loss pattern is compared to the loss map measured during the quench test and the qualification loss map used for the preparation in \figref{pic:16071401} (full ring) and \figref{pic:16071402} (zoom to IR7). The highest loss lignal in the cold regions was measured at the time of the quench at the MBB.9L7 with a loss signal of $\eta_Q = (2.2 \pm 0.4) \cdot 10^{-2}$, while in the loss map the highest loss signal was measured at the MQY in the same cell, with a slightly lsower cleaning inefficiency. This discrepancy is not considered grave because the impact parameter might be different in the two measurements. 
+The hiSixTrack simulation is carried out with 6.8$\cdot 10^6$ initial \lead ions starting at IP1 for B2H. The simulated optics and collimator settings are identical to the settings applied in the measurement. The impact parameter at the TCP.C6R7.B2 was set to 0.5~$\mu$m to 2.0~$\mu$m on both collimator jaws. The simulated loss pattern is compared loss map measured during the quench test and the qualification loss map used for the preparation in \figref{pic:16071303} (full ring) and \figref{pic:16071304} (zoom to IR7). The highest loss lignal in the cold regions was measured at the time of the quench at the MBB.9L7 with a loss signal of $\eta_Q = (2.2 \pm 0.4) \cdot 10^{-2}$, while in the loss map the highest loss signal was measured at the MQY in the same cell, with a slightly lsower cleaning inefficiency. This discrepancy is not considered grave because the impact parameter might be different in the two measurements. 
 
 
 
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}
-    \footnotesize
     \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16071401.pdf}};
-    \node [x={(image.south east)},y={(image.north west)}]                   at (0.50,0.650)    {quench test};
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {quench test};
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
     %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
   \end{tikzpicture}
-  \caption{Measured and simulated B2H loss maps for the B2H collimation quench test (full ring).}  
+  \caption{Figure caption}  
   \label{pic:16071401}
   %/home/phermes/Dropbox/PhD/pictures/160714_quench_test/comparison_qt.pdf
   \end{figure}
@@ -574,7 +563,7 @@ The hiSixTrack simulation is carried out with 6.8$\cdot 10^6$ initial \lead ions
 %   \end{figure}
 
 
-The qualification loss map simulated with hiSixTrack shows a good overall agreement with the measured loss maps. The dominating losses in IR7, IR6, and IR3 are well modelled in the simulation and also the loss peak C5 (see \figref{pic:16071303}) in the cold region downstream of IR5 is well predicted in hiSixTrack. Remarkable differences arise in the arcs between IR5 and IR6 as well as IR6 and IR7. The loss peaks in the prior are only visible in the loss map measured during the quench test, while they are neither simulated nor measured in the qualification loss map, even though their amplitude should be above the noise level. The same applies for the pronounced loss peaks in the arc between IR6 and IR7, where some of them are simulated in hiSixTrack, but not measured in the qualification loss map. These discrepancies are not understood and subject to further investigation. Possible reasons could be orbit fluctuations between the different measurements. 
+The qualification loss map simulated with hiSixTrack show a good overall agreement with the measured loss maps. The dominating losses in IR7, IR6, and IR3 are well modelled in the simulation and also the loss peak C5 (see \figref{pic:16071303}) in the cold region downstream of IR5 is well predicted in hiSixTrack. Remarkable differences arise in the arcs between IR5 and IR6 as well as IR6 and IR7. The loss peaks in the prior are only visible in the loss map measured during the quench test, while they are neither simulated nor measured in the qualification loss map, even though their amplitude should be above the noise level. The same applies for the pronounced loss peaks in the arc between IR6 and IR7, where some of them are simulated in hisixTrack, but not measured in the qualification loss map. These discrepancies are not understood and subject to further investigation. Possible reasons could be orbit fluctuations between the different measurements. 
 
 % \begin{figure}[h]
 %   \centering
@@ -608,30 +597,15 @@ The qualification loss map simulated with hiSixTrack shows a good overall agreem
 
 
 
-With hiSixTrack, the highest loss peak in the cold regions is located at the MBB.9L7, in line with the measurement and the quench location. At this location, the simulated cleaning inefficiency is $\eta_\text{MBB}^S = 2.4 \cdot 10^{-3} \text{m}^{-1}$. As explained before this value should not be compared quantitatively to the measured cleaning inefficiency. The loss composition in the DS1 and DS2 is listed in \tabref{}. While the losses in the DS1 are composed of many different isotopes with rather small contributions of single ion species, compared to the DS2. In the latter, more than one third of the losses are induced by $^{205}$Pb$^{82+}$. As shown in previous chapters, this diverse composition of the losses in the DS makes it difficult to mitigate these losses without hardware modifications. 
+With hiSixTrack, the highest loss peak in the cold regions is located at the MBB.9L7, in line with the measurement and the quench location. At this location, the simulated cleaning inefficiency is $\eta_\text{MBB}^S = 2.4 \cdot 10^{-3} \text{m}^{-1}$. 
 
-
-\begin{table}[h]
-  \centering
-  \caption{Isotope composition in the DS clusters in the quench test simulation.}
-  \begin{tabular}{cccc}
-		\toprule
-                \multicolumn{2}{c}{DS1} & \multicolumn{2}{c}{DS2} \\ \midrule
-		Isotope (A,Z) & Fraction{[}\%{]} & Isotope (A,Z) & Fraction{[}\%{]} \\ \midrule
-		203, 82       & 7.7              & 205, 82       & 36.8 \\
-		202, 82       & 6.9              & 206, 82       & 21.3 \\
-		201, 81       & 5.3              & 203, 81       & 17.3 \\
-		200, 81       & 4.5              & 200, 80       & 6.8  \\
-		199, 81       & 4.1              & 202, 81       & 6.6  \\ \bottomrule
-  \end{tabular}
-\end{table}
 
 
 
 
 \subsubsection{BLM Signals}
 
-An important outcome of the experiment are the measured BLM signals at quench with respect to the BLM thresholds. The BLM signals at the BLMEI.09L7.B2I30 at the moment of the quench are shown, normalized to the operational BLM thresholds, for all running sums in \figref{pic:16071403}. The highest signal is measured for RS10 with a factor 3.5 of the applied threshold. For RS09 and RS11, the thresholds were exceeded by 60\% and 110\% respectively~\cite{ACC-NOTE-16-0031}. This is an important information for the setting of BLM threholds in future heavy-ion runs. 
+An important outcome of the experiment are the measured BLM signals at quench with respect to the BLM thresholds. The BLM signals at quench normalized to the operational BLM thresholds are shown in \figref{pic:16071403}. 
 
 
 \begin{figure}[htbp]
@@ -693,24 +667,7 @@ An important outcome of the experiment are the measured BLM signals at quench wi
 
 
 
-\subsection{Summary and Outlook}
 
-	% \begin{table}[h]
-	% 	\centering
-	% 	\caption{Beam parameters for heavy-ion operation: design value~\citedr , achieved at the 2015 heavy-ion run, foreseen to be achievable for the LIU upgrade and as requested for HL-LHC.}
-	% 	\label{tab:intensity_limitations}
-	% 	\begin{tabular}{ccccccc}
-	% 		\toprule
-	% 		                        & $E$             & $n_B$   & $I_B$             & $E^\text{tot}_{nom}$   & $E^{\text{tot}}_\text{max}$   \\ 
-	% 		                        & {[}$Z$ TeV{]}	  &         & [$10^7$ ions]     & [MJ]             & [MJ]                          \\ \midrule
-	% 		Design                  & 7.0             & 592     & $7$               & 3.81             & \multirow{4}{*}{$\leq 10.8$}         \\ %\cline{1-5}
-	% 		2015                    & 6.37            & 518     & $22 $             & 9.54             &                        	   \\ %\cline{1-5}
-	% 		LIU baseline     & 7.0             & 1152    & $17$              & 18.0             &                               \\ %\cline{1-5}
-	% 		HL-LHC request          & 7.0             & 1248    & $21 $             & 24.1             &                               \\ \bottomrule
-	% 	\end{tabular}
-	% \end{table}
-
-The LHC heavy-ion collimation quench test was the first collimation quench test in which a quench was achieved. With the collimation debris generated in the horizontal TCP for B2, the MBB.L7 was quenched when a power of $(15\pm 1)\,$kW was deposited at the primary collimator. Extrapolating from the TCP power load and the minimum beam life time, the upper limit for the achievable stored beam energy is 10.8~MJ. As shown in the next chapter, the beam intensities foreseen for the the future LHC operation after the LIU upgrade in the HL-LHC era are significantly above this value. In combination with the results of \chapref{chap:prep2015}, the most important conclusion of the heavy-ion collimation quench test is that the envisaged intensities can not be achieved without an upgrade of the LHC collimation system. A possible upgrade with additional collimators in the DS region is studied in the next chapter. 
 
 
 

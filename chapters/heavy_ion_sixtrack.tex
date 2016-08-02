@@ -12,7 +12,7 @@ The following list summarizes the implementation tasks to be carried out in orde
 \begin{itemize}
         \item hiSixTrack must provide additional arrays storing information about the particle mass $m$, charge $Z$, and nuclear mass number $A$. In the present implementation it is assumed that the particle charge corresponds to the nuclear charge number (e.g. nuclei from which all electrons are removed). For the heavy-ion beams circulating in the LHC this is a valid assumption. If required, an adequate extension to define the particle charge differently than the nuclear charge number is fairly easy to implement. 
 	\item The reference species must be defined in a designated input option, preferably given in the fort.3 file. Furthermore, the particle species of the initial bunch to be tracked must be read from an initial distribution file.
-	\item The tracking maps must be modified to take into account the change of magnetic rigidity for different ions while maintaining their symplecticity. Instead of using effective proton momenta as it was done for STIER, the tracking maps should be implemented such that the momentum of the tracked ion conforms to the physical momentum. 
+	\item The tracking maps must be modified to take into account the change of magnetic rigidity for different ions. Instead of using effective proton momenta as it was done for STIER, the tracking maps should be implemented such that the momentum of the tracked ion conforms to the physical momentum. 
 	\item The on-line coupling between SixTrack and FLUKA must be adapted to allow for the exchange of ions different than protons. The FLUKA input must be changed to take into account fragmentation processes by EMD, NF, and nulcear evaporation. 
 	\item The dump of particle losses must be changed to include information of the ions lost at the collimators and at the aperture. This will allow for studies of loss locations of individual isotopes and analysis of the isotopic composition of losses. 
 
@@ -947,8 +947,18 @@ Cleaning simulations with hiSixTrack can in principle be initiated similarly to 
     %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
-    %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
+  \draw[-,color=black,x={(image.south east)},y={(image.north west)}]             (0.30,0.89) -- (0.575,0.743);
+  \draw[-,color=black,x={(image.south east)},y={(image.north west)}]             (0.30,0.97) -- (0.575,0.955);
+
   \draw[thick, x={(image.south east)},y={(image.north west)},draw=black] (0.2,0.89) rectangle (0.3,0.97);
+
+  \draw[thick, x={(image.south east)},y={(image.north west)},draw=black] (0.8,0.15) rectangle (0.9,0.23);
+
+  \draw[-,color=black,x={(image.south east)},y={(image.north west)}]             (0.53,0.14) -- (0.8,0.15);
+  \draw[-,color=black,x={(image.south east)},y={(image.north west)}]             (0.53,0.353) -- (0.8,0.23);
+
+%  \draw[-,color=black,x={(image.south east)},y={(image.north west)}]             (0.30,0.97) -- (0.575,0.955)
+
   \end{tikzpicture}
   \caption{Annular halo of on-momentum particles tracked from the TCP to the TCP.C6L7.B1 over ten turns with sextupoles (blue) and without sextupoles (red). The black horizontal lines indicate the TCP jaw edges.}  
   \label{pic:16070603}
@@ -1008,9 +1018,13 @@ The direct comparison of the simulated global heavy-ion beam loss pattern shows 
 
 \begin{figure}[t]
   \centering
+  \small 
   \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1.0\linewidth]{pictures/16070803.pdf}};
-    %\node [draw,rotate=90,x={(image.south east)},y={(image.north west)}]                   at (0.50,0.50)    {text0};
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.90,0.89)    {Measurement};
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.85,0.60)    {hiSixTrack-FLUKA coupling};
+    \node [x={(image.south east)},y={(image.north west)}]                   at (0.90,0.31)    {STIER};
+
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)}]                   at (0.22,0.96)    {text1};
     %\node [draw,rotate=0 ,x={(image.south east)},y={(image.north west)},anchor=west]       at (0.22,0.80)    {text2};
     %\draw[->,color=black,thick,x={(image.south east)},y={(image.north west)}]             (0.42,0.22) -- (0.37,0.23);
