@@ -5,20 +5,32 @@
 
 \include{chapters/titlepage}
 
+
+ \newpage
+ \thispagestyle{empty}
+ \mbox{} 
+ \newpage
+ 
+
+
+
+
+
 \begin{abstract}
-  The LHC collimation system is an essential part of the machine to provide protection against beam halo at high particle intensities at the accelerator.
+  The CERN Large Hadron Collider (LHC) stores and collides proton and \lead beams of unprecedented energy and intensity. Thousands of superconducting magnets, operated at 1.9\,K, guide the very intense and energetic particle beams, which have a large potential for destruction. This implies the demand for a multi-stage collimation system to provide protection from beam-induced quenches or even hardware damage. In heavy-ion operation, ion fragments with significant rigidity offsets can still scatter out of the collimation system. When they irradiate the superconducting LHC magnets, the latter risk to quench (lose their superconducting property). These secondary collimation losses can potentially impose a limitation for the stored heavy-ion beam energy. Therefore, their distribution in the LHC needs to be understood by sophisticated simulations. Such simulation tools must accurately simulate the particle motion of many different nuclides in the magnetic LHC lattice and simulate their interaction with the collimators. Previous simulation tools used simplified models for the simulation of particle-matter interaction and showed discrepancies compared to the measured loss patterns. This thesis describes the development and application of improved heavy-ion collimation simulation tools.  Two different approaches are presented to provide these functionalities. In the first presented tool, called STIER, fragmentation at the primary collimator is simulated with the Monte-Carlo event generator FLUKA. The ion fragments scattered out of the primary collimator are subsequently tracked as protons with ion-equivalent rigidities in the existing proton tracking tool SixTrack. This approach was used to prepare the collimator settings for the 2015 LHC heavy-ion run and its predictions allowed reducing undesired losses. More accurate simulation results are obtained with the second presented simulation tool, in which SixTrack is extended to track arbitrary heavy ions. This new tracking tool, called hiSixTrack, is actively coupled to FLUKA to simulate the interaction of heavy ions with matter. The new software is used to study the collimation performance for future LHC configurations. The simulation results are combined with experimental input from a quench test experiment to deduce potential intensity limitations and define required upgrades of the collimation system for High Luminosity LHC.
+
+
+
+% Particles can still leave the collimators without being absored. If they gathered a change in rigidity during their passage through the collimator material, they are often lost in the superconducting magnets downstream of the collimation region, instead of being absorbed in subsequent collimators. Therefore, the cleaning performance of the collimation system depends crucially on the type of interactions particles undergo in the collimator material. While the collimation approach works very efficiently for proton beams, the cleaning performance is worse by two orders of magnitude for heavy-ion beams. The origin for this reduced cleaning performance are electromagnetic and nuclear interactions which can change charge and mass of the heavy-ion and hence induce large offsets in rigidity. Losses 
+
+
 \end{abstract}
 
-\newpage
-\thispagestyle{empty}
-
-\begin{flushright}
-\textit{F\"{u}r Julia}
-\end{flushright}
 
 %\flushleft
 %\printglossaries
 
+\thispagestyle{empty}
 
 
 
@@ -34,15 +46,21 @@
 \include{chapters/appendix}
 
 % bibliography
-\bibliographystyle{alphaphdev}
+%\bibliographystyle{alphaphdev}
+\bibliographystyle{alphaurlph}
 \bibliography{literature}
 
 \newpage
-\section*{List of Symbols and Acronyms}
-\glsaddall
-\printglossary[type=symbol,style=mylong]%,style=supergroup]
+%\chapter*{List of Symbols and Acronyms}
+
 %\glsaddall
-\printglossary[type=acronym,style=mylong]
+%\printglossary[type=symbol,style=supergroup]
+\glsaddall
+\printglossary[type=symbol,title=List of Symbols,toctitle=List of Symbols,style=mylong,nonumberlist]
+\printglossary[type=acronym,title=List of Acronyms,toctitle=List of Acronyms,style=mylong,nonumberlist]
+
+
+
 
 
 % \newpage
@@ -51,10 +69,129 @@
 
 
 % danksagung
-%\include{chapters/extras/danksagung}
+\include{chapters/danksagung}
    
 % selbststaendigkeitserklaerung
-\include{chapters/erklaerung}
+
+
+\newpage
+\thispagestyle{empty}
+
+\LARGE{Lebenslauf}
+\\\mbox{}\\
+\thispagestyle{empty}
+\normalsize
+
+\begin{table}[h]
+\begin{tabular}{ll}
+Name & Pascal Dominik Hermes \\
+Geburtsdatum & 30.04.1987 \\
+Geburtsort     & Saarlouis      \\
+Staatsangeh\"{o}rigkeit     &      Deutsch \\ 
+Eltern & Stefanie Hermes, geb. Peifer \\
+ &  Wolfgang Hermes \\
+ & \\
+% \multicolumn{2}{l}{\textit{\textbf{Schulausbildung}}}\\
+%  & \\
+% 08/1993 - 06/1997 & Grundschule Saarlouis Steinrausch \\
+% 08/1998 - 07/2003 & Integrierte Gesamtschule Dillingen/Saar \\
+% 08/2003 - 07/2006 & Technisch Wissenschaftliches Gymnasium Dillingen/Saar \\
+% \phantom{08/2003 - }07/2006 & Allgemeine Hochschulreife \\
+%  & \\
+
+
+
+
+\multicolumn{2}{l}{\textit{\textbf{Schulausbildung}}}\\
+ & \\
+08/1993 - 06/1997 & Grundschule Saarlouis Steinrausch \\
+08/1998 - 07/2003 & Integrierte Gesamtschule Dillingen/Saar \\
+08/2003 - 07/2006 & Technisch Wissenschaftliches Gymnasium Dillingen/Saar \\
+\phantom{08/2003 - }07/2006 & Allgemeine Hochschulreife \\
+ & \\
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h]
+\begin{tabular}{ll}
+\multicolumn{2}{l}{\textit{\textbf{Studium}}}\\
+ & \\
+04/2007 - 09/2007 & \textbf{Studium der Humanmedizin} \\
+ &  \textit{Westf\"{a}lische Wilhelms-Universit\"{a}t M\"{u}nster} \\
+ 10/2007 - 03/2011 & \textbf{Studium der Physik}\\
+ &  \textit{Westf\"{a}lische Wilhelms-Universit\"{a}t M\"{u}nster}  \\
+ 09/2009 - 08/2010 & \textbf{Studium der Physik - ERASMUS}\\
+ &  \textit{Universit\'{e} Paris Sud XI, Orsay, Frankreich}  \\
+ 05/2010 - 08/2010 & \textbf{Bachelorarbeit in Physik}\\
+  &  ``Conception de l'Injecteur et
+  \\
+ &  des Diagnostics du Faisceau pour le Projet SuperB'' \\
+ &  \textit{Laboratoire de l'Acc\'{e}l\'{e}rateur Lin\'{e}aire, Orsay, Frankreich}  \\
+ \phantom{10/2007 - }03/2011 & \textbf{Bachelor of Science}\\
+ &  \textit{Westf\"{a}lische Wilhelms-Universit\"{a}t M\"{u}nster}  \\
+\end{tabular}
+\end{table}
+
+
+\newpage 
+\thispagestyle{empty}
+
+\begin{table}[h]
+\begin{tabular}{ll}
+ 03/2011 - 07/2013 & \textbf{Studium der Physik}\\
+ &  \textit{Westf\"{a}lische Wilhelms-Universit\"{a}t M\"{u}nster}  \\
+ 04/2012 - 04/2013 & \textbf{Masterarbeit in Physik}\\
+  &  ``Development of high $\beta^*$ optics for ALICE''  \\
+ &  \textit{Westf\"{a}lische Wilhelms-Universit\"{a}t M\"{u}nster}  \\
+                    &\textit{Europ\"{a}ische Organisation f\"{u}r Kernforschung, Genf, Schweiz} \\ 
+% &  \textit{CERN, Genf, Schweiz}  \\
+ \phantom{10/2007 - }07/2013 & \textbf{Master of Science}\\
+ &  \textit{Westf\"{a}lische Wilhelms-Universit\"{a}t M\"{u}nster}  \\
+ & \\
+\multicolumn{2}{l}{\textit{\textbf{Promotionsstudium}}}\\
+ & \\
+10/2013           & \textbf{Beginn der Dissertation}    \\ 
+                    &\textit{Institut f\"{u}r Kernphsyik, Westf\"{a}lische Wilhelms-Universit\"{a}t M\"{u}nster} \\ 
+                    &\textit{Europ\"{a}ische Organisation f\"{u}r Kernforschung, Genf, Schweiz} \\ 
+                    & Betreut von Prof. Dr. Johannes P. Wessels und Dr. Roderik Bruce    \\ 
+ & \\
+\end{tabular}
+\end{table}
+
+
+\mbox{}
+\vfill
+
+
+
+% \begin{table}[h]
+% \begin{tabular}{ll}
+
+% \multicolumn{2}{l}{\textit{\textbf{Promotionsstudium}}}\\
+%  & \\
+% 10/2013           & \textbf{Beginn der Dissertation}    \\ 
+%                     &\textit{Institut f\"{u}r Kernphsyik, Westf\"{a}lische Wilhelms-Universit\"{a}t M\"{u}nster} \\ 
+%                     &\textit{Europ\"{a}ische Organisation f\"{u}r Kernforschung, Genf, Schweiz} \\ 
+%                     & Betreut von Prof. Dr. Johannes P. Wessels und Dr. Roderik Bruce    \\ 
+%  & \\
+% \end{tabular}
+% \end{table}
+
+
+
+
+
+
+
+
+
+%\include{chapters/erklaerung}
+
+
+
+
+
 
 \end{document}  
 

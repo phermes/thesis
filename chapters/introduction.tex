@@ -1,18 +1,59 @@
 \chapter{Introduction}
 
-% big bang
-% heavy ion collisions
-% results from former LHC runs
-% limitation in intensity due to the danger of magnet quenching
-% lhc collimation system is a three stage system to shield the protons from the superconducting LHC magnets
-% heavy ion runs: no proper simulation code which respects the break up of heavy ions in the collimators and their ensuing travel in the LHC 
+The CERN\footnote{European Organization for Nuclear Research} Large Hadron Collider (LHC)~\citedr\, is the world's largest particle accelerator, capable of storing proton and \lead beams at an unprecedented energy\footnote{$Z$ is the particle charge number.} of 7$\,Z\,$TeV. In the seven years after starting its operation, the LHC has continuously demonstrated to be a powerful scientific tool which produced unrivaled luminosities for the four main detectors ATLAS~\cite{ATLASref01}, \mbox{ALICE~\cite{ALICEref01}}, CMS~\cite{CMSref01} and LHCb~\cite{LHCbref01}. The most outstanding scientific achievement so far is the discovery of the Higgs boson, announced in 2012~\cite{higgs:ATLAS,higgs:CMS}. 
+%\vspace{0.2cm}
+%
+%The LHC started operation in late 2009, followed by a first period of low luminosity\footnote{The luminosity is proportional to the event rate in the collisions~\cite{proceedingsCAS:herr}.} physics production at 3.5$\,Z\,$TeV in 2010. In this year, proton-proton (p-p) and \lead - \lead collisions (Pb-Pb) were established~\cite{PbPbref01}.  In the following year 2011, the amount of integrated luminosity was significantly increased for both proton and heavy-ion operation. In 2012, the LHC was only operated with proton beams and a further increase of the luminosity was achieved. Furthermore, the energy was increased to 4.0$\,$TeV. The first operational cycle (Run I) ended with one month of p-Pb operation in early 2013, which was carried out at 4.0$\,Z\,$TeV~\cite{pPbref01}. In the following two years, the LHC was shut down for a consolidation and upgrade phase that was completed in May 2015~\cite{IPAC16:WEOCA01}. After the successful restart, the p-p operation resumed with proton energies of 6.5\,TeV. The Pb-Pb run in late 2015 was carried out at 6.37\,$Z$\,TeV to achieve the same center of mass energy per colliding nucleon as in the 2013 p-Pb run~\cite{IPAC16:TUPMW027}. In 2016, the LHC was operating with protons at 6.5\,TeV and a p-Pb run with energies at 4.0$\,Z\,$TeV and $6.5\,Z\,$TeV~\cite{ICIHNC16:jowett} is envisaged. 
 
-\begin{itemize}
-\item LHC breaking many superlatives, e.g. stored beam energy 
-\item Contrary to the stored beam energy very sensitive hardware, operated closely to quench limit (1K is sufficient to bring to the normal conducting state)
-\item Collimation system must protect sensitive devices by inducing controlled losses in dedicated devices.
-\item Heavy ion collisions for the generation of QGP
-\end{itemize}
+After the Intersecting Storage Rings (ISR)~\cite{ISRref} and the Relativistic Heavy Ion Collider~\cite{HahnNIM03}, the LHC is the third heavy ion collider that was ever built and operated. Approximately one month per operational year is dedicated to heavy-ion operation with \lead beams. One of the main aims of the LHC heavy-ion program is the study of the quark gluon plasma (QGP), a state of matter hypothesized in quantum chromo-dynamics (QCD) which is believed to have existed shortly after the big bang~\cite{qgp1}. The QGP is classified by a deconfinement of the quarks, which is expected to occur at extreme temperatures and densities. The experimental investigation of the QGP could hence deliver important evidence to validate or disprove current theories about the evolution of the early universe. Furthermore, a deeper understanding of QCD is expected from these experiments. The energy required to reproduce these extreme conditions can be deliberated in collisions of heavy nuclei at relativistic energies.
+%\vspace{0.2cm}
+
+%The experimental study of QCD began with fixed target \lead - \lead collision experiments at the CERN Super Proton Synchrotron (SPS), where a momentum per nucleon of 158$\,$GeV$/c$ was reached~\cite{newstatematter}. A further increase was achieved in \iso{197}{Au}{79+} collisions at the Relativistic Heavy-ion Collider~\cite{HahnNIM03,rhicruns}, with a center of mass energy of 200$\,$GeV per colliding nucleon pair. The ALICE experiment at the LHC is committed to the study of QGP in \lead collisions, which have so far reached 5.02$\,$TeV per colliding nucleon pair~\cite{IPAC16:TUPMW027}.
+
+Thousands of superconducting magnets, cooled with liquid helium, are used to guide and focus the very rigid LHC beams. In order to achieve the ambitious target luminosity, the LHC stores proton beams of a total beam energy of 362\,MJ, which has never been achieved before. This corresponds to the energy required to melt 300~kg of copper. \mbox{A tiny fraction} of this energy is sufficient to damage the LHC hardware if it is instantaneously deposited~\cite{braccothesis}. An even smaller fraction can make the superconducting LHC magnets lose their \mbox{superconductivity} (magnet quench). During operation, particle losses are omnipresent because several processes diffuse the beam particles to large amplitudes. This implies the demand for a collimation system to protect the machine hardware from uncontrolled beam loss~\citedr. 
+\vspace{0.2cm}
+\newpage
+
+The LHC collimation system consists of approximately 100 movable absorbers with the aim of intercepting particles at amplitudes far from the main beam axis~\cite{CERN-2004-003-V1,collimationsystemref1}. The collimation system has proven to be very efficient for proton operation, in which only a tiny fraction of the energy lost in the collimators is lost in superconducting magnets. For heavy-ion beams, the system is less efficient, because interactions of heavy ions with the collimator materials can lead to fragmentation into other isotopes. These ion fragments with different magnetic rigidity can scatter out of the collimators and continue moving towards the superconducting magnets. The latter act as a spectrometer and deviate the fragments into their aperture. The particles scattered out of the collimation system can hence cause a magnet quench. This scenario is undesired, because it interrupts the operation by the time the magnet requires to recover.
+\vspace{0.2cm}
+
+If the origin of potentially dangerous losses is known, they can possibly be mitigated by appropriate countermeasures. Therefore, it is important to have sophisticated simulation tools which can anticipate the locations in the accelerator that are exposed to large amounts of collimation losses. Such tools  are also used to define the requirements for collimation system upgrades in future operation with higher beam intensities. So far, tools to simulate heavy-ion collimation used approximations which led to discrepancies compared to the measured loss distributions.
+
+
+\vspace{0.2cm}
+
+In this thesis, the development, benchmarking and application of improved heavy-ion collimation simulation tools is presented. Two different types of simulations are required to accurately predict the loss distribution of the residual heavy-ion fragments scattered out of the collimators. First, the interaction of beam particles with the collimator materials must be simulated. Secondly, the particle motion of the ion fragments through the accelerator magnets, possibly over many turns, must be accurately computed. The loss locations are then predicted by comparing the particle amplitudes to the dimension of the beam pipe.
+\vspace{0.2cm}
+
+In a first approach, the particle-matter interaction with the primary collimator (which is exposed to the highest amount of losses) is simulated with the simulation tool FLUKA~\cite{ferrari2005fluka,bohlen2014fluka}. The motion of the ion fragments scattered out of this collimator is subsequently simulated with SixTrack~\cite{SixTrackref01,SixTrackref03,SixTrackref02,SixTrackref04}, an existing tool to simulate proton motion particle accelerators. The mass to charge ratio of the individual heavy ions is incorporated into the momentum of the tracked protons, to obtain proton rigidities equivalent to the heavy ions.  This framework, referred to as SixTrack with ion-equivalent rigidities (STIER), shows a better agreement with the measured loss patterns than previous simulation tools. Shortly after its introduction in late 2014, it became the standard simulation tool for heavy-ion collimation at CERN. In the 2015 LHC heavy-ion run,  predictions made by STIER were experimentally confirmed. 
+\vspace{0.2cm}
+
+\newpage
+The next generation tool heavy-ion SixTrack (hiSixTrack) was developed as a successor of STIER, to further enhance the agreement with the measurements. hiSixTrack was developed with the aim of accurately predicting the motion of arbitrary heavy-ion species in the accelerator magnets. The fragmentation into lighter heavy ions is simulated by an active coupling to the Monte-Carlo event generator FLUKA. This integrated framework for heavy-ion collimation simulation is referred to as the hiSixTrack-FLUKA coupling. It is deployed to simulate the collimation performance for the future High Luminosity LHC (HL-LHC). The results of these simulations are combined with experimental data from a quench experiment to derive possible intensity limitations for HL-LHC and define required collimation system upgrades.
+\vspace{0.2cm}
+
+
+
+% simulation tools FLUKA and SixTrack were combined to study the simplifications in ICOSIM, that lead to the discrepancies between simulation and measurement. In this simulation approach, the fragmentation at the primary collimator is simulated with FLUKA and the residual heavy-ion fragments are tracked in SixTrack as protons with ion-equivalent rigidities (STIER). Initially developed to study the requirements for a new simulation tool, STIER showed a good agreement with measured loss distributions.
+%It was used as such to prepare 
+
+
+
+
+
+% Collimation simulations allow to optimize the collimation system for the best performance, identify critical loss locations, work out loss mitigation strategies and study potential improvements from hardware upgrades. 
+
+
+
+
+ % The cleaning inefficiency is not only measured during operation with beam loss monitors (BLM), but also simulated before operation by means of sophisticated simulation tools. The present standard tool for the simulation of proton collimation is \mbox{SixTrack}~\cite{SixTrackref01,SixTrackref02,SixTrackref03,SixTrackref04}, which provides an integrated framework for  symplectic tracking of the six-dimensional particle coordinates through the magnetic lattice of the accelerator and simulate the interaction of beam particles with the material of the collimator jaws.
+%  Collimation simulations allow to optimize the collimation system for the best performance, identify critical loss locations, work out loss mitigation strategies and study potential improvements from hardware upgrades. SixTrack has proven to simulate proton loss patterns in excellent agreement with measured data~\cite{Bruce2014a}.
+
+% The heavy-ion cleaning performance of the LHC collimation system is worse by two orders of magnitude compared to proton beams, because of the different nature of nuclear and electromagnetic interactions in the collimators. Heavy-ions can be subject to fragmentation into residual nuclei with different mass to charge ratio and hence rigidities far from that of the main beam. The stored beam energy for heavy-ion beams is smaller by two orders of magnitude than for protons. In spite of that, the amount of energy lost in the superconducting magnets is larger for heavy-ion beams. Therefore, the cleaning efficiency with heavy-ions should also be theoretically accessible in simulations. SixTrack can not serve this purpose, because the tracking algorithm and the integrated Monte-Carlo routine to simulate particle-matter interaction are designed only for protons. The tool ICOSIM (Ion Collimation Simulation) used previously at CERN, predicts the heavy-ion cleaning performance of the LHC using simplified tracking and fragmentation algorithms. These simulations cannot reproduce the measured loss map with the same accuracy as it is possible in proton simulations. Potentially critical losses in heavy-ion operation were therefore not theoretically accessible. 
+
+
+
+In the next chapter, the theoretical background for the understanding of particle motion in the LHC is presented. The LHC and its collimation system are presented in \chapref{thelhc}. Simulation tools important for the development of the hiSixTrack-FLUKA coupling are introduced in \chapref{chap:simtools}. Measurements of heavy-ion collimation losses are presented and compared to simulations with the previous standard tool in \chapref{chap:collhi}. The new simulation tool STIER is presented and benchmarked in \chapref{chap:stier}. The further improved tracking tool hiSixTrack and its coupling to FLUKA are described and benchmarked in \chapref{chap:hisix}. In \chapref{chap:sim_meas}, STIER is applied to the LHC configuration in the 2015 heavy-ion run to evaluate the collimation performance and to develop mitigation strategies for critical losses. Also, collimation simulations of HL-LHC with and without potential collimator upgrades are presented in this chapter. They are carried out with the hiSixTrack-FLUKA coupling. In the following \chapref{chapter:quenchtest}, the LHC heavy-ion collimation quench test conducted in 2015 is presented and analyzed. The hiSixTrack-FLUKA coupling is applied to simulate the loss distribution during the quench test and to define performance limitations for HL-LHC. An outlook on potential future upgrades of the hiSixTrack-FLUKA coupling is given in \chapref{chap:outlook}. In the final chapter, the content of the thesis is summarized.
 
 
 

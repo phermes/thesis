@@ -1,6 +1,8 @@
 % glossary
 
 \newglossary[slg]{symbol}{sot}{stn}{Symbols}
+\glsaddkey{unit}{\glsentrytext{\glslabel}}{\glsentryunit}{\GLsentryunit}{\glsunit}{\Glsunit}{\GLSunit}
+
 \makeglossaries
 
 %\newglossaryentry{alpha}{
@@ -8,19 +10,14 @@
 %  name={Alphanumeric},
 %  description={}}
 
-\newglossaryentry{area}{
-  type=symbol,
-  name={\ensuremath{S}},
-  description={reference area},
-  sort={S}%,
- % parent=alpha
-}
+
 
 \newglossaryentry{emittance}{
   type=symbol,
   name={$\epsilon_N$},
   sort={e},
-  description={Normalized transverse r.m.s. emittance}%,
+  unit={$\mu$m rad},
+  description={Normalized transverse RMS emittance}%,
   %parent=alpha
 }
 
@@ -32,24 +29,187 @@
 %  parent=alpha
 }
 
+\newglossaryentry{np}{
+  type=symbol,
+  name={$N_P$},
+  unit={$\sigma$},
+  description={Normalized primary collimator half gap},
+  sort={np}%,
+%  parent=alpha
+}
+
+\newglossaryentry{ns}{
+  type=symbol,
+  name={$N_S$},
+  description={Normalized secondary collimator half gap},
+  sort={ns}%,
+%  parent=alpha
+}
+
+\newglossaryentry{rho0}{
+  type=symbol,
+  name={$\rho_0$},
+  unit={$\sigma$},
+  description={Ideal bending radius in a magnet},
+  sort={rho0}%,
+%  parent=alpha
+}
+
+\newglossaryentry{B}{
+  type=symbol,
+  name={$B$},
+  unit={$\sigma$},
+  description={Magnetic field},
+  sort={B}%,
+%  parent=alpha
+}
+
+\newglossaryentry{x}{type=symbol,name={$x$},unit={$xx$},description={Horizontal coordinate}, sort={x}}
+\newglossaryentry{y}{type=symbol,name={$y$},unit={$xx$},description={Vertical coordinate}, sort={y}}
+\newglossaryentry{z}{type=symbol,name={$z$},unit={$xx$},description={Longitudinal coordinate in straight coordinate system}, sort={z}}
+\newglossaryentry{s}{type=symbol,name={$s$},unit={$xx$},description={Longitudinal parameter, distance from IP1}, sort={s}}
+\newglossaryentry{P}{type=symbol,name={$P$},unit={$xx$},description={Absolute value of the particle momentum vector}, sort={p}}
+
+\newglossaryentry{P0}{type=symbol,name={$P_0$},unit={$xx$},description={Absolute value of the reference particle momentum vector}, sort={p}}
+
+\newglossaryentry{beta}{type=symbol,name={$\beta$},unit={$xx$},description={Relativistic $\beta$}, sort={beta}}
+
+\newglossaryentry{E}{type=symbol,name={$E$},unit={$xx$},description={Particle energy}, sort={energy}}
+
+\newglossaryentry{taul}{type=symbol,name={$\tau_L$},unit={$xx$},description={Loss duration}, sort={taul}}
+\newglossaryentry{taudr}{type=symbol,name={$\tau_\text{DR}$},unit={$xx$},description={LHC design minimum beam lifetime (12\,min)}, sort={taudr}}
+\newglossaryentry{tau}{type=symbol,name={$\tau$},unit={$xx$},description={Beam lifetime}, sort={tau}}
+\newglossaryentry{eta}{type=symbol,name={$\eta$},unit={$xx$},description={Cleaning inefficiency}, sort={eta}}
+\newglossaryentry{d}{type=symbol,name={$d$},unit={$xx$},description={Distance traversed in the collimator material}, sort={d}}
+\newglossaryentry{dp}{type=symbol,name={$d_p$},unit={$xx$},description={Projected penetration depth}, sort={d}}
+\newglossaryentry{nd}{type=symbol,name={$N_D$},unit={$xx$},description={Normalized TCLD half gap}, sort={nd}}
+\newglossaryentry{nb}{type=symbol,name={$N_B$},unit={$xx$},description={Number of ions per bunch (bunch intensity)}, sort={nd}}
+\newglossaryentry{nbb}{type=symbol,name={$n_B$},unit={$xx$},description={Number of bunches per beam}, sort={nd}}
+\newglossaryentry{brho}{type=symbol,name={$B \, \rho$},unit={$xx$},description={Magnetic rigidity}, sort={brho}}
+\newglossaryentry{c}{type=symbol,name={$c$},unit={$xx$},description={Speed of light}, sort={c}}
+\newglossaryentry{Z}{type=symbol,name={$Z$},unit={$xx$},description={Nuclear charge number (number of protons in the nucleus)}, sort={Z}}
+
+\newglossaryentry{etaavgds1}{type=symbol,name={$\eta^{avg}_{DS1}$},unit={$xx$},description={Maximum average cleaning inefficiency in the DS1 loss cluster}, sort={etaavgds1}}
+\newglossaryentry{etaavgds2}{type=symbol,name={$\eta^{avg}_{DS2}$},unit={$xx$},description={Maximum average cleaning inefficiency in the DS2 loss cluster}, sort={etaavgds2}}
+\newglossaryentry{etaavgmax}{type=symbol,name={$\eta^{avg}_{max}$},unit={$xx$},description={Maximum average cleaning inefficiency in all superconducting LHC magnets}, sort={etaavgmax}}
+
+\newglossaryentry{Z0}{type=symbol,name={$Z_0$},unit={$xx$},description={Nuclear charge number of the reference particle}, sort={Z0}}
+
+\newglossaryentry{A}{type=symbol,name={$A$},unit={$xx$},description={Nuclear mass number (number of nucleons in the nucleus)}, sort={A}}
+\newglossaryentry{A0}{type=symbol,name={$A_0$},unit={$xx$},description={Nuclear mass number of the reference particle}, sort={A0}}
+
+\newglossaryentry{m0}{type=symbol,name={$m_0$},unit={$xx$},description={Rest mass of the reference particle}, sort={m0}}
+
+\newglossaryentry{m}{type=symbol,name={$m$},unit={$xx$},description={Particle rest mass}, sort={m}}
+
+\newglossaryentry{rhom}{type=symbol,name={$\rho_m$},unit={$xx$},description={Density of a material}, sort={rhom}}
+
+\newglossaryentry{delta}{type=symbol,name={$\delta$},unit={$xx$},description={Momentum per mass offset relative to reference particle}, sort={delta}}
+
+
+\newglossaryentry{chi}{type=symbol,name={$\chi$},unit={$xx$},description={Mass to charge ratio relative to the reference particle}, sort={chi}}
+
+\newglossaryentry{deltaeff}{type=symbol,name={$1+\delta_\text{eff}$},unit={$xx$},description={Rigidity offset with respect to the reference particle}, sort={deltaeff}}
+
+\newglossaryentry{q}{type=symbol,name={$q$},unit={$xx$},description={Particle charge}, sort={q}}
+
+\newglossaryentry{q0}{type=symbol,name={$q_0$},unit={$xx$},description={Charge of the reference particle}, sort={q0}}
+
+\newglossaryentry{hx}{type=symbol,name={$h_x$},unit={$xx$},description={Curvature of the reference trajectory}, sort={hx}}
+
+\newglossaryentry{g}{type=symbol,name={$g$},unit={$xx$},description={Quadrupole gradient}, sort={g}}
+
+\newglossaryentry{k}{type=symbol,name={$k$},unit={$xx$},description={Quadrupole focusing strength}, sort={k}}
+
+\newglossaryentry{b}{type=symbol,name={$b$},unit={$xx$},description={Impact parameter}, sort={b}}
+
+
+\newglossaryentry{betxy}{type=symbol,name={$\beta_x/\beta_y$},unit={$xx$},description={Horizontal/vertical betatron function}, sort={betxy}}
+
+\newglossaryentry{es}{type=symbol,name={$E_s$},unit={$xx$},description={Total stored beam energy}, sort={es}}
+
+\newglossaryentry{x0}{type=symbol,name={$X_0$},unit={$xx$},description={Radiation length}, sort={X0}}
+
+\newglossaryentry{Zm}{type=symbol,name={$Z_m$},unit={$xx$},description={Nuclear charge number of the collimator material}, sort={Zm}}
+
+\newglossaryentry{Am}{type=symbol,name={$A_m$},unit={$xx$},description={Average nuclear mass number of the collimator material}, sort={Am}}
+
+\newglossaryentry{rt}{type=symbol,name={$R_T$},unit={$xx$},description={Radius of target nucleus}, sort={rt}}
+
+\newglossaryentry{rp}{type=symbol,name={$R_P$},unit={$xx$},description={Radius of projectile nucleus}, sort={rp}}
+
+\newglossaryentry{Dx}{type=symbol,name={$D_x$},unit={$xx$},description={Horizontal periodic dispersion function}, sort={Dx}}
+
+\newglossaryentry{Dxt}{type=symbol,name={$\tilde{D}_x$},unit={$xx$},description={Local horizontal dispersion function}, sort={Dxt}}
+
+\newglossaryentry{S}{type=symbol,name={$\mathbf{S}$},unit={$xx$},description={Symplectic matrix}, sort={S}}
+
+\newglossaryentry{J}{type=symbol,name={$\mathcal{J}$},unit={$xx$},description={Jacobian matrix}, sort={J}}
+
+\newglossaryentry{pc}{type=symbol,name={$\mathbf{p}$},unit={$xx$},description={Canonical momentum}, sort={pc}}
+
+\newglossaryentry{qc}{type=symbol,name={$\mathbf{q}$},unit={$xx$},description={Canonical coordinate}, sort={qc}}
+
+\newglossaryentry{Av}{type=symbol,name={$\mathbf{A}$},unit={$xx$},description={Magnetic vector potential}, sort={Av}}
+
+\newglossaryentry{diracdelta}{type=symbol,name={$\bar{\delta}$},unit={$xx$},description={Dirac delta distribution}, sort={deltad}}
+
+\newglossaryentry{nsp}{type=symbol,name={$\Delta N_{S,P}$},unit={$xx$},description={Retraction of the secondary collimators in $\sigma$}, sort={nsp}}
+
+\newglossaryentry{etaint}{type=symbol,name={$\eta^{int}$},unit={$xx$},description={Integrated cleaning inefficiency}, sort={etaint}}
+
+\newglossaryentry{etamax}{type=symbol,name={$\eta^{max}$},unit={$xx$},description={Peak cleaning inefficiency}, sort={etamax}}
+
+\newglossaryentry{lumi}{type=symbol,name={$\mathcal{L}$},unit={$xx$},description={Instantaneous luminosity}, sort={lumi}}
+
+\newglossaryentry{lumiint}{type=symbol,name={$\mathcal{L}^\text{int}$},unit={$xx$},description={Integrated luminosity}, sort={lumiint}}
+
+\newglossaryentry{luminn}{type=symbol,name={$\mathcal{L}_\text{NN}$},unit={$xx$},description={Nucleon-nucleon luminosity}, sort={luminn}}
 
 
 
+% acronyms
 
 
-
-
-
-
-\newacronym[sort={adt}]{ADT}{ADT}{Transverse damper}
+\newacronym[sort={adt}]{ADT}{ADT}{Transverse damper, can induce white noise excitation to provoque beam loss }
 \newacronym[sort={blm}]{BLM}{BLM}{Beam loss monitor}
+
+
+\newacronym[sort={it180}]{IT180}{IT180}{Inermet 180}
+
+\newacronym[sort={bct}]{BCT}{BCT}{Beam current transformator. Measures the beam intensity}
 \newacronym[sort={b1}]{B1}{B1}{LHC Beam 1, rotating in clockwise direction}
 \newacronym[sort={b2}]{B2}{B2}{LHC Beam 2, rotating in counter-clockwise direction}
 \newacronym[sort={tcp}]{TCP}{TCP}{Target collimator primary (primary collimator)}
+\newacronym[sort={bpm}]{BPM}{BPM}{Beam position monitor. Measures the transverse position of the beam}
+\newacronym[sort={madx}]{MAD-X}{MAD-X}{Methodical Accelerator Design, software to simulate beam dynamics}
+
 \newacronym[sort={tcsg}]{TCSG}{TCSG}{Target collimator secondary (secondary collimator)}
 \newacronym[sort={tcT}]{TCT}{TCT}{Target collimator tertiary (tertiary collimator)}
 \newacronym[sort={tcld}]{TCLD}{TCLD}{Target collimator long dispersion suppressor}
-\newacronym[sort={lhc}]{LHC}{LHC}{Large Hadron Collider}
 \newacronym[sort={ds}]{DS}{DS}{Dispersion suppressor}
+\newacronym[sort={mq}]{MQ}{MQ}{Quadrupole magnet}
+\newacronym[sort={mb}]{MB}{MB}{Bending dipole magnet}
+\newacronym[sort={emd}]{EMD}{EMD}{Electromagnetic dissociation}
+\newacronym[sort={nf}]{NF}{NF}{Nuclear fragmentation}
+\newacronym[sort={bfpp}]{BFPP}{BFPP}{Bound-free pair production}
+\newacronym[sort={fedb}]{FEDB}{FEDB}{FLUKA element database}
+\newacronym[sort={fluka}]{FLUKA}{FLUKA}{Fluktuierende Kaskade, simulation tool for particle-matter interaction}
+\newacronym[sort={stier}]{STIER}{STIER}{SixTrack with Ion-Equivalent Rigidities}
+\newacronym[sort={cfc}]{CFC}{CFC}{Carbon fiber composite, material of primary and secondary collimators}
+\newacronym[sort={icosim}]{ICOSIM}{ICOSIM}{Ion Collimation Simulation}
+\newacronym[sort={lhc}]{LHC}{LHC}{Large Hadron Collider}
+\newacronym[sort={sps}]{SPS}{SPS}{Super Proton Synchrotron}
+\newacronym[sort={ir}]{IR}{IR}{Insertion region}
+\newacronym[sort={ufo}]{UFO}{UFO}{Unidentified falling object}
+\newacronym[sort={rs}]{RS}{RS}{BLM running sum}
+\newacronym[sort={ppd}]{PPD}{PPD}{Projected penetration depth}
+\newacronym[sort={eos}]{EoS}{EoS}{End of Squeeze}
+\newacronym[sort={ft}]{FT}{FT}{Flat Top}
+\newacronym[sort={B1H}]{B1H}{B1H}{Horizontal plane of Beam 1}
+\newacronym[sort={B1V}]{B1V}{B1V}{Vertical plane of Beam 1}
+\newacronym[sort={B2H}]{B2H}{B2H}{Horizontal plane of Beam 2}
+\newacronym[sort={B2V}]{B2V}{B2V}{Vertical plane of Beam 2}
+
 
 
